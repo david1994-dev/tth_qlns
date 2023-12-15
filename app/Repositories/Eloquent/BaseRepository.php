@@ -113,6 +113,11 @@ class BaseRepository implements BaseRepositoryInterface
         return Collection::make($items);
     }
 
+    public function create($input)
+    {
+        return $this->getBlankModel()->create($input);
+    }
+
     /**
      * @param \Illuminate\Database\Query\Builder $query
      * @param array                              $filter

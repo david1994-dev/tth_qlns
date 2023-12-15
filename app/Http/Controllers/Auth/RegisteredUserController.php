@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use App\Repositories\Interface\EmployeeRepositoryInterface;
+use App\Repositories\Interface\UserRepositoryInterface;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -15,6 +17,17 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
+    private EmployeeRepositoryInterface $employeeRepository;
+    private UserRepositoryInterface $userRepository;
+
+    public function __construct(
+        EmployeeRepositoryInterface $employeeRepository,
+        UserRepositoryInterface $userRepository
+    ) {
+        $this->employeeRepository = $employeeRepository;
+        $this->userRepository = $userRepository;
+    }
+
     /**
      * Display the registration view.
      */
@@ -36,11 +49,14 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
+        $user = $this->userRepository->create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        //create employee
+//        $this->employeeRepository->create([]);
 
         event(new Registered($user));
 
