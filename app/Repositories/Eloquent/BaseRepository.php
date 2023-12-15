@@ -9,7 +9,6 @@ use Illuminate\Support\Arr;
 
 class BaseRepository implements BaseRepositoryInterface
 {
-
     protected array $querySearchTargets = [];
 
     public function getEmptyList()
@@ -29,7 +28,6 @@ class BaseRepository implements BaseRepositoryInterface
         return new Base();
     }
 
-
     public function all(string $order = null, string $direction = null)
     {
         $model = $this->getModelClassName();
@@ -39,7 +37,7 @@ class BaseRepository implements BaseRepositoryInterface
             return $model::query()->orderBy($order, $direction)->get();
         }
 
-        return $model::query()->all();
+        return $model::query()->get();
     }
 
     public function get(string $order, string $direction, int $offset, int $limit)
