@@ -3,9 +3,13 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Base;
+use App\Models\Log;
 use App\Repositories\Interface\BaseRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class BaseRepository implements BaseRepositoryInterface
 {
@@ -113,11 +117,6 @@ class BaseRepository implements BaseRepositoryInterface
         return Collection::make($items);
     }
 
-    public function create($input)
-    {
-        return $this->getBlankModel()->create($input);
-    }
-
     public function findById($id)
     {
         return $this->getBlankModel()->find($id);
@@ -199,5 +198,226 @@ class BaseRepository implements BaseRepositoryInterface
     protected function queryOptions($query)
     {
         return $query;
+    }
+
+    public function create($input)
+    {
+        DB::connection()->enableQueryLog();
+
+        $model = $this->getBlankModel();
+        $model = $this->update($model, $input);
+
+        $queries = DB::getQueryLog();
+        $query = $queries[count($queries) - 1];
+        foreach( $query['bindings'] as $key => $value ) {
+            $query['query'] = preg_replace("/\?/", "`$value`", $query['query'], 1);
+        }
+
+        if( App::environment() != 'testing' ) {
+            $user = auth()->user();
+            if( !empty($user) ) {
+                Log::create(
+                    [
+                        'user_id' => $user->id,
+                        'table'     => $this->getBlankModel()->getTable(),
+                        'action'    => Log::TYPE_ACTION_INSERT,
+                        'record_id' => $model->id,
+                        'query'     => $query['query'],
+                    ]
+                );
+            }
+        }
+
+        return $model;
+    }
+
+    public function update($model, $input)
+    {
+        foreach ($model->getEditableColumns() as $column) {
+            if (array_key_exists($column, $input)) {
+                $model->$column = Arr::get($input, $column);
+            }
+        }
+
+        if( isset($model->id) && $model->id ) {
+            DB::connection()->enableQueryLog();
+            $model = $this->save($model);
+            if( !$model ) {
+                return false;
+            }
+
+            if( count(DB::getQueryLog()) ) {
+                $queries = DB::getQueryLog();
+                $query = $queries[count($queries) - 1];
+                foreach( $query['bindings'] as $key => $value ) {
+                    $query['query'] = preg_replace("/\?/", "`$value`", $query['query'], 1);
+                }
+
+                if( App::environment() != 'testing' ) {
+                    $user = auth()->user();
+                    if( !empty($user) ) {
+                        Log::create(
+                            [
+                                'user_id' => $user->id,
+                                'table'     => $this->getBlankModel()->getTable(),
+                                'action'    => Log::TYPE_ACTION_UPDATE,
+                                'record_id' => $model->id,
+                                'query'     => $query['query'],
+                            ]
+                        );
+                    }
+                }
+            }
+        } else {
+            $model = $this->save($model);
+        }
+
+        return $model;
+    }
+
+    public function save($model)
+    {
+        if (!$model->save()) {
+            return false;
+        }
+
+        return $model;
+    }
+
+    public function delete($model)
+    {
+        DB::connection()->enableQueryLog();
+        $deleted = $model->delete();
+
+        $queries = DB::getQueryLog();
+        $query = $queries[count($queries) - 1];
+        foreach( $query['bindings'] as $key => $value ) {
+            $query['query'] = preg_replace("/\?/", "`$value`", $query['query'], 1);
+        }
+
+        if( App::environment() != 'testing' ) {
+            $user = auth()->user();
+
+            if( !empty($user) ) {
+                Log::create(
+                    [
+                        'user_id' => $user->id,
+                        'table'     => $this->getBlankModel()->getTable(),
+                        'action'    => Log::TYPE_ACTION_DELETE,
+                        'record_id' => $model->id,
+                        'query'     => $query['query'],
+                    ]
+                );
+            }
+        }
+
+        return $deleted;
+    }
+
+    public function __call($method, $parameters)
+    {
+        if (Str::startsWith($method, 'getBy')) {
+            return $this->dynamicGet($method, $parameters);
+        }
+
+        if (Str::startsWith($method, 'allBy')) {
+            return $this->dynamicAll($method, $parameters);
+        }
+
+        if (Str::startsWith($method, 'countBy')) {
+            return $this->dynamicCount($method, $parameters);
+        }
+
+        if (Str::startsWith($method, 'findBy')) {
+            return $this->dynamicFind($method, $parameters);
+        }
+
+        if (Str::startsWith($method, 'deleteBy')) {
+            return $this->dynamicDelete($method, $parameters);
+        }
+
+        $className = static::class;
+        throw new \BadMethodCallException("Call to undefined method {$className}::{$method}()");
+    }
+
+    private function dynamicGet($method, $parameters)
+    {
+        $finder = substr($method, 5);
+        $segments = preg_split('/(And|Or)(?=[A-Z])/', $finder, -1);
+        $conditionCount = count($segments);
+        $conditionParams = array_splice($parameters, 0, $conditionCount);
+        $model = $this->getBlankModel();
+        $whereMethod = 'where'.$finder;
+        $query = call_user_func_array([$model, $whereMethod], $conditionParams);
+
+        $order = Arr::get($parameters, 0, 'id');
+        $direction = Arr::get($parameters, 1, 'asc');
+        $offset = Arr::get($parameters, 2, 0);
+        $limit = Arr::get($parameters, 3, 10);
+
+        if (!empty($order)) {
+            $direction = empty($direction) ? 'asc' : $direction;
+            $query = $query->orderBy($order, $direction);
+        }
+        if (!is_null($offset) && !is_null($limit)) {
+            $query = $query->offset($offset)->limit($limit);
+        }
+
+        return $query->get();
+    }
+
+    private function dynamicAll($method, $parameters)
+    {
+        $finder = substr($method, 5);
+        $segments = preg_split('/(And|Or)(?=[A-Z])/', $finder, -1);
+        $conditionCount = count($segments);
+        $conditionParams = array_splice($parameters, 0, $conditionCount);
+        $model = $this->getBlankModel();
+        $whereMethod = 'where'.$finder;
+        $query = call_user_func_array([$model, $whereMethod], $conditionParams);
+
+        $order = Arr::get($parameters, 0, 'id');
+        $direction = Arr::get($parameters, 1, 'asc');
+
+        return $query->orderBy($order, $direction)->get();
+    }
+
+    private function dynamicCount($method, $parameters)
+    {
+        $finder = substr($method, 7);
+        $segments = preg_split('/(And|Or)(?=[A-Z])/', $finder, -1);
+        $conditionCount = count($segments);
+        $conditionParams = array_splice($parameters, 0, $conditionCount);
+        $model = $this->getBlankModel();
+        $whereMethod = 'where'.$finder;
+        $query = call_user_func_array([$model, $whereMethod], $conditionParams);
+
+        return $query->count();
+    }
+
+    private function dynamicFind($method, $parameters)
+    {
+        $finder = substr($method, 6);
+        $segments = preg_split('/(And|Or)(?=[A-Z])/', $finder, -1);
+        $conditionCount = count($segments);
+        $conditionParams = array_splice($parameters, 0, $conditionCount);
+        $model = $this->getBlankModel();
+        $whereMethod = 'where'.$finder;
+        $query = call_user_func_array([$model, $whereMethod], $conditionParams);
+
+        return $query->first();
+    }
+
+    private function dynamicDelete($method, $parameters)
+    {
+        $finder = substr($method, 8);
+        $segments = preg_split('/(And|Or)(?=[A-Z])/', $finder, -1);
+        $conditionCount = count($segments);
+        $conditionParams = array_splice($parameters, 0, $conditionCount);
+        $model = $this->getBlankModel();
+        $whereMethod = 'where'.$finder;
+        $query = call_user_func_array([$model, $whereMethod], $conditionParams);
+
+        return $query->delete();
     }
 }

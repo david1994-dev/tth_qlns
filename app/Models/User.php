@@ -44,6 +44,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function roles()
+    {
+        return $this->hasMany(UserRole::class, 'user_id', 'id');
+    }
+
     /**
      * @param string $targetRole
      * @param bool $checkSubRoles
@@ -53,9 +58,9 @@ class User extends Authenticatable
     public function hasRole(string $targetRole, bool $checkSubRoles = true): bool
     {
         $roles = [];
-//        foreach ($this->roles as $role) { //todo get all roles for this user
-//            $roles[] = $role->role;
-//        }
+        foreach ($this->roles as $role) {
+            $roles[] = $role->role;
+        }
 
         if (in_array($targetRole, $roles)) {
             return true;
