@@ -118,6 +118,11 @@ class BaseRepository implements BaseRepositoryInterface
         return $this->getBlankModel()->create($input);
     }
 
+    public function findById($id)
+    {
+        return $this->getBlankModel()->find($id);
+    }
+
     /**
      * @param \Illuminate\Database\Query\Builder $query
      * @param array                              $filter
