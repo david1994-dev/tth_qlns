@@ -5,7 +5,7 @@ namespace App\Services;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 
-class FileUploadService
+class FileService
 {
     public function uploadImage($configKey, $file): string
     {
@@ -40,5 +40,10 @@ class FileUploadService
         }
 
         return $filename;
+    }
+
+    public function delete(string $fileName): bool
+    {
+        return Storage::delete($fileName);
     }
 }

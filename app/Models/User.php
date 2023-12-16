@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Arr;
 
 class User extends Authenticatable
 {
@@ -42,4 +43,36 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * @param string $targetRole
+     * @param bool $checkSubRoles
+     *
+     * @return bool
+     */
+    public function hasRole(string $targetRole, bool $checkSubRoles = true): bool
+    {
+        $roles = [];
+//        foreach ($this->roles as $role) { //todo get all roles for this user
+//            $roles[] = $role->role;
+//        }
+
+        if (in_array($targetRole, $roles)) {
+            return true;
+        }
+
+        if (!$checkSubRoles) {
+            return false;
+        }
+
+        $roleConfigs = config('user_roles.roles', []);
+        foreach ($roles as $role) {
+            $subRoles = Arr::get($roleConfigs, "$role.sub_roles", []);
+            if (in_array($targetRole, $subRoles)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

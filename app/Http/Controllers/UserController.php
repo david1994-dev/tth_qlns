@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PaginationRequest;
 use App\Repositories\Interface\UserRepositoryInterface;
+use Illuminate\Http\RedirectResponse;
 
 class UserController extends Controller
 {
@@ -14,7 +15,7 @@ class UserController extends Controller
         $this->userRepository = $userRepository;
     }
 
-    public function all(PaginationRequest $request)
+    public function all(PaginationRequest $request): RedirectResponse
     {
 
     }
