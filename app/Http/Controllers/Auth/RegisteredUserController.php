@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use App\Repositories\Interface\EmployeeRepositoryInterface;
 use App\Repositories\Interface\UserRepositoryInterface;
+use App\Services\FileUploadService;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -20,12 +21,16 @@ class RegisteredUserController extends Controller
     private EmployeeRepositoryInterface $employeeRepository;
     private UserRepositoryInterface $userRepository;
 
+    private FileUploadService $fileUploadService;
+
     public function __construct(
         EmployeeRepositoryInterface $employeeRepository,
-        UserRepositoryInterface $userRepository
+        UserRepositoryInterface $userRepository,
+        FileUploadService $fileUploadService
     ) {
         $this->employeeRepository = $employeeRepository;
         $this->userRepository = $userRepository;
+        $this->fileUploadService = $fileUploadService;
     }
 
     /**
@@ -57,6 +62,8 @@ class RegisteredUserController extends Controller
 
         //create employee
 //        $this->employeeRepository->create([]);
+
+//        $image = $this->fileUploadService->uploadImage('avatars', $request->file('avatar'));
 
         event(new Registered($user));
 

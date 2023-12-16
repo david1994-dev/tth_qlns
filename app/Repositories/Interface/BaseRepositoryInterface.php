@@ -110,4 +110,6 @@ interface BaseRepositoryInterface
     public function pluck($collection, $value, $key = null);
 
     public function create($input);
+
+    public function findById($id);
 }
