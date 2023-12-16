@@ -108,8 +108,11 @@ interface BaseRepositoryInterface
      * @return \Illuminate\Support\Collection
      */
     public function pluck($collection, $value, $key = null);
-
-    public function create($input);
-
     public function findById($id);
+    public function create($input);
+    public function update($model, $input);
+    public function save($model);
+    public function delete($model);
+
+
 }

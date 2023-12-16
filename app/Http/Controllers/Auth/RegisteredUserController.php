@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use App\Repositories\Eloquent\UserRoleRepository;
 use App\Repositories\Interface\EmployeeRepositoryInterface;
 use App\Repositories\Interface\UserRepositoryInterface;
+use App\Repositories\Interface\UserRoleRepositoryInterface;
 use App\Services\FileService;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -20,17 +22,19 @@ class RegisteredUserController extends Controller
 {
     private EmployeeRepositoryInterface $employeeRepository;
     private UserRepositoryInterface $userRepository;
-
+    private UserRoleRepositoryInterface $userRoleRepository;
     private FileService $fileService;
 
     public function __construct(
         EmployeeRepositoryInterface $employeeRepository,
         UserRepositoryInterface $userRepository,
-        FileService $fileService
+        FileService $fileService,
+        UserRoleRepositoryInterface $userRoleRepository
     ) {
         $this->employeeRepository = $employeeRepository;
         $this->userRepository = $userRepository;
         $this->fileService = $fileService;
+        $this->userRoleRepository = $userRoleRepository;
     }
 
     /**
@@ -54,7 +58,7 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = $this->userRepository->create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -65,7 +69,7 @@ class RegisteredUserController extends Controller
 
 //        $image = $this->fileService->uploadImage('avatars', $request->file('avatar'));
 
-        event(new Registered($user));
+//        event(new Registered($user));
 
         Auth::login($user);
 
