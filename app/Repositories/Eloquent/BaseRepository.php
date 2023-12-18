@@ -2,14 +2,14 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\Models\Base;
-use App\Models\Log;
+use App\Modules\Nhansu\src\Models\Base;
+use App\Modules\Nhansu\src\Models\Log;
 use App\Repositories\Interface\BaseRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class BaseRepository implements BaseRepositoryInterface
 {

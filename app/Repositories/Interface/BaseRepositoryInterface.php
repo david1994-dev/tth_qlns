@@ -7,7 +7,7 @@ interface BaseRepositoryInterface
     /**
      * Get Empty Array or Traversable Object.
      *
-     * @return \App\Models\Base[]|\Traversable|array
+     * @return \App\Modules\Nhansu\src\Models\Base[]|\Traversable|array
      */
     public function getEmptyList();
 
@@ -17,7 +17,7 @@ interface BaseRepositoryInterface
      * @param string|null $order
      * @param string|null $direction
      *
-     * @return \App\Models\Base[]|\Traversable|array
+     * @return \App\Modules\Nhansu\src\Models\Base[]|\Traversable|array
      */
     public function all(string $order = null, string $direction = null);
 
@@ -29,7 +29,7 @@ interface BaseRepositoryInterface
      * @param int $offset
      * @param int $limit
      *
-     * @return \App\Models\Base[]|\Traversable|array
+     * @return \App\Modules\Nhansu\src\Models\Base[]|\Traversable|array
      */
     public function get(string $order, string $direction, int $offset, int $limit);
 
@@ -45,7 +45,7 @@ interface BaseRepositoryInterface
      * @param string|null $order
      * @param string|null $direction
      *
-     * @return \App\Models\Base[]|\Traversable|array
+     * @return \App\Modules\Nhansu\src\Models\Base[]|\Traversable|array
      */
     public function allByFilter(array $filter, string $order = null, string $direction = null);
 
@@ -58,7 +58,7 @@ interface BaseRepositoryInterface
      * @param int $offset
      * @param int $limit
      *
-     * @return \App\Models\Base[]|\Traversable|array
+     * @return \App\Modules\Nhansu\src\Models\Base[]|\Traversable|array
      */
     public function getByFilter(array $filter, string $order, string $direction, int $offset, int $limit);
 
@@ -72,7 +72,7 @@ interface BaseRepositoryInterface
     /**
      * @param array $filter
      *
-     * @return \App\Models\Base | null
+     * @return \App\Modules\Nhansu\src\Models\Base | null
      */
     public function firstByFilter(array $filter);
 
