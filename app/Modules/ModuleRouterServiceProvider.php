@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace App\Modules;
 
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
 
-class RouteServiceProvider extends ServiceProvider
+class ModuleRouterServiceProvider extends ServiceProvider
 {
     /**
      * The path to your application's "home" route.
@@ -29,13 +29,13 @@ class RouteServiceProvider extends ServiceProvider
             return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
         });
 
-        $this->routes(function () {
-            Route::middleware('api')
-                ->prefix('api')
-                ->group(base_path('routes/api.php'));
-
-            Route::middleware('web')
-                ->group(base_path('routes/web.php'));
+        $modules = array_map('basename', File::directories(base_path('app/Modules')));
+        $this->routes(function () use ($modules) {
+            foreach ($modules as $module) {
+                Route::middleware('web')
+                    ->prefix(strtolower($module))
+                    ->group(base_path('app/Modules/'.$module.'/routes/web.php'));
+            }
         });
     }
 }

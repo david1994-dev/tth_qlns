@@ -4,13 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Modules\Nhansu\src\Repositories\Interface\EmployeeRepositoryInterface;
 use App\Providers\RouteServiceProvider;
-use App\Repositories\Eloquent\UserRoleRepository;
-use App\Repositories\Interface\EmployeeRepositoryInterface;
 use App\Repositories\Interface\UserRepositoryInterface;
 use App\Repositories\Interface\UserRoleRepositoryInterface;
 use App\Services\FileService;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
