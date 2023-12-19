@@ -2,7 +2,7 @@
 
 namespace App\Modules\Nhansu\src\Repositories\Eloquent;
 
-use App\Models\Employee;
+use App\Modules\Nhansu\src\Models\Employee;
 use App\Modules\Nhansu\src\Repositories\Interface\EmployeeRepositoryInterface;
 use App\Repositories\Eloquent\BaseRepository;
 

@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Modules\Nhansu\src\Models;
+
+use App\Models\Base;
 
 class Employee extends Base
 {
