@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Modules\Nhansu\src\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\PaginationRequest;
 use App\Repositories\Interface\UserRepositoryInterface;
 use App\Repositories\Interface\UserRoleRepositoryInterface;

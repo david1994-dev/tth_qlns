@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Repositories\Eloquent;
+namespace App\Modules\Nhansu\src\Repositories\Eloquent;
 
 use App\Models\Employee;
-use App\Repositories\Interface\EmployeeRepositoryInterface;
+use App\Modules\Nhansu\src\Repositories\Interface\EmployeeRepositoryInterface;
+use App\Repositories\Eloquent\BaseRepository;
 
 class EmployeeRepository extends BaseRepository implements EmployeeRepositoryInterface
 {
