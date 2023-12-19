@@ -1,7 +1,24 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+@extends('adminlte.Layout.app' )
 
+@section('metadata')
+@stop
+
+@section('styles')
+@stop
+
+@section('scripts')
+@stop
+
+@section('title')
+@stop
+
+@section('header')
+@stop
+
+@section('breadcrumb')
+@stop
+
+@section('content')
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
@@ -17,9 +34,9 @@
             <x-input-label for="password" :value="__('Password')" />
 
             <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+                          type="password"
+                          name="password"
+                          required autocomplete="current-password" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
@@ -44,4 +61,4 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+@stop

@@ -22,13 +22,8 @@ class UserController extends Controller
         $this->userRoleRepository = $userRoleRepository;
     }
 
-    public function all(PaginationRequest $request): RedirectResponse
+    public function all(PaginationRequest $request)
     {
-        $roles = $this->userRoleRepository->create([
-            'user_id' => 4,
-            'role' => 'admin'
-        ]);
-
-        dd($roles);
+        return view('Nhansu::users.index');
     }
 }
