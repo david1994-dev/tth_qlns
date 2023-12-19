@@ -5,7 +5,7 @@
 const path = require('path')
 const fse = require('fs-extra')
 const fs = require('fs')
-const Plugins = require('./DocsPlugins')
+const Plugins = require('./DocsPlugins.js')
 
 class Publish {
   constructor() {
