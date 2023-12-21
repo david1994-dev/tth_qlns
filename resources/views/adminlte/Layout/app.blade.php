@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="">
 <head>
   <!-------------------------------- Begin: Meta ----------------------------------->
   @yield('metadata')
@@ -10,6 +10,7 @@
   @yield('styles')
   <!-------------------------------- End: stylesheet ----------------------------------->
 
+    <title></title>
 </head>
 <body class="sidebar-mini">
   <div class="wrapper">
