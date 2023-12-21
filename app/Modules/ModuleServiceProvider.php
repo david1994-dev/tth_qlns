@@ -14,8 +14,8 @@ class ModuleServiceProvider extends ServiceProvider
     {
         //nhan su module
         $this->app->singleton(
-            \App\Modules\Nhansu\src\Repositories\Interface\EmployeeRepositoryInterface::class,
-            \App\Modules\Nhansu\src\Repositories\Eloquent\EmployeeRepository::class
+            \App\Modules\Nhansu\src\Repositories\Interface\NhanVienRepositoryInterface::class,
+            \App\Modules\Nhansu\src\Repositories\Eloquent\NhanVienRepository::class
         );
     }
 

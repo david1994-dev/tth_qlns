@@ -8,7 +8,7 @@ use App\Repositories\Interface\UserRepositoryInterface;
 use App\Repositories\Interface\UserRoleRepositoryInterface;
 use Illuminate\Http\RedirectResponse;
 
-class UserController extends Controller
+class NhanVienController extends Controller
 {
     private UserRepositoryInterface $userRepository;
     private UserRoleRepositoryInterface $userRoleRepository;
