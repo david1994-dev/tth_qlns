@@ -1,6 +1,10 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use App\Modules\Nhansu\src\Http\Controllers\UserController;
+use App\Modules\Nhansu\src\Http\Controllers\NhanVienController;
+use App\Modules\Nhansu\src\Http\Controllers\ChiNhanhController;
 
 
-Route::get('users', [UserController::class, 'all'])->name('user.all')->middleware('auth');
+Route::middleware(['auth'])->group(function () {
+    Route::get('users', [NhanVienController::class, 'all'])->name('nhanSu.user.all');
+    Route::get('chi_nhanh', [ChiNhanhController::class, 'all'])->name('nhanSu.chiNhanh.index');
+});

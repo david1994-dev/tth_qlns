@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Modules\Nhansu\src\Repositories\Interface\EmployeeRepositoryInterface;
+use App\Modules\Nhansu\src\Repositories\Interface\NhanVienRepositoryInterface;
 use App\Providers\RouteServiceProvider;
 use App\Repositories\Interface\UserRepositoryInterface;
 use App\Repositories\Interface\UserRoleRepositoryInterface;
@@ -18,15 +18,15 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
-    private EmployeeRepositoryInterface $employeeRepository;
+    private NhanVienRepositoryInterface $employeeRepository;
     private UserRepositoryInterface $userRepository;
     private UserRoleRepositoryInterface $userRoleRepository;
     private FileService $fileService;
 
     public function __construct(
-        EmployeeRepositoryInterface $employeeRepository,
-        UserRepositoryInterface $userRepository,
-        FileService $fileService,
+        NhanVienRepositoryInterface $employeeRepository,
+        UserRepositoryInterface     $userRepository,
+        FileService                 $fileService,
         UserRoleRepositoryInterface $userRoleRepository
     ) {
         $this->employeeRepository = $employeeRepository;

@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Models;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Log extends Base
 {
+    use softDeletes;
 
     protected $table = 'logs';
     protected $guarded = [];
