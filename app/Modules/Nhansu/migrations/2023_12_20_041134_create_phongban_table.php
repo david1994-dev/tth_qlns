@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('ten');
             $table->unsignedBigInteger('chi_nhanh_id');
             $table->unsignedBigInteger('nguoi_cap_nhat_id');
-            $table->integer('dinhBien')->default(0);
-            $table->integer('sapXep')->default(0);
-            $table->tinyInteger('trangThai')->nullable();
+            $table->integer('dinh_bien')->default(0);
+            $table->integer('sap_xep')->default(0);
+            $table->tinyInteger('trang_thai')->nullable();
             $table->tinyInteger('loai')->default(PhongBan::LOAI_CHUYEN_MON);
             $table->timestamps();
 

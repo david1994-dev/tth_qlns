@@ -14,9 +14,9 @@ class PhongBan extends Base
         'ten',
         'chi_nhanh_id',
         'nguoi_cap_nhat_id',
-        'dinhBien',
-        'sapXep',
-        'trangThai',
+        'dinh_bien',
+        'sap_xep',
+        'trang_thai',
         'loai'
     ];
 }

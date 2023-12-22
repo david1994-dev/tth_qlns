@@ -5,6 +5,6 @@ use App\Modules\Nhansu\src\Http\Controllers\ChiNhanhController;
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('users', [NhanVienController::class, 'all'])->name('nhanSu.user.all');
+    Route::get('/', [NhanVienController::class, 'index'])->name('nhanSu.user.index');
     Route::get('chi_nhanh', [ChiNhanhController::class, 'all'])->name('nhanSu.chiNhanh.index');
 });

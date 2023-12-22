@@ -11,20 +11,20 @@ class NhanVien extends Base
     const GIOI_TINH_NAM = 1;
     protected $fillable = [
         'ma',
-        'hoTen',
+        'ho_ten',
         'image',
         'email',
-        'dienThoai',
+        'dien_thoai',
         'cmnd',
-        'emailCongViec',
-        'gioiTinh',
-        'ngaySinh',
-        'ngayBatDauLamViec',
-        'ngayKetThucLamViec',
+        'email_cong_viec',
+        'gioi_tinh',
+        'ngay_sinh',
+        'ngay_bat_dau_lam_viec',
+        'ngay_ket_thuc_lam_viec',
         'chi_nhanh_id',
         'vi_tri_cong_viec_id',
         'phong_ban_id',
-        'chiTiet'
+        'chi_tiet'
     ];
 
     protected $casts = [

@@ -10,7 +10,7 @@ class ChiNhanh extends Base
     protected $fillable = [
         'ma',
         'ten',
-        'trangThai',
+        'trang_thai',
         'nguoi_cap_nhat_id',
     ];
 }
