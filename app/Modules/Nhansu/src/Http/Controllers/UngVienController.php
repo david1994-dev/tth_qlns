@@ -7,6 +7,7 @@ use App\Modules\ModuleRouterServiceProvider;
 use App\Modules\Nhansu\src\Http\Requests\NhanVien\UngVienRequest;
 use App\Modules\Nhansu\src\Repositories\Interface\UngVienRepositoryInterface;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class UngVienController extends Controller
 {
@@ -16,8 +17,23 @@ class UngVienController extends Controller
         $this->ungVienRepository = $ungVienRepository;
     }
 
-    public function store(UngVienRequest $request)
+    public function index($type)
     {
+        switch ($type) {
+            case 'bac-si':
+                return view('Nhansu::khao_sat.ksuv_bac_si');
+            case 'duoc-si':
+                return view('Nhansu::khao_sat.ksuv_duoc_si');
+            case 'van-phong':
+                return view('Nhansu::khao_sat.ksuv_van_phong');
+            default:
+                return '';
+        }
+    }
+
+    public function store(Request $request)
+    {
+        dd($request);
         $input = $request->only([
             'ho_ten', 'dien_thoai','email', 'dia_chi',
             'qua_trinh_lam_viec', 'vi_tri_ung_tuyen', 'don_vi_ung_tuyen'

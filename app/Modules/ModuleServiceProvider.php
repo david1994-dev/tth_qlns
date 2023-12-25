@@ -22,6 +22,11 @@ class ModuleServiceProvider extends ServiceProvider
             \App\Modules\Nhansu\src\Repositories\Interface\ChiNhanhRepositoryInterface::class,
             \App\Modules\Nhansu\src\Repositories\Eloquent\ChiNhanhRepository::class
         );
+
+        $this->app->singleton(
+            \App\Modules\Nhansu\src\Repositories\Interface\UngVienRepositoryInterface::class,
+            \App\Modules\Nhansu\src\Repositories\Eloquent\UngVienRepository::class
+        );
     }
 
     /**
