@@ -22,8 +22,8 @@ class NhanVienRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'ma' => ['string'],
-            'ten' => ['required', 'string'],
+            'ho_ten' => ['string'],
+            'image' => ['required','extensions:jpeg,jpg,png', 'max:2048'],
         ];
     }
 

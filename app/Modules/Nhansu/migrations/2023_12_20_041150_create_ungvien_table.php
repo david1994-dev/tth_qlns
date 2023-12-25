@@ -16,6 +16,16 @@ return new class extends Migration
     {
         Schema::create('ungvien', function (Blueprint $table) {
             $table->id();
+            $table->string('ho_ten');
+            $table->date('ngay_sinh');
+            $table->string('dien_thoai')->nullable();
+            $table->string('email')->nullable();
+            $table->string('dia_chi')->nullable();
+            $table->text('qua_trinh_lam_viec')->nullable();
+            $table->text('vi_tri_ung_tuyen');
+            $table->text('don_vi_ung_tuyen');
+            $table->dateTime('ngay_ky')->nullable();
+            $table->text('chi_tiet')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

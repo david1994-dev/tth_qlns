@@ -28,6 +28,6 @@ class NhanVien extends Base
     ];
 
     protected $casts = [
-        'chitiet' => 'array',
+        'chi_tiet' => 'array',
     ];
 }

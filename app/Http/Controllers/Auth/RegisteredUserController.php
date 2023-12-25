@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Modules\ModuleRouterServiceProvider;
 use App\Modules\Nhansu\src\Repositories\Interface\NhanVienRepositoryInterface;
 use App\Providers\RouteServiceProvider;
 use App\Repositories\Interface\UserRepositoryInterface;
@@ -71,6 +72,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(ModuleRouterServiceProvider::NHANSU_INDEX);
     }
 }
