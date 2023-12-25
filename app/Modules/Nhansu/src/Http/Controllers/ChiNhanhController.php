@@ -46,8 +46,25 @@ class ChiNhanhController extends Controller
 
     public function create()
     {
-        return view('Nhansu::chi_nhanh.create');
+        return view('Nhansu::tiep_nhan_nhan_su.tiep_nhan_nhan_su_thu_viec');
     }
+
+    public function khaoSat1()
+    {
+        return view('Nhansu::khao_sat.ksuv_duoc_si');
+    }
+
+    public function khaoSat2()
+    {
+        return view('Nhansu::khao_sat.ksuv_bac_si');
+    }
+
+    public function khaoSat3()
+    {
+        return view('Nhansu::khao_sat.ksuv_van_phong');
+    }
+
+    
 
     public function store(ChiNhanhRequest $request)
     {
