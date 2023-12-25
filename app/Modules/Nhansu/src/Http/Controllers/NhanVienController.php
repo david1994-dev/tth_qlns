@@ -26,4 +26,14 @@ class NhanVienController extends Controller
     {
         return view('Nhansu::users.index');
     }
+
+    public function index()
+    {
+        return view('Nhansu::users.create');
+    }
+
+    // public function create()
+    // {
+    //     return view('Nhansu::users.create');
+    // }
 }
