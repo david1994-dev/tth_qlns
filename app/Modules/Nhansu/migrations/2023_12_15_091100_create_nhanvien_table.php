@@ -15,20 +15,20 @@ return new class extends Migration
         Schema::create('nhanvien', function (Blueprint $table) {
             $table->id();
             $table->string('ma')->unique()->index();
-            $table->string('hoTen');
+            $table->string('ho_ten');
             $table->string('image')->nullable();
             $table->string('email')->unique()->index();
-            $table->string('dienThoai')->nullable();
+            $table->string('dien_thoai')->nullable();
             $table->string('cmnd')->nullable();
-            $table->string('emailCongViec')->unique()->index()->nullable();
-            $table->tinyInteger('gioiTinh')->default(NhanVien::GIOI_TINH_NU);
-            $table->date('ngaySinh');
-            $table->date('ngayBatDauLamViec')->nullable();
-            $table->date('ngayKetThucLamViec')->nullable();
+            $table->string('email_cong_viec')->unique()->index()->nullable();
+            $table->tinyInteger('gioi_tinh')->default(NhanVien::GIOI_TINH_NU);
+            $table->date('ngay_sinh');
+            $table->date('ngay_bat_dau_lam_viec')->nullable();
+            $table->date('ngay_ket_thuc_lam_viec')->nullable();
             $table->unsignedBigInteger('chi_nhanh_id')->nullable();
             $table->unsignedBigInteger('vi_tri_cong_viec_id')->nullable();
             $table->unsignedBigInteger('phong_ban_id')->nullable();
-            $table->text('chiTiet')->nullable();
+            $table->text('chi_tiet')->nullable();
             $table->timestamps();
 
             $table->softDeletes();

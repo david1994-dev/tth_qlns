@@ -1,24 +1,7 @@
-@extends('adminlte.Layout.app' )
+<x-guest-layout>
+    <!-- Session Status -->
+    <x-auth-session-status class="mb-4" :status="session('status')" />
 
-@section('metadata')
-@stop
-
-@section('styles')
-@stop
-
-@section('scripts')
-@stop
-
-@section('title')
-@stop
-
-@section('header')
-@stop
-
-@section('breadcrumb')
-@stop
-
-@section('content')
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
@@ -61,4 +44,4 @@
             </x-primary-button>
         </div>
     </form>
-@stop
+</x-guest-layout>

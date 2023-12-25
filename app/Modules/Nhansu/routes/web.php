@@ -11,4 +11,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('khao_sat1', [ChiNhanhController::class, 'khaoSat1']);
     Route::get('khao_sat2', [ChiNhanhController::class, 'khaoSat2']);
     Route::get('khao_sat3', [ChiNhanhController::class, 'khaoSat3']);
+    Route::get('/', [NhanVienController::class, 'index'])->name('nhanSu.user.index');
+    Route::get('chi_nhanh', [ChiNhanhController::class, 'all'])->name('nhanSu.chiNhanh.index');
+
 });

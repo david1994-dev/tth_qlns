@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string('ma')->unique()->nullable();
             $table->string('ten');
-            $table->tinyInteger('trangThai');
+            $table->tinyInteger('trang_thai');
             $table->unsignedBigInteger('nguoi_cap_nhat_id');
             $table->timestamps();
 
