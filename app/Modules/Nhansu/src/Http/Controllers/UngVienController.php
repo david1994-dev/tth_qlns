@@ -27,18 +27,12 @@ class UngVienController extends Controller
 
     public function viewKhaoSat($type)
     {
-        switch ($type) {
-            case 'bac-si':
-                $a = $this->ungVienRepository->findById(7);
-//                dd($a->qua_trinh_lam_viec);
-                return view('Nhansu::khao_sat.ksuv_bac_si');
-            case 'duoc-si':
-                return view('Nhansu::khao_sat.ksuv_duoc_si');
-            case 'van-phong':
-                return view('Nhansu::khao_sat.ksuv_van_phong');
-            default:
-                return '';
-        }
+        return match ($type) {
+            'bac-si' => view('Nhansu::khao_sat.ksuv_bac_si'),
+            'duoc-si' => view('Nhansu::khao_sat.ksuv_duoc_si'),
+            'van-phong' => view('Nhansu::khao_sat.ksuv_van_phong'),
+            default => '',
+        };
     }
 
     public function store(UngVienRequest $request)
@@ -124,6 +118,27 @@ class UngVienController extends Controller
                 'count'         => $count,
                 'paginate'      => $paginate,
                 'keyword'       => $keyword
+            ]
+        );
+    }
+
+    public function view($id)
+    {
+        $model = $this->ungVienRepository->findById($id);
+
+        if (!$model) abort(404);
+
+        $blade = match ($model->loai_ung_vien) {
+            UngVien::LOAI_UNG_VIEN_BAC_SI => 'chi_tiet_uv_bac_si',
+            UngVien::LOAI_UNG_VIEN_DUOC_SI => 'chi_tiet_uv_duoc_si',
+            UngVien::LOAI_UNG_VIEN_VAN_PHONG => 'chi_tiet_uv_van_phong',
+            default => '',
+        };
+
+        return view(
+            'Nhansu::khao_sat.chi_tiet_ung_vien.'.$blade,
+            [
+                'model'    => $model,
             ]
         );
     }
