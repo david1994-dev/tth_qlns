@@ -20,7 +20,12 @@ class UngVienController extends Controller
         $this->ungVienRepository = $ungVienRepository;
     }
 
-    public function index($type)
+    public function index()
+    {
+        return view('Nhansu::khao_sat.index');
+    }
+
+    public function viewKhaoSat($type)
     {
         switch ($type) {
             case 'bac-si':
