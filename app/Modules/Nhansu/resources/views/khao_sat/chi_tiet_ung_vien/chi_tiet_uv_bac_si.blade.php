@@ -1,4 +1,21 @@
-@php @endphp
+@php
+    use Illuminate\Support\Arr;
+
+    $chiTietUngVien = $model->chi_tiet ?? [];
+    $quaTrinhLamViec = $model->qua_trinh_lam_viec ?? [];
+    $viTriLamViec = $model->vi_tri_lam_viec ?? [];
+    $donViUngTuyen = $model->don_vi_ung_tuyen ?? [];
+    $vanBang = Arr::get($chiTietUngVien, 'van_bang', []);
+    $hinhThucDaoTao = Arr::get($chiTietUngVien, 'hinh_thuc_dao_tao', []);
+    $ungTuyen = Arr::get($chiTietUngVien, 'ung_tuyen', []);
+    $nguonTuyenDung = Arr::get($chiTietUngVien, 'nguon_tuyen_dung', []);
+    $thoiHanHopDong = Arr::get($chiTietUngVien, 'thoi_han_hop_dong', '');
+    $loaiTotNghiep = Arr::get($chiTietUngVien, 'loai_tot_nghiep', '');
+    $trinhDo = Arr::get($chiTietUngVien, 'trinh_do', '');
+    $loaiHinhDaoTao = Arr::get($chiTietUngVien, 'loai_hinh_dao_tao', '');
+    $honNhan = Arr::get($chiTietUngVien, 'hon_nhan', '');
+    $lopHocNangCao = Arr::get($chiTietUngVien, 'hoc_lop_nang_cao', '');
+@endphp
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -127,53 +144,56 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                           name="nam_sinh" placeholder=".............">
             </div> <br>
 
-            <p style="display: inline;">Chuyên ngành đào tạo:</p> <input class="input" style="width: 300px;"
+            <p style="display: inline;">Chuyên ngành đào tạo:</p> <input class="input" style="width: 300px;" value="{{Arr::get($chiTietUngVien, 'chuyen_nganh_dao_tao', '')}}"
                                                                          name="chuyen_nganh_dao_tao"
                                                                          placeholder="......................................................................"> Hệ đào tạo:
-            <input class="input" name="he_dao_tao" style=" width: 115px;"
+            <input class="input" name="he_dao_tao" style=" width: 115px;" value="{{Arr::get($chiTietUngVien, 'he_dao_tao', '')}}"
                    placeholder="..................................."><br>
-            <p style="display: inline;">Địa chỉ:</p> <input class="input" style=" width: 602px;" name="dia_chi"
+            <p style="display: inline;">Địa chỉ:</p> <input class="input" style=" width: 602px;" name="dia_chi" value="{{$model->dia_chi}}"
                                                             placeholder="......................................................................................................................................................."><br>
-            <p style="display: inline;">Điện thoại:</p> <input class="input" style="width: 300px;"
+            <p style="display: inline;">Điện thoại:</p> <input class="input" style="width: 300px;" value="{{$model->dien_thoai}}"
                                                                name="dien_thoai"
                                                                placeholder="......................................................................"> Email: <input
-                name="email" class="input" style="width: 232px;"
+                name="email" class="input" style="width: 232px;" value="{{$model->email}}"
                 placeholder="................................................................."><br>
-            <p style="display: inline;">Trường đào tạo đại học:</p><input class="input" style="width: 498px;"
+            <p style="display: inline;">Trường đào tạo đại học:</p><input class="input" style="width: 498px;" value="{{Arr::get($chiTietUngVien, 'truong_dao_tao', '')}}"
                                                                           name="truong_dao_tao"
                                                                           placeholder="..........................................................................................................................................">
             <br>
             <p style="display: inline;">Tốt nghiệp loại:</p>
-            <input type="radio" name="loai_tot_nghiep" value="Giỏi"> Giỏi
-            <input type="radio" name="loai_tot_nghiep" value="Khá"> Khá
-            <input type="radio" name="loai_tot_nghiep" value="Trung Bình Khá"> TB Khá
-            <input type="radio" name="loai_tot_nghiep" value="Trung Bình"> Trung bình <br>
+            <input type="radio" name="loai_tot_nghiep"  value="Giỏi"> Giỏi
+            <input type="radio" name="loai_tot_nghiep"  value="Khá"> Khá
+            <input type="radio" name="loai_tot_nghiep"  value="Trung Bình Khá"> TB Khá
+            <input type="radio" name="loai_tot_nghiep"  value="Trung Bình"> Trung bình <br>
             <p style="display: inline;">Loại hình đào tạo: </p>
             <input type="radio" name="loai_hinh_dao_tao" value="Chính quy"> Chính quy
             <input type="radio" name="loai_hinh_dao_tao" value="Chuyên tu"> Chuyên tu <br>
 
             <p style="display: inline;">Văn bằng đã hoàn thành: </p>
-            <input type="checkbox" name="van_bang[]" value="BSDK"> BSDK
-            <input type="checkbox" name="van_bang[]" value="Thạc sỹ"> Thạc sỹ
-            <input type="checkbox" name="van_bang[]" value="CKI"> CKI
-            <input type="checkbox" name="van_bang[]" value="CKII"> CKII
-            <input type="checkbox" name="van_bang[]" value="BSNT"> BSNT
-            <input type="checkbox" name="van_bang[]" value="NCS"> NCS
+            <input type="checkbox"  name="van_bang[]" value="BSDK"> BSDK
+            <input type="checkbox"  name="van_bang[]" value="Thạc sỹ"> Thạc sỹ
+            <input type="checkbox"  name="van_bang[]" value="CKI"> CKI
+            <input type="checkbox"  name="van_bang[]" value="CKII"> CKII
+            <input type="checkbox"  name="van_bang[]" value="BSNT"> BSNT
+            <input type="checkbox"  name="van_bang[]" value="NCS"> NCS
 
 
 
             <br>
             <p style="display: inline;">Phạm vi hoạt động CCHN:</p> <input class="input" style="width: 265px;"
+                                                                           value="{{Arr::get($chiTietUngVien, 'pham_vi_hoat_dong_cchn', '')}}"
                                                                            name="pham_vi_hoat_dong_cchn"
                                                                            placeholder="......................................................................"> Thời gian cấp
             CCHN: <input class="input" style="width: 75px;" name="thoi_gian_cap_cchn"
+                         value="{{Arr::get($chiTietUngVien, 'thoi_gian_cap_cchn', '')}}"
                          placeholder="..................................."><br>
             <p style="display: inline;">Các chứng chỉ đào tạo liên quan:</p> <input class="input" name="chung_chi_lien_quan"
+                                                                                    value="{{Arr::get($chiTietUngVien, 'chung_chi_lien_quan', '')}}"
                                                                                     style="width: 440px;"
                                                                                     placeholder="..........................................................................................................................."><br>
             <p style="display: inline;">Tình trạng hôn nhân: </p>
-            <input type="radio" name="hon_nhan" value="Độc thân"> Độc thân
-            <input type="radio" name="hon_nhan" value="Đã có gia đình"> Đã có gia đình
+            <input type="radio" @if(Arr::get($chiTietUngVien, 'hon_nhan', '') == 'Độc thân') checked @endif name="hon_nhan" value="Độc thân"> Độc thân
+            <input type="radio" @if(Arr::get($chiTietUngVien, 'hon_nhan', '') == 'Đã có gia đình') checked @endif name="hon_nhan" value="Đã có gia đình"> Đã có gia đình
             <p style="display: inline; margin-left: 100px;">
         </div> <br>
         <p style="margin-left: 180px;font-weight: 600; display: inline;"> 1.Quá trình công tác:</p> <i>(Tính từ
@@ -188,54 +208,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td style="width: 100px; height: 50px; "><input name="thoi_gian_lam_viec[]" class="input">
-                </td>
-                <td style="width: 300px ; height: 50px;"><input name="don_vi_cong_tac[]" class="input"
-                                                                style="width: 280px"></td>
-                <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]" class="input"
-                                                                style="width: 280px"></td>
-            </tr>
-            <tr>
-                <td style="width: 100px; height: 50px; "><input name="thoi_gian_lam_viec[]" class="input">
-                </td>
-                <td style="width: 300px ; height: 50px;"><input name="don_vi_cong_tac[]" class="input"
-                                                                style="width: 280px"></td>
-                <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]" class="input"
-                                                                style="width: 280px"></td>
-            </tr>
-            <tr>
-                <td style="width: 100px; height: 50px; "><input name="thoi_gian_lam_viec[]" class="input">
-                </td>
-                <td style="width: 300px ; height: 50px;"><input name="don_vi_cong_tac[]" class="input"
-                                                                style="width: 280px"></td>
-                <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]" class="input"
-                                                                style="width: 280px"></td>
-            </tr>
-            <tr>
-                <td style="width: 100px; height: 50px; "><input name="thoi_gian_lam_viec[]" class="input">
-                </td>
-                <td style="width: 300px ; height: 50px;"><input name="don_vi_cong_tac[]" class="input"
-                                                                style="width: 280px"></td>
-                <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]" class="input"
-                                                                style="width: 280px"></td>
-            </tr>
-            <tr>
-                <td style="width: 100px; height: 50px; "><input name="thoi_gian_lam_viec[]" class="input">
-                </td>
-                <td style="width: 300px ; height: 50px;"><input name="don_vi_cong_tac[]" class="input"
-                                                                style="width: 280px"></td>
-                <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]" class="input"
-                                                                style="width: 280px"></td>
-            </tr>
-            <tr>
-                <td style="width: 100px; height: 50px; "><input name="thoi_gian_lam_viec[]" class="input">
-                </td>
-                <td style="width: 300px ; height: 50px;"><input name="don_vi_cong_tac[]" class="input"
-                                                                style="width: 280px"></td>
-                <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]" class="input"
-                                                                style="width: 280px"></td>
-            </tr>
+            @foreach($quaTrinhLamViec as $date => $value)
+                <tr>
+                    <td style="width: 100px; height: 50px; "><input name="thoi_gian_lam_viec[]" class="input" value="{{$date}}">
+                    </td>
+                    @foreach($value as $cty => $viTri)
+                        <td style="width: 300px ; height: 50px;"><input name="don_vi_cong_tac[]" class="input" value="{{$cty}}"
+                                                                        style="width: 280px"></td>
+                        <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]" class="input" value="{{$viTri}}"
+                                                                        style="width: 280px"></td>
+                    @endforeach
+
+                </tr>
+            @endforeach
             </tbody>
         </table> <br>
         <p style="margin-left: 180px;font-weight: 600; display: inline;"> 2.Anh(chị) tự đánh giá trình độ chuyên
@@ -255,7 +240,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         tuyến <p style="font-weight: 600; display: inline;">Tỉnh</p>)<br> <br>
         <p style="display: inline;font-weight: 600;margin-left: 180px">Các kỹ năng đặc biệt khác:</p>
         <textarea style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10"
-                  name="ky_nang_khac"></textarea> <br> <br>
+                  name="ky_nang_khac">
+            {{Arr::get($chiTietUngVien, 'ky_nang_khac', '')}}
+        </textarea> <br> <br>
         <p style="margin-left: 180px;font-weight: 600; display: inline;"> 3.Anh(chị) có nhu cầu để tiếp tục học các
             lớp nâng cao nghiệp vụ không?</p><br>
         <input type="radio" name="hoc_lop_nang_cao" value="có" style="margin-left: 180px;"> a. Có
@@ -427,16 +414,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
             Nguồn khác
         </div> <br>
         <p style="margin-left: 180px;font-weight: 600; display: inline;"> 8.Điểm yếu?</p><br>
-        <textarea style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10" name="diem_yeu"></textarea> <br> <br>
+        <textarea style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10" name="diem_yeu">
+            {{Arr::get($chiTietUngVien, 'diem_yeu', '')}}
+        </textarea> <br> <br>
         <p style="margin-left: 180px;font-weight: 600; display: inline;"> 9.Điểm mạnh?</p><br>
-        <textarea style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10" name="diem_manh"></textarea> <br> <br>
+        <textarea style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10" name="diem_manh">
+            {{Arr::get($chiTietUngVien, 'diem_manh', '')}}
+        </textarea> <br> <br>
         <p style="margin-left: 180px;font-weight: 600; display: inline;"> 10.Mức lương mong muốn của anh(chị) khi
             vào làm việc tại công ty?</p><br>
         <textarea style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10"
-                  name="luong_mong_muon"></textarea> <br> <br>
+                  name="luong_mong_muon">
+            {{Arr::get($chiTietUngVien, 'luong_mong_muon', '')}}
+        </textarea> <br> <br>
         <p style="margin-left: 180px;font-weight: 600; display: inline;"> 11.Anh(chị) có kiến nghị, đề xuất hoặc
             thắc mắc muốn Công ty giải đáp không?</p><br>
-        <textarea style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10" name="de_xuat"></textarea>
+        <textarea style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10" name="de_xuat">
+            {{Arr::get($chiTietUngVien, 'de_xuat', '')}}
+        </textarea>
         <br>
         <br>
         <div class="container">
@@ -449,8 +444,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         BÁC SỸ
                     </h5> <br>
                     <i style="margin-left: 175px;">(Ký,ghi rõ họ tên)</i> <br> <br>
-                    <button type="submit" class="btn btn-primary" style="margin-left: 190px">--Ký
-                        tên--</button>
+                    <div style="margin-left: 190px;">
+                        {{$model->ho_ten}} <br>
+                        <small>{{$model->ngay_ky->format('d-m-Y H:i:s')}}</small>
+                    </div>
                 </div>
             </div>
         </div>
@@ -475,5 +472,93 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script>
     $(document).ready(function() {
         $('#ksBSForm :input').prop("disabled", true);
+
+        let ungTuyen = @json($ungTuyen);
+        $("input[type=checkbox][name=ung_tuyen\\[\\]]").each(function () {
+            let val = $(this).val()
+            if (ungTuyen.includes(val)) {
+                $( this ).attr( 'checked', true )
+            }
+        });
+
+        let hinhThucDaoTao = @json($hinhThucDaoTao);
+        $("input[type=checkbox][name=hinh_thuc_dao_tao\\[\\]]").each(function () {
+            let val = $(this).val()
+            if (hinhThucDaoTao.includes(val)) {
+                $( this ).attr( 'checked', true )
+            }
+        });
+
+        let vanBang = @json($vanBang);
+        $("input[type=checkbox][name=van_bang\\[\\]]").each(function () {
+            let val = $(this).val()
+            if (vanBang.includes(val)) {
+                $( this ).attr( 'checked', true )
+            }
+        });
+
+        let donVi = @json($donViUngTuyen);
+        $("input[type=checkbox][name=don_vi_ung_tuyen\\[\\]]").each(function () {
+            let val = $(this).val()
+            if (donVi.includes(val)) {
+                $( this ).attr( 'checked', true )
+            }
+        });
+
+        let nguonTuyenDung = @json($nguonTuyenDung);
+        $("input[type=checkbox][name=nguon_tuyen_dung\\[\\]]").each(function () {
+            let val = $(this).val()
+            if (nguonTuyenDung.includes(val)) {
+                $( this ).attr( 'checked', true )
+            }
+        });
+
+        let thoiHanHopDong = @json($thoiHanHopDong);
+        $("input[type=radio][name=thoi_han_hop_dong]").each(function () {
+            let val = $(this).val()
+            if (thoiHanHopDong === val) {
+                $( this ).attr( 'checked', true )
+            }
+        });
+
+        let loaiTotNghiep = @json($loaiTotNghiep);
+        $("input[type=radio][name=loai_tot_nghiep]").each(function () {
+            let val = $(this).val()
+            if (loaiTotNghiep === val) {
+                $( this ).attr( 'checked', true )
+            }
+        });
+
+        let trinhDo = @json($trinhDo);
+        $("input[type=radio][name=trinh_do]").each(function () {
+            let val = $(this).val()
+            if (trinhDo === val) {
+                $( this ).attr( 'checked', true )
+            }
+        });
+
+        let loaiHinhDaoTao = @json($loaiHinhDaoTao);
+        $("input[type=radio][name=loai_hinh_dao_tao]").each(function () {
+            let val = $(this).val()
+            if (loaiHinhDaoTao === val) {
+                $( this ).attr( 'checked', true )
+            }
+        });
+
+        let honNhan = @json($honNhan);
+        $("input[type=radio][name=hon_nhan]").each(function () {
+            let val = $(this).val()
+            if (honNhan === val) {
+                $( this ).attr( 'checked', true )
+            }
+        });
+
+        let lopHocNangCao = @json($lopHocNangCao);
+        $("input[type=radio][name=hoc_lop_nang_cao]").each(function () {
+            let val = $(this).val()
+            if (lopHocNangCao === val) {
+                $( this ).attr( 'checked', true )
+            }
+        });
     })
 </script>
