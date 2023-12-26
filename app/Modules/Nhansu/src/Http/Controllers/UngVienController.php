@@ -22,7 +22,8 @@ class UngVienController extends Controller
     {
         switch ($type) {
             case 'bac-si':
-                $a = $this->ungVienRepository->findById(1);
+                $a = $this->ungVienRepository->findById(7);
+//                dd($a->qua_trinh_lam_viec);
                 return view('Nhansu::khao_sat.ksuv_bac_si');
             case 'duoc-si':
                 return view('Nhansu::khao_sat.ksuv_duoc_si');
@@ -37,15 +38,14 @@ class UngVienController extends Controller
     {
         $mainField = [
             'vi_tri_ung_tuyen', 'ho_ten', 'dien_thoai','email', 'dia_chi',
-            'qua_trinh_lam_viec', 'vi_tri_ung_tuyen', 'don_vi_ung_tuyen',
-            'ngay_sinh', 'thang_sinh', 'nam_sinh', 'loai_ung_vien'
+            'vi_tri_ung_tuyen', 'don_vi_ung_tuyen',
+            'ngay_sinh', 'thang_sinh', 'nam_sinh', 'loai_ung_vien', 'thoi_gian_lam_viec',
+            'don_vi_cong_tac', 'vi_tri_lam_viec'
         ];
 
         $input = $request->only($mainField);
         $input['ngay_sinh'] = Carbon::createFromDate($input['nam_sinh'], $input['thang_sinh'], $input['ngay_sinh']);
-        if ($request->get('ky', 0)) {
-            $input['ngay_ky'] = now()->clone();
-        }
+        $input['ngay_ky'] = now()->clone();
 
         $workingProcess = [];
         $workTimes = $request->get('thoi_gian_lam_viec', []);
@@ -61,11 +61,11 @@ class UngVienController extends Controller
                 break;
             }
 
-            $workingProcess[$workCompany] = Arr::get($workPositions, $key, null);
+            $workingProcess[$workTime][$workCompany] = Arr::get($workPositions, $key, null);
         }
 
-        $input['chi_tiet'] = $request->except(array_merge(['thoi_gian_lam_viec', 'don_vi_cong_tac', 'vi_tri_lam_viec'], $mainField));
-        $input['chi_tiet']['qua_trinh_cong_tac'] = $workingProcess;
+        $input['qua_trinh_lam_viec'] = $workingProcess;
+        $input['chi_tiet'] = $request->except($mainField);
         $ungVien = $this->ungVienRepository->create($input);
 
         if (empty($ungVien)) {

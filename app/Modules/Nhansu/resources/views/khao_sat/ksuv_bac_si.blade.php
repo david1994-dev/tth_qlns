@@ -167,7 +167,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     placeholder="......................................................................"> Thời gian cấp
                 CCHN: <input class="input" style="width: 75px;" name="thoi_gian_cap_cchn"
                     placeholder="..................................."><br>
-                <p style="display: inline;">Các chứng chỉ đào tạo liên quan:</p> <input class="input"
+                <p style="display: inline;">Các chứng chỉ đào tạo liên quan:</p> <input class="input" name="chung_chi_lien_quan"
                     style="width: 440px;"
                     placeholder="..........................................................................................................................."><br>
                 <p style="display: inline;">Tình trạng hôn nhân: </p>
@@ -258,8 +258,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <p style="margin-left: 180px;font-weight: 600; display: inline;"> 3.Anh(chị) có nhu cầu để tiếp tục học các
                 lớp nâng cao nghiệp vụ không?</p><br>
-            <input type="radio" name="hoc_lop_nang_cao" value="co" style="margin-left: 180px;"> a. Có
-            <input type="radio" name="hoc_lop_nang_cao" value="khong" style="margin-left: 180px;"> b. Không <br>
+            <input type="radio" name="hoc_lop_nang_cao" value="có" style="margin-left: 180px;"> a. Có
+            <input type="radio" name="hoc_lop_nang_cao" value="không" style="margin-left: 180px;"> b. Không <br>
             <p style="margin-left: 180px;">Nếu có anh (chị) lựa chọn hình thức đào tạo gì?</p>
             <div>
                 <input type="checkbox" name="hinh_thuc_dao_tao[]" value="Thạc sĩ" style="margin-left: 180px;"> a.
