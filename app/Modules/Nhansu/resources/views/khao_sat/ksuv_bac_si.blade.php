@@ -174,7 +174,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <input type="radio" name="hon_nhan" value="Độc thân"> Độc thân
                 <input type="radio" name="hon_nhan" value="Đã có gia đình"> Đã có gia đình
                 <p style="display: inline; margin-left: 100px;">
-            </div>
+            </div> <br>
             <p style="margin-left: 180px;font-weight: 600; display: inline;"> 1.Quá trình công tác:</p> <i>(Tính từ
                 thời
                 điểm sau khi tốt nghiệp đại học Y đến nay)</i> <br>
@@ -236,7 +236,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 style="width: 280px"></td>
                     </tr>
                 </tbody>
-            </table>
+            </table> <br>
             <p style="margin-left: 180px;font-weight: 600; display: inline;"> 2.Anh(chị) tự đánh giá trình độ chuyên
                 môn
                 của anh chị(chuyên nghành chính giỏi nhất)</p><br>
@@ -251,11 +251,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <input type="radio" name="trinh_do" value="trung_binh" style="margin-left: 180px;"> Trung Bình( thực
             hiện
             được 100% kỹ thuật tuyến <p style="font-weight: 600; display: inline;">Huyện</p> trở xuống,80% kỹ thuật
-            tuyến <p style="font-weight: 600; display: inline;">Tỉnh</p>)<br>
+            tuyến <p style="font-weight: 600; display: inline;">Tỉnh</p>)<br> <br>
             <p style="display: inline;font-weight: 600;margin-left: 180px">Các kỹ năng đặc biệt khác:</p>
             <textarea style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10"
-                name="ky_nang_khac"></textarea> <br>
-
+                name="ky_nang_khac"></textarea> <br> <br>
             <p style="margin-left: 180px;font-weight: 600; display: inline;"> 3.Anh(chị) có nhu cầu để tiếp tục học các
                 lớp nâng cao nghiệp vụ không?</p><br>
             <input type="radio" name="hoc_lop_nang_cao" value="có" style="margin-left: 180px;"> a. Có
@@ -278,7 +277,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 nước
                 ngoài
                 <input type="checkbox" name="hinh_thuc_dao_tao[]" value="khác" style="margin-left: 50px;"> f. Khác
-            </div>
+            </div> <br>
             <p style="margin-left: 180px;font-weight: 600; display: inline;"> 4. Anh (chị) mong muốn thời hạn ký kết
                 hợp đồng như thế nào nếu được tuyển dụng vào làm việc tại Công ty?</p><br>
             <div>
@@ -292,7 +291,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <input type="radio" name="thoi_han_hop_dong" value="17 Năm" style="margin-left: 170px;"> d. 17 năm
                 <input type="radio" name="thoi_han_hop_dong" value="25 Năm" style="margin-left: 178px;"> f. 25 năm
                 <input type="radio" name="thoi_han_hop_dong" value="khác" style="margin-left: 184px;"> h. Khác
-            </div>
+            </div> <br>
             <p style="margin-left: 180px;font-weight: 600; display: inline;"> 5.Anh(chị) có nguyện vọng làm việc vào vị
                 trí nào tại Công ty (*)</p><br>
             <i style="margin-left: 220px;">- Đánh số theo thứ tự ưu tiên (1,2,3)</i> <br>
@@ -374,7 +373,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
             <div>
                 <input type="checkbox" name="ung_tuyen[]" value="khác" style="margin-left: 180px;"> Khác
-            </div>
+            </div> <br>
             <p style="margin-left: 180px;font-weight: 600; display: inline;"> 6.Anh(chị) mong muốn công tác tại bệnh
                 viện nào của công ty?</p><br>
             <div>
@@ -404,7 +403,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <input type="checkbox" name="don_vi_ung_tuyen[]" value="bv Đa Khoa TTH Hà Tĩnh"
                     style="margin-left: 180px;">
                 d.Bệnh viện Đa khoa TTH Hà Tĩnh
-            </div>
+            </div> <br>
             <p style="margin-left: 180px;font-weight: 600; display: inline;"> 7.Anh(chị) biết thông tin tuyển dụng của
                 Công ty qua kênh nào?</p><br>
             <div>
@@ -425,15 +424,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 Vietnamwork
                 <input type="checkbox" name="nguon_tuyen_dung[]" value="Nguồn Khác" style="margin-left: 57px;">
                 Nguồn khác
-            </div>
+            </div> <br>
             <p style="margin-left: 180px;font-weight: 600; display: inline;"> 8.Điểm yếu?</p><br>
-            <textarea style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10" name="diem_yeu"></textarea> <br>
+            <textarea style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10" name="diem_yeu"></textarea> <br> <br>
             <p style="margin-left: 180px;font-weight: 600; display: inline;"> 9.Điểm mạnh?</p><br>
-            <textarea style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10" name="diem_manh"></textarea> <br>
+            <textarea style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10" name="diem_manh"></textarea> <br> <br>
             <p style="margin-left: 180px;font-weight: 600; display: inline;"> 10.Mức lương mong muốn của anh(chị) khi
                 vào làm việc tại công ty?</p><br>
             <textarea style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10"
-                name="luong_mong_muon"></textarea> <br>
+                name="luong_mong_muon"></textarea> <br> <br>
             <p style="margin-left: 180px;font-weight: 600; display: inline;"> 11.Anh(chị) có kiến nghị, đề xuất hoặc
                 thắc mắc muốn Công ty giải đáp không?</p><br>
             <textarea style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10" name="de_xuat"></textarea>

@@ -8,7 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PHIẾU KHẢO SÁT ỨNG VIÊN VĂN PHÒNG</title>
+    <title>PHIẾU KHẢO SÁT ỨNG VIÊN DƯỢC SỸ</title>
 
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
@@ -62,9 +62,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <body class="hold-transition sidebar-mini">
     <div class="content">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                @if ($errors->count())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $e)
+                                <li>{!! $e !!}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                @if ($message = session('error'))
+                    <div class="alert alert-danger alert-block">
+                        {!! $message !!}
+                    </div>
+                @endif
+                @if ($message = session('success'))
+                    <div class="alert alert-success alert-block">
+                        {!! $message !!}
+                    </div>
+                @endif
+            </div>
+        </div>
         <div class="container-fluid ">
             <form id="ksDSForm" action="{{ route('taoUngVien') }}" method="post"
                 class="w-75 border border-2 border-success p-5 rounded" style="margin: auto;">
+                @csrf
                 <div class="container">
                     <div class="row">
                         <div class="col-3">
@@ -93,40 +117,47 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     và các chi nhánh</p>
                 <p style="margin-left: 220px;">Công ty đề nghị ứng viên trả lời 1 số câu hỏi khảo sát sau:</p>
                 <div style="margin-left: 220px;">
-                    <p style="display: inline;">Họ và tên ứng viên:</p> <input class="input" name="ho_ten" style="width: 300px;"
+                    <p style="display: inline;">Họ và tên ứng viên:</p> <input class="input" name="ho_ten"
+                        style="width: 300px;"
                         placeholder="......................................................................"> Ngày sinh:
-                    <input class="input" name="ngay_sinh" style=" width: 150px;" placeholder="..................................."> <br>
-                    <p style="display: inline;">Trường đào tạo:</p> <input class="input" name="truong_dao_tao" style="width: 546px;"
+                    <input class="input" name="ngay_sinh" style=" width: 150px;"
+                        placeholder="..................................."> <br>
+                    <p style="display: inline;">Trường đào tạo:</p> <input class="input" name="truong_dao_tao"
+                        style="width: 546px;"
                         placeholder="..........................................................................................................................................">
                     <br>
-                    <p style="display: inline;">Chuyên ngành đào tạo:</p> <input class="input" name="chuyen_nganh_dao_tao" style="width: 300px;"
+                    <p style="display: inline;">Chuyên ngành đào tạo:</p> <input class="input"
+                        name="chuyen_nganh_dao_tao" style="width: 300px;"
                         placeholder="......................................................................"> Hệ đào
                     tạo:
-                    <input class="input" name="he_dao_tao" style="width: 115px;" placeholder="..................................."><br>
+                    <input class="input" name="he_dao_tao" style="width: 115px;"
+                        placeholder="..................................."><br>
                     <p style="display: inline;">Địa chỉ:</p> <input class="input" name="dia_chi" style="width: 602px;"
                         placeholder="......................................................................................................................................................."><br>
-                    <p style="display: inline;">Điện thoại:</p> <input class="input" name="dien_thoai" style="width: 300px;"
+                    <p style="display: inline;">Điện thoại:</p> <input class="input" name="dien_thoai"
+                        style="width: 300px;"
                         placeholder="......................................................................"> Email:
                     <input class="input" name="email" type="email" style="width: 232px;"
                         placeholder="................................................................."><br>
-                    <p style="display: inline;">Chiều cao:</p> <input class="input" name="chieu_cao" style=" width: 300px;"
+                    <p style="display: inline;">Chiều cao:</p> <input class="input" name="chieu_cao"
+                        style=" width: 300px;"
                         placeholder="......................................................................"> Cân nặng:
                     <input class="input" name="can_nang" style="width: 210px;"
                         placeholder="........................................................."><br>
                     <p style="display: inline;">Tình trạng hôn nhân: </p>
-                    <input type="radio" name="hon_nhan" value="doc_than"> Độc thân
-                    <input type="radio" name="hon_nhan" value="da_co_gia_dinh"> Đã có gia đình
+                    <input type="radio" name="hon_nhan" value="Độc thân"> Độc thân
+                    <input type="radio" name="hon_nhan" value="Đã có gia đình"> Đã có gia đình
                     <p style="display: inline; margin-left: 100px;">Số con: </p> <input class="input" name="so_con"
                         style="width: 168px;"
                         placeholder="......................................................................"><br>
                     <p style="display: inline;">Tình trạng Chứng chỉ hành nghề: </p>
-                    <input type="radio" name="chung_chi_hanh_nghe" value="da_co"> Đã có
-                    <input type="radio" name="chung_chi_hanh_nghe" value="chua_co"> Chưa có
+                    <input type="radio" name="chung_chi_hanh_nghe" value="Đã có"> Đã có
+                    <input type="radio" name="chung_chi_hanh_nghe" value="Chưa có"> Chưa có
                     <br>
-                    <p style="display: inline;">Các chứng chỉ đào tạo khác:</p> <input class="input" name="chung_chi_khac"
-                        style="width: 470px;"
+                    <p style="display: inline;">Các chứng chỉ đào tạo khác:</p> <input class="input"
+                        name="chung_chi_khac" style="width: 470px;"
                         placeholder="...........................................................................................................................">
-                </div>
+                </div> <br>
                 <p style="margin-left: 180px;font-weight: 600; display: inline;"> 1.Quá trình công tác:</p> <i>(Dành
                     cho
                     những người đã có kinh nghiệm công tác)</i> <br>
@@ -148,10 +179,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     style="width: 280px"></td>
                         </tr>
                         <tr>
-                            <td style="width: 100px; height: 50px; "><input class="input"></td>
+                            <td style="width: 100px; height: 50px; "><input class="input" name="thoi_gian_lam_viec[]"></td>
                             <td style="width: 300px ; height: 50px;"><input name="don_vi_cong_tac[]" class="input"
                                     style="width: 280px"></td>
-                            <td style="width: 300px ; height: 50px;"><input class="input" style="width: 280px"></td>
+                            <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]"  class="input" style="width: 280px"></td>
                         </tr>
                         <tr>
                             <td style="width: 100px; height: 50px; "><input name="thoi_gian_lam_viec[]"
@@ -186,13 +217,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     style="width: 280px"></td>
                         </tr>
                     </tbody>
-                </table>
+                </table> <br>
                 <p style="margin-left: 180px;font-weight: 600; display: inline;"> 2.Anh(chị) có khả năng(Thời gian,
                     kinh tế,
                     ...) để tiếp tục học các lớp nâng cao nghiệp vụ không?</p><br>
-                <input type="radio" name="hoc_lop_nang_cao" value="co" style="margin-left: 180px;"> a. Có
-                <input type="radio" name="hoc_lop_nang_cao" value="khong" style="margin-left: 180px;"> b. Không
-                <br>
+                <input type="radio" name="hoc_lop_nang_cao" value="Có" style="margin-left: 180px;"> a. Có
+                <input type="radio" name="hoc_lop_nang_cao" value="Không" style="margin-left: 180px;"> b. Không
+                <br> <br>
                 <p style="margin-left: 180px;font-weight: 600; display: inline;"> 3.Anh(chị) có nguyện vọng ứng tuyển
                     vào
                     khoa nào tại Công ty? (*)</p><br>
@@ -248,7 +279,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             style="margin-left: 180px;" max="3">
                         Kiểm soát chất lượng BV
                     </div>
-                </div>
+                </div> <br>
                 <p style="margin-left: 180px;font-weight: 600; display: inline;"> 4.Anh(chị) mong muốn công tác tại
                     bệnh
                     viện nào của công ty?</p><br>
@@ -279,7 +310,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <input type="checkbox" name="don_vi_ung_tuyen[]"
                         value="Bệnh viện Đa khoa TTH Hà Tĩnh"style="margin-left: 180px;">
                     d.Bệnh viện Đa khoa TTH Hà Tĩnh
-                </div>
+                </div> <br>
                 <p style="margin-left: 180px;font-weight: 600; display: inline;"> 5.Anh(chị) biết thông tin tuyển dụng
                     của
                     Công ty qua kênh nào?</p><br>
@@ -299,18 +330,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         style="margin-left: 82px;"> Vietnamwork
                     <input type="checkbox" name="thong_tin_tuyen_dung[]" value="Nguồn khác"
                         style="margin-left: 57px;"> Nguồn khác
-                </div>
+                </div> <br>
                 <p style="margin-left: 180px;font-weight: 600; display: inline;"> 6.Điểm yếu?</p><br>
-                <textarea name="diem_yeu" style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10" name="content"></textarea> <br>
+                <textarea name="diem_yeu" style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10"
+                ></textarea> <br> <br>
                 <p style="margin-left: 180px;font-weight: 600; display: inline;"> 7.Điểm mạnh?</p><br>
-                <textarea name="diem_manh" style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10" name="content"></textarea> <br>
+                <textarea name="diem_manh" style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10"
+                ></textarea> <br> <br>
                 <p style="margin-left: 180px;font-weight: 600; display: inline;"> 8.Mức lương mong muốn của anh(chị)
                     khi
-                    vào làm việc tại công ty?</p><br>
-                <textarea name="muc_luong_mong_muon" style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10" name="content"></textarea> <br>
+                    vào làm việc tại công ty?</p><br> 
+                <textarea name="luong_mong_muon" style="margin-left: 180px; width: 800px; height: 100px;" cols="30"
+                    rows="10" ></textarea> <br>  <br>
                 <p style="margin-left: 180px;font-weight: 600; display: inline;"> 9.Anh(chị) có kiến nghị, đề xuất hoặc
                     thắc mắc muốn Công ty giải đáp không?</p><br>
-                <textarea name="kien_nghi" style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10" name="content"></textarea>
+                <textarea name="de_xuat" style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10"
+                    name="content"></textarea>
                 <br>
                 <br>
                 <div class="container">
@@ -323,12 +358,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 ỨNG VIÊN
                             </h5> <br>
                             <i style="margin-left: 175px;">(Ký,ghi rõ họ tên)</i> <br> <br>
-                            <button type="button" class="btn btn-primary" style="margin-left: 190px">--Ký
+                            <button type="submit" class="btn btn-primary" style="margin-left: 190px">--Ký
                                 tên--</button>
                         </div>
                     </div>
                 </div>
 
+                <input type="hidden" name="loai_ung_vien"
+                value="{{ \App\Modules\Nhansu\src\Models\UngVien::LOAI_UNG_VIEN_DUOC_SI }}">
             </form>
 
         </div><!-- /.container-fluid -->
