@@ -33,7 +33,6 @@ class UngVienController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
         $input = $request->only([
             'ho_ten', 'dien_thoai','email', 'dia_chi',
             'qua_trinh_lam_viec', 'vi_tri_ung_tuyen', 'don_vi_ung_tuyen'

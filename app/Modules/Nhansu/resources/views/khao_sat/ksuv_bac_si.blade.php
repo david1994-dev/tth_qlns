@@ -9,12 +9,42 @@
 
 @section('scripts')
     <script>
-        let checkboxUngTuyen = $("input[type=checkbox][name=ung_tuyen\\[\\]]");
-        checkboxUngTuyen.click(function() {
-        let bol = $("input[type=checkbox][name=ung_tuyen\\[\\]]:checked").length >= 3;
-            checkboxUngTuyen.not(":checked").attr("disabled", bol);
-        });
+        const orderedCheckbox = [];
+        $(document).ready(function() {
 
+            let checkboxUngTuyen = $("input[type=checkbox][name=ung_tuyen\\[\\]]");
+            checkboxUngTuyen.click(function() {
+                let bol = $("input[type=checkbox][name=ung_tuyen\\[\\]]:checked").length >= 3;
+                checkboxUngTuyen.not(":checked").attr("disabled", bol);
+            });
+
+            checkboxUngTuyen.on('click',function (e) {
+                const value = $(this).val();
+                const isChecked = $(this).is(':checked');
+                const index = orderedCheckbox.findIndex(_value => _value === value);
+                if (index >= 0 && !isChecked) {
+                    orderedCheckbox.splice(index, 1);
+                }
+
+                if (index < 0) {
+                    orderedCheckbox.push(value);
+                }
+
+            });
+
+            $('#ksBSForm').submit(event => {
+                event.preventDefault();
+                // remove all previous checkbox append
+                $('.hidden_input_to_save').remove();
+
+                // append field depends on ordered list
+                orderedCheckbox.forEach((value,key) => {
+                    $('form').append(`<input type="hidden" class="hidden_input_to_save" name="ung_tuyen[${key}]" value="${orderedCheckbox[key]}" />`)
+                });
+
+                event.currentTarget.submit();
+            })
+        })
     </script>
 @stop
 
@@ -30,7 +60,7 @@
 @section('content')
     <div class="content">
         <div class="container-fluid ">
-            <form action="{{route('taoUngVien')}}" method="post" class="w-75 border border-2 border-success p-5 rounded" style="margin: auto;">
+            <form id="ksBSForm" action="{{route('taoUngVien')}}" method="post" class="w-75 border border-2 border-success p-5 rounded" style="margin: auto;">
                 @csrf
                 <div class="container">
                     <div class="row">
