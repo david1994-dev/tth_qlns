@@ -12,6 +12,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', [NhanVienController::class, 'index'])->name('nhanSu.user.index');
     Route::get('chi_nhanh', [ChiNhanhController::class, 'all'])->name('nhanSu.chiNhanh.index');
     Route::get('danh-sach-ung-vien', [UngVienController::class, 'danhSach'])->name('danhSachUngVien');
+    Route::get('chi-tiet-ung-vien/{id}', [UngVienController::class, 'view'])->name('chiTietUngVien');
 });
 
 Route::get('khao-sat-ung-vien/{type}', [UngVienController::class, 'index']);

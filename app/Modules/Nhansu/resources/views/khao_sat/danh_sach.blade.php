@@ -65,7 +65,7 @@
                         <td>{{$model->email}}</td>
                         <td>{{\Illuminate\Support\Arr::get(\App\Modules\Nhansu\src\Models\UngVien::LOAI_UNG_VIEN_TEXT, $model->loai_ung_vien, '')}} </td>
                         <td class="text-center">
-                            <a>
+                            <a target="_blank" href="{{route('chiTietUngVien', $model->id)}}">
                                 <button class="btn btn-primary">
                                     <i class="bi bi-eye-fill"></i>
                                 </button>
