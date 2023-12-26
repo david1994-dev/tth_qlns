@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Modules\Nhansu\src\Models\NhanVien;
 
 return new class extends Migration
 {
@@ -13,16 +14,24 @@ return new class extends Migration
     {
         Schema::create('nhanvien', function (Blueprint $table) {
             $table->id();
-            $table->string('manv')->unique()->index();
-            $table->string('hoten');
+            $table->string('ma')->unique()->index();
+            $table->string('ho_ten');
             $table->string('image')->nullable();
             $table->string('email')->unique()->index();
-            $table->unsignedBigInteger('chinhanh_id')->nullable();
-            $table->unsignedBigInteger('phongban_id')->nullable();
-            $table->unsignedBigInteger('vitricongviec_id')->nullable();
-            $table->unsignedBigInteger('phongban_id_them')->nullable();
-            $table->text('chitiet')->nullable();
+            $table->string('dien_thoai')->nullable();
+            $table->string('cmnd')->nullable();
+            $table->string('email_cong_viec')->unique()->index()->nullable();
+            $table->tinyInteger('gioi_tinh')->default(NhanVien::GIOI_TINH_NU);
+            $table->date('ngay_sinh');
+            $table->date('ngay_bat_dau_lam_viec')->nullable();
+            $table->date('ngay_ket_thuc_lam_viec')->nullable();
+            $table->unsignedBigInteger('chi_nhanh_id')->nullable();
+            $table->unsignedBigInteger('vi_tri_cong_viec_id')->nullable();
+            $table->unsignedBigInteger('phong_ban_id')->nullable();
+            $table->text('chi_tiet')->nullable();
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

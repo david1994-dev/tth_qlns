@@ -1,0 +1,20 @@
+
+.input:focus  {
+    border : none;
+    outline: none;
+    display: inline;
+}
+
+.input  {
+    border : none;
+    display: inline;
+}
+
+.tieu_de{
+    font-weight: 600;font-family: 'Times New Roman', Times, serif;
+}
+
+.noi_dung{
+    margin-left: 220px;
+    display: inline;
+}

@@ -18,7 +18,8 @@ class ModuleRouterServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/dashboard';
+    public const NHANSU_INDEX = '/nhansu';
+//    public const UNG_VIEN_CREATE_FORM = 'nhansu/';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
