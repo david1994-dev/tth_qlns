@@ -13,5 +13,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('chi_nhanh', [ChiNhanhController::class, 'all'])->name('nhanSu.chiNhanh.index');
 });
 
-Route::get('khao-sat-ung-vien/{type}', [UngVienController::class, 'index']);
+Route::get('khao-sat-ung-vien', [UngVienController::class, 'index']);
+Route::get('khao-sat-ung-vien/{type}', [UngVienController::class, 'viewKhaoSat'])->name('viewKhaoSat');
 Route::post('khao-sat-ung-vien', [UngVienController::class, 'store'])->name('taoUngVien');
+

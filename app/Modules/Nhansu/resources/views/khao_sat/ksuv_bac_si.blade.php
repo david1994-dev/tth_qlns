@@ -35,6 +35,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
             font-size: 16px;
             line-height: 20px;
         }
+
+
+        
+
+
+
     </style>
     <style>
         .input:focus {
@@ -96,8 +102,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </div>
                     <div class="col-9 ">
                         <div style="text-align: right;"><i>Ngày</i><input type="number" class="input"
-                                name="ngay_khao_sat" style="width: 40px;" placeholder="...."><i>Tháng</i><input
-                                type="number" class="input" name="thang_khao_sat" style="width: 40px;"
+                                name="ngay_khao_sat" style="width: 40px;" min="1" max="31" placeholder="...."><i>Tháng</i><input
+                                type="number" class="input" name="thang_khao_sat" min="1" max="12" style="width: 40px;"
                                 placeholder="...."><i>Năm</i><input type="number" class="input" name="nam_khao_sat"
                                 style=" width: 70px;" placeholder="........"></div>
                         <h4 class="tieu_de" style="margin-left: 70px;">
