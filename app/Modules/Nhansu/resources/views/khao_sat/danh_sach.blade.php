@@ -21,10 +21,23 @@
 @section('content')
     <div class="box box-primary">
         <div class="box-header with-border">
-
+            <form action="{{ route('danhSachUngVien') }}">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input name="keyword" placeholder="Nhập mã ứng viên, email, số điện thoại, họ tên..." class="form-control" value="{{ $keyword ?? '' }}"/>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </form>
             <div class="row">
                 <div class="col-sm-6">
-                    <p style="display: inline-block;">{{$count}} Ứng Viên</p>
+                    <p style="display: inline-block;"><b>{{$count}}</b> Ứng Viên</p>
                 </div>
             </div>
         </div>
@@ -32,6 +45,7 @@
             <table class="table table-bordered">
                 <thead>
                 <tr class="table table-striped">
+                    <th>Mã Ứng Viên</th>
                     <th>Họ Tên</th>
                     <th>Ngày sinh</th>
                     <th>Số điện thoại</th>
@@ -44,6 +58,7 @@
                 <tbody>
                 @foreach($models as $model)
                     <tr>
+                        <td>{{$model->mauv}}</td>
                         <td>{{$model->ho_ten}}</td>
                         <td>{{$model->ngay_sinh->format('d/m/Y')}}</td>
                         <td>{{$model->dien_thoai}}</td>
