@@ -139,7 +139,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     name="email" class="input" style="width: 232px;"
                     placeholder="................................................................."><br>
                 <p style="display: inline;">Trường đào tạo đại học:</p><input class="input" style="width: 498px;"
-                    name="truong_dai_hoc"
+                    name="truong_dao_tao"
                     placeholder="..........................................................................................................................................">
                 <br>
                 <p style="display: inline;">Tốt nghiệp loại:</p>
