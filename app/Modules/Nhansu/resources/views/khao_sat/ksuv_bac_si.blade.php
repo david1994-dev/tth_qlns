@@ -171,8 +171,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     style="width: 440px;"
                     placeholder="..........................................................................................................................."><br>
                 <p style="display: inline;">Tình trạng hôn nhân: </p>
-                <input type="radio" name="hon_nhan" value="doc_than"> Độc thân
-                <input type="radio" name="hon_nhan" value="da_co_gia_dinh"> Đã có gia đình
+                <input type="radio" name="hon_nhan" value="Độc thân"> Độc thân
+                <input type="radio" name="hon_nhan" value="Đã có gia đình"> Đã có gia đình
                 <p style="display: inline; margin-left: 100px;">
             </div>
             <p style="margin-left: 180px;font-weight: 600; display: inline;"> 1.Quá trình công tác:</p> <i>(Tính từ
@@ -196,10 +196,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 style="width: 280px"></td>
                     </tr>
                     <tr>
-                        <td style="width: 100px; height: 50px; "><input class="input"></td>
+                        <td style="width: 100px; height: 50px; "><input name="thoi_gian_lam_viec[]" class="input">
+                        </td>
                         <td style="width: 300px ; height: 50px;"><input name="don_vi_cong_tac[]" class="input"
-                                style="width: 280px"></td>
-                        <td style="width: 300px ; height: 50px;"><input class="input" style="width: 280px"></td>
+                                                                        style="width: 280px"></td>
+                        <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]" class="input"
+                                                                        style="width: 280px"></td>
                     </tr>
                     <tr>
                         <td style="width: 100px; height: 50px; "><input name="thoi_gian_lam_viec[]" class="input">

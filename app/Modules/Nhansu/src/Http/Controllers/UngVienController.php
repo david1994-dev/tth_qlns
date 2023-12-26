@@ -8,6 +8,7 @@ use App\Modules\Nhansu\src\Http\Requests\NhanVien\UngVienRequest;
 use App\Modules\Nhansu\src\Repositories\Interface\UngVienRepositoryInterface;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class UngVienController extends Controller
 {
@@ -46,7 +47,25 @@ class UngVienController extends Controller
             $input['ngay_ky'] = now()->clone();
         }
 
-        $input['chi_tiet'] = $request->except($mainField);
+        $workingProcess = [];
+        $workTimes = $request->get('thoi_gian_lam_viec', []);
+        $workPositions = $request->get('vi_tri_lam_viec', []);
+        $workCompanies = $request->get('don_vi_cong_tac', []);
+        foreach ($workTimes as $key => $workTime) {
+            if (!$workTime) {
+                break;
+            }
+
+            $workCompany = Arr::get($workCompanies, $key, null);
+            if (!$workCompany) {
+                break;
+            }
+
+            $workingProcess[$workCompany] = Arr::get($workPositions, $key, null);
+        }
+
+        $input['chi_tiet'] = $request->except(array_merge(['thoi_gian_lam_viec', 'don_vi_cong_tac', 'vi_tri_lam_viec'], $mainField));
+        $input['chi_tiet']['qua_trinh_cong_tac'] = $workingProcess;
         $ungVien = $this->ungVienRepository->create($input);
 
         if (empty($ungVien)) {
