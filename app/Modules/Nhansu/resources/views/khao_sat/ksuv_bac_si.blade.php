@@ -4,7 +4,11 @@
 @stop
 
 @section('styles')
-
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
 @stop
 
 @section('scripts')
@@ -59,7 +63,29 @@
 
 @section('content')
     <div class="content">
-        <div class="container-fluid ">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    @if ($errors->count())
+                        <div class="alert alert-danger">
+                            <ul class="mb-0">
+                                @foreach ($errors->all() as $e)
+                                    <li>{!! $e !!}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    @if ($message = session('error'))
+                        <div class="alert alert-danger alert-block">
+                            {!! $message !!}
+                        </div>
+                    @endif
+                    @if ($message = session('success'))
+                        <div class="alert alert-success alert-block">
+                            {!! $message !!}
+                        </div>
+                    @endif
+                </div>
+            </div>
             <form id="ksBSForm" action="{{route('taoUngVien')}}" method="post" class="w-75 border border-2 border-success p-5 rounded" style="margin: auto;">
                 @csrf
                 <div class="container">
@@ -324,7 +350,7 @@
 
                 <button type="submit">ki</button>
 
-                <input type="hidden" name="type" value="{{\App\Modules\Nhansu\src\Models\UngVien::LOAI_UNG_VIEN_BAC_SI}}">
+                <input type="hidden" name="loai_ung_vien" value="{{\App\Modules\Nhansu\src\Models\UngVien::LOAI_UNG_VIEN_BAC_SI}}">
             </form>
 
         </div><!-- /.container-fluid -->
