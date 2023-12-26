@@ -86,7 +86,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
         </div>
         <div class="container-fluid ">
-            <form id="ksVPForm" action="{{ route('taoUngVien') }}" method="post" 
+            <form id="ksVPForm" action="{{ route('taoUngVien') }}" method="post"
                 class="w-75 border border-2 border-success p-5 rounded" style="margin: auto;">
                 @csrf
                 <div class="container">
@@ -120,8 +120,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <p style="display: inline;">Họ và tên:</p> <input class="input" name="ho_ten"
                         style="width: 350px;"
                         placeholder="..............................................................................................">
-                    Ngày sinh: <input class="input" name="ngay_sinh" style="width: 160px;"
-                        placeholder="..................................................."> <br>
+                    <div style="text-align: right; display: inline;">
+                        <p style="display: inline;">Sinh ngày</p><input type="number" class="input"
+                            style="width: 40px;" name="ngay_sinh" placeholder="........">
+                        <p style="display: inline;">Tháng</p><input type="number" class="input" style="width: 40px;"
+                            name="thang_sinh" placeholder="........">
+                        <p style="display: inline;">Năm</p><input type="number" class="input" style="width: 60px;"
+                            name="nam_sinh" placeholder=".............">
+                    </div> <br>
                     <p style="display: inline;">Địa chỉ:</p> <input class="input" name="dia_chi" style="width: 602px;"
                         placeholder="......................................................................................................................................................."><br>
                     <p style="display: inline;">Điện thoại:</p> <input class="input" name="dien_thoai"
@@ -146,7 +152,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <input type="radio" name="loai_tot_nghiep" value="Trung bình"> Trung bình <br>
                     <p style="display: inline;">Loại hình đào tạo: </p>
                     <input type="radio" name="loai_hinh_dao_tao" value="Chính quy"> Chính quy
-                    <input type="radio" name="loai_hinh_dao_tao" value="Liên thông/vừa học vừa làm"> Liên thông/vừa học vừa làm <br>
+                    <input type="radio" name="loai_hinh_dao_tao" value="Liên thông/vừa học vừa làm"> Liên thông/vừa
+                    học vừa làm <br>
 
                     <p style="display: inline;">Chiều cao:</p> <input name="chieu_cao" class="input"
                         style="width: 300px;"
@@ -181,10 +188,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     style="width: 280px"></td>
                         </tr>
                         <tr>
-                            <td style="width: 100px; height: 50px; "><input name="thoi_gian_lam_viec[]" class="input"></td>
+                            <td style="width: 100px; height: 50px; "><input name="thoi_gian_lam_viec[]"
+                                    class="input"></td>
                             <td style="width: 300px ; height: 50px;"><input name="don_vi_cong_tac[]" class="input"
                                     style="width: 280px"></td>
-                            <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]" class="input" style="width: 280px"></td>
+                            <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]" class="input"
+                                    style="width: 280px"></td>
                         </tr>
                         <tr>
                             <td style="width: 100px; height: 50px; "><input name="thoi_gian_lam_viec[]"
@@ -347,7 +356,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
 
                 <input type="hidden" name="loai_ung_vien"
-                value="{{ \App\Modules\Nhansu\src\Models\UngVien::LOAI_UNG_VIEN_VAN_PHONG }}">
+                    value="{{ \App\Modules\Nhansu\src\Models\UngVien::LOAI_UNG_VIEN_VAN_PHONG }}">
             </form>
 
         </div><!-- /.container-fluid -->

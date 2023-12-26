@@ -119,9 +119,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div style="margin-left: 220px;">
                     <p style="display: inline;">Họ và tên ứng viên:</p> <input class="input" name="ho_ten"
                         style="width: 300px;"
-                        placeholder="......................................................................"> Ngày sinh:
-                    <input class="input" name="ngay_sinh" style=" width: 150px;"
-                        placeholder="..................................."> <br>
+                        placeholder=".......................................................................................">
+                    <div style="text-align: right; display: inline;">
+                        <p style="display: inline;">Sinh ngày</p><input type="number" class="input"
+                            style="width: 40px;" name="ngay_sinh" placeholder="........">
+                        <p style="display: inline;">Tháng</p><input type="number" class="input" style="width: 40px;"
+                            name="thang_sinh" placeholder="........">
+                        <p style="display: inline;">Năm</p><input type="number" class="input" style="width: 60px;"
+                            name="nam_sinh" placeholder=".............">
+                    </div> <br>
                     <p style="display: inline;">Trường đào tạo:</p> <input class="input" name="truong_dao_tao"
                         style="width: 546px;"
                         placeholder="..........................................................................................................................................">
@@ -132,7 +138,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     tạo:
                     <input class="input" name="he_dao_tao" style="width: 115px;"
                         placeholder="..................................."><br>
-                    <p style="display: inline;">Địa chỉ:</p> <input class="input" name="dia_chi" style="width: 602px;"
+                    <p style="display: inline;">Địa chỉ:</p> <input class="input" name="dia_chi"
+                        style="width: 602px;"
                         placeholder="......................................................................................................................................................."><br>
                     <p style="display: inline;">Điện thoại:</p> <input class="input" name="dien_thoai"
                         style="width: 300px;"
@@ -179,10 +186,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     style="width: 280px"></td>
                         </tr>
                         <tr>
-                            <td style="width: 100px; height: 50px; "><input class="input" name="thoi_gian_lam_viec[]"></td>
+                            <td style="width: 100px; height: 50px; "><input class="input"
+                                    name="thoi_gian_lam_viec[]"></td>
                             <td style="width: 300px ; height: 50px;"><input name="don_vi_cong_tac[]" class="input"
                                     style="width: 280px"></td>
-                            <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]"  class="input" style="width: 280px"></td>
+                            <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]" class="input"
+                                    style="width: 280px"></td>
                         </tr>
                         <tr>
                             <td style="width: 100px; height: 50px; "><input name="thoi_gian_lam_viec[]"
@@ -332,16 +341,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         style="margin-left: 57px;"> Nguồn khác
                 </div> <br>
                 <p style="margin-left: 180px;font-weight: 600; display: inline;"> 6.Điểm yếu?</p><br>
-                <textarea name="diem_yeu" style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10"
-                ></textarea> <br> <br>
+                <textarea name="diem_yeu" style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10"></textarea> <br> <br>
                 <p style="margin-left: 180px;font-weight: 600; display: inline;"> 7.Điểm mạnh?</p><br>
-                <textarea name="diem_manh" style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10"
-                ></textarea> <br> <br>
+                <textarea name="diem_manh" style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10"></textarea> <br> <br>
                 <p style="margin-left: 180px;font-weight: 600; display: inline;"> 8.Mức lương mong muốn của anh(chị)
                     khi
-                    vào làm việc tại công ty?</p><br> 
+                    vào làm việc tại công ty?</p><br>
                 <textarea name="luong_mong_muon" style="margin-left: 180px; width: 800px; height: 100px;" cols="30"
-                    rows="10" ></textarea> <br>  <br>
+                    rows="10"></textarea> <br> <br>
                 <p style="margin-left: 180px;font-weight: 600; display: inline;"> 9.Anh(chị) có kiến nghị, đề xuất hoặc
                     thắc mắc muốn Công ty giải đáp không?</p><br>
                 <textarea name="de_xuat" style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10"
@@ -365,7 +372,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
 
                 <input type="hidden" name="loai_ung_vien"
-                value="{{ \App\Modules\Nhansu\src\Models\UngVien::LOAI_UNG_VIEN_DUOC_SI }}">
+                    value="{{ \App\Modules\Nhansu\src\Models\UngVien::LOAI_UNG_VIEN_DUOC_SI }}">
             </form>
 
         </div><!-- /.container-fluid -->
