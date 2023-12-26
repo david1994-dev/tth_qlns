@@ -27,7 +27,7 @@ return new class extends Migration
             $table->text('don_vi_ung_tuyen');
             $table->tinyInteger('loai_ung_vien')->default(\App\Modules\Nhansu\src\Models\UngVien::LOAI_UNG_VIEN_BAC_SI);
             $table->dateTime('ngay_ky')->nullable();
-            $table->text('chi_tiet')->nullable();
+            $table->longText('chi_tiet')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

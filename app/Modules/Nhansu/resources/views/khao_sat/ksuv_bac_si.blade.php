@@ -9,12 +9,12 @@
 
 @section('scripts')
     <script>
-        $("input[type=checkbox][name=ung_tuyen\\[\\]]").click(function() {
-
-            var bol = $("input[type=checkbox][name=ung_tuyen\\[\\]]:checked").length >= 3;
-            $("input[type=checkbox][name=ung_tuyen\\[\\]]").not(":checked").attr("disabled", bol);
-
+        let checkboxUngTuyen = $("input[type=checkbox][name=ung_tuyen\\[\\]]");
+        checkboxUngTuyen.click(function() {
+        let bol = $("input[type=checkbox][name=ung_tuyen\\[\\]]:checked").length >= 3;
+            checkboxUngTuyen.not(":checked").attr("disabled", bol);
         });
+
     </script>
 @stop
 
@@ -238,7 +238,7 @@
                 <div>
                     <input type="checkbox" name="don_vi_ung_tuyen[]" value="bv Đa khoa TTH Vinh"style="margin-left: 180px;"> b.Bệnh
                     viện Đa khoa TTH Vinh
-                    <input type="checkbox" name="don_vi_ung_tuyen[]" value="bc Đa Khoa TTH Quảng Bình" style="margin-left: 136px;">
+                    <input type="checkbox" name="don_vi_ung_tuyen[]" value="bv Đa Khoa TTH Quảng Bình" style="margin-left: 136px;">
                     f.Bệnh viện Đa khoa TTH Quảng Bình
                 </div>
                 <div>
@@ -293,6 +293,8 @@
                   </div>
 
                 <button type="submit">ki</button>
+
+                <input type="hidden" name="type" value="{{\App\Modules\Nhansu\src\Models\UngVien::LOAI_UNG_VIEN_BAC_SI}}">
             </form>
 
         </div><!-- /.container-fluid -->
