@@ -8,14 +8,14 @@
 @stop
 
 @section('scripts')
-    <script>
-        $("input[type=checkbox][name=ung_tuyen]").click(function() {
+<script>
+    $("input[type=checkbox][name=ung_tuyen\\[\\]]").click(function() {
 
-            var bol = $("input[type=checkbox][name=ung_tuyen]:checked").length >= 3;
-            $("input[type=checkbox][name=ung_tuyen]").not(":checked").attr("disabled", bol);
+        var bol = $("input[type=checkbox][name=ung_tuyen\\[\\]]:checked").length >= 3;
+        $("input[type=checkbox][name=ung_tuyen\\[\\]]").not(":checked").attr("disabled", bol);
 
-        });
-    </script>
+    });
+</script>
 @stop
 
 @section('title')
@@ -38,10 +38,10 @@
                                 alt="" width="100px" height="130px">
                         </div>
                         <div class="col-9 ">
-                            <div style="text-align: right;"><i>Ngày</i><input type="text" class="input"
-                                    style="width: 20px;" placeholder="...."><i>Tháng</i><input type="text" class="input"
-                                    style="width: 20px;" placeholder="...."><i>Năm</i><input type="text" class="input"
-                                    style=" width: 40px;" placeholder="........"></div>
+                            <div style="text-align: right;"><i>Ngày</i><input type="number" class="input" name="ngay_khao_sat"
+                                style="width: 40px;" placeholder="...."><i>Tháng</i><input type="number" class="input" name="thang_khao_sat"
+                                style="width: 40px;" placeholder="...."><i>Năm</i><input type="number" class="input" name="nam_khao_sat"
+                                style=" width: 70px;" placeholder="........"></div>
                             <h4 class="tieu_de" style="margin-left: 70px;">
                                 PHIẾU
                                 KHẢO SÁT ỨNG VIÊN</h4>
@@ -100,99 +100,90 @@
                     trí.</i>
                 <div>
                     <div>
-                        <input type="checkbox" name="ung_tuyen" value="noi_khoa"style="margin-left: 180px;"
+                        <input type="checkbox" name="ung_tuyen[]" value="Nội khoa"style="margin-left: 180px;"
                             max="3">
                         Nội khoa
-                        <input type="checkbox" name="ung_tuyen" value="san_phu_khoa" style="margin-left: 50px;"
+                        <input type="checkbox" name="ung_tuyen[]" value="Sản phụ khoa" style="margin-left: 50px;"
                             max="3"> Sản phụ khoa
-                        <input type="checkbox" name="ung_tuyen" value="xet_nghiem" style="margin-left: 50px;"
+                        <input type="checkbox" name="ung_tuyen[]" value="Xét nghiệm" style="margin-left: 50px;"
                             max="3"> Xét nghiệm
-                        <input type="checkbox" name="ung_tuyen" value="rang_ham_mat" style="margin-left: 196px;"
+                        <input type="checkbox" name="ung_tuyen[]" value="Răng hàm mặt" style="margin-left: 196px;"
                             max="3"> Răng hàm mặt
                     </div>
                     <div>
-                        <input type="checkbox" name="ung_tuyen" value="ngoai_khoa" style="margin-left: 180px;"
+                        <input type="checkbox" name="ung_tuyen[]" value="Ngoại khoa" style="margin-left: 180px;"
                             max="3"> Ngoại khoa
-                        <input type="checkbox" name="ung_tuyen" value="nhi_khoa" style="margin-left: 35px;"
+                        <input type="checkbox" name="ung_tuyen[]" value="Nhi khoa" style="margin-left: 35px;"
                             max="3">
                         Nhi khoa
-                        <input type="checkbox" name="ung_tuyen" value="chan_doan" style="margin-left: 82px;"
-                            max="3"> Chẩn đoán hình
-                        ảnh- thăm dò CN
-                        <input type="checkbox" name="ung_tuyen" value="tai_mui_hong" style="margin-left: 50px;"
+                        <input type="checkbox" name="ung_tuyen[]" value="Chẩn đoán hình ảnh- thăm dò CN" style="margin-left: 82px;"
+                            max="3"> Chẩn đoán hình ảnh- thăm dò CN
+                        <input type="checkbox" name="ung_tuyen[]" value="Tai mũi họng" style="margin-left: 50px;"
                             max="3"> Tai mũi họng
                     </div>
                     <div>
-                        <input type="checkbox" name="ung_tuyen" value="mat" style="margin-left: 180px;"
+                        <input type="checkbox" name="ung_tuyen[]" value="Mắt" style="margin-left: 180px;"
                             max="3">
                         Mắt
-                        <input type="checkbox" name="ung_tuyen" value="u_buoc_y_hoc_hat_nhan" style="margin-left: 85px;"
-                            max="3"> U
-                        bước-Y học hạt nhân
-                        <input type="checkbox" name="ung_tuyen" value="dinh_duong" style="margin-left: 82px;"
+                        <input type="checkbox" name="ung_tuyen[]" value="U bước-Y học hạt nhân" style="margin-left: 85px;"
+                            max="3"> U bước-Y học hạt nhân
+                        <input type="checkbox" name="ung_tuyen[]" value="dinh dưỡng" style="margin-left: 82px;"
                             max="3"> dinh dưỡng
-                        <input type="checkbox" name="ung_tuyen" value="chuyen_vien_ke_hoach_tong_hop"
+                        <input type="checkbox" name="ung_tuyen[]" value="Chuyên viên kế hoạch tổng hợp"
                             style="margin-left: 50px;" max="3"> Chuyên viên kế hoạch tổng hợp
                     </div>
                     <div>
-                        <input type="checkbox" name="ung_tuyen" value="YHCT" style="margin-left: 180px;"
+                        <input type="checkbox" name="ung_tuyen[]" value="YHCT" style="margin-left: 180px;"
                             max="3">
                         YHCT
-                        <input type="checkbox" name="ung_tuyen" value="hoi_suc_cap_cuu" style="margin-left: 75px;"
-                            max="3"> Hồi sức cấp
-                        cứu
-                        <input type="checkbox" name="ung_tuyen" value="tham_my_da_lieu" style="margin-left: 38px;"
-                            max="3"> Thẩm mỹ -
-                        da liễu
-                        <input type="checkbox" name="ung_tuyen" value="gay_me_phau_thuat" style="margin-left: 152px;"
-                            max="3"> Gây mê -
-                        Phẫu thuật
+                        <input type="checkbox" name="ung_tuyen[]" value="Hồi sức cấp cứu" style="margin-left: 75px;"
+                            max="3"> Hồi sức cấp cứu
+                        <input type="checkbox" name="ung_tuyen[]" value="Thẩm mỹ - da liễu" style="margin-left: 38px;"
+                            max="3"> Thẩm mỹ - da liễu
+                        <input type="checkbox" name="ung_tuyen[]" value="Gây mê - Phẫu thuật" style="margin-left: 152px;"
+                            max="3"> Gây mê - Phẫu thuật
                     </div>
                     <div>
-                        <input type="checkbox" name="ung_tuyen" value="ksclbv" style="margin-left: 180px;"
+                        <input type="checkbox" name="ung_tuyen[]" value="Kiểm soát chất lượng BV" style="margin-left: 180px;"
                             max="3">
-                        Kiểm soát chất
-                        lượng BV
+                        Kiểm soát chất lượng BV
                     </div>
                 </div>
                 <p style="margin-left: 180px;font-weight: 600; display: inline;"> 4.Anh(chị) mong muốn công tác tại bệnh
                     viện nào của công ty?</p><br>
                 <div>
-                    <input type="checkbox" name="bv_rhm_ptthtm_thai_thuong_hoang"
-                        value="yes"style="margin-left: 180px;"> a.BV RHM và PTTHTM Thái Thượng Hoàng
-                    <input type="checkbox" name="bv_da_khoa_tth_duc_tho" value="yes" style="margin-left: 50px;">
+                    <input type="checkbox" name="don_vi_ung_tuyen[]"
+                        value="BV RHM và PTTHTM Thái Thượng Hoàng"style="margin-left: 180px;"> a.BV RHM và PTTHTM Thái Thượng Hoàng
+                    <input type="checkbox" name="don_vi_ung_tuyen[]" value="Bệnh viện Đa khoa TTH Đức Thọ" style="margin-left: 50px;">
                     e.Bệnh viện Đa khoa TTH Đức Thọ
                 </div>
                 <div>
-                    <input type="checkbox" name="bv_da_khoa_tth_vinh" value="yes"style="margin-left: 180px;"> b.Bệnh
-                    viện Đa khoa TTH Vinh
-                    <input type="checkbox" name="bv_da_khoa_tth_quang_binh" value="yes" style="margin-left: 126px;">
+                    <input type="checkbox" name="don_vi_ung_tuyen[]" value="Bệnh viện Đa khoa TTH Vinh"style="margin-left: 180px;"> b.Bệnh viện Đa khoa TTH Vinh
+                    <input type="checkbox" name="don_vi_ung_tuyen[]" value="Bệnh viện Đa khoa TTH Quảng Bình" style="margin-left: 126px;">
                     f.Bệnh viện Đa khoa TTH Quảng Bình
                 </div>
                 <div>
-                    <input type="checkbox" name="bv_yhct_phcn_hung_dong" value="yes"style="margin-left: 180px;">
+                    <input type="checkbox" name="don_vi_ung_tuyen[]" value="Bệnh viện Đa khoa TTH Hưng Đông"style="margin-left: 180px;">
                     c.Bệnh viện Đa khoa TTH Hưng Đông
-                    <input type="checkbox" name="bv_da_khoa_tth_quang_tri" value="yes" style="margin-left: 82px;">
+                    <input type="checkbox" name="don_vi_ung_tuyen[]" value="Bệnh viện Đa khoa TTH Quảng Trị" style="margin-left: 82px;">
                     h.Bệnh viện Đa khoa TTH Quảng Trị
                 </div>
                 <div>
-                    <input type="checkbox" name="bv_da_khoa_tth_ha_tinh" value="yes"style="margin-left: 180px;">
+                    <input type="checkbox" name="don_vi_ung_tuyen[]" value="Bệnh viện Đa khoa TTH Hà Tĩnh"style="margin-left: 180px;">
                     d.Bệnh viện Đa khoa TTH Hà Tĩnh
                 </div>
                 <p style="margin-left: 180px;font-weight: 600; display: inline;"> 5.Anh(chị) biết thông tin tuyển dụng của
                     Công ty qua kênh nào?</p><br>
                 <div>
-                    <input type="checkbox" name="nguoi_than_gioi_thieu" value="yes" style="margin-left: 180px;">
+                    <input type="checkbox" name="thong_tin_tuyen_dung[]" value="Người thân giới thiệu" style="margin-left: 180px;">
                     Người thân giới thiệu
-                    <input type="checkbox" name="facebook" value="yes" style="margin-left: 85px;"> Facebook
-                    <input type="checkbox" name="bao_chi_truyen_hinh" value="yes" style="margin-left: 82px;"> Báo
-                    chí/ Truyền hình
+                    <input type="checkbox" name="thong_tin_tuyen_dung[]" value="Facebook" style="margin-left: 85px;"> Facebook
+                    <input type="checkbox" name="thong_tin_tuyen_dung[]" value="Báo chí/ Truyền hình" style="margin-left: 82px;"> Báo chí/ Truyền hình
                 </div>
                 <div>
-                    <input type="checkbox" name="web_fanpage" value="yes" style="margin-left: 180px;"> Web/fanpage
-                    Công ty
-                    <input type="checkbox" name="vietnamwork" value="yes" style="margin-left: 82px;"> Vietnamwork
-                    <input type="checkbox" name="nguon_khac" value="yes" style="margin-left: 57px;"> Nguồn khác
+                    <input type="checkbox" name="thong_tin_tuyen_dung[]" value="Web/fanpage Công ty" style="margin-left: 180px;"> Web/fanpage Công ty
+                    <input type="checkbox" name="thong_tin_tuyen_dung[]" value="Vietnamwork" style="margin-left: 82px;"> Vietnamwork
+                    <input type="checkbox" name="thong_tin_tuyen_dung[]" value="Nguồn khác" style="margin-left: 57px;"> Nguồn khác
                 </div>
                 <p style="margin-left: 180px;font-weight: 600; display: inline;"> 6.Điểm yếu?</p><br>
                 <textarea style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10" name="content"></textarea>
