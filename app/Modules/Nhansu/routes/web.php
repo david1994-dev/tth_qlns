@@ -15,5 +15,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('chi-tiet-ung-vien/{id}', [UngVienController::class, 'view'])->name('chiTietUngVien');
 });
 
-Route::get('khao-sat-ung-vien/{type}', [UngVienController::class, 'index']);
+Route::get('khao-sat-ung-vien', [UngVienController::class, 'index']);
+Route::get('khao-sat-ung-vien/{type}', [UngVienController::class, 'viewKhaoSat'])->name('viewKhaoSat');
 Route::post('khao-sat-ung-vien', [UngVienController::class, 'store'])->name('taoUngVien');
+
