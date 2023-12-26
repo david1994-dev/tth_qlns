@@ -1,0 +1,68 @@
+@extends('adminlte.Layout.app')
+
+@section('metadata')
+@stop
+
+@section('styles')
+@stop
+
+@section('scripts')
+@stop
+
+@section('title')
+@stop
+
+@section('header')
+@stop
+
+@section('breadcrumb')
+@stop
+
+@section('content')
+    <div class="box box-primary">
+        <div class="box-header with-border">
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <p style="display: inline-block;">{{$count}} Ứng Viên</p>
+                </div>
+            </div>
+        </div>
+        <div class="box-body" style=" overflow-x: scroll; ">
+            <table class="table table-bordered">
+                <thead>
+                <tr class="table table-striped">
+                    <th>Họ Tên</th>
+                    <th>Ngày sinh</th>
+                    <th>Số điện thoại</th>
+                    <th>Email</th>
+                    <th>Loại Ứng Viên</th>
+                    <th class="text-center">Chi tiết</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                @foreach($models as $model)
+                    <tr>
+                        <td>{{$model->ho_ten}}</td>
+                        <td>{{$model->ngay_sinh->format('d/m/Y')}}</td>
+                        <td>{{$model->dien_thoai}}</td>
+                        <td>{{$model->email}}</td>
+                        <td>{{\Illuminate\Support\Arr::get(\App\Modules\Nhansu\src\Models\UngVien::LOAI_UNG_VIEN_TEXT, $model->loai_ung_vien, '')}} </td>
+                        <td class="text-center">
+                            <a>
+                                <button class="btn btn-primary">
+                                    <i class="bi bi-eye-fill"></i>
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+        <div class="box-footer">
+            {!! \PaginationHelper::render($paginate['order'], $paginate['direction'], $paginate['offset'], $paginate['limit'], $count, $paginate['baseUrl'], []) !!}
+        </div>
+    </div>
+@stop

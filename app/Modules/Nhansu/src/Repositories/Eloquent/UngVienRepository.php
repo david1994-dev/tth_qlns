@@ -8,7 +8,7 @@ use App\Repositories\Eloquent\BaseRepository;
 
 class UngVienRepository extends BaseRepository implements UngVienRepositoryInterface
 {
-    protected array $querySearchTargets = ['ho_ten', 'email', 'dien_thoai'];
+    protected array $querySearchTargets = ['ho_ten', 'email', 'dien_thoai', 'mauv'];
     public function getBlankModel()
     {
         return new UngVien();

@@ -3,8 +3,10 @@
 namespace App\Modules\Nhansu\src\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PaginationRequest;
 use App\Modules\ModuleRouterServiceProvider;
 use App\Modules\Nhansu\src\Http\Requests\NhanVien\UngVienRequest;
+use App\Modules\Nhansu\src\Models\UngVien;
 use App\Modules\Nhansu\src\Repositories\Interface\UngVienRepositoryInterface;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -73,9 +75,51 @@ class UngVienController extends Controller
                 ->withErrors('Tạo ứng viên thất bại');
         }
 
-        session()->flash('success', 'Bạn đã gửi khảo sát thành công');
+        $ungVien->mauv = $this->renderMauv($ungVien);
+        $ungVien->save();
+
+        session()->flash('success', 'Bạn đã gửi khảo sát thành công! Mã ứng viên của bạn là: <b>'.$ungVien->mauv.'</b>');
 
         return redirect()
             ->back();
+    }
+
+    private function renderMauv($ungVien)
+    {
+        $prefix = [
+            UngVien::LOAI_UNG_VIEN_BAC_SI => 'BS',
+            UngVien::LOAI_UNG_VIEN_DUOC_SI => 'DS',
+            UngVien::LOAI_UNG_VIEN_VAN_PHONG => 'VP',
+        ];
+
+        return Arr::get($prefix, $ungVien->loai_ung_vien, '').'_'.base_convert($ungVien->id, 10, 36);
+    }
+
+    public function danhSach(PaginationRequest $request)
+    {
+        $paginate['limit']      = $request->limit();
+        $paginate['offset']     = $request->offset();
+        $paginate['order']      = $request->order();
+        $paginate['direction']  = $request->direction();
+        $paginate['baseUrl']    = route('danhSachUngVien');
+
+        $filter = [];
+        $keyword = $request->get('keyword');
+        if (!empty($keyword)) {
+            $filter['query'] = $keyword;
+        }
+
+        $count = $this->ungVienRepository->countByFilter($filter);
+        $models = $this->ungVienRepository->getByFilter($filter, $paginate['order'], $paginate['direction'], $paginate['offset'], $paginate['limit']);
+
+        return view(
+            'Nhansu::khao_sat.danh_sach',
+            [
+                'models'    => $models,
+                'count'         => $count,
+                'paginate'      => $paginate,
+                'keyword'       => $keyword
+            ]
+        );
     }
 }

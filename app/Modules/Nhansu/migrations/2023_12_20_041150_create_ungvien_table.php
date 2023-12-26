@@ -16,6 +16,7 @@ return new class extends Migration
     {
         Schema::create('ungvien', function (Blueprint $table) {
             $table->id();
+            $table->string('mauv')->nullable()->index();
             $table->string('ho_ten');
             $table->date('ngay_sinh');
             $table->string('dien_thoai')->nullable();
