@@ -40,9 +40,9 @@
                         </div>
                         <div class="col-9 ">
                             <div style="text-align: right;"><i>Ngày</i><input type="number" class="input" name="ngay_khao_sat"
-                                    style="width: 20px;" placeholder="...."><i>Tháng</i><input type="number" class="input" name="thang_khao_sat"
-                                    style="width: 20px;" placeholder="...."><i>Năm</i><input type="number" class="input" name="nam_khao_sat"
-                                    style=" width: 40px;" placeholder="........"></div>
+                                    style="width: 40px;" placeholder="...."><i>Tháng</i><input type="number" class="input" name="thang_khao_sat"
+                                    style="width: 40px;" placeholder="...."><i>Năm</i><input type="number" class="input" name="nam_khao_sat"
+                                    style=" width: 70px;" placeholder="........"></div>
                             <h4 class="tieu_de" style="margin-left: 70px;">
                                 PHIẾU
                                 KHẢO SÁT</h4>
