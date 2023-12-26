@@ -21,6 +21,7 @@ class UngVienController extends Controller
     {
         switch ($type) {
             case 'bac-si':
+                $a = $this->ungVienRepository->findById(1);
                 return view('Nhansu::khao_sat.ksuv_bac_si');
             case 'duoc-si':
                 return view('Nhansu::khao_sat.ksuv_duoc_si');
@@ -31,22 +32,21 @@ class UngVienController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function store(UngVienRequest $request)
     {
-        $input = $request->only([
-            'ho_ten', 'dien_thoai','email', 'dia_chi',
-            'qua_trinh_lam_viec', 'vi_tri_ung_tuyen', 'don_vi_ung_tuyen'
-        ]);
+        $mainField = [
+            'vi_tri_ung_tuyen', 'ho_ten', 'dien_thoai','email', 'dia_chi',
+            'qua_trinh_lam_viec', 'vi_tri_ung_tuyen', 'don_vi_ung_tuyen',
+            'ngay_sinh', 'thang_sinh', 'nam_sinh', 'loai_ung_vien'
+        ];
 
-        $input['ngay_sinh'] = Carbon::parse('ngay_sinh');
+        $input = $request->only($mainField);
+        $input['ngay_sinh'] = Carbon::createFromDate($input['nam_sinh'], $input['thang_sinh'], $input['ngay_sinh']);
         if ($request->get('ky', 0)) {
             $input['ngay_ky'] = now()->clone();
         }
 
-        $input['chi_tiet'] = [
-
-        ];
-
+        $input['chi_tiet'] = $request->except($mainField);
         $ungVien = $this->ungVienRepository->create($input);
 
         if (empty($ungVien)) {
@@ -55,6 +55,9 @@ class UngVienController extends Controller
                 ->withErrors('Tạo ứng viên thất bại');
         }
 
-        return redirect(ModuleRouterServiceProvider::UNG_VIEN_CREATE_FORM);
+        session()->flash('success', 'Bạn đã gửi khảo sát thành công');
+
+        return redirect()
+            ->back();
     }
 }

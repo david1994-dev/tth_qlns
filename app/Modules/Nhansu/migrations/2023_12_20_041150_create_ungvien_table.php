@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('dia_chi')->nullable();
             $table->text('qua_trinh_lam_viec')->nullable();
             $table->string('vi_tri_ung_tuyen');
-            $table->text('nguyen_vong_lam_viec');
             $table->text('don_vi_ung_tuyen');
             $table->tinyInteger('loai_ung_vien')->default(\App\Modules\Nhansu\src\Models\UngVien::LOAI_UNG_VIEN_BAC_SI);
             $table->dateTime('ngay_ky')->nullable();

@@ -6,7 +6,7 @@ use App\Models\Base;
 
 class UngVien extends Base
 {
-    protected $table = 'nhanvien';
+    protected $table = 'ungvien';
 
     const LOAI_UNG_VIEN_BAC_SI = 1;
     const LOAI_UNG_VIEN_DUOC_SI = 2;
@@ -19,10 +19,10 @@ class UngVien extends Base
         'email',
         'dia_chi',
         'qua_trinh_lam_viec',
-        'nguyen_vong_lam_viec',
         'don_vi_ung_tuyen',
         'ngay_ky',
-        'chi_tiet'
+        'chi_tiet',
+        'vi_tri_ung_tuyen',
     ];
 
     protected $casts = [
