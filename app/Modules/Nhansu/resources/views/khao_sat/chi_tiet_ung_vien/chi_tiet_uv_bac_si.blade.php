@@ -192,8 +192,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                                                     style="width: 440px;"
                                                                                     placeholder="..........................................................................................................................."><br>
             <p style="display: inline;">Tình trạng hôn nhân: </p>
-            <input type="radio" @if(Arr::get($chiTietUngVien, 'hon_nhan', '') == 'Độc thân') checked @endif name="hon_nhan" value="Độc thân"> Độc thân
-            <input type="radio" @if(Arr::get($chiTietUngVien, 'hon_nhan', '') == 'Đã có gia đình') checked @endif name="hon_nhan" value="Đã có gia đình"> Đã có gia đình
+            <input type="radio" name="hon_nhan" value="Độc thân"> Độc thân
+            <input type="radio" name="hon_nhan" value="Đã có gia đình"> Đã có gia đình
             <p style="display: inline; margin-left: 100px;">
         </div> <br>
         <p style="margin-left: 180px;font-weight: 600; display: inline;"> 1.Quá trình công tác:</p> <i>(Tính từ
@@ -472,6 +472,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script>
     $(document).ready(function() {
         $('#ksBSForm :input').prop("disabled", true);
+        $("input[type=checkbox]").click(function () {
+            return false;
+        });
+        $("input[type=radio]").click(function () {
+            return false;
+        });
 
         let ungTuyen = @json($ungTuyen);
         $("input[type=checkbox][name=ung_tuyen\\[\\]]").each(function () {

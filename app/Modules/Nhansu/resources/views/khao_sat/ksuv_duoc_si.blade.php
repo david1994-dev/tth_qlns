@@ -324,20 +324,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     của
                     Công ty qua kênh nào?</p><br>
                 <div>
-                    <input type="checkbox" name="thong_tin_tuyen_dung[]" value="Người thân giới thiệu"
+                    <input type="checkbox" name="nguon_tuyen_dung[]" value="Người thân giới thiệu"
                         style="margin-left: 180px;">
                     Người thân giới thiệu
-                    <input type="checkbox" name="thong_tin_tuyen_dung[]" value="Facebook"
+                    <input type="checkbox" name="nguon_tuyen_dung[]" value="Facebook"
                         style="margin-left: 85px;"> Facebook
-                    <input type="checkbox" name="thong_tin_tuyen_dung[]" value="Báo chí/ Truyền hình"
+                    <input type="checkbox" name="nguon_tuyen_dung[]" value="Báo chí/ Truyền hình"
                         style="margin-left: 82px;"> Báo chí/ Truyền hình
                 </div>
                 <div>
-                    <input type="checkbox" name="thong_tin_tuyen_dung[]" value="Web/fanpage Công ty"
+                    <input type="checkbox" name="nguon_tuyen_dung[]" value="Web/fanpage Công ty"
                         style="margin-left: 180px;"> Web/fanpage Công ty
-                    <input type="checkbox" name="thong_tin_tuyen_dung[]" value="Vietnamwork"
+                    <input type="checkbox" name="nguon_tuyen_dung[]" value="Vietnamwork"
                         style="margin-left: 82px;"> Vietnamwork
-                    <input type="checkbox" name="thong_tin_tuyen_dung[]" value="Nguồn khác"
+                    <input type="checkbox" name="nguon_tuyen_dung[]" value="Nguồn khác"
                         style="margin-left: 57px;"> Nguồn khác
                 </div> <br>
                 <p style="margin-left: 180px;font-weight: 600; display: inline;"> 6.Điểm yếu?</p><br>
