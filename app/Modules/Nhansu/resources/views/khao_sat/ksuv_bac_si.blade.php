@@ -37,7 +37,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         }
 
 
-        
+
 
 
 
@@ -91,7 +91,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 @endif
             </div>
         </div>
-        <form id="ksBSForm" action="{{ route('taoUngVien') }}" method="post"
+        <form id="ksBSForm" action="{{ route('nhansu.taoUngVien') }}" method="post"
             class="w-75 border border-2 border-success p-5 rounded" style="margin: auto;">
             @csrf
             <div class="container">

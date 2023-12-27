@@ -21,7 +21,7 @@
 @section('content')
     <div class="box box-primary">
         <div class="box-header with-border">
-            <form action="{{ route('danhSachUngVien') }}">
+            <form action="{{ route('nhansu.danhSachUngVien') }}">
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
@@ -65,7 +65,7 @@
                         <td>{{$model->email}}</td>
                         <td>{{\Illuminate\Support\Arr::get(\App\Modules\Nhansu\src\Models\UngVien::LOAI_UNG_VIEN_TEXT, $model->loai_ung_vien, '')}} </td>
                         <td class="text-center">
-                            <a target="_blank" href="{{route('chiTietUngVien', $model->id)}}">
+                            <a target="_blank" href="{{route('nhansu.chiTietUngVien', $model->id)}}">
                                 <button class="btn btn-primary">
                                     <i class="bi bi-eye-fill"></i>
                                 </button>

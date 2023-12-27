@@ -35,6 +35,7 @@ class ModuleRouterServiceProvider extends ServiceProvider
             foreach ($modules as $module) {
                 Route::middleware('web')
                     ->prefix(strtolower($module))
+                    ->name(strtolower($module).'.')
                     ->group(base_path('app/Modules/'.$module.'/routes/web.php'));
             }
         });
