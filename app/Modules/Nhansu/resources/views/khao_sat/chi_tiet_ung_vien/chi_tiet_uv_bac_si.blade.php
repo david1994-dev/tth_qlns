@@ -103,7 +103,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             @endif
         </div>
     </div>
-    <form id="ksBSForm" action="{{ route('taoUngVien') }}" method="post"
+    <form id="ksBSForm" action="" method="post"
           class="w-75 border border-2 border-success p-5 rounded" style="margin: auto;">
         @csrf
         <div class="container">
@@ -471,7 +471,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <script>
     $(document).ready(function() {
-        $('#ksBSForm :input').prop("disabled", true);
+        $('#ksBSForm :input').prop("readonly", true);
         $("input[type=checkbox]").click(function () {
             return false;
         });

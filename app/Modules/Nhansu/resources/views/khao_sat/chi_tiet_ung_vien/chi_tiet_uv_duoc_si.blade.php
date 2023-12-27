@@ -105,7 +105,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
     </div>
     <div class="container-fluid ">
-        <form id="ksDSForm" action="{{ route('taoUngVien') }}" method="post"
+        <form id="ksDSForm" action="" method="post"
               class="w-75 border border-2 border-success p-5 rounded" style="margin: auto;">
             @csrf
             <div class="container">
@@ -391,7 +391,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
 <script>
     $(document).ready(function() {
-        $('#ksDSForm :input').prop("disabled", true);
+        $('#ksDSForm :input').prop("readonly", true);
         $("input[type=checkbox]").click(function () {
             return false;
         });
