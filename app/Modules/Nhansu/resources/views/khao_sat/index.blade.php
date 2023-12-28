@@ -24,8 +24,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <div class="card-body">
                     <h5 class="card-title">Khảo sát ứng viên Bác Sỹ</h5>
                     <p class="card-text">Biểu mẫu khảo sát cho Bác Sỹ ứng tuyển vào công ty</p>
-                  </div> 
-                  <a href="{{ route('viewKhaoSat', ['type' => 'bac-si']) }}" class="btn btn-primary">Khảo sát ngay</a>
+                  </div>
+                  <a href="{{ route('nhansu.viewKhaoSat', ['type' => 'bac-si']) }}" class="btn btn-primary">Khảo sát ngay</a>
                   <div class="card-footer">
                     <small class="text-muted">TTH: Vì sức khỏe và nụ cười của bạn</small>
                   </div>
@@ -36,7 +36,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <h5 class="card-title">Khảo sát ứng viên Dược sỹ/KTV/ Điều dưỡng</h5>
                     <p class="card-text">Biểu mẫu khảo sát cho Dược Sỹ/KTV/ Điều dưỡng ứng tuyển vào công ty</p>
                   </div>
-                  <a href="{{ route('viewKhaoSat', ['type' => 'duoc-si']) }}" class="btn btn-primary">Khảo sát
+                  <a href="{{ route('nhansu.viewKhaoSat', ['type' => 'duoc-si']) }}" class="btn btn-primary">Khảo sát
                     ngay</a>
                   <div class="card-footer">
                     <small class="text-muted">TTH: Vì sức khỏe và nụ cười của bạn</small>
@@ -48,7 +48,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <h5 class="card-title">Khảo sát ứng viên văn phòng</h5>
                     <p class="card-text">Biểu mẫu khảo sát ứng viên ứng tuyển vào vị trí nhân viên văn phòng</p>
                   </div>
-                  <a href="{{ route('viewKhaoSat', ['type' => 'van-phong']) }}" class="btn btn-primary">Khảo sát
+                  <a href="{{ route('nhansu.viewKhaoSat', ['type' => 'van-phong']) }}" class="btn btn-primary">Khảo sát
                     ngay</a>
                   <div class="card-footer">
                     <small class="text-muted">TTH: Vì sức khỏe và nụ cười của bạn</small>

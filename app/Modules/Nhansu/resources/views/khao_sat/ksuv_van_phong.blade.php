@@ -86,7 +86,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
         </div>
         <div class="container-fluid ">
-            <form id="ksVPForm" action="{{ route('taoUngVien') }}" method="post"
+            <form id="ksVPForm" action="{{ route('nhansu.taoUngVien') }}" method="post"
                 class="w-75 border border-2 border-success p-5 rounded" style="margin: auto;">
                 @csrf
                 <div class="container">

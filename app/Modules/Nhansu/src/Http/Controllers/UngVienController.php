@@ -100,7 +100,7 @@ class UngVienController extends Controller
         $paginate['offset']     = $request->offset();
         $paginate['order']      = $request->order();
         $paginate['direction']  = $request->direction();
-        $paginate['baseUrl']    = route('danhSachUngVien');
+        $paginate['baseUrl']    = route('nhansu.danhSachUngVien');
 
         $filter = [];
         $keyword = $request->get('keyword');
