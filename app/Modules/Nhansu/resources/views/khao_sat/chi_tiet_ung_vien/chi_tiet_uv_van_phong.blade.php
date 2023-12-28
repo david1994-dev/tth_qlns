@@ -53,6 +53,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             font-size: 16px;
             line-height: 20px;
         }
+
+        label {
+            font-weight: normal !important;
+        }
     </style>
     <style>
         .input:focus {
@@ -269,58 +273,65 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <i style="margin-left: 220px;">- Đánh dấu 3 vị trí theo thứ tự ưu tiên </i>
             <div>
                 <input type="checkbox" name="ung_tuyen[]" value="Nhân viên kinh doanh"
-                       style="margin-left: 180px;"> Nhân viên kinh doanh
-                <input type="checkbox" name="ung_tuyen[]" value="NV Thiết kế" style="margin-left: 35px;"> NV
-                Thiết kế
+                       style="margin-left: 180px;">
+                <label for="'Nhân viên kinh doanh">Nhân viên kinh doanh</label>
+                <input type="checkbox" name="ung_tuyen[]" value="NV Thiết kế" style="margin-left: 35px;">
+                <label for="NV Thiết kế">NV Thiết kế</label>
                 <input type="checkbox" name="ung_tuyen[]" value="Nhân viên truyền thông"
-                       style="margin-left: 50px;"> Nhân viên truyền thông
+                       style="margin-left: 50px;">
+                <label for="Nhân viên truyền thông">Nhân viên truyền thông</label>
             </div>
             <div>
                 <input type="checkbox" name="ung_tuyen[]" value="Nhân viên hành chính"
-                       style="margin-left: 180px;"> Nhân viên hành chính
+                       style="margin-left: 180px;">
+                <label for="Nhân viên hành chính">Nhân viên hành chính</label>
                 <input type="checkbox" name="ung_tuyen[]" value="Nhân viên CSKH" style="margin-left: 36px;">
-                Nhân viên CSKH
+                <label for="Nhân viên CSKH">Nhân viên CSKH</label>
                 <input type="checkbox" name="ung_tuyen[]" value="Nhân viên quản trị web"
-                       style="margin-left: 17px;"> Nhân viên quản trị web
+                       style="margin-left: 17px;">
+                <label for="Nhân viên quản trị web">Nhân viên quản trị web</label>
             </div>
             <div>
-                <input type="checkbox" name="ung_tuyen[]" value="NV Tư vấn PTTM" style="margin-left: 180px;"> NV
-                Tư vấn PTTM
-                <input type="checkbox" name="ung_tuyen[]" value="CV Nhân sự" style="margin-left: 72px;"> CV Nhân
-                sự
-                <input type="checkbox" name="ung_tuyen[]" value="NV Điện nước" style="margin-left: 50px;"> NV
-                Điện nước
+                <input type="checkbox" name="ung_tuyen[]" value="NV Tư vấn PTTM" style="margin-left: 180px;">
+                <label for="NV Tư vấn PTTM">NV Tư vấn PTTM</label>
+                <input type="checkbox" name="ung_tuyen[]" value="CV Nhân sự" style="margin-left: 72px;">
+                <label for="CV Nhân sự">CV Nhân sự</label>
+                <input type="checkbox" name="ung_tuyen[]" value="NV Điện nước" style="margin-left: 50px;">
+                <label for="NV Điện nước">NV Điện nước</label>
             </div>
             <div>
                 <input type="checkbox" name="ung_tuyen[]" value="NV Thu ngân - Lễ tân"
-                       style="margin-left: 180px;"> NV Thu ngân - Lễ tân
-                <input type="checkbox" name="ung_tuyen[]" value="NV Văn thư" style="margin-left: 39px;"> NV Văn
-                thư
-                <input type="checkbox" name="ung_tuyen[]" value="NV Kế hoạch" style="margin-left: 53px;"> NV Kế
-                hoạch
+                       style="margin-left: 180px;">
+                <label for="NV Thu ngân - Lễ tân">NV Thu ngân - Lễ tân</label>
+                <input type="checkbox" name="ung_tuyen[]" value="NV Văn thư" style="margin-left: 39px;">
+                <label for="NV Văn thư">NV Văn thư</label>
+                <input type="checkbox" name="ung_tuyen[]" value="NV Kế hoạch" style="margin-left: 53px;">
+                <label for="NV Kế hoạch">NV Kế hoạch</label>
             </div>
             <div>
-                <input type="checkbox" name="ung_tuyen[]" value="NV Kế toán" style="margin-left: 180px;"> NV Kế
-                toán
-                <input type="checkbox" name="ung_tuyen[]" value="NV Lái xe" style="margin-left: 110px;"> NV Lái
-                xe
-                <input type="checkbox" name="ung_tuyen[]" value="NV Thiết kế phần" style="margin-left: 67px;">
-                NV Thiết kế phần
-                mềm
+                <input type="checkbox" name="ung_tuyen[]" value="NV Kế toán" style="margin-left: 180px;">
+                <label for="NV Kế toán">NV Kế toán</label>
+                <input type="checkbox" name="ung_tuyen[]" value="NV Lái xe" style="margin-left: 110px;">
+                <label for="NV Lái xe">NV Lái xe</label>
+                <input type="checkbox" name="ung_tuyen[]" value="NV Thiết kế phần mềm" style="margin-left: 67px;">
+                <label for="NV Thiết kế phần mềm">NV Thiết kế phần mềm</label>
             </div>
             <div>
-                <input type="checkbox" name="ung_tuyen[]" value="NV Pháp chế" style="margin-left: 180px;"> NV
-                Pháp chế
-                <input type="checkbox" name="ung_tuyen[]" value="NV Bảo vệ" style="margin-left: 99px;"> NV Bảo
-                vệ
+                <input type="checkbox" name="ung_tuyen[]" value="NV Pháp chế" style="margin-left: 180px;">
+                <label for="NV Pháp chế">NV Pháp chế</label>
+                <input type="checkbox" name="ung_tuyen[]" value="NV Bảo vệ" style="margin-left: 99px;">
+                <label for="NV Bảo vệ">NV Bảo vệ</label>
                 <input type="checkbox" name="ung_tuyen[]" value="NV Quản lý dự án" style="margin-left: 61px;">
-                NV Quản lý dự án
+                <label for="NV Quản lý dự án">NV Quản lý dự án</label>
             </div>
             <div>
-                <input type="checkbox" name="ung_tuyen[]" value="Khác" style="margin-left: 180px;"> Khác
-                <input type="checkbox" name="ung_tuyen[]" value="NV IT" style="margin-left: 155px;"> NV IT
+                <input type="checkbox" name="ung_tuyen[]" value="Khác" style="margin-left: 180px;">
+                <label for="Khác">Khác</label>
+                <input type="checkbox" name="ung_tuyen[]" value="NV IT" style="margin-left: 155px;">
+                <label for="NV IT">NV IT</label>
                 <input type="checkbox" name="ung_tuyen[]" value="NV Đối ngoại và quan hệ QT"
-                       style="margin-left: 95px;"> NV Đối ngoại và quan hệ QT
+                       style="margin-left: 95px;">
+                <label for="NV Đối ngoại và quan hệ QT">NV Đối ngoại và quan hệ QT</label>
             </div> <br>
 
             <p style="margin-left: 180px;font-weight: 600; display: inline;"> 5.Điểm yếu?</p><br>
@@ -402,6 +413,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
             let val = $(this).val()
             if (ungTuyen.includes(val)) {
                 $( this ).attr( 'checked', true )
+            }
+
+            let index = ungTuyen.indexOf(val)
+            if (index >= 0) {
+                index += 1;
+                let text = $('label[for="'+ val +'"]').text();
+                text = text + ' ('+index+')';
+                $('label[for="'+ val +'"]').text(text)
             }
         });
 

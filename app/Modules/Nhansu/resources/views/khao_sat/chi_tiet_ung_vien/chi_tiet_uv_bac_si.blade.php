@@ -53,6 +53,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
             font-size: 16px;
             line-height: 20px;
         }
+
+        label {
+            font-weight: normal !important;
+        }
+
     </style>
     <style>
         .input:focus {
@@ -290,82 +295,85 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <i style="margin-left: 220px;">- Đánh số theo thứ tự ưu tiên (1,2,3)</i> <br>
         <i style="margin-left: 220px;">- Một người được ứng tuyển 3 vị trí.</i>
         <div>
-            <input type="checkbox" name="ung_tuyen[]" value="Nội tổng hợp"style="margin-left: 180px;"> Nội tổng
-            hợp
-            <input type="checkbox" name="ung_tuyen[]" value="Ngoại tổng hợp" style="margin-left: 113px;"> Ngoại
-            tổng
-            hợp
-            <input type="checkbox" name="ung_tuyen[]" value="Sản phụ" style="margin-left: 65px;"> Sản phụ
+            <input type="checkbox" name="ung_tuyen[]" value="Nội tổng hợp"style="margin-left: 180px;"> <label for="Nội tổng hợp">Nội tổng
+                hợp</label>
+            <input type="checkbox" name="ung_tuyen[]" value="Ngoại tổng hợp" style="margin-left: 113px;">
+            <label for="Ngoại tổng hợp">Ngoại tổng hợp</label>
+            <input type="checkbox" name="ung_tuyen[]" value="Sản phụ" style="margin-left: 65px;">
+            <label for="Sản phụ">Sản phụ</label>
             <input type="checkbox" name="ung_tuyen[]" value="Chẩn đoán hình ảnh" style="margin-left: 146px;">
-            Chẩn
-            đoán hình ảnh
+            <label for="Chẩn đoán hình ảnh">Chẩn đoán hình ảnh</label>
         </div>
         <div>
-            <input type="checkbox" name="ung_tuyen[]" value="Nội tim mạch" style="margin-left: 180px;"> Nội tim
-            mạch
-            <input type="checkbox" name="ung_tuyen[]" value="Ngoại thần kinh" style="margin-left: 113px;"> Ngoại
-            thần
-            kinh
-            <input type="checkbox" name="ung_tuyen[]" value="Nhi" style="margin-left: 65px;"> Nhi
-            <input type="checkbox" name="ung_tuyen[]" value="XN thăm dò chức năng" style="margin-left: 178px;">
-            XN-
-            Thăm dò chức năng
+            <input type="checkbox" name="ung_tuyen[]" value="Nội tim mạch" style="margin-left: 180px;">
+            <label for="Nội tim mạch">Nội tim mạch</label>
+            <input type="checkbox" name="ung_tuyen[]" value="Ngoại thần kinh" style="margin-left: 113px;">
+            <label for="Ngoại thần kinh">Ngoại thần kinh</label>
+            <input type="checkbox" name="ung_tuyen[]" value="Nhi" style="margin-left: 65px;">
+            <label for="Nhi">Nhi</label>
+            <input type="checkbox" name="ung_tuyen[]" value="XN - Thăm dò chức năng" style="margin-left: 178px;">
+            <label for="XN - Thăm dò chức năng">XN - Thăm dò chức năng</label>
+
         </div>
         <div>
-            <input type="checkbox" name="ung_tuyen[]" value="Nội thần kinh" style="margin-left: 180px;"> Nội
-            thần
-            kinh
+            <input type="checkbox" name="ung_tuyen[]" value="Nội thần kinh" style="margin-left: 180px;">
+            <label for="Nội thần kinh">Nội thần kinh</label>
             <input type="checkbox" name="ung_tuyen[]" value="Chấn thương chỉnh hình"
                    style="margin-left: 112px;">
-            Chấn thương chỉnh hình
-            <input type="checkbox" name="ung_tuyen[]" value="Y học cổ truyền" style="margin-left: 8px;"> Y học
-            cổ truyền
-            <input type="checkbox" name="ung_tuyen[]" value="Giải phẫu" style="margin-left: 93px;"> Giải phẫu
-            bệnh
+            <label for="Chấn thương chỉnh hình">Chấn thương chỉnh hình</label>
+            <input type="checkbox" name="ung_tuyen[]" value="Y học cổ truyền" style="margin-left: 8px;">
+            <label for="Y học cổ truyền">Y học cổ truyền</label>
+            <input type="checkbox" name="ung_tuyen[]" value="Giải phẫu bệnh" style="margin-left: 93px;">
+            <label for="Giải phẫu bệnh">Giải phẫu bệnh</label>
         </div>
         <div>
-            <input type="checkbox" name="ung_tuyen[]" value="Phẫu thuật thẩm mỹ" style="margin-left: 180px;">
-            Phẫu thuật tạo
-            hình thẩm mỹ
-            <input type="checkbox" name="ung_tuyen[]" value="Răng hàm mặt" style="margin-left: 2px;"> Răng hàm
-            mặt
+            <input type="checkbox" name="ung_tuyen[]" value="Phẫu thuật tạo hình thẩm mỹ" style="margin-left: 180px;">
+            <label for="Phẫu thuật tạo hình thẩm mỹ">Phẫu thuật tạo hình thẩm mỹ</label>
+            <input type="checkbox" name="ung_tuyen[]" value="Răng hàm mặt" style="margin-left: 2px;">
+
+            <label for="Răng hàm mặt">Răng hàm mặt</label>
             <input type="checkbox" name="ung_tuyen[]" value="Phục hồi chức năng" style="margin-left: 75px;">
-            Phục hồi chức năng
+            <label for="Phục hồi chức năng">Phục hồi chức năng</label>
             <input type="checkbox" name="ung_tuyen[]" value="U bướu - Y học hạt nhân"
-                   style="margin-left: 65px;"> U bướu - y học hạt
-            nhân
+                   style="margin-left: 65px;">
+            <label for="U bướu - y học hạt nhân">U bướu - y học hạt nhân</label>
         </div>
         <div>
-            <input type="checkbox" name="ung_tuyen[]" value="Da liễu" style="margin-left: 180px;"> Da liễu
-            <input type="checkbox" name="ung_tuyen[]" value="Tai mũi họng" style="margin-left: 158px;"> Tai mũi
-            họng
-            <input type="checkbox" name="ung_tuyen[]" value="Gây mê" style="margin-left: 88px;"> Gây mê
-            <input type="checkbox" name="ung_tuyen[]" value="Hồi sức cấp cứu" style="margin-left: 151px;"> Hồi
-            sức cấp cứu
+            <input type="checkbox" name="ung_tuyen[]" value="Da liễu" style="margin-left: 180px;">
+            <label for="Da liễu">Da liễu</label>
+            <input type="checkbox" name="ung_tuyen[]" value="Tai mũi họng" style="margin-left: 158px;">
+            <label for="Tai mũi họng">Tai mũi họng</label>
+            <input type="checkbox" name="ung_tuyen[]" value="Gây mê" style="margin-left: 88px;">
+            <label for="Gây mê">Gây mê</label>
+            <input type="checkbox" name="ung_tuyen[]" value="Hồi sức cấp cứu" style="margin-left: 151px;">
+            <label for="Hồi sức cấp cứu">Hồi sức cấp cứu</label>
         </div>
         <div>
-            <input type="checkbox" name="ung_tuyen[]" value="Bệnh nhiệt đới" style="margin-left: 180px;"> Bệnh
-            nhiệt
-            đới(truyền nhiễm)
-            <input type="checkbox" name="ung_tuyen[]" value="Mắt" style="margin-left: 1px;"> Mắt
-            <input type="checkbox" name="ung_tuyen[]" value="Dinh dưỡng" style="margin-left: 151px;"> Dinh dưỡng
+            <input type="checkbox" name="ung_tuyen[]" value="Bệnh nhiệt đới(truyền nhiễm)" style="margin-left: 180px;">
+            <label for="Bệnh nhiệt đới(truyền nhiễm)">Bệnh nhiệt đới(truyền nhiễm)</label>
+            <input type="checkbox" name="ung_tuyen[]" value="Mắt" style="margin-left: 1px;">
+            <label for="Mắt">Mắt</label>
+            <input type="checkbox" name="ung_tuyen[]" value="Dinh dưỡng" style="margin-left: 151px;">
+            <label for="Dinh dưỡng">Dinh dưỡng</label>
             <input type="checkbox" name="ung_tuyen[]" value="chuyên viên kế hoạch tổng hợp"
-                   style="margin-left: 120px;"> Chuyên viên kế
-            hoạch tổng hợp
+                   style="margin-left: 120px;">
+            <label for="Chuyên viên kế hoạch tổng hợp">Chuyên viên kế hoạch tổng hợp</label>
         </div>
         <div>
-            <input type="checkbox" name="ung_tuyen[]" value="Nội tiết" style="margin-left: 180px;"> Nội tiết
+            <input type="checkbox" name="ung_tuyen[]" value="Nội tiết" style="margin-left: 180px;">
+            <label for="Nội tiết">Nội tiết</label>
             <input type="checkbox" name="ung_tuyen[]" value="Chống nhiễm khuẩn" style="margin-left: 154px;">
-            Chống nhiễm khuẩn
+            <label for="Chống nhiễm khuẩn">Chống nhiễm khuẩn</label>
             <input type="checkbox" name="ung_tuyen[]" value="Kiểm soát chất lượng bệnh viện"
-                   style="margin-left: 37px;"> Kiểm soát chất
-            lượng BV
+                   style="margin-left: 37px;">
+            <label for="Kiểm soát chất lượng bệnh viện">Kiểm soát chất lượng bệnh viện</label>
             <input type="checkbox" name="ung_tuyen[]" value="Chuyên viên truyền thông CSKH"
-                   style="margin-left: 31px;"> Chuyên viên Truyền
-            thông CSKH
+                   style="margin-left: 31px;">
+            <label for="Chuyên viên truyền thông CSKH">Chuyên viên truyền thông CSKH</label>
         </div>
         <div>
-            <input type="checkbox" name="ung_tuyen[]" value="khác" style="margin-left: 180px;"> Khác
+            <input type="checkbox" name="ung_tuyen[]" value="khác" style="margin-left: 180px;">
+            <label for="khác">khác</label>
         </div> <br>
         <p style="margin-left: 180px;font-weight: 600; display: inline;"> 6.Anh(chị) mong muốn công tác tại bệnh
             viện nào của công ty?</p><br>
@@ -489,6 +497,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
             let val = $(this).val()
             if (ungTuyen.includes(val)) {
                 $( this ).attr( 'checked', true )
+            }
+
+            let index = ungTuyen.indexOf(val)
+            if (index >= 0) {
+                index += 1;
+                let text = $('label[for="'+ val +'"]').text();
+                text = text + ' ('+index+')';
+                $('label[for="'+ val +'"]').text(text)
             }
         });
 

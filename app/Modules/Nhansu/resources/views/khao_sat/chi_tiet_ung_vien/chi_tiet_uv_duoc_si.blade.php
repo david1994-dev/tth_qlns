@@ -54,6 +54,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             font-size: 16px;
             line-height: 20px;
         }
+
+        label {
+            font-weight: normal !important;
+        }
     </style>
     <style>
         .input:focus {
@@ -240,51 +244,65 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div>
                     <input type="checkbox" name="ung_tuyen[]" value="Nội khoa"style="margin-left: 180px;"
                            max="3">
-                    Nội khoa
+                    <label for="Nội khoa">Nội khoa</label>
                     <input type="checkbox" name="ung_tuyen[]" value="Sản phụ khoa" style="margin-left: 50px;"
-                           max="3"> Sản phụ khoa
+                           max="3">
+                    <label for="Sản phụ khoa">Sản phụ khoa</label>
                     <input type="checkbox" name="ung_tuyen[]" value="Xét nghiệm" style="margin-left: 50px;"
-                           max="3"> Xét nghiệm
+                           max="3">
+                    <label for="Xét nghiệm">Xét nghiệm</label>
                     <input type="checkbox" name="ung_tuyen[]" value="Răng hàm mặt" style="margin-left: 196px;"
-                           max="3"> Răng hàm mặt
+                           max="3">
+                    <label for="Răng hàm mặt">Răng hàm mặt</label>
                 </div>
                 <div>
                     <input type="checkbox" name="ung_tuyen[]" value="Ngoại khoa" style="margin-left: 180px;"
-                           max="3"> Ngoại khoa
+                           max="3">
+                    <label for="Ngoại khoa">Ngoại khoa</label>
                     <input type="checkbox" name="ung_tuyen[]" value="Nhi khoa" style="margin-left: 35px;"
                            max="3">
-                    Nhi khoa
+                    <label for="Nhi khoa">Nhi khoa</label>
                     <input type="checkbox" name="ung_tuyen[]" value="Chẩn đoán hình ảnh- thăm dò CN"
-                           style="margin-left: 82px;" max="3"> Chẩn đoán hình ảnh- thăm dò CN
+                           style="margin-left: 82px;" max="3">
+                    <label for="Chẩn đoán hình ảnh- thăm dò CN">Chẩn đoán hình ảnh- thăm dò CN</label>
                     <input type="checkbox" name="ung_tuyen[]" value="Tai mũi họng" style="margin-left: 50px;"
-                           max="3"> Tai mũi họng
+                           max="3">
+                    <label for="Tai mũi họng">Tai mũi họng</label>
                 </div>
                 <div>
                     <input type="checkbox" name="ung_tuyen[]" value="Mắt" style="margin-left: 180px;"
                            max="3">
-                    Mắt
+                    <label for="Mắt">Mắt</label>
                     <input type="checkbox" name="ung_tuyen[]" value="U bước-Y học hạt nhân"
-                           style="margin-left: 85px;" max="3"> U bước-Y học hạt nhân
+                           style="margin-left: 85px;" max="3">
+                    <label for="U bước-Y học hạt nhân">U bước-Y học hạt nhân</label>
                     <input type="checkbox" name="ung_tuyen[]" value="dinh dưỡng" style="margin-left: 82px;"
-                           max="3"> dinh dưỡng
+                           max="3">
+                    <label for="dinh dưỡng">dinh dưỡng</label>
+
                     <input type="checkbox" name="ung_tuyen[]" value="Chuyên viên kế hoạch tổng hợp"
-                           style="margin-left: 50px;" max="3"> Chuyên viên kế hoạch tổng hợp
+                           style="margin-left: 50px;" max="3">
+                    <label for="Chuyên viên kế hoạch tổng hợp">Chuyên viên kế hoạch tổng hợp</label>
                 </div>
                 <div>
                     <input type="checkbox" name="ung_tuyen[]" value="YHCT" style="margin-left: 180px;"
                            max="3">
-                    YHCT
+                    <label for="YHCT">YHCT</label>
                     <input type="checkbox" name="ung_tuyen[]" value="Hồi sức cấp cứu" style="margin-left: 75px;"
-                           max="3"> Hồi sức cấp cứu
+                           max="3">
+                    <label for="Hồi sức cấp cứu">Hồi sức cấp cứu</label>
+
                     <input type="checkbox" name="ung_tuyen[]" value="Thẩm mỹ - da liễu"
-                           style="margin-left: 38px;" max="3"> Thẩm mỹ - da liễu
+                           style="margin-left: 38px;" max="3">
+                    <label for="Thẩm mỹ - da liễu">Thẩm mỹ - da liễu</label>
                     <input type="checkbox" name="ung_tuyen[]" value="Gây mê - Phẫu thuật"
-                           style="margin-left: 152px;" max="3"> Gây mê - Phẫu thuật
+                           style="margin-left: 152px;" max="3">
+                    <label for="Gây mê - Phẫu thuật">Gây mê - Phẫu thuật</label>
                 </div>
                 <div>
                     <input type="checkbox" name="ung_tuyen[]" value="Kiểm soát chất lượng BV"
                            style="margin-left: 180px;" max="3">
-                    Kiểm soát chất lượng BV
+                    <label for="Kiểm soát chất lượng BV">Kiểm soát chất lượng BV</label>
                 </div>
             </div> <br>
             <p style="margin-left: 180px;font-weight: 600; display: inline;"> 4.Anh(chị) mong muốn công tác tại
@@ -409,6 +427,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
             let val = $(this).val()
             if (ungTuyen.includes(val)) {
                 $( this ).attr( 'checked', true )
+            }
+
+            let index = ungTuyen.indexOf(val)
+            if (index >= 0) {
+                index += 1;
+                let text = $('label[for="'+ val +'"]').text();
+                text = text + ' ('+index+')';
+                $('label[for="'+ val +'"]').text(text)
             }
         });
 
