@@ -43,12 +43,12 @@ class UngVienController extends Controller
     {
         $mainField = [
             'vi_tri_ung_tuyen', 'ho_ten', 'dien_thoai','email', 'dia_chi', 'don_vi_ung_tuyen',
-            'ngay_sinh', 'thang_sinh', 'nam_sinh', 'loai_ung_vien', 'thoi_gian_lam_viec',
+            'ngay_sinh', 'loai_ung_vien', 'thoi_gian_lam_viec',
             'don_vi_cong_tac', 'vi_tri_lam_viec'
         ];
 
         $input = $request->only($mainField);
-        $input['ngay_sinh'] = Carbon::createFromDate($input['nam_sinh'], $input['thang_sinh'], $input['ngay_sinh']);
+        $input['ngay_sinh'] = Carbon::parse($input['ngay_sinh']);
         $input['ngay_ky'] = now()->clone();
 
         $workingProcess = [];

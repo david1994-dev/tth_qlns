@@ -100,7 +100,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
             </div>
             <form id="ksDSForm" action="{{ route('nhansu.taoUngVien') }}" method="post"
-                class="w-75 border border-2 border-success p-5 rounded" style="margin: auto;">
+                class="w-75 border border-2 border-success p-5 rounded" style="margin: auto;"
+                  enctype="multipart/form-data"
+            >
                 @csrf
                 <div class="container">
                     <div class="row">
@@ -144,7 +146,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 placeholder=".......................................................................................">
                             <div style="display: inline;" class="mt-3 form-group">
                                     <p style="display: inline;">Sinh ngày</p>
-                                    <input type="date" id="ngay_sinh" class="form-control" name="ngay_sinh" style="width: 20% ;display: inline;">
+                                    <input type="date" id="ngay_sinh" class="form-control" name="ngay_sinh" style="width: 20% ;display: inline;" required>
                             </div> <br>
                             <p style="display: inline;">Trường đào tạo:</p> <input class="input" name="truong_dao_tao"
                                 style="width:60%"
