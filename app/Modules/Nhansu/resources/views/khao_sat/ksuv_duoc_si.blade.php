@@ -91,19 +91,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <form id="ksDSForm" action="{{ route('nhansu.taoUngVien') }}" method="post"
                 class="w-75 border border-2 border-success p-5 rounded" style="margin: auto;">
                 @csrf
-                <div class="row">
-                    <div class="col-3">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRK9A2qlhiiaIkO6qETm9ihfEy7AGvj3eAnH7fd-MQxqxouWOja2pxD9KE6JiLgn-gYOk&usqp=CAU"
-                            alt="" width="100px" height="130px">
-                    </div>
-                    <div class="col-9 ">
-                        <div style="text-align: right;"><i>Ngày</i><input type="number" class="input"
-                                name="ngay_khao_sat" style="width: 5%;" placeholder="...."><i>Tháng</i><input
-                                type="number" class="input" name="thang_khao_sat" style="width: 5%;"
-                                placeholder="...."><i>Năm</i><input type="number" class="input" name="nam_khao_sat"
-                                style=" width: 10%;" placeholder="........"></div>
-                        <div style="padding-left: 5%">
-                            <h4 class="tieu_de">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-3">
+                            <img id="profile-image-preview" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRK9A2qlhiiaIkO6qETm9ihfEy7AGvj3eAnH7fd-MQxqxouWOja2pxD9KE6JiLgn-gYOk&usqp=CAU"
+                                 alt="" width="100px" height="130px">
+                            <input type="file" name="image" id="profile-image" style="margin-top: 10px">
+                        </div>
+                        <div class="col-9 ">
+                            <div style="text-align: right;"><i>Ngày</i><input type="number" class="input"
+                                    name="ngay_khao_sat" style="width: 40px;" placeholder="...."><i>Tháng</i><input
+                                    type="number" class="input" name="thang_khao_sat" style="width: 40px;"
+                                    placeholder="...."><i>Năm</i><input type="number" class="input"
+                                    name="nam_khao_sat" style=" width: 70px;" placeholder="........"></div>
+                            <h4 class="tieu_de" style="margin-left: 70px;">
                                 PHIẾU
                                 KHẢO SÁT ỨNG VIÊN</h4>
                             <i>(Đối tượng áp dụng: Nhân viên điều dưỡng,KTV,Dược sỹ)</i>
@@ -388,5 +389,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             event.currentTarget.submit();
         })
+
+        $(document).ready(function () {
+            $('#profile-image').change(function (event) {
+                $('#profile-image-preview').attr('src', URL.createObjectURL(event.target.files[0]));
+            });
+        });
     })
 </script>

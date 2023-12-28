@@ -4,10 +4,10 @@ namespace App\Modules\Nhansu\src\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PaginationRequest;
-use App\Modules\ModuleRouterServiceProvider;
 use App\Modules\Nhansu\src\Http\Requests\NhanVien\UngVienRequest;
 use App\Modules\Nhansu\src\Models\UngVien;
 use App\Modules\Nhansu\src\Repositories\Interface\UngVienRepositoryInterface;
+use App\Services\FileService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -15,9 +15,13 @@ use Illuminate\Support\Arr;
 class UngVienController extends Controller
 {
     private UngVienRepositoryInterface $ungVienRepository;
-    public function __construct(UngVienRepositoryInterface $ungVienRepository)
-    {
+    private FileService $fileService;
+    public function __construct(
+        UngVienRepositoryInterface $ungVienRepository,
+        FileService $fileService
+    ) {
         $this->ungVienRepository = $ungVienRepository;
+        $this->fileService = $fileService;
     }
 
     public function index()
@@ -66,6 +70,15 @@ class UngVienController extends Controller
 
         $input['qua_trinh_lam_viec'] = $workingProcess;
         $input['chi_tiet'] = $request->except($mainField);
+
+        //upload image
+        if ($request->hasFile('image')) {
+            $image = $this->fileService->uploadImage('ung_vien' ,$request->file('image'));
+            if (!empty($image)) {
+                $input['image'] = $image;
+            }
+        }
+
         $ungVien = $this->ungVienRepository->create($input);
 
         if (empty($ungVien)) {

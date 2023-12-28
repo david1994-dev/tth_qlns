@@ -110,8 +110,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="container">
                 <div class="row">
                     <div class="col-3">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRK9A2qlhiiaIkO6qETm9ihfEy7AGvj3eAnH7fd-MQxqxouWOja2pxD9KE6JiLgn-gYOk&usqp=CAU"
-                             alt="" width="100px" height="130px">
+                        @if(!$model->image)
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRK9A2qlhiiaIkO6qETm9ihfEy7AGvj3eAnH7fd-MQxqxouWOja2pxD9KE6JiLgn-gYOk&usqp=CAU"
+                                 alt="" width="100px" height="130px">
+                        @else
+                            <img src="{{asset('storage/'.$model->image)}}"
+                                 alt="" width="100px" height="130px">
+                        @endif
                     </div>
                     <div class="col-9 ">
                         <div style="text-align: right;"><i>Ngày</i><input type="number" class="input"
