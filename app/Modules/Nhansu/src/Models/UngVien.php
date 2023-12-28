@@ -30,7 +30,8 @@ class UngVien extends Base
         'ngay_ky',
         'chi_tiet',
         'vi_tri_ung_tuyen',
-        'loai_ung_vien'
+        'loai_ung_vien',
+        'image'
     ];
 
     protected $casts = [

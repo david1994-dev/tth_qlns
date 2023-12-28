@@ -92,8 +92,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container">
                     <div class="row">
                         <div class="col-3">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRK9A2qlhiiaIkO6qETm9ihfEy7AGvj3eAnH7fd-MQxqxouWOja2pxD9KE6JiLgn-gYOk&usqp=CAU"
-                                alt="" width="100px" height="130px">
+                            <img id="profile-image-preview" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRK9A2qlhiiaIkO6qETm9ihfEy7AGvj3eAnH7fd-MQxqxouWOja2pxD9KE6JiLgn-gYOk&usqp=CAU"
+                                 alt="" width="100px" height="130px">
+                            <input type="file" name="image" id="profile-image" style="margin-top: 10px">
                         </div>
                         <div class="col-9 ">
                             <div style="text-align: right;"><i>Ngày</i><input type="number" class="input"
@@ -425,5 +426,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             event.currentTarget.submit();
         })
+
+        $(document).ready(function () {
+            $('#profile-image').change(function (event) {
+                $('#profile-image-preview').attr('src', URL.createObjectURL(event.target.files[0]));
+            });
+        });
     })
 </script>
