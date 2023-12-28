@@ -23,17 +23,10 @@ class UngVienRequest extends FormRequest
     {
         return [
             'ho_ten' => ['required', 'string'],
+            'ngay_sinh' => ['required', 'string'],
             'email' => ['required', 'email',],
             'dien_thoai' => ['required','numeric', 'min:10'],
-            'ngay_sinh' => ['required','numeric', 'max:2'],
-            'thang_sinh' => ['required','numeric', 'max:2'],
-            'nam_sinh' => ['required','numeric'],
-            'image' => [
-                'image',
-                'mimes:jpeg,png',
-                'mimetypes:image/jpeg,image/png',
-                'max:2048',
-            ],
+            'image' => ['extensions:jpeg,jpg,png', 'max:2048'],
         ];
     }
 
@@ -56,6 +49,7 @@ class UngVienRequest extends FormRequest
             'nam_sinh.required' => 'Năm sinh không được để trống!',
             'nam_sinh.numeric' => 'Năm sinh sai định dạng!',
             'image.max' => 'Ảnh có kích thước quá lớn!',
+            'image.extensions' => 'Ảnh sai định dạng!',
         ];
     }
 }

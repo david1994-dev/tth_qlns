@@ -53,12 +53,18 @@
                         <th>Số điện thoại</th>
                         <th>Email</th>
                         <th>Loại Ứng Viên</th>
+                        <th>Vị Trí Ứng Tuyển</th>
+                        <th>Trường Đào Tạo</th>
+                        <th>Ngày Lập Phiếu</th>
                         <th class="text-center">Chi tiết</th>
                     </tr>
                     </thead>
 
                     <tbody>
                     @foreach($models as $model)
+                        @php
+                            $chiTiet = $model->chi_tiet ?? [];
+                        @endphp
                         <tr>
                             <td>{{$model->mauv}}</td>
                             <td>{{$model->ho_ten}}</td>
@@ -66,6 +72,15 @@
                             <td>{{$model->dien_thoai}}</td>
                             <td>{{$model->email}}</td>
                             <td>{{\Illuminate\Support\Arr::get(\App\Modules\Nhansu\src\Models\UngVien::LOAI_UNG_VIEN_TEXT, $model->loai_ung_vien, '')}} </td>
+                            <td>
+                                {{$model->vi_tri_ung_tuyen}}
+                            </td>
+                            <td>
+                                {{\Illuminate\Support\Arr::get($chiTiet, 'truong_dao_tao', '')}}
+                            </td>
+                            <td>
+                                {{$model->created_at->format('d/m/Y')}}
+                            </td>
                             <td class="text-center">
                                 <a target="_blank" href="{{route('nhansu.chiTietUngVien', $model->id)}}">
                                     <button class="btn btn-primary">
