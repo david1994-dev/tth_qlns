@@ -61,7 +61,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </head>
 
 <body class="hold-transition sidebar-mini">
-    <div class="content">
+    <div class="content-fluid">
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 @if ($errors->count())
@@ -91,22 +91,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="container">
                 <div class="row">
                     <div class="col-3">
-                        <img id="profile-image-preview" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRK9A2qlhiiaIkO6qETm9ihfEy7AGvj3eAnH7fd-MQxqxouWOja2pxD9KE6JiLgn-gYOk&usqp=CAU"
-                             alt="" width="100px" height="130px">
+                        <img id="profile-image-preview"
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRK9A2qlhiiaIkO6qETm9ihfEy7AGvj3eAnH7fd-MQxqxouWOja2pxD9KE6JiLgn-gYOk&usqp=CAU"
+                            alt="" width="100px" height="130px">
                         <input type="file" name="image" id="profile-image" style="margin-top: 10px">
                     </div>
                     <div class="col-9 ">
                         <div style="text-align: right;"><i>Ngày</i><input type="number" class="input"
-                                name="ngay_khao_sat" style="width: 40px;" min="1" max="31"
-                                placeholder="...."><i>Tháng</i><input type="number" class="input"
-                                name="thang_khao_sat" min="1" max="12" style="width: 40px;"
-                                placeholder="...."><i>Năm</i><input type="number" class="input" name="nam_khao_sat"
-                                style=" width: 70px;" placeholder="........"></div>
+                                name="ngay_khao_sat" value="{{old('ngay_khao_sat') ?? ''}}" style="width: 5%;" min="1" max="31"
+                                placeholder="...."><i>Tháng</i><input type="number" class="input" value="{{old('thang_khao_sat') ?? ''}}"
+                                name="thang_khao_sat" min="1" max="12" style="width: 5%;"
+                                placeholder="...."><i>Năm</i><input type="number" class="input" name="nam_khao_sat" value="{{old('nam_khao_sat') ?? ''}}"
+                                style=" width: 10%;" placeholder="........"></div>
                         <h4 class="tieu_de" style="margin-left: 70px;">
                             PHIẾU
                             KHẢO SÁT</h4>
                         <i>(Đối tượng áp dụng: Bác sĩ)</i>
-                        <p style="font-weight: 600;"> Vị trí ứng tuyển: <input class="input" name="vi_tri_ung_tuyen"
+                        <p style="font-weight: 600;"> Vị trí ứng tuyển: <input class="input" name="vi_tri_ung_tuyen" value="{{old('vi_tri_ung_tuyen') ?? ''}}"
                                 style="width: 100%px;"
                                 placeholder="................................................................................................................................................">
                     </div>
@@ -122,36 +123,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             và các chi nhánh</p>
                         <p>Kính đề nghị Bác sĩ trả lời 1 số câu hỏi khảo sát sau:</p>
                         <div>
-                            <p style="display: inline;">Họ và tên:</p> <input class="input" style="width: 30%;"
+                            <p style="display: inline;">Họ và tên:</p> <input class="input" style="width: 30%;" value="{{old('ho_ten') ?? ''}}"
                                 name="ho_ten"
                                 placeholder="......................................................................">
-                            <div style="text-align: right; display: inline;">
-                                <p style="display: inline;">Sinh ngày</p><input type="number" class="input"
-                                    style="width: 5%;" name="ngay_sinh" placeholder="........">
-                                <p style="display: inline;">Tháng</p><input type="number" class="input"
-                                    style="width: 5%;" name="thang_sinh" placeholder="........">
-                                <p style="display: inline;">Năm</p><input type="number" class="input"
-                                    style="width: 10%;" name="nam_sinh" placeholder=".............">
+                            <div style="display: inline;" class="mt-3 form-group">
+                                <p style="display: inline;">Ngày sinh</p>
+                                <input type="date" id="ngay_sinh" class="form-control" name="ngay_sinh" value="{{old('ngay_sinh') ?? ''}}"
+                                    style="width: 20% ;display: inline;">
                             </div> <br>
 
                             <p style="display: inline;">Chuyên ngành đào tạo:</p> <input class="input"
-                                style="width: 30%;" name="chuyen_nganh_dao_tao" value="{{old('chuyen_nganh_dao_tao') ?? ''}}"
+                                style="width: 30%;" name="chuyen_nganh_dao_tao"
+                                value="{{ old('chuyen_nganh_dao_tao') ?? '' }}"
                                 placeholder="......................................................................"> Hệ
                             đào
                             tạo:
-                            <input class="input" name="he_dao_tao" style=" width: 10%px;"
+                            <input class="input" name="he_dao_tao" style=" width: 10%px;" value="{{old('he_dao_tao') ?? ''}}"
                                 placeholder="..................................."><br>
-                            <p style="display: inline;">Địa chỉ:</p> <input class="input" style=" width: 60%;"
+                            <p style="display: inline;">Địa chỉ:</p> <input class="input" style=" width: 60%;" value="{{old('dia_chi') ?? ''}}"
                                 name="dia_chi"
                                 placeholder="......................................................................................................................................................................"><br>
                             <p style="display: inline;">Điện thoại:</p> <input class="input" style="width: 30%;"
+                                value="{{old('dien_thoai') ?? ''}}"
                                 name="dien_thoai"
                                 placeholder="......................................................................">
                             Email:
-                            <input name="email" class="input" style="width: 25%;"
+                            <input name="email" class="input" style="width: 25%;" value="{{old('email') ?? ''}}"
                                 placeholder="................................................................."><br>
                             <p style="display: inline;">Trường đào tạo đại học:</p><input class="input"
-                                style="width: 60%;" name="truong_dao_tao"
+                                style="width: 60%;" name="truong_dao_tao" value="{{old('truong_dao_tao') ?? ''}}"
                                 placeholder="..........................................................................................................................................">
                             <br>
                             <p style="display: inline;">Tốt nghiệp loại:</p>
@@ -171,14 +171,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <input type="checkbox" name="van_bang[]" value="BSNT"> BSNT
                             <input type="checkbox" name="van_bang[]" value="NCS"> NCS
                             <br>
-                            <p style="display: inline;">Phạm vi hoạt động CCHN:</p> <input class="input"
+                            <p style="display: inline;">Phạm vi hoạt động CCHN:</p> <input class="input" value="{{old('pham_vi_hoat_dong_cchn') ?? ''}}"
                                 style="width: 25%;" name="pham_vi_hoat_dong_cchn"
                                 placeholder="......................................................................">
                             Thời gian
                             cấp
-                            CCHN: <input class="input" style="width: 15%;" name="thoi_gian_cap_cchn"
+                            CCHN: <input class="input" style="width: 15%;" name="thoi_gian_cap_cchn" value="{{old('thoi_gian_cap_cchn') ?? ''}}"
                                 placeholder="..................................."><br>
-                            <p style="display: inline;">Các chứng chỉ đào tạo liên quan:</p> <input class="input"
+                            <p style="display: inline;">Các chứng chỉ đào tạo liên quan:</p> <input class="input" value="{{old('chung_chi_lien_quan') ?? ''}}"
                                 name="chung_chi_lien_quan" style="width: 60%;"
                                 placeholder="..........................................................................................................................."><br>
                             <p style="display: inline;">Tình trạng hôn nhân: </p>
@@ -200,11 +200,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><input name="thoi_gian_lam_viec[]"
-                                            class="input">
+                                    <td><input name="thoi_gian_lam_viec[]" class="input">
                                     </td>
-                                    <td ><input name="don_vi_cong_tac[]"
-                                            class="input" style="width: 280px"></td>
+                                    <td><input name="don_vi_cong_tac[]" class="input" style="width: 280px"></td>
                                     <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]"
                                             class="input" style="width: 280px"></td>
                                 </tr>
@@ -266,13 +264,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         100% kỹ
                         thuật tuyến <p style="font-weight: 600; display: inline;">Tỉnh</p> trở xuống,80% kỹ thuật tuyến
                         <p style="font-weight: 600; display: inline;">Trung ương</p>) <br>
-                        <input type="radio" name="trinh_do" value="kha" > Khá( thực
+                        <input type="radio" name="trinh_do" value="kha"> Khá( thực
                         hiện
                         được
                         90% kỹ
                         thuật tuyến <p style="font-weight: 600; display: inline;">Tỉnh</p> trở xuống,70% kỹ thuật tuyến
                         <p style="font-weight: 600; display: inline;">Trung ương</p>)<br>
-                        <input type="radio" name="trinh_do" value="trung_binh" > Trung
+                        <input type="radio" name="trinh_do" value="trung_binh"> Trung
                         Bình(
                         thực
                         hiện
@@ -280,83 +278,68 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         kỹ thuật
                         tuyến <p style="font-weight: 600; display: inline;">Tỉnh</p>)<br> <br>
                         <p style="display: inline;font-weight: 600;">Các kỹ năng đặc biệt khác:</p>
-                        <textarea class="form-control" aria-label="With textarea" style="width: 75%;"
-                            name="ky_nang_khac"></textarea>
+                        <textarea class="form-control" aria-label="With textarea" style="width: 75%;" name="ky_nang_khac">{{old('chung_chi_lien_quan') ?? ''}}</textarea>
                         <p style="font-weight: 600; display: inline;"> 3.Anh(chị) có nhu cầu để tiếp
                             tục học
                             các
                             lớp nâng cao nghiệp vụ không?</p><br>
-                        <input type="radio" name="hoc_lop_nang_cao" value="có" style="margin-left: 180px;"> a.
+                        <input type="radio" name="hoc_lop_nang_cao" value="có"> a.
                         Có
-                        <input type="radio" name="hoc_lop_nang_cao" value="không" style="margin-left: 180px;"> b.
+                        <input type="radio" name="hoc_lop_nang_cao" value="không"> b.
                         Không
                         <br>
-                        <p style="margin-left: 180px;">Nếu có anh (chị) lựa chọn hình thức đào tạo gì?</p>
+                        <p>Nếu có anh (chị) lựa chọn hình thức đào tạo gì?</p>
                         <div>
-                            <input type="checkbox" name="hinh_thuc_dao_tao[]" value="Thạc sĩ"
-                                style="margin-left: 180px;">
+                            <input type="checkbox" name="hinh_thuc_dao_tao[]" value="Thạc sĩ">
                             a.
                             Thạc sỹ
-                            <input type="checkbox" name="hinh_thuc_dao_tao[]" value="CKI"
-                                style="margin-left: 131px;"> b.
+                            <input type="checkbox" name="hinh_thuc_dao_tao[]" value="CKI"> b.
                             Chuyên khoa I
-                            <input type="checkbox" name="hinh_thuc_dao_tao[]" value="Nghiên cứu sinh"
-                                style="margin-left: 82px;"> c. Nghiên
+                            <input type="checkbox" name="hinh_thuc_dao_tao[]" value="Nghiên cứu sinh"> c. Nghiên
                             cứu sinh
                         </div>
                         <div>
-                            <input type="checkbox" name="hinh_thuc_dao_tao[]" value="CKII"
-                                style="margin-left: 180px;"> d.
+                            <input type="checkbox" name="hinh_thuc_dao_tao[]" value="CKII"> d.
                             Chuyên khoa II
-                            <input type="checkbox" name="hinh_thuc_dao_tao[]" value="Du học nước ngoài"
-                                style="margin-left: 77px;"> e. Du học
+                            <input type="checkbox" name="hinh_thuc_dao_tao[]" value="Du học nước ngoài"> e. Du học
                             nước
                             ngoài
-                            <input type="checkbox" name="hinh_thuc_dao_tao[]" value="khác"
-                                style="margin-left: 50px;"> f.
+                            <input type="checkbox" name="hinh_thuc_dao_tao[]" value="khác"> f.
                             Khác
                         </div> <br>
-                        <p style="margin-left: 180px;font-weight: 600; display: inline;"> 4. Anh (chị) mong muốn thời
+                        <p style="font-weight: 600; display: inline;"> 4. Anh (chị) mong muốn thời
                             hạn ký
                             kết
                             hợp đồng như thế nào nếu được tuyển dụng vào làm việc tại Công ty?</p><br>
                         <div>
-                            <input type="radio" name="thoi_han_hop_dong" value="7 Năm"
-                                style="margin-left: 180px;"> a. 7
+                            <input type="radio" name="thoi_han_hop_dong" value="7 Năm"> a. 7
                             năm
-                            <input type="radio" name="thoi_han_hop_dong" value="15 Năm"
-                                style="margin-left: 180px;"> c. 15
+                            <input type="radio" name="thoi_han_hop_dong" value="15 Năm"> c. 15
                             năm
-                            <input type="radio" name="thoi_han_hop_dong" value="20 Năm"
-                                style="margin-left: 180px;"> e. 20
+                            <input type="radio" name="thoi_han_hop_dong" value="20 Năm"> e. 20
                             năm
-                            <input type="radio" name="thoi_han_hop_dong" value="30 Năm"
-                                style="margin-left: 180px;"> g. 30
+                            <input type="radio" name="thoi_han_hop_dong" value="30 Năm"> g. 30
                             năm
                         </div>
                         <div>
-                            <input type="radio" name="thoi_han_hop_dong" value="12 Năm"
-                                style="margin-left: 180px;"> b. 12
+                            <input type="radio" name="thoi_han_hop_dong" value="12 Năm"> b. 12
                             năm
-                            <input type="radio" name="thoi_han_hop_dong" value="17 Năm"
-                                style="margin-left: 170px;"> d. 17
+                            <input type="radio" name="thoi_han_hop_dong" value="17 Năm"> d. 17
                             năm
-                            <input type="radio" name="thoi_han_hop_dong" value="25 Năm"
-                                style="margin-left: 178px;"> f. 25
+                            <input type="radio" name="thoi_han_hop_dong" value="25 Năm"> f. 25
                             năm
-                            <input type="radio" name="thoi_han_hop_dong" value="khác"
-                                style="margin-left: 184px;"> h.
+                            <input type="radio" name="thoi_han_hop_dong" value="khác"> h.
                             Khác
                         </div> <br>
-                        <p style="margin-left: 180px;font-weight: 600; display: inline;"> 5.Anh(chị) có nguyện vọng làm
+                        <p style="font-weight: 600; display: inline;"> 5.Anh(chị) có nguyện vọng làm
                             việc
                             vào vị
                             trí nào tại Công ty (*)</p><br>
-                        <i style="margin-left: 220px;">- Đánh số theo thứ tự ưu tiên (1,2,3)</i> <br>
-                        <i style="margin-left: 220px;">- Một người được ứng tuyển 3 vị trí.</i>
+                        <i>- Đánh số theo thứ tự ưu tiên (1,2,3)</i> <br>
+                        <i>- Một người được ứng tuyển 3 vị trí.</i>
                         <div>
                             <input type="checkbox" name="ung_tuyen[]"
-                                value="Nội tổng hợp"style="margin-left: 180px;"> Nội
+                                value="Nội tổng hợp"> Nội
                             tổng
                             hợp
                             <input type="checkbox" name="ung_tuyen[]" value="Ngoại tổng hợp"
@@ -372,8 +355,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             đoán hình ảnh
                         </div>
                         <div>
-                            <input type="checkbox" name="ung_tuyen[]" value="Nội tim mạch"
-                                style="margin-left: 180px;"> Nội
+                            <input type="checkbox" name="ung_tuyen[]" value="Nội tim mạch"> Nội
                             tim
                             mạch
                             <input type="checkbox" name="ung_tuyen[]" value="Ngoại thần kinh"
@@ -388,8 +370,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             Thăm dò chức năng
                         </div>
                         <div>
-                            <input type="checkbox" name="ung_tuyen[]" value="Nội thần kinh"
-                                style="margin-left: 180px;"> Nội
+                            <input type="checkbox" name="ung_tuyen[]" value="Nội thần kinh"> Nội
                             thần
                             kinh
                             <input type="checkbox" name="ung_tuyen[]" value="Chấn thương chỉnh hình"
@@ -405,8 +386,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             bệnh
                         </div>
                         <div>
-                            <input type="checkbox" name="ung_tuyen[]" value="Phẫu thuật thẩm mỹ"
-                                style="margin-left: 180px;">
+                            <input type="checkbox" name="ung_tuyen[]" value="Phẫu thuật thẩm mỹ">
                             Phẫu thuật tạo
                             hình thẩm mỹ
                             <input type="checkbox" name="ung_tuyen[]" value="Răng hàm mặt"
@@ -421,7 +401,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             nhân
                         </div>
                         <div>
-                            <input type="checkbox" name="ung_tuyen[]" value="Da liễu" style="margin-left: 180px;">
+                            <input type="checkbox" name="ung_tuyen[]" value="Da liễu" >
                             Da liễu
                             <input type="checkbox" name="ung_tuyen[]" value="Tai mũi họng"
                                 style="margin-left: 158px;"> Tai
@@ -435,8 +415,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             sức cấp cứu
                         </div>
                         <div>
-                            <input type="checkbox" name="ung_tuyen[]" value="Bệnh nhiệt đới"
-                                style="margin-left: 180px;">
+                            <input type="checkbox" name="ung_tuyen[]" value="Bệnh nhiệt đới">
                             Bệnh
                             nhiệt
                             đới(truyền nhiễm)
@@ -449,7 +428,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             hoạch tổng hợp
                         </div>
                         <div>
-                            <input type="checkbox" name="ung_tuyen[]" value="Nội tiết" style="margin-left: 180px;">
+                            <input type="checkbox" name="ung_tuyen[]" value="Nội tiết" >
                             Nội tiết
                             <input type="checkbox" name="ung_tuyen[]" value="Chống nhiễm khuẩn"
                                 style="margin-left: 154px;">
@@ -462,48 +441,44 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             thông CSKH
                         </div>
                         <div>
-                            <input type="checkbox" name="ung_tuyen[]" value="khác" style="margin-left: 180px;">
+                            <input type="checkbox" name="ung_tuyen[]" value="khác">
                             Khác
                         </div> <br>
-                        <p style="margin-left: 180px;font-weight: 600; display: inline;"> 6.Anh(chị) mong muốn công tác
+                        <p style="font-weight: 600; display: inline;"> 6.Anh(chị) mong muốn công tác
                             tại
                             bệnh
                             viện nào của công ty?</p><br>
                         <div>
-                            <input type="checkbox" name="don_vi_ung_tuyen[]" value="bv rhm ptthtm Thái Thượng Hoàng"
-                                style="margin-left: 180px;"> a.BV RHM và PTTHTM Thái Thượng Hoàng
+                            <input type="checkbox" name="don_vi_ung_tuyen[]" value="bv rhm ptthtm Thái Thượng Hoàng"> a.BV RHM và PTTHTM Thái Thượng Hoàng
                             <input type="checkbox" name="don_vi_ung_tuyen[]" value="bv Đa Khoa Đức Thọ"
                                 style="margin-left: 50px;">
                             e.Bệnh viện Đa khoa TTH Đức Thọ
                         </div>
                         <div>
                             <input type="checkbox" name="don_vi_ung_tuyen[]"
-                                value="bv Đa khoa TTH Vinh"style="margin-left: 180px;"> b.Bệnh
+                                value="bv Đa khoa TTH Vinh"> b.Bệnh
                             viện Đa khoa TTH Vinh
                             <input type="checkbox" name="don_vi_ung_tuyen[]" value="bv Đa Khoa TTH Quảng Bình"
                                 style="margin-left: 136px;">
                             f.Bệnh viện Đa khoa TTH Quảng Bình
                         </div>
                         <div>
-                            <input type="checkbox" name="don_vi_ung_tuyen[]" value="bv Đa Khoa TTH Hưng Đông"
-                                style="margin-left: 180px;">
+                            <input type="checkbox" name="don_vi_ung_tuyen[]" value="bv Đa Khoa TTH Hưng Đông">
                             c.Bệnh viện Đa khoa TTH Hưng Đông
                             <input type="checkbox" name="don_vi_ung_tuyen[]" value="bv Đa Khoa TTH Quảng Trị"
                                 style="margin-left: 88px;">
                             h.Bệnh viện Đa khoa TTH Quảng Trị
                         </div>
                         <div>
-                            <input type="checkbox" name="don_vi_ung_tuyen[]" value="bv Đa Khoa TTH Hà Tĩnh"
-                                style="margin-left: 180px;">
+                            <input type="checkbox" name="don_vi_ung_tuyen[]" value="bv Đa Khoa TTH Hà Tĩnh">
                             d.Bệnh viện Đa khoa TTH Hà Tĩnh
                         </div> <br>
-                        <p style="margin-left: 180px;font-weight: 600; display: inline;"> 7.Anh(chị) biết thông tin
+                        <p style="font-weight: 600; display: inline;"> 7.Anh(chị) biết thông tin
                             tuyển dụng
                             của
                             Công ty qua kênh nào?</p><br>
                         <div>
-                            <input type="checkbox" name="nguon_tuyen_dung[]" value="Người thân giới thiệu"
-                                style="margin-left: 180px;">
+                            <input type="checkbox" name="nguon_tuyen_dung[]" value="Người thân giới thiệu">
                             Người thân giới thiệu
                             <input type="checkbox" name="nguon_tuyen_dung[]" value="Facebook"
                                 style="margin-left: 85px;">
@@ -513,8 +488,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             chí/ Truyền hình
                         </div>
                         <div>
-                            <input type="checkbox" name="nguon_tuyen_dung[]" value="Web/FanPage"
-                                style="margin-left: 180px;">
+                            <input type="checkbox" name="nguon_tuyen_dung[]" value="Web/FanPage">
                             Web/fanpage
                             Công ty
                             <input type="checkbox" name="nguon_tuyen_dung[]" value="VietNamWork"
@@ -524,21 +498,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 style="margin-left: 57px;">
                             Nguồn khác
                         </div> <br>
-                        <p style="margin-left: 180px;font-weight: 600; display: inline;"> 8.Điểm yếu?</p><br>
-                        <textarea style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10" name="diem_yeu"></textarea> <br> <br>
-                        <p style="margin-left: 180px;font-weight: 600; display: inline;"> 9.Điểm mạnh?</p><br>
-                        <textarea style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10" name="diem_manh"></textarea> <br> <br>
-                        <p style="margin-left: 180px;font-weight: 600; display: inline;"> 10.Mức lương mong muốn của
+                        <p style="font-weight: 600; display: inline;"> 8.Điểm yếu?</p><br>
+                        <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="diem_yeu">{{old('diem_yeu') ?? ''}}</textarea> <br> <br>
+                        <p style="font-weight: 600; display: inline;"> 9.Điểm mạnh?</p><br>
+                        <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="diem_manh">{{old('diem_manh') ?? ''}}</textarea> <br> <br>
+                        <p style="font-weight: 600; display: inline;"> 10.Mức lương mong muốn của
                             anh(chị)
                             khi
                             vào làm việc tại công ty?</p><br>
-                        <textarea style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10"
-                            name="luong_mong_muon"></textarea> <br> <br>
-                        <p style="margin-left: 180px;font-weight: 600; display: inline;"> 11.Anh(chị) có kiến nghị, đề
+                        <textarea style=" width: 80%; height: 100px;" cols="30" rows="10"
+                            name="luong_mong_muon">{{old('luong_mong_muon') ?? ''}}</textarea> <br> <br>
+                        <p style="font-weight: 600; display: inline;"> 11.Anh(chị) có kiến nghị, đề
                             xuất
                             hoặc
                             thắc mắc muốn Công ty giải đáp không?</p><br>
-                        <textarea style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10" name="de_xuat"></textarea>
+                        <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="de_xuat">{{old('de_xuat') ?? ''}}</textarea>
                     </div>
                 </div>
                 <br>
@@ -620,9 +594,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             event.currentTarget.submit();
         })
 
-        $(document).ready(function () {
-            $('#profile-image').change(function (event) {
-                $('#profile-image-preview').attr('src', URL.createObjectURL(event.target.files[0]));
+        $(document).ready(function() {
+            $('#profile-image').change(function(event) {
+                $('#profile-image-preview').attr('src', URL.createObjectURL(event.target.files[
+                    0]));
             });
         });
     })
