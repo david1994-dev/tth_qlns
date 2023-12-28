@@ -35,6 +35,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
             font-size: 16px;
             line-height: 20px;
         }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            display: block;
+            padding: 6px 12px;
+            cursor: pointer;
+            width: 150px;
+        }
     </style>
     <style>
         .input:focus {
@@ -93,8 +105,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="col-3">
                         <img id="profile-image-preview"
                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRK9A2qlhiiaIkO6qETm9ihfEy7AGvj3eAnH7fd-MQxqxouWOja2pxD9KE6JiLgn-gYOk&usqp=CAU"
-                            alt="" width="100px" height="130px">
-                        <input type="file" name="image" id="profile-image" style="margin-top: 10px">
+                            alt="" width="150px" height="130px">
+                        <label for="profile-image" class="custom-file-upload text-center">
+                            <i class="bi bi-upload"></i> Tải ảnh
+                        </label>
+                        <input id="profile-image" name="image" type="file" />
                     </div>
                     <div class="col-9 ">
                         <div style="text-align: right;"><i>Ngày</i><input type="number" class="input"
@@ -130,25 +145,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     value="{{ old('ngay_sinh') ?? '' }}" style="width: 20% ;display: inline;">
                             </div> <br>
 
-                            <p style="display: inline;">Địa chỉ:</p> <input class="input" name="dia_chi" value="{{ old('dia_chi') ?? '' }}"
-                                style="width: 60%;"
+                            <p style="display: inline;">Địa chỉ:</p> <input class="input" name="dia_chi"
+                                value="{{ old('dia_chi') ?? '' }}" style="width: 60%;"
                                 placeholder="......................................................................................................................................................."><br>
-                            <p style="display: inline;">Điện thoại:</p> <input class="input" name="dien_thoai" value="{{ old('dien_thoai') ?? '' }}"
-                                style="width: 30%;"
+                            <p style="display: inline;">Điện thoại:</p> <input class="input" name="dien_thoai"
+                                value="{{ old('dien_thoai') ?? '' }}" style="width: 30%;"
                                 placeholder="......................................................................">
                             Email:
-                            <input class="input" style=" width: 30%;" type="email" name="email" value="{{ old('email') ?? '' }}"
+                            <input class="input" style=" width: 30%;" type="email" name="email"
+                                value="{{ old('email') ?? '' }}"
                                 placeholder="................................................................."><br>
-                            <p style="display: inline;">Trường đào tạo:</p> <input class="input" style="width: 50%;" value="{{ old('truong_dao_tao') ?? '' }}"
-                                name="truong_dao_tao"
+                            <p style="display: inline;">Trường đào tạo:</p> <input class="input" style="width: 50%;"
+                                value="{{ old('truong_dao_tao') ?? '' }}" name="truong_dao_tao"
                                 placeholder="..........................................................................................................................................">
                             <br>
-                            <p style="display: inline;">Chuyên ngành đào tạo:</p> <input class="input" value="{{ old('chuyen_nganh_dao_tao') ?? '' }}"
-                                style="width: 30%;" name="chuyen_nganh_dao_tao"
+                            <p style="display: inline;">Chuyên ngành đào tạo:</p> <input class="input"
+                                value="{{ old('chuyen_nganh_dao_tao') ?? '' }}" style="width: 30%;"
+                                name="chuyen_nganh_dao_tao"
                                 placeholder="......................................................................">
                             Hệ đào
                             tạo:
-                            <input name="he_dao_tao" class="input" style="width: 25%;"  value="{{ old('he_dao_tao') ?? '' }}"
+                            <input name="he_dao_tao" class="input" style="width: 25%;"
+                                value="{{ old('he_dao_tao') ?? '' }}"
                                 placeholder="..................................."><br>
                             <p style="display: inline;">Tốt nghiệp loại:</p>
                             <input type="radio" name="loai_tot_nghiep" value="Giỏi"> Giỏi
@@ -161,17 +179,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             thông/vừa
                             học vừa làm <br>
 
-                            <p style="display: inline;">Chiều cao:</p> <input name="chieu_cao" class="input" value="{{ old('chieu_cao') ?? '' }}"
-                                style="width: 30%;"
+                            <p style="display: inline;">Chiều cao:</p> <input name="chieu_cao" class="input"
+                                value="{{ old('chieu_cao') ?? '' }}" style="width: 30%;"
                                 placeholder="......................................................................">
-                            Cân nặng: 
-                            <input name="can_nang" class="input" style="width: 25%;" class="input" value="{{ old('can_nang') ?? '' }}"
+                            Cân nặng:
+                            <input name="can_nang" class="input" style="width: 25%;" class="input"
+                                value="{{ old('can_nang') ?? '' }}"
                                 placeholder="........................................................."><br>
                             <p style="display: inline;">Tình trạng hôn nhân: </p>
                             <input type="radio" name="hon_nhan" value="Độc thân"> Độc thân
                             <input type="radio" name="hon_nhan" value="Đã có gia đình"> Đã có gia đình
-                            <p style="display: inline; margin-left: 100px;">Số con: </p> <input class="input" value="{{ old('so_con') ?? '' }}"
-                                name="so_con" style="width: 20%;"
+                            <p style="display: inline; margin-left: 100px;">Số con: </p> <input class="input"
+                                value="{{ old('so_con') ?? '' }}" name="so_con" style="width: 20%;"
                                 placeholder="......................................................................"><br>
                         </div> <br>
                         <p style="font-weight: 600; display: inline;"> 1.Quá trình công tác:</p> <i>(Dành
@@ -362,19 +381,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <br>
                 <br>
                 <br>
-                    <div class="row">
-                        <div class="col-6">
-                        </div>
-                        <div class="col-6 ">
-                            <h5
-                                style="font-weight: 600;font-family: 'Times New Roman', Times, serif; display: inline;margin-left: 190px;">
-                                ỨNG VIÊN
-                            </h5> <br>
-                            <i style="margin-left: 175px;">(Ký,ghi rõ họ tên)</i>
-                            <button type="submit" class="btn btn-primary" style="margin-left: 190px">--Ký
-                                tên--</button>
-                        </div>
+                <div class="row">
+                    <div class="col-6">
                     </div>
+                    <div class="col-6 ">
+                        <h5
+                            style="font-weight: 600;font-family: 'Times New Roman', Times, serif; display: inline;margin-left: 190px;">
+                            ỨNG VIÊN
+                        </h5> <br>
+                        <i style="margin-left: 175px;">(Ký,ghi rõ họ tên)</i>
+                        <button type="submit" class="btn btn-primary" style="margin-left: 190px">--Ký
+                            tên--</button>
+                    </div>
+                </div>
             </div>
 
             <input type="hidden" name="loai_ung_vien"

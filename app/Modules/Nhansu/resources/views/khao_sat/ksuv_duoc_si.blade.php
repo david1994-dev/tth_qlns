@@ -17,6 +17,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
+
     <style>
         @media print {
             body {
@@ -35,6 +36,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
         .content {
             font-size: 16px;
             line-height: 20px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            display: block;
+            padding: 6px 12px;
+            cursor: pointer;
+            width: 150px;
         }
     </style>
     <style>
@@ -93,10 +105,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container">
                     <div class="row">
                         <div class="col-3">
-                            <img id="profile-image-preview"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRK9A2qlhiiaIkO6qETm9ihfEy7AGvj3eAnH7fd-MQxqxouWOja2pxD9KE6JiLgn-gYOk&usqp=CAU"
-                                alt="" width="100px" height="130px">
-                            <input type="file" name="image" id="profile-image" style="margin-top: 10px">
+                            <img id="profile-image-preview" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRK9A2qlhiiaIkO6qETm9ihfEy7AGvj3eAnH7fd-MQxqxouWOja2pxD9KE6JiLgn-gYOk&usqp=CAU"
+                                 alt="" width="150px" height="130px">
+                            <label for="profile-image" class="custom-file-upload text-center">
+                                <i class="bi bi-upload"></i> Tải ảnh
+                            </label>
+                            <input id="profile-image" name="image" type="file"/>
                         </div>
                         <div class="col-9 ">
                             <div style="text-align: right;"><i>Ngày</i><input type="number" class="input" value="{{old('ngay_khao_sat') ?? ''}}"
