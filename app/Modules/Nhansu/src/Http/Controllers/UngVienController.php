@@ -35,6 +35,7 @@ class UngVienController extends Controller
             'bac-si' => view('Nhansu::khao_sat.ksuv_bac_si'),
             'duoc-si' => view('Nhansu::khao_sat.ksuv_duoc_si'),
             'van-phong' => view('Nhansu::khao_sat.ksuv_van_phong'),
+            'test' => view('Nhansu::khao_sat.bao_cao_su_co_y_khoa'), //todo
             default => '',
         };
     }
