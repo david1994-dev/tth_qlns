@@ -99,8 +99,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
         <form id="ksVPForm" action="{{ route('nhansu.taoUngVien') }}" method="post"
             class="w-75 border border-2 border-success p-5 rounded" style="margin: auto;"
-            enctype="multipart/form-data">>
-
+            enctype="multipart/form-data">
             @csrf
             <div class="container">
                 <div class="row">
