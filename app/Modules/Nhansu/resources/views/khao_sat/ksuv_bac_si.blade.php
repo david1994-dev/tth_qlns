@@ -122,6 +122,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             KHẢO SÁT</h4>
                         <i>(Đối tượng áp dụng: Bác sĩ)</i>
                         <p style="font-weight: 600;"> Vị trí ứng tuyển: <input class="input" name="vi_tri_ung_tuyen" value="{{old('vi_tri_ung_tuyen') ?? ''}}"
+                                                                               required
                                 style="width: 100%px;"
                                 placeholder="................................................................................................................................................">
                     </div>
@@ -137,34 +138,41 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             và các chi nhánh</p>
                         <p>Kính đề nghị Bác sĩ trả lời 1 số câu hỏi khảo sát sau:</p>
                         <div>
-                            <p style="display: inline;">Họ và tên:</p> <input class="input" style="width: 30%;" value="{{old('ho_ten') ?? ''}}"
+                            <p style="display: inline;">Họ và tên:</p> <input class="input" required style="width: 30%;" value="{{old('ho_ten') ?? ''}}"
                                 name="ho_ten"
                                 placeholder="......................................................................">
                             <div style="display: inline;" class="mt-3 form-group">
                                 <p style="display: inline;">Ngày sinh</p>
-                                <input type="date" id="ngay_sinh" class="form-control" name="ngay_sinh" value="{{old('ngay_sinh') ?? ''}}"
+                                <input required type="date" id="ngay_sinh" class="form-control" name="ngay_sinh" value="{{old('ngay_sinh') ?? ''}}"
                                     style="width: 20% ;display: inline;">
                             </div> <br>
 
                             <p style="display: inline;">Chuyên ngành đào tạo:</p> <input class="input"
                                 style="width: 30%;" name="chuyen_nganh_dao_tao"
+                                                                                         required
                                 value="{{ old('chuyen_nganh_dao_tao') ?? '' }}"
                                 placeholder="......................................................................"> Hệ
                             đào
                             tạo:
                             <input class="input" name="he_dao_tao" style=" width: 10%px;" value="{{old('he_dao_tao') ?? ''}}"
+                                   required
                                 placeholder="..................................."><br>
                             <p style="display: inline;">Địa chỉ:</p> <input class="input" style=" width: 60%;" value="{{old('dia_chi') ?? ''}}"
+                                                                            required
                                 name="dia_chi"
                                 placeholder="......................................................................................................................................................................"><br>
                             <p style="display: inline;">Điện thoại:</p> <input class="input" style="width: 30%;"
                                 value="{{old('dien_thoai') ?? ''}}"
+                                                                               required
                                 name="dien_thoai"
                                 placeholder="......................................................................">
                             Email:
                             <input name="email" class="input" style="width: 25%;" value="{{old('email') ?? ''}}"
+                                   required
+                                   type="email"
                                 placeholder="................................................................."><br>
                             <p style="display: inline;">Trường đào tạo đại học:</p><input class="input"
+                                                                                          required
                                 style="width: 60%;" name="truong_dao_tao" value="{{old('truong_dao_tao') ?? ''}}"
                                 placeholder="..........................................................................................................................................">
                             <br>
@@ -520,7 +528,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             anh(chị)
                             khi
                             vào làm việc tại công ty?</p><br>
-                        <textarea style=" width: 80%; height: 100px;" cols="30" rows="10"
+                        <textarea required style=" width: 80%; height: 100px;" cols="30" rows="10"
                             name="luong_mong_muon">{{old('luong_mong_muon') ?? ''}}</textarea> <br> <br>
                         <p style="font-weight: 600; display: inline;"> 11.Anh(chị) có kiến nghị, đề
                             xuất

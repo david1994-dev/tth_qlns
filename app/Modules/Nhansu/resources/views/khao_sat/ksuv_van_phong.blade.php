@@ -100,7 +100,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <form id="ksVPForm" action="{{ route('nhansu.taoUngVien') }}" method="post"
             class="w-75 border border-2 border-success p-5 rounded" style="margin: auto;"
             enctype="multipart/form-data">>
-            
+
             @csrf
             <div class="container">
                 <div class="row">
@@ -124,6 +124,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             KHẢO SÁT ỨNG VIÊN</h4>
                         <i style="margin-left: 70px;">(Đối tượng áp dụng: vị trí Văn phòng)</i>
                         <p style="font-weight: 600;"> Vị trí ứng tuyển: <input name="vi_tri_ung_tuyen" class="input"
+                                                                               required
                                 style=" width: 40%;"
                                 placeholder="................................................................................................................................................">
                     </div>
@@ -139,22 +140,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <p>Kính đề nghị ứng viên trả lời 1 số câu hỏi khảo sát sau:</p>
                         <div>
                             <p style="display: inline;">Họ và tên:</p> <input class="input" name="ho_ten"
+                                                                              required
                                 value="{{ old('ho_ten') ?? '' }}" style="width: 30%;"
                                 placeholder="..............................................................................................">
                             <div style="display: inline;" class="mt-3 form-group">
                                 <p style="display: inline;">Ngày sinh</p>
                                 <input type="date" id="ngay_sinh" class="form-control" name="ngay_sinh"
+                                       required
                                     value="{{ old('ngay_sinh') ?? '' }}" style="width: 20% ;display: inline;">
                             </div> <br>
 
                             <p style="display: inline;">Địa chỉ:</p> <input class="input" name="dia_chi"
+                                                                            required
                                 value="{{ old('dia_chi') ?? '' }}" style="width: 60%;"
                                 placeholder="......................................................................................................................................................."><br>
                             <p style="display: inline;">Điện thoại:</p> <input class="input" name="dien_thoai"
+                                                                               required
                                 value="{{ old('dien_thoai') ?? '' }}" style="width: 30%;"
                                 placeholder="......................................................................">
                             Email:
                             <input class="input" style=" width: 30%;" type="email" name="email"
+                                   required
                                 value="{{ old('email') ?? '' }}"
                                 placeholder="................................................................."><br>
                             <p style="display: inline;">Trường đào tạo:</p> <input class="input" style="width: 50%;"
@@ -183,10 +189,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                             <p style="display: inline;">Chiều cao:</p> <input name="chieu_cao" class="input"
                                 value="{{ old('chieu_cao') ?? '' }}" style="width: 30%;"
+                                                                              required
                                 placeholder="......................................................................">
                             Cân nặng:
                             <input name="can_nang" class="input" style="width: 25%;" class="input"
                                 value="{{ old('can_nang') ?? '' }}"
+                                   required
                                 placeholder="........................................................."><br>
                             <p style="display: inline;">Tình trạng hôn nhân: </p>
                             <input type="radio" name="hon_nhan" value="Độc thân"> Độc thân
@@ -372,7 +380,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             khi
                             vào
                             làm việc tại công ty?</p><br>
-                        <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="luong_mong_muon">{{ old('luong_mong_muon') ?? '' }}</textarea> <br> <br>
+                        <textarea required style=" width: 80%; height: 100px;" cols="30" rows="10" name="luong_mong_muon">{{ old('luong_mong_muon') ?? '' }}</textarea> <br> <br>
                         <p style="font-weight: 600; display: inline;"> 9.Anh(chị) có kiến nghị, đề xuất hoặc
                             thắc
                             mắc muốn Công ty giải đáp không?</p><br>
