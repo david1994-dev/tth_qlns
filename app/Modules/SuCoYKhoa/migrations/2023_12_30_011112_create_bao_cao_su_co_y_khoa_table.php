@@ -13,7 +13,19 @@ return new class extends Migration
     {
         Schema::create('bao_cao_su_co_y_khoa', function (Blueprint $table) {
             $table->id();
+            $table->string('ma')->nullable()->index();
+            $table->string('ho_ten_nguoi_benh')->nullable();
+            $table->date('ngay_bao_cao')->nullable();
+            $table->date('ngay_su_co')->nullable();
+            $table->string('thoi_gian_su_co')->nullable();
+            $table->string('khoa_phong_su_co')->nullable();
+            $table->text('mo_ta')->nullable();
+            $table->text('de_xuat_giai_phap')->nullable();
+            $table->text('giai_phap_da_thuc_hien')->nullable();
+            $table->text('chi_tiet')->nullable();
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

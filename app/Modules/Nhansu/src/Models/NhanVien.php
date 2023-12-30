@@ -3,9 +3,12 @@
 namespace App\Modules\Nhansu\src\Models;
 
 use App\Models\Base;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class NhanVien extends Base
 {
+    use SoftDeletes;
+
     protected $table = 'nhanvien';
     const GIOI_TINH_NU = 0;
     const GIOI_TINH_NAM = 1;
@@ -29,5 +32,7 @@ class NhanVien extends Base
 
     protected $casts = [
         'chi_tiet' => 'array',
+        'deleted_at' => 'datetime:Y-m-d H:i:s',
+        'ngay_sinh' => 'date'
     ];
 }
