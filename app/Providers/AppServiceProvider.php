@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Helpers\PaginationHelper;
+use App\Helpers\PaginationHelperInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,6 +26,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(
             \App\Repositories\Interface\UserRoleRepositoryInterface::class,
             \App\Repositories\Eloquent\UserRoleRepository::class
+        );
+
+        $this->app->singleton(
+            PaginationHelperInterface::class,
+            PaginationHelper::class
         );
     }
 

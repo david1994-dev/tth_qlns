@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use \Illuminate\Support\Facades\Artisan;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/clear-cache-all', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+    // Artisan::call('route:cache');
+    Artisan::call('config:cache');
+    dd("Cache Clear All");
+});
+
 
 Route::get('/', function () {
     return view('welcome');

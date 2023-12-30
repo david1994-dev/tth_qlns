@@ -2,6 +2,8 @@
 
 namespace App\Modules;
 
+use App\Modules\SuCoYKhoa\src\Repositories\Eloquent\BaoCaoSuCoYKhoaRepository;
+use App\Modules\SuCoYKhoa\src\Repositories\Interface\BaoCaoSuCoYKhoaInterface;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,6 +28,11 @@ class ModuleServiceProvider extends ServiceProvider
         $this->app->singleton(
             \App\Modules\Nhansu\src\Repositories\Interface\UngVienRepositoryInterface::class,
             \App\Modules\Nhansu\src\Repositories\Eloquent\UngVienRepository::class
+        );
+
+        $this->app->singleton(
+            BaoCaoSuCoYKhoaInterface::class,
+            BaoCaoSuCoYKhoaRepository::class
         );
     }
 

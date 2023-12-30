@@ -216,15 +216,15 @@ class BaseRepository implements BaseRepositoryInterface
         if( App::environment() != 'testing' ) {
             $user = auth()->user();
             if( !empty($user) ) {
-                Log::create(
-                    [
-                        'user_id' => $user->id,
-                        'table'     => $this->getBlankModel()->getTable(),
-                        'action'    => Log::TYPE_ACTION_INSERT,
-                        'record_id' => $model->id,
-                        'query'     => $query['query'],
-                    ]
-                );
+//                Log::create(
+//                    [
+//                        'user_id' => $user->id,
+//                        'table'     => $this->getBlankModel()->getTable(),
+//                        'action'    => Log::TYPE_ACTION_INSERT,
+//                        'record_id' => $model->id,
+//                        'query'     => $query['query'],
+//                    ]
+//                );
             }
         }
 
@@ -256,15 +256,15 @@ class BaseRepository implements BaseRepositoryInterface
                 if( App::environment() != 'testing' ) {
                     $user = auth()->user();
                     if( !empty($user) ) {
-                        Log::create(
-                            [
-                                'user_id' => $user->id,
-                                'table'     => $this->getBlankModel()->getTable(),
-                                'action'    => Log::TYPE_ACTION_UPDATE,
-                                'record_id' => $model->id,
-                                'query'     => $query['query'],
-                            ]
-                        );
+//                        Log::create(
+//                            [
+//                                'user_id' => $user->id,
+//                                'table'     => $this->getBlankModel()->getTable(),
+//                                'action'    => Log::TYPE_ACTION_UPDATE,
+//                                'record_id' => $model->id,
+//                                'query'     => $query['query'],
+//                            ]
+//                        );
                     }
                 }
             }
@@ -299,15 +299,15 @@ class BaseRepository implements BaseRepositoryInterface
             $user = auth()->user();
 
             if( !empty($user) ) {
-                Log::create(
-                    [
-                        'user_id' => $user->id,
-                        'table'     => $this->getBlankModel()->getTable(),
-                        'action'    => Log::TYPE_ACTION_DELETE,
-                        'record_id' => $model->id,
-                        'query'     => $query['query'],
-                    ]
-                );
+//                Log::create(
+//                    [
+//                        'user_id' => $user->id,
+//                        'table'     => $this->getBlankModel()->getTable(),
+//                        'action'    => Log::TYPE_ACTION_DELETE,
+//                        'record_id' => $model->id,
+//                        'query'     => $query['query'],
+//                    ]
+//                );
             }
         }
 

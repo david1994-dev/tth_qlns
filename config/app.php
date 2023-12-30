@@ -169,7 +169,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         \App\Modules\ModuleServiceProvider::class,
-        \App\Modules\ModuleRouterServiceProvider::class
     ])->toArray(),
 
     /*
@@ -185,6 +184,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'PaginationHelper'       => App\Facades\PaginationHelper::class,
     ])->toArray(),
 
 ];

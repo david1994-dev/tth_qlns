@@ -12,7 +12,14 @@ class UngVien extends Base
     const LOAI_UNG_VIEN_DUOC_SI = 2;
     const LOAI_UNG_VIEN_VAN_PHONG = 3;
 
+    const LOAI_UNG_VIEN_TEXT = [
+        self::LOAI_UNG_VIEN_BAC_SI => 'Bác Sĩ',
+        self::LOAI_UNG_VIEN_DUOC_SI => 'Dược Sĩ',
+        self::LOAI_UNG_VIEN_VAN_PHONG => 'Văn Phòng',
+    ];
+
     protected $fillable = [
+        'mauv',
         'ho_ten',
         'ngay_sinh',
         'dien_thoai',
@@ -23,6 +30,8 @@ class UngVien extends Base
         'ngay_ky',
         'chi_tiet',
         'vi_tri_ung_tuyen',
+        'loai_ung_vien',
+        'image'
     ];
 
     protected $casts = [
