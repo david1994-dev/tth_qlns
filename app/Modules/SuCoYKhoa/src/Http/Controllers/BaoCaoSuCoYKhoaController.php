@@ -4,6 +4,7 @@ namespace App\Modules\SuCoYKhoa\src\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class BaoCaoSuCoYKhoaController extends Controller
 {
@@ -15,6 +16,7 @@ class BaoCaoSuCoYKhoaController extends Controller
 
     public function create(Request $request)
     {
-        dd($request);
+        
+        dd(Carbon::parse($request->get('ngay_su_co')));
     }
 }

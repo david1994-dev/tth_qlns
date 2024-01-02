@@ -113,97 +113,89 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <input type="radio" name="hinh_thuc" value="Bắt buộc"> Bắt buộc
                                 </th>
                                 <th scope="col" class="tieu_de">
-                                    Số báo cáo/Mã số sự cố: <br>
-                                    Ngày báo cáo: <input type="date" id="ngay_sinh" class="form-control"
+                                    <span>Số báo cáo/Mã số sự cố:</span> <br>
+                                    <span>Ngày báo cáo:</span> <input type="date" id="ngay_sinh" class="form-control"
                                                          name="ngay_bao_cao" style="width: 50% ;display: inline;"> <br>
-                                    Đơn vị báo cáo: <input type="text" class="input"
+                                    <span>Đơn vị báo cáo:</span> <input type="text" class="input"
                                                            name="don_vi_bao_cao"
                                                            placeholder="...................................">
                                 </th>
                             </tr>
                             <tr>
-                                <th scope="col" class="tieu_de">Thông tin người bệnh</th>
-                                <th scope="col" class="tieu_de">Đối tượng xảy ra sự cố</th>
+                                <th scope="col" class="tieu_de"><span>Thông tin người bệnh</span></th>
+                                <th scope="col" class="tieu_de"><span>Đối tượng xảy ra sự cố</span></th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td>Họ và tên:<input type="text" class="input"
+                                <td><span> Họ và tên:</span><input type="text" class="input"
                                                      name="ho_ten_nguoi_benh"
                                                      placeholder="................................................................................................................................"
                                                      style="width: 80%"> <br>
-                                    Số bệnh án:<input type="text" class="input"
+                                    <span>Số bệnh án:</span><input type="text" class="input"
                                                       name="so_benh_an"
                                                       placeholder="......................................................................................................................."
                                                       style="width: 80%"> <br>
-                                    Ngày sinh: <input type="date" id="ngay_sinh" class="form-control"
+                                    <span>Ngày sinh:</span> <input type="date" id="ngay_sinh" class="form-control"
                                                       name="ngay_sinh" style="width: 50% ;display: inline;"> <br>
-                                    Giới tính: <input type="text" class="input"
+                                    <span>Giới tính:</span> <input type="text" class="input"
                                                       name="gioi_tinh"
                                                       placeholder="......................................................"
                                                       style="width: 15%"> <br>
                                 </td>
                                 <td> <input type="radio" name="hinh_thuc" value="Người bệnh"> Người bệnh <br>
                                     <input type="radio" name="hinh_thuc" value="Người nhà/khách đến thăm ">
-                                    Người
-                                    nhà/khách đến thăm <br>
-                                    <input type="radio" name="hinh_thuc" value="Nhân viên y tế "> Nhân viên y
-                                    tế
+                                    <span>Người nhà/khách đến thăm </span>
+                                    <br>
+                                    <input type="radio" name="hinh_thuc" value="Nhân viên y tế "> <span>Nhân viên y tế</span>
                                     <br>
                                     <input type="radio" name="hinh_thuc" value="Trang thiết bị/cơ sở hạ tầng">
-                                    Trang thiết bị/cơ sở hạ tầng
+                                    <span>Trang thiết bị/cơ sở hạ tầng</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2" class="tieu_de">
-                                    Nơi xảy ra sự cố:
+                                    <span>Nơi xảy ra sự cố:</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="tieu_de">
-                                    Khoa/phòng/vị trí xảy ra sự cố:
+                                    <span>Khoa/phòng/vị trí xảy ra sự cố:</span>
                                     <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="khoa_phong_su_co" class="input"></textarea>
                                 </td>
                                 <td class="tieu_de">
-                                    Vị trí cụ thể:
+                                    <span>Vị trí cụ thể:</span>
                                     <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="vi_tri_cu_the" class="input"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    Ngày xảy ra sự cố: <input type="date" id="ngay_sinh"
+                                    <span>Thời gian xảy ra sự cố:</span> <input type="datetime-local" id="ngay_sinh"
                                                               class="form-control" name="ngay_su_co"
                                                               style="width: 30% ;display: inline;">
-                                    Thời gian: <input type="text" class="input"
-                                                      name="thoi_gian_su_co"
-                                                      placeholder="......................................................"
-                                                      style="width: 20%">
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    Mô tả ngắn gọn về sự cố:
+                                    <span>Mô tả ngắn gọn về sự cố:</span>
                                     <textarea style=" width: 100%; height: 100px;" cols="30" rows="10" name="mo_ta" class="input"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    Đề xuất giải pháp ban đầu:
+                                    <span>Đề xuất giải pháp ban đầu:</span>
                                     <textarea style=" width: 100%; height: 100px;" cols="30" rows="10" name="de_xuat_giai_phap" class="input"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    Điều trị/xử lí ban đầu đã được thực hiện
+                                    <span>Điều trị/xử lí ban đầu đã được thực hiện</span>
                                     <textarea style=" width: 100%; height: 100px;" cols="30" rows="10" name="giai_phap_da_thuc_hien" class="input"></textarea>
                                 </td>
                             </tr>
                             <tr>
-                                <td scope="col" class="tieu_de">Thông báo cho Bác sĩ điều trị/người có
-                                    trách
-                                    nhiệm</td>
-                                <td scope="col" class="tieu_de">Ghi nhận vào hồ sơ bệnh án/giấy tờ liên
-                                    quan
+                                <td scope="col" class="tieu_de"><span>Thông báo cho Bác sĩ điều trị/người có trách nhiệm</span></td>
+                                <td scope="col" class="tieu_de"><span>Ghi nhận vào hồ sơ bệnh án/giấy tờ liên quan</span>
                                 </td>
                             </tr>
                             <tr>
@@ -223,10 +215,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </tr>
                             <tr>
                                 <td>
-                                    Thông báo cho người nhà/người bảo hộ
+                                    <span>Thông báo cho người nhà/người bảo hộ</span>
                                 </td>
                                 <td>
-                                    Thông báo cho người bệnh
+                                    <span>Thông báo cho người bệnh</span>
                                 </td>
                             </tr>
                             <tr>
@@ -245,7 +237,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </tr>
                             <tr>
                                 <td colspan="2" class="tieu_de">
-                                    Phân loại ban đầu về sự cố
+                                    <span>Phân loại ban đầu về sự cố</span>
                                 </td>
                             </tr>
                             <tr>
@@ -259,7 +251,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </tr>
                             <tr>
                                 <td colspan="2" class="tieu_de">
-                                    Đánh giá ban đầu về mức độ ảnh hưởng của sự cố
+                                    <span>Đánh giá ban đầu về mức độ ảnh hưởng của sự cố</span>
                                 </td>
                             </tr>
                             <tr>
@@ -273,19 +265,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </tr>
                             <tr>
                                 <td colspan="2" class="tieu_de">
-                                    Thông tin người báo cáo
+                                    <span>Thông tin người báo cáo</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    Họ tên:<input type="text" class="input"
+                                    <span>Họ tên:</span><input type="text" class="input"
                                                   name="ho_ten_nguoi_bao"
                                                   placeholder="................................................................................"
-                                                  style="width: 25%; display: inline"> Số điện thoại: <input
+                                                  style="width: 25%; display: inline"> <span>Số điện thoại:</span> <input
                                         type="text" class="input"
                                         name="dien_thoai_nguoi_bao"
                                         placeholder="......................................................................................"
-                                        style="width: 25%; display: inline"> Email: <input type="text"
+                                        style="width: 25%; display: inline"> <span>Email:</span> <input type="text"
                                                                                            name="email_nguoi_bao"
                                                                                            class="input"
                                                                                            placeholder="....................................................................................."
@@ -311,13 +303,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </tr>
                             <tr>
                                 <td class="text-center">
-                                    Người chứng kiến 1: <input type="text" class="input"
+                                    <span>Người chứng kiến 1:</span> <input type="text" class="input"
                                                                name="nguoi_chung_kien_1"
                                                                placeholder="................................................................................"
                                                                style="width: 25%; display: inline">
                                 </td>
                                 <td class="text-center">
-                                    Người chứng kiến 2:
+                                    <span>Người chứng kiến 2:</span>
 {{--                                    <button type="submit" class="btn btn-primary">--Ký--}}
 {{--                                        tên--</button>--}}
                                     <input type="text" class="input"
