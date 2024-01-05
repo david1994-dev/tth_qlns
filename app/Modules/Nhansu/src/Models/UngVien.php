@@ -3,9 +3,12 @@
 namespace App\Modules\Nhansu\src\Models;
 
 use App\Models\Base;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UngVien extends Base
 {
+    use SoftDeletes;
+
     protected $table = 'ungvien';
 
     const LOAI_UNG_VIEN_BAC_SI = 1;
@@ -40,6 +43,7 @@ class UngVien extends Base
         'vi_tri_lam_viec' => 'array',
         'don_vi_ung_tuyen' => 'array',
         'ngay_ky' => 'datetime:Y-m-d H:i:s',
-        'ngay_sinh' => 'date:Y-m-d'
+        'ngay_sinh' => 'date:Y-m-d',
+        'deleted_at' => 'datetime:Y-m-d H:i:s'
     ];
 }

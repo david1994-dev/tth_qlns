@@ -3,7 +3,7 @@
 namespace App\Modules;
 
 use App\Modules\SuCoYKhoa\src\Repositories\Eloquent\BaoCaoSuCoYKhoaRepository;
-use App\Modules\SuCoYKhoa\src\Repositories\Interface\BaoCaoSuCoYKhoaInterface;
+use App\Modules\SuCoYKhoa\src\Repositories\Interface\BaoCaoSuCoYKhoaRepositoryInterface;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 
@@ -31,7 +31,7 @@ class ModuleServiceProvider extends ServiceProvider
         );
 
         $this->app->singleton(
-            BaoCaoSuCoYKhoaInterface::class,
+            BaoCaoSuCoYKhoaRepositoryInterface::class,
             BaoCaoSuCoYKhoaRepository::class
         );
     }
