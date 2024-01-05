@@ -138,7 +138,7 @@ class UngVienController extends Controller
     public function view($id)
     {
         $model = $this->ungVienRepository->findById($id);
-
+        
         if (!$model) abort(404);
 
         $blade = match ($model->loai_ung_vien) {
