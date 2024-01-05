@@ -87,24 +87,13 @@ class UngVienController extends Controller
                 ->withErrors('Tạo ứng viên thất bại');
         }
 
-        $ungVien->mauv = $this->renderMauv($ungVien);
+        $ungVien->mauv = $this->ungVienRepository->renderMauv($ungVien);
         $ungVien->save();
 
         session()->flash('success', 'Bạn đã gửi khảo sát thành công! Mã ứng viên của bạn là: <b>'.$ungVien->mauv.'</b>');
 
         return redirect()
             ->back();
-    }
-
-    private function renderMauv($ungVien)
-    {
-        $prefix = [
-            UngVien::LOAI_UNG_VIEN_BAC_SI => 'BS',
-            UngVien::LOAI_UNG_VIEN_DUOC_SI => 'DS',
-            UngVien::LOAI_UNG_VIEN_VAN_PHONG => 'VP',
-        ];
-
-        return Arr::get($prefix, $ungVien->loai_ung_vien, '').'_'.base_convert($ungVien->id, 10, 36);
     }
 
     public function danhSach(PaginationRequest $request)

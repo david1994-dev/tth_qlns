@@ -6,5 +6,5 @@ use App\Repositories\Interface\BaseRepositoryInterface;
 
 interface UngVienRepositoryInterface extends BaseRepositoryInterface
 {
-
+    public function renderMauv($ungVien);
 }
