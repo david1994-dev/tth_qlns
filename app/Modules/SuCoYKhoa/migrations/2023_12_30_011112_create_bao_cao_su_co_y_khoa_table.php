@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('ma')->nullable()->index();
             $table->string('ho_ten_nguoi_benh')->nullable();
             $table->date('ngay_bao_cao')->nullable();
-            $table->date('ngay_su_co')->nullable();
-            $table->string('thoi_gian_su_co')->nullable();
+            $table->dateTime('ngay_su_co')->nullable();
             $table->string('khoa_phong_su_co')->nullable();
             $table->text('mo_ta')->nullable();
             $table->text('de_xuat_giai_phap')->nullable();
