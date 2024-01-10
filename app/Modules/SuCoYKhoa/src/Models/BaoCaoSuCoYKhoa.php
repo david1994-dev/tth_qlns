@@ -9,6 +9,9 @@ class BaoCaoSuCoYKhoa extends Base
 {
     use SoftDeletes;
 
+    const STATUS_UNDER_REVIEW = 0;
+    const STATUS_PROCESSING = 1;
+
     protected $table = 'bao_cao_su_co_y_khoa';
     protected $fillable = [
         'ma',
@@ -19,6 +22,7 @@ class BaoCaoSuCoYKhoa extends Base
         'mo_ta',
         'de_xuat_giai_phap',
         'giai_phap_da_thuc_hien',
+        'ho_ten_nguoi_bao_cao',
         'chi_tiet'
     ];
 
