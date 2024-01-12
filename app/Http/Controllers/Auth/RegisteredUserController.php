@@ -27,6 +27,7 @@ class RegisteredUserController extends Controller
     private UserRoleRepositoryInterface $userRoleRepository;
     private FileService $fileService;
     private ChiNhanhRepositoryInterface $chiNhanhRepository;
+    private PhongBanRepositoryInterface $phongBanRepository;
 
     public function __construct(
         NhanVienRepositoryInterface $nhanVienRepository,
@@ -34,12 +35,14 @@ class RegisteredUserController extends Controller
         FileService                 $fileService,
         UserRoleRepositoryInterface $userRoleRepository,
         ChiNhanhRepositoryInterface $chiNhanhRepository,
+        PhongBanRepositoryInterface $phongBanRepository,
     ) {
         $this->nhanVienRepository = $nhanVienRepository;
         $this->userRepository = $userRepository;
         $this->fileService = $fileService;
         $this->userRoleRepository = $userRoleRepository;
         $this->chiNhanhRepository = $chiNhanhRepository;
+        $this->phongBanRepository = $phongBanRepository;
     }
 
     /**
