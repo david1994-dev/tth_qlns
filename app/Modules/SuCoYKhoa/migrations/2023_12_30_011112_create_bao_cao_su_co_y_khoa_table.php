@@ -1,5 +1,6 @@
 <?php
 
+use App\Modules\SuCoYKhoa\src\Models\BaoCaoSuCoYKhoa;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,10 +15,11 @@ return new class extends Migration
         Schema::create('bao_cao_su_co_y_khoa', function (Blueprint $table) {
             $table->id();
             $table->string('ma')->nullable()->index();
+            $table->tinyInteger('status')->default(BaoCaoSuCoYKhoa::STATUS_UNDER_REVIEW);
             $table->string('ho_ten_nguoi_benh')->nullable();
+            $table->string('ho_ten_nguoi_bao_cao')->nullable();
             $table->date('ngay_bao_cao')->nullable();
-            $table->date('ngay_su_co')->nullable();
-            $table->string('thoi_gian_su_co')->nullable();
+            $table->dateTime('ngay_su_co')->nullable();
             $table->string('khoa_phong_su_co')->nullable();
             $table->text('mo_ta')->nullable();
             $table->text('de_xuat_giai_phap')->nullable();

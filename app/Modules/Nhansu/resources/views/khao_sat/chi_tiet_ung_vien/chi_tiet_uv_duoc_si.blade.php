@@ -84,325 +84,331 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </head>
 
 <body class="hold-transition sidebar-mini">
-<div class="content">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
-            @if ($errors->count())
-                <div class="alert alert-danger">
-                    <ul class="mb-0">
-                        @foreach ($errors->all() as $e)
-                            <li>{!! $e !!}</li>
-                        @endforeach
-                    </ul>
+    <div class="container-fluid">
+        <div class="content">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    @if ($errors->count())
+                        <div class="alert alert-danger">
+                            <ul class="mb-0">
+                                @foreach ($errors->all() as $e)
+                                    <li>{!! $e !!}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    @if ($message = session('error'))
+                        <div class="alert alert-danger alert-block">
+                            {!! $message !!}
+                        </div>
+                    @endif
+                    @if ($message = session('success'))
+                        <div class="alert alert-success alert-block">
+                            {!! $message !!}
+                        </div>
+                    @endif
                 </div>
-            @endif
-            @if ($message = session('error'))
-                <div class="alert alert-danger alert-block">
-                    {!! $message !!}
-                </div>
-            @endif
-            @if ($message = session('success'))
-                <div class="alert alert-success alert-block">
-                    {!! $message !!}
-                </div>
-            @endif
-        </div>
-    </div>
-    <div class="container-fluid ">
-        <form id="ksDSForm" action="" method="post"
-              class="w-75 border border-2 border-success p-5 rounded" style="margin: auto;">
-            @csrf
-            <div class="container">
-                <div class="row">
-                    <div class="col-3">
-                        @if(!$model->image)
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRK9A2qlhiiaIkO6qETm9ihfEy7AGvj3eAnH7fd-MQxqxouWOja2pxD9KE6JiLgn-gYOk&usqp=CAU"
-                                 alt="" width="100px" height="130px">
-                        @else
-                            <img src="{{asset('storage/'.$model->image)}}"
-                                 alt="" width="100px" height="130px">
-                        @endif
+            </div>
+            <form id="ksDSForm" method="post"
+                class=" border border-2 border-success rounded" style="margin: auto;" enctype="multipart/form-data">
+                @csrf
+                <div class="container">
+                    <div class="row">
+                        <div class="col-3">
+                            @if (!$model->image)
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRK9A2qlhiiaIkO6qETm9ihfEy7AGvj3eAnH7fd-MQxqxouWOja2pxD9KE6JiLgn-gYOk&usqp=CAU"
+                                    alt="" width="100px" height="130px">
+                            @else
+                                <img src="{{ asset('storage/' . $model->image) }}" alt="" width="100px"
+                                    height="130px">
+                            @endif
+                        </div>
+                        <div class="col-9 ">
+                            <div style="text-align: right;"><i>Ngày</i><input type="number" class="input"
+                                    value="{{ $model->created_at->day }}" name="ngay_khao_sat" style="width: 5%;"
+                                    placeholder="...."><i>Tháng</i><input type="number" class="input"
+                                    name="thang_khao_sat" style="width: 5%;" value="{{ $model->created_at->month }}"
+                                    placeholder="...."><i>Năm</i><input type="number" class="input"
+                                    value="{{ $model->created_at->year }}" name="nam_khao_sat" style=" width: 10%;"
+                                    placeholder="........"></div>
+                            <h4 class="tieu_de" style="margin-left: 70px;">
+                                PHIẾU
+                                KHẢO SÁT ỨNG VIÊN</h4>
+                            <i>(Đối tượng áp dụng: Nhân viên điều dưỡng,KTV,Dược sỹ)</i>
+                            <p style="font-weight: 600;"> Vị trí ứng tuyển: <input class="input"
+                                    value="{{ $model->vi_tri_ung_tuyen }}" name="vi_tri_ung_tuyen" required
+                                    style="width: 40%;"
+                                    placeholder="................................................................................................................................................">
+                        </div>
                     </div>
-                    <div class="col-9 ">
-                        <div style="text-align: right;"><i>Ngày</i><input type="number" class="input" value="{{$model->created_at->day}}"
-                                                                          name="ngay_khao_sat" style="width: 40px;" placeholder="...."><i>Tháng</i><input
-                                type="number" class="input" name="thang_khao_sat" style="width: 40px;" value="{{$model->created_at->month}}"
-                                placeholder="...."><i>Năm</i><input type="number" class="input" value="{{$model->created_at->year}}"
-                                                                    name="nam_khao_sat" style=" width: 70px;" placeholder="........"></div>
-                        <h4 class="tieu_de" style="margin-left: 70px;">
-                            PHIẾU
-                            KHẢO SÁT ỨNG VIÊN</h4>
-                        <i style="margin-left: 70px;">(Đối tượng áp dụng: Nhân viên điều dưỡng,KTV,Dược sỹ)</i>
-                        <p style="margin-left: 70px;font-weight: 600;"> Vị trí ứng tuyển: <input class="input" value="{{$model->vi_tri_ung_tuyen}}"
-                                                                                                 name="vi_tri_ung_tuyen" style="width: 300px;"
-                                                                                                 placeholder="................................................................................................................................................">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <p style="display: inline;">
+                        </div>
+                        <div class="col-md-10">
+                            <p>Để phục vụ cho công tác tuyển dụng cán bộ-nhân viên vào làm việc tại Công
+                                ty
+                                và các chi nhánh</p>
+                            <p>Công ty đề nghị ứng viên trả lời 1 số câu hỏi khảo sát sau:</p>
+                            <div>
+                                <p style="display: inline;">Họ và tên ứng viên:</p> <input class="input" name="ho_ten"
+                                    style="width: 35%;" value="{{ $model->ho_ten }}"
+                                    placeholder=".......................................................................................">
+                                    <div style="text-align: right; display: inline;">
+                                        <p style="display: inline;">Sinh ngày</p><input type="number" class="input" value="{{$model->ngay_sinh->day}}"
+                                                                                        style="width: 3%;" name="ngay_sinh" placeholder="........">
+                                        <p style="display: inline;">Tháng</p><input type="number" class="input" style="width: 3%;" value="{{$model->ngay_sinh->month}}"
+                                                                                    name="thang_sinh" placeholder="........">
+                                        <p style="display: inline;">Năm</p><input type="number" class="input" style="width: 8%;" value="{{$model->ngay_sinh->year}}"
+                                                                                  name="nam_sinh" placeholder=".............">
+                                    </div> <br>
+                                <p style="display: inline;">Trường đào tạo:</p> <input class="input"
+                                    value="{{ Arr::get($chiTietUngVien, 'truong_dao_tao', '') }}" name="truong_dao_tao"
+                                    style="width:60%"
+                                    placeholder="..........................................................................................................................................">
+                                <br>
+                                <p style="display: inline;">Chuyên ngành đào tạo:</p> <input class="input"
+                                    value="{{ Arr::get($chiTietUngVien, 'chuyen_nganh_dao_tao', '') }}"
+                                    name="chuyen_nganh_dao_tao" style="width: 25%;"
+                                    placeholder="......................................................................">
+                                Hệ
+                                đào
+                                tạo:
+                                <input class="input" name="he_dao_tao" style="width: 25%;"
+                                    value="{{ Arr::get($chiTietUngVien, 'he_dao_tao', '') }}"
+                                    placeholder="..........................................................................."><br>
+                                <p style="display: inline;">Địa chỉ:</p> <input class="input" name="dia_chi"
+                                    value="{{ $model->dia_chi }}" style="width: 60%;"
+                                    placeholder="......................................................................................................................................................."><br>
+                                <p style="display: inline;">Điện thoại:</p> <input class="input" name="dien_thoai"
+                                    value="{{ $model->dien_thoai }}" style="width: 25%;"
+                                    placeholder="......................................................................">
+                                Email:
+                                <input class="input" name="email" type="email" style="width: 35%;" required
+                                    value="{{ $model->email }}"
+                                    placeholder="...................................................................................................."><br>
+                                <p style="display: inline;">Chiều cao:</p> <input class="input" name="chieu_cao"
+                                    value="{{ Arr::get($chiTietUngVien, 'chieu_cao', '') }}" style=" width: 25%;"
+                                    placeholder="......................................................................">
+                                Cân nặng:
+                                <input class="input" name="can_nang" style="width: 30%;" required
+                                    value="{{ Arr::get($chiTietUngVien, 'can_nang', '') }}"
+                                    placeholder="........................................................."><br>
+                                <p style="display: inline;">Tình trạng hôn nhân: </p>
+                                <input type="radio" name="hon_nhan" value="Độc thân"> Độc thân
+                                <input type="radio" name="hon_nhan" value="Đã có gia đình"> Đã có gia đình
+                                <p style="display: inline; margin-left: 100px;">Số con: </p> <input class="input"
+                                    value="{{ Arr::get($chiTietUngVien, 'so_con', '') }}" name="so_con"
+                                    style="width: 20%;"
+                                    placeholder="......................................................................"><br>
+                                <p style="display: inline;">Tình trạng Chứng chỉ hành nghề: </p>
+                                <input type="radio" name="chung_chi_hanh_nghe" value="Đã có"> Đã có
+                                <input type="radio" name="chung_chi_hanh_nghe" value="Chưa có"> Chưa có
+                                <br>
+                                <p style="display: inline;">Các chứng chỉ đào tạo khác:</p> <input class="input"
+                                    value="{{ Arr::get($chiTietUngVien, 'chung_chi_khac', '') }}"
+                                    name="chung_chi_khac" style="width: 60%;"
+                                    placeholder="...........................................................................................................................">
+                            </div> <br>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <br>
-            <p style="margin-left: 220px;">Để phục vụ cho công tác tuyển dụng cán bộ-nhân viên vào làm việc tại Công
-                ty
-                và các chi nhánh</p>
-            <p style="margin-left: 220px;">Công ty đề nghị ứng viên trả lời 1 số câu hỏi khảo sát sau:</p>
-            <div style="margin-left: 220px;">
-                <p style="display: inline;">Họ và tên ứng viên:</p> <input class="input" name="ho_ten" value="{{$model->ho_ten}}"
-                                                                           style="width: 300px;"
-                                                                           placeholder=".......................................................................................">
-                <div style="text-align: right; display: inline;">
-                    <p style="display: inline;">Sinh ngày</p><input type="number" class="input" value="{{$model->ngay_sinh->day}}"
-                                                                    style="width: 40px;" name="ngay_sinh" placeholder="........">
-                    <p style="display: inline;">Tháng</p><input type="number" class="input" style="width: 40px;" value="{{$model->ngay_sinh->month}}"
-                                                                name="thang_sinh" placeholder="........">
-                    <p style="display: inline;">Năm</p><input type="number" class="input" style="width: 60px;" value="{{$model->ngay_sinh->year}}"
-                                                              name="nam_sinh" placeholder=".............">
-                </div> <br>
-                <p style="display: inline;">Trường đào tạo:</p> <input class="input" name="truong_dao_tao"
-                                                                       value="{{Arr::get($chiTietUngVien, 'truong_dao_tao', '')}}"
-                                                                       style="width: 546px;"
-                                                                       placeholder="..........................................................................................................................................">
-                <br>
-                <p style="display: inline;">Chuyên ngành đào tạo:</p> <input class="input"
-                                                                             value="{{Arr::get($chiTietUngVien, 'chuyen_nganh_dao_tao', '')}}"
-                                                                             name="chuyen_nganh_dao_tao" style="width: 300px;"
-                                                                             placeholder="......................................................................"> Hệ đào
-                tạo:
-                <input class="input" name="he_dao_tao" style="width: 115px;"
-                       value="{{Arr::get($chiTietUngVien, 'he_dao_tao', '')}}"
-                       placeholder="..................................."><br>
-                <p style="display: inline;">Địa chỉ:</p> <input class="input" name="dia_chi"
-                                                                value="{{$model->dia_chi}}"
-                                                                style="width: 602px;"
-                                                                placeholder="......................................................................................................................................................."><br>
-                <p style="display: inline;">Điện thoại:</p> <input class="input" name="dien_thoai"
-                                                                   value="{{$model->dien_thoai}}"
-                                                                   style="width: 300px;"
-                                                                   placeholder="......................................................................"> Email:
-                <input class="input" name="email" type="email" style="width: 232px;" value="{{$model->email}}"
-                       placeholder="................................................................."><br>
-                <p style="display: inline;">Chiều cao:</p> <input class="input" name="chieu_cao"
-                                                                  value="{{Arr::get($chiTietUngVien, 'chieu_cao', '')}}"
-                                                                  style=" width: 300px;"
-                                                                  placeholder="......................................................................"> Cân nặng:
-                <input class="input" name="can_nang" style="width: 210px;"
-                       value="{{Arr::get($chiTietUngVien, 'can_nang', '')}}"
-                       placeholder="........................................................."><br>
-                <p style="display: inline;">Tình trạng hôn nhân: </p>
-                <input type="radio" name="hon_nhan" value="Độc thân"> Độc thân
-                <input type="radio" name="hon_nhan" value="Đã có gia đình"> Đã có gia đình
-                <p style="display: inline; margin-left: 100px;">Số con: </p> <input class="input" name="so_con"
-                                                                                    value="{{Arr::get($chiTietUngVien, 'so_con', '')}}"
-                                                                                    style="width: 168px;"
-                                                                                    placeholder="......................................................................"><br>
-                <p style="display: inline;">Tình trạng Chứng chỉ hành nghề: </p>
-                <input type="radio" name="chung_chi_hanh_nghe" value="Đã có"> Đã có
-                <input type="radio" name="chung_chi_hanh_nghe" value="Chưa có"> Chưa có
-                <br>
-                <p style="display: inline;">Các chứng chỉ đào tạo khác:</p> <input class="input"
-                                                                                   name="chung_chi_khac" style="width: 470px;"
-                                                                                   value="{{Arr::get($chiTietUngVien, 'chung_chi_khac', '')}}"
-                                                                                   placeholder="...........................................................................................................................">
-            </div> <br>
-            <p style="margin-left: 180px;font-weight: 600; display: inline;"> 1.Quá trình công tác:</p> <i>(Dành
-                cho
-                những người đã có kinh nghiệm công tác)</i> <br>
-            <table class="table table-bordered" style="width: 800px; margin-left: 180px">
-                <thead>
-                <tr>
-                    <th scope="col">Thời gian</th>
-                    <th scope="col">Đơn vị công tác</th>
-                    <th scope="col">Vị trí làm việc</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($quaTrinhLamViec as $date => $value)
-                    <tr>
-                        <td style="width: 100px; height: 50px; "><input name="thoi_gian_lam_viec[]" class="input" value="{{$date}}">
-                        </td>
-                        @foreach($value as $cty => $viTri)
-                            <td style="width: 300px ; height: 50px;"><input name="don_vi_cong_tac[]" class="input" value="{{$cty}}"
-                                                                            style="width: 280px"></td>
-                            <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]" class="input" value="{{$viTri}}"
-                                                                            style="width: 280px"></td>
-                        @endforeach
 
-                    </tr>
-                @endforeach
-                </tbody>
-            </table> <br>
-            <p style="margin-left: 180px;font-weight: 600; display: inline;"> 2.Anh(chị) có khả năng(Thời gian,
-                kinh tế,
-                ...) để tiếp tục học các lớp nâng cao nghiệp vụ không?</p><br>
-            <input type="radio" name="hoc_lop_nang_cao" value="Có" style="margin-left: 180px;"> a. Có
-            <input type="radio" name="hoc_lop_nang_cao" value="Không" style="margin-left: 180px;"> b. Không
-            <br> <br>
-            <p style="margin-left: 180px;font-weight: 600; display: inline;"> 3.Anh(chị) có nguyện vọng ứng tuyển
-                vào
-                khoa nào tại Công ty? (*)</p><br>
-            <i style="margin-left: 220px;">- Đánh số theo thứ tự ưu tiên (1,2,3); Một người được ứng tuyển 3 vị
-                trí.</i>
-            <div>
-                <div>
-                    <input type="checkbox" name="ung_tuyen[]" value="Nội khoa"style="margin-left: 180px;"
-                           max="3">
-                    <label for="Nội khoa">Nội khoa</label>
-                    <input type="checkbox" name="ung_tuyen[]" value="Sản phụ khoa" style="margin-left: 50px;"
-                           max="3">
-                    <label for="Sản phụ khoa">Sản phụ khoa</label>
-                    <input type="checkbox" name="ung_tuyen[]" value="Xét nghiệm" style="margin-left: 50px;"
-                           max="3">
-                    <label for="Xét nghiệm">Xét nghiệm</label>
-                    <input type="checkbox" name="ung_tuyen[]" value="Răng hàm mặt" style="margin-left: 196px;"
-                           max="3">
-                    <label for="Răng hàm mặt">Răng hàm mặt</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="ung_tuyen[]" value="Ngoại khoa" style="margin-left: 180px;"
-                           max="3">
-                    <label for="Ngoại khoa">Ngoại khoa</label>
-                    <input type="checkbox" name="ung_tuyen[]" value="Nhi khoa" style="margin-left: 35px;"
-                           max="3">
-                    <label for="Nhi khoa">Nhi khoa</label>
-                    <input type="checkbox" name="ung_tuyen[]" value="Chẩn đoán hình ảnh- thăm dò CN"
-                           style="margin-left: 82px;" max="3">
-                    <label for="Chẩn đoán hình ảnh- thăm dò CN">Chẩn đoán hình ảnh- thăm dò CN</label>
-                    <input type="checkbox" name="ung_tuyen[]" value="Tai mũi họng" style="margin-left: 50px;"
-                           max="3">
-                    <label for="Tai mũi họng">Tai mũi họng</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="ung_tuyen[]" value="Mắt" style="margin-left: 180px;"
-                           max="3">
-                    <label for="Mắt">Mắt</label>
-                    <input type="checkbox" name="ung_tuyen[]" value="U bước-Y học hạt nhân"
-                           style="margin-left: 85px;" max="3">
-                    <label for="U bước-Y học hạt nhân">U bước-Y học hạt nhân</label>
-                    <input type="checkbox" name="ung_tuyen[]" value="dinh dưỡng" style="margin-left: 82px;"
-                           max="3">
-                    <label for="dinh dưỡng">dinh dưỡng</label>
-
-                    <input type="checkbox" name="ung_tuyen[]" value="Chuyên viên kế hoạch tổng hợp"
-                           style="margin-left: 50px;" max="3">
-                    <label for="Chuyên viên kế hoạch tổng hợp">Chuyên viên kế hoạch tổng hợp</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="ung_tuyen[]" value="YHCT" style="margin-left: 180px;"
-                           max="3">
-                    <label for="YHCT">YHCT</label>
-                    <input type="checkbox" name="ung_tuyen[]" value="Hồi sức cấp cứu" style="margin-left: 75px;"
-                           max="3">
-                    <label for="Hồi sức cấp cứu">Hồi sức cấp cứu</label>
-
-                    <input type="checkbox" name="ung_tuyen[]" value="Thẩm mỹ - da liễu"
-                           style="margin-left: 38px;" max="3">
-                    <label for="Thẩm mỹ - da liễu">Thẩm mỹ - da liễu</label>
-                    <input type="checkbox" name="ung_tuyen[]" value="Gây mê - Phẫu thuật"
-                           style="margin-left: 152px;" max="3">
-                    <label for="Gây mê - Phẫu thuật">Gây mê - Phẫu thuật</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="ung_tuyen[]" value="Kiểm soát chất lượng BV"
-                           style="margin-left: 180px;" max="3">
-                    <label for="Kiểm soát chất lượng BV">Kiểm soát chất lượng BV</label>
-                </div>
-            </div> <br>
-            <p style="margin-left: 180px;font-weight: 600; display: inline;"> 4.Anh(chị) mong muốn công tác tại
-                bệnh
-                viện nào của công ty?</p><br>
-            <div>
-                <input type="checkbox" name="don_vi_ung_tuyen[]"
-                       value="BV RHM và PTTHTM Thái Thượng Hoàng"style="margin-left: 180px;"> a.BV RHM và PTTHTM Thái
-                Thượng Hoàng
-                <input type="checkbox" name="don_vi_ung_tuyen[]" value="Bệnh viện Đa khoa TTH Đức Thọ"
-                       style="margin-left: 50px;">
-                e.Bệnh viện Đa khoa TTH Đức Thọ
-            </div>
-            <div>
-                <input type="checkbox" name="don_vi_ung_tuyen[]"
-                       value="Bệnh viện Đa khoa TTH Vinh"style="margin-left: 180px;"> b.Bệnh viện Đa khoa TTH Vinh
-                <input type="checkbox" name="don_vi_ung_tuyen[]" value="Bệnh viện Đa khoa TTH Quảng Bình"
-                       style="margin-left: 126px;">
-                f.Bệnh viện Đa khoa TTH Quảng Bình
-            </div>
-            <div>
-                <input type="checkbox" name="don_vi_ung_tuyen[]"
-                       value="Bệnh viện Đa khoa TTH Hưng Đông"style="margin-left: 180px;">
-                c.Bệnh viện Đa khoa TTH Hưng Đông
-                <input type="checkbox" name="don_vi_ung_tuyen[]" value="Bệnh viện Đa khoa TTH Quảng Trị"
-                       style="margin-left: 82px;">
-                h.Bệnh viện Đa khoa TTH Quảng Trị
-            </div>
-            <div>
-                <input type="checkbox" name="don_vi_ung_tuyen[]"
-                       value="Bệnh viện Đa khoa TTH Hà Tĩnh"style="margin-left: 180px;">
-                d.Bệnh viện Đa khoa TTH Hà Tĩnh
-            </div> <br>
-            <p style="margin-left: 180px;font-weight: 600; display: inline;"> 5.Anh(chị) biết thông tin tuyển dụng
-                của
-                Công ty qua kênh nào?</p><br>
-            <div>
-                <input type="checkbox" name="nguon_tuyen_dung[]" value="Người thân giới thiệu"
-                       style="margin-left: 180px;">
-                Người thân giới thiệu
-                <input type="checkbox" name="nguon_tuyen_dung[]" value="Facebook"
-                       style="margin-left: 85px;"> Facebook
-                <input type="checkbox" name="nguon_tuyen_dung[]" value="Báo chí/ Truyền hình"
-                       style="margin-left: 82px;"> Báo chí/ Truyền hình
-            </div>
-            <div>
-                <input type="checkbox" name="nguon_tuyen_dung[]" value="Web/fanpage Công ty"
-                       style="margin-left: 180px;"> Web/fanpage Công ty
-                <input type="checkbox" name="nguon_tuyen_dung[]" value="Vietnamwork"
-                       style="margin-left: 82px;"> Vietnamwork
-                <input type="checkbox" name="nguon_tuyen_dung[]" value="Nguồn khác"
-                       style="margin-left: 57px;"> Nguồn khác
-            </div> <br>
-            <p style="margin-left: 180px;font-weight: 600; display: inline;"> 6.Điểm yếu?</p><br>
-            <textarea name="diem_yeu" style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10">
-                {{Arr::get($chiTietUngVien, 'diem_yeu', '')}}
-            </textarea> <br> <br>
-            <p style="margin-left: 180px;font-weight: 600; display: inline;"> 7.Điểm mạnh?</p><br>
-            <textarea name="diem_manh" style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10">
-                {{Arr::get($chiTietUngVien, 'diem_manh', '')}}
-            </textarea> <br> <br>
-            <p style="margin-left: 180px;font-weight: 600; display: inline;"> 8.Mức lương mong muốn của anh(chị)
-                khi
-                vào làm việc tại công ty?</p><br>
-            <textarea name="luong_mong_muon" style="margin-left: 180px; width: 800px; height: 100px;" cols="30"
-                      rows="10">
-                {{Arr::get($chiTietUngVien, 'luong_mong_muon', '')}}
-            </textarea> <br> <br>
-            <p style="margin-left: 180px;font-weight: 600; display: inline;"> 9.Anh(chị) có kiến nghị, đề xuất hoặc
-                thắc mắc muốn Công ty giải đáp không?</p><br>
-            <textarea name="de_xuat" style="margin-left: 180px; width: 800px; height: 100px;" cols="30" rows="10"
-                      name="content">
-                {{Arr::get($chiTietUngVien, 'de_xuat', '')}}
-            </textarea>
-            <br>
-            <br>
-            <div class="container">
-                <div class="row">
-                    <div class="col-6">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-10">
+                            <p style="font-weight: 600; display: inline;"> 1.Quá trình công tác:</p> <i>(Dành
+                                cho
+                                những người đã có kinh nghiệm công tác)</i> <br>
+                            <div class="table-responsive-md">
+                                <table class="table table-bordered" style="width: 800px;">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Thời gian</th>
+                                            <th scope="col">Đơn vị công tác</th>
+                                            <th scope="col">Vị trí làm việc</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($quaTrinhLamViec as $date => $value)
+                                            <tr>
+                                                <td style="width: 100px; height: 50px; "><input
+                                                        name="thoi_gian_lam_viec[]" value="{{ $date }}"
+                                                        class="input"></td>
+                                                @foreach ($value as $cty => $viTri)
+                                                    <td style="width: 300px ; height: 50px;"><input
+                                                            name="don_vi_cong_tac[]" value="{{ $cty }}"
+                                                            class="input" style="width: 280px">
+                                                    </td>
+                                                    <td style="width: 300px ; height: 50px;"><input
+                                                            name="vi_tri_lam_viec[]" value="{{ $viTri }}"
+                                                            class="input" style="width: 280px">
+                                                    </td>
+                                                @endforeach
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <br>
+                            <p style="font-weight: 600; display: inline;"> 2.Anh(chị) có khả năng(Thời gian,
+                                kinh tế,
+                                ...) để tiếp tục học các lớp nâng cao nghiệp vụ không?</p><br>
+                            <input type="radio" name="hoc_lop_nang_cao" value="Có"> a.
+                            Có
+                            <input type="radio" name="hoc_lop_nang_cao" value="Không"
+                                style="margin-left: 180px;"> b.
+                            Không
+                            <br> <br>
+                            <p style="font-weight: 600; display: inline;"> 3.Anh(chị) có nguyện vọng ứng tuyển
+                                vào
+                                khoa nào tại Công ty? (*)</p><br>
+                            <i>- Đánh số theo thứ tự ưu tiên (1,2,3); Một người được ứng tuyển 3 vị
+                                trí.</i>
+                            <div>
+                                <div>
+                                    <input type="checkbox" name="ung_tuyen[]" value="Nội khoa" max="3">
+                                    <label for="Nội khoa">Nội khoa</label>
+                                    <input type="checkbox" name="ung_tuyen[]" value="Sản phụ khoa" max="3"
+                                        style="margin-left: 7%">
+                                    <label for="Sản phụ khoa">Sản phụ khoa</label>
+                                    <input type="checkbox" name="ung_tuyen[]" value="Xét nghiệm" max="3"
+                                        style="margin-left: 8%"> <label for="Xét nghiệm">Xét nghiệm</label>
+                                    <input type="checkbox" name="ung_tuyen[]" value="Răng hàm mặt" max="3"
+                                        style="margin-left: 17%"> <label for="Răng hàm mặt">Răng hàm mặt</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" name="ung_tuyen[]" value="Ngoại khoa" max="3">
+                                    <label for="Ngoại khoa">Ngoại khoa</label>
+                                    <input type="checkbox" name="ung_tuyen[]" value="Nhi khoa" max="3"
+                                        style="margin-left: 4.6%">
+                                    <label for="Nhi khoa">Nhi khoa</label>
+                                    <input type="checkbox" name="ung_tuyen[]" value="Chẩn đoán hình ảnh- thăm dò CN"
+                                        style="margin-left: 11.6%" style="margin-left: 82px;" max="3">
+                                    <label for="Chẩn đoán hình ảnh- thăm dò CN">Chẩn đoán hình ảnh- thăm dò CN</label>
+                                    <input type="checkbox" name="ung_tuyen[]" value="Tai mũi họng" max="3">
+                                    <label for="Tai mũi họng">Tai mũi họng</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" name="ung_tuyen[]" value="Mắt" max="3">
+                                    <label for="Mắt">Mắt</label>
+                                    <input type="checkbox" name="ung_tuyen[]" value="U bước-Y học hạt nhân"
+                                        max="3" style="margin-left: 10.4%"> <label
+                                        for="U bước-Y học hạt nhân">U bước-Y học hạt nhân</label>
+                                    <input type="checkbox" name="ung_tuyen[]" value="dinh dưỡng" max="3"
+                                        style="margin-left: 1%">
+                                    <label for="dinh dưỡng">dinh dưỡng</label>
+                                    <input type="checkbox" name="ung_tuyen[]" value="Chuyên viên kế hoạch tổng hợp"
+                                        style="margin-left: 16.7%" max="3">
+                                    <label for="Chuyên viên kế hoạch tổng hợp">Chuyên viên kế hoạch tổng hợp</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" name="ung_tuyen[]" value="YHCT" max="3">
+                                    <label for="YHCT">YHCT</label>
+                                    <input type="checkbox" name="ung_tuyen[]" value="Hồi sức cấp cứu"
+                                        style="margin-left: 9.2%" max="3">
+                                    <label for="Hồi sức cấp cứu">Hồi sức cấp cứu</label>
+                                    <input type="checkbox" name="ung_tuyen[]" value="Thẩm mỹ - da liễu"
+                                        style="margin-left: 6.4%" max="3">
+                                    <label for="Thẩm mỹ - da liễu">Thẩm mỹ - da liễu</label>
+                                    <input type="checkbox" name="ung_tuyen[]" value="Gây mê - Phẫu thuật"
+                                        style="margin-left: 12%" max="3">
+                                    <label for="Gây mê - Phẫu thuật">Gây mê - Phẫu thuật</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" name="ung_tuyen[]" value="Kiểm soát chất lượng BV"
+                                        max="3">
+                                    <label for="Kiểm soát chất lượng BV">Kiểm soát chất lượng BV</label>
+                                </div>
+                            </div> <br>
+                            <p style="font-weight: 600; display: inline;"> 4.Anh(chị) mong muốn công tác tại
+                                bệnh
+                                viện nào của công ty?</p><br>
+                            <div>
+                                <input type="checkbox" name="don_vi_ung_tuyen[]"
+                                    value="BV RHM và PTTHTM Thái Thượng Hoàng"> a.BV RHM và PTTHTM Thái
+                                Thượng Hoàng
+                                <input type="checkbox" name="don_vi_ung_tuyen[]" style="margin-left: 7%"
+                                    value="Bệnh viện Đa khoa TTH Đức Thọ">
+                                e.Bệnh viện Đa khoa TTH Đức Thọ
+                            </div>
+                            <div>
+                                <input type="checkbox" name="don_vi_ung_tuyen[]" value="Bệnh viện Đa khoa TTH Vinh">
+                                b.Bệnh viện Đa khoa TTH Vinh
+                                <input type="checkbox" name="don_vi_ung_tuyen[]" style="margin-left: 16.3%"
+                                    value="Bệnh viện Đa khoa TTH Quảng Bình">
+                                f.Bệnh viện Đa khoa TTH Quảng Bình
+                            </div>
+                            <div>
+                                <input type="checkbox" name="don_vi_ung_tuyen[]"
+                                    value="Bệnh viện Đa khoa TTH Hưng Đông">
+                                c.Bệnh viện Đa khoa TTH Hưng Đông
+                                <input type="checkbox" name="don_vi_ung_tuyen[]" style="margin-left: 11%"
+                                    value="Bệnh viện Đa khoa TTH Quảng Trị">
+                                h.Bệnh viện Đa khoa TTH Quảng Trị
+                            </div>
+                            <div>
+                                <input type="checkbox" name="don_vi_ung_tuyen[]"
+                                    value="Bệnh viện Đa khoa TTH Hà Tĩnh">
+                                d.Bệnh viện Đa khoa TTH Hà Tĩnh
+                            </div> <br>
+                            <p style="font-weight: 600; display: inline;"> 5.Anh(chị) biết thông tin tuyển dụng
+                                của
+                                Công ty qua kênh nào?</p><br>
+                            <div>
+                                <input type="checkbox" name="nguon_tuyen_dung[]" value="Người thân giới thiệu">
+                                Người thân giới thiệu
+                                <input type="checkbox" name="nguon_tuyen_dung[]" value="Facebook"
+                                    style="margin-left: 5%"> Facebook
+                                <input type="checkbox" name="nguon_tuyen_dung[]" value="Báo chí/ Truyền hình"
+                                    style="margin-left: 7%">
+                                Báo
+                                chí/ Truyền hình
+                            </div>
+                            <div>
+                                <input type="checkbox" name="nguon_tuyen_dung[]" value="Web/fanpage Công ty">
+                                Web/fanpage Công ty
+                                <input type="checkbox" name="nguon_tuyen_dung[]" value="Vietnamwork"
+                                    style="margin-left: 4.5%"> Vietnamwork
+                                <input type="checkbox" name="nguon_tuyen_dung[]" value="Nguồn khác"
+                                    style="margin-left: 4.3%"> Nguồn khác
+                            </div> <br>
+                            <p style="font-weight: 600; display: inline;"> 6.Điểm yếu?</p><br>
+                            <textarea name="diem_yeu" style=" width: 80%;" cols="30" rows="10">{{ Arr::get($chiTietUngVien, 'diem_yeu', '') }}</textarea> <br> <br>
+                            <p style="font-weight: 600; display: inline;"> 7.Điểm mạnh?</p><br>
+                            <textarea name="diem_manh" style=" width: 80%;" cols="30" rows="10">{{ Arr::get($chiTietUngVien, 'diem_manh', '') }}</textarea> <br> <br>
+                            <p style="font-weight: 600; display: inline;"> 8.Mức lương mong muốn của anh(chị)
+                                khi
+                                vào làm việc tại công ty?</p><br>
+                            <textarea required name="luong_mong_muon" style="width: 80%;" cols="30" rows="10" value="">{{ Arr::get($chiTietUngVien, 'luong_mong_muon', '') }}</textarea> <br> <br>
+                            <p style="font-weight: 600; display: inline;"> 9.Anh(chị) có kiến nghị, đề xuất hoặc
+                                thắc mắc muốn Công ty giải đáp không?</p><br>
+                            <textarea name="de_xuat" style=" width: 80%;" cols="30" rows="10" name="content" value="">{{ Arr::get($chiTietUngVien, 'de_xuat', '') }}</textarea>
+                        </div>
                     </div>
-                    <div class="col-6 ">
-                        <h5
-                            style="font-weight: 600;font-family: 'Times New Roman', Times, serif; display: inline;margin-left: 190px;">
-                            ỨNG VIÊN
-                        </h5> <br>
-                        <i style="margin-left: 175px;">(Ký,ghi rõ họ tên)</i> <br> <br>
-                        <div style="margin-left: 190px;">
-                            {{$model->ho_ten}} <br>
-                            <small>{{$model->ngay_ky->format('d-m-Y H:i:s')}}</small>
+
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-6">
+                        </div>
+                        <div class="col-6 ">
+                            <h5
+                                style="font-weight: 600;font-family: 'Times New Roman', Times, serif; display: inline;padding-left: 20%">
+                                ỨNG VIÊN
+                            </h5> <br>
+                            <i style="padding-left: 20%">(Ký,ghi rõ họ tên)</i> <br> <br>
+                            <div style="padding-left: 20%">
+                                {{ $model->ho_ten }} <br>
+                                <small>{{ $model->ngay_ky->format('d-m-Y H:i:s') }}</small>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <input type="hidden" name="loai_ung_vien"
-                   value="{{ \App\Modules\Nhansu\src\Models\UngVien::LOAI_UNG_VIEN_DUOC_SI }}">
-        </form>
-
-    </div><!-- /.container-fluid -->
-</div>
+                <input type="hidden" name="loai_ung_vien"
+                    value="{{ \App\Modules\Nhansu\src\Models\UngVien::LOAI_UNG_VIEN_DUOC_SI }}">
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>
@@ -415,114 +421,114 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script>
     $(document).ready(function() {
         $('#ksDSForm :input').prop("readonly", true);
-        $("input[type=checkbox]").click(function () {
+        $("input[type=checkbox]").click(function() {
             return false;
         });
-        $("input[type=radio]").click(function () {
+        $("input[type=radio]").click(function() {
             return false;
         });
 
         let ungTuyen = @json($ungTuyen);
-        $("input[type=checkbox][name=ung_tuyen\\[\\]]").each(function () {
+        $("input[type=checkbox][name=ung_tuyen\\[\\]]").each(function() {
             let val = $(this).val()
             if (ungTuyen.includes(val)) {
-                $( this ).attr( 'checked', true )
+                $(this).attr('checked', true)
             }
 
             let index = ungTuyen.indexOf(val)
             if (index >= 0) {
                 index += 1;
-                let text = $('label[for="'+ val +'"]').text();
-                text = text + ' ('+index+')';
-                $('label[for="'+ val +'"]').text(text)
+                let text = $('label[for="' + val + '"]').text();
+                text = text + ' (' + index + ')';
+                $('label[for="' + val + '"]').text(text)
             }
         });
 
         let hinhThucDaoTao = @json($hinhThucDaoTao);
-        $("input[type=checkbox][name=hinh_thuc_dao_tao\\[\\]]").each(function () {
+        $("input[type=checkbox][name=hinh_thuc_dao_tao\\[\\]]").each(function() {
             let val = $(this).val()
             if (hinhThucDaoTao.includes(val)) {
-                $( this ).attr( 'checked', true )
+                $(this).attr('checked', true)
             }
         });
 
         let vanBang = @json($vanBang);
-        $("input[type=checkbox][name=van_bang\\[\\]]").each(function () {
+        $("input[type=checkbox][name=van_bang\\[\\]]").each(function() {
             let val = $(this).val()
             if (vanBang.includes(val)) {
-                $( this ).attr( 'checked', true )
+                $(this).attr('checked', true)
             }
         });
 
         let donVi = @json($donViUngTuyen);
-        $("input[type=checkbox][name=don_vi_ung_tuyen\\[\\]]").each(function () {
+        $("input[type=checkbox][name=don_vi_ung_tuyen\\[\\]]").each(function() {
             let val = $(this).val()
             if (donVi.includes(val)) {
-                $( this ).attr( 'checked', true )
+                $(this).attr('checked', true)
             }
         });
 
         let nguonTuyenDung = @json($nguonTuyenDung);
-        $("input[type=checkbox][name=nguon_tuyen_dung\\[\\]]").each(function () {
+        $("input[type=checkbox][name=nguon_tuyen_dung\\[\\]]").each(function() {
             let val = $(this).val()
             if (nguonTuyenDung.includes(val)) {
-                $( this ).attr( 'checked', true )
+                $(this).attr('checked', true)
             }
         });
 
         let thoiHanHopDong = @json($thoiHanHopDong);
-        $("input[type=radio][name=thoi_han_hop_dong]").each(function () {
+        $("input[type=radio][name=thoi_han_hop_dong]").each(function() {
             let val = $(this).val()
             if (thoiHanHopDong === val) {
-                $( this ).attr( 'checked', true )
+                $(this).attr('checked', true)
             }
         });
 
         let loaiTotNghiep = @json($loaiTotNghiep);
-        $("input[type=radio][name=loai_tot_nghiep]").each(function () {
+        $("input[type=radio][name=loai_tot_nghiep]").each(function() {
             let val = $(this).val()
             if (loaiTotNghiep === val) {
-                $( this ).attr( 'checked', true )
+                $(this).attr('checked', true)
             }
         });
 
         let trinhDo = @json($trinhDo);
-        $("input[type=radio][name=trinh_do]").each(function () {
+        $("input[type=radio][name=trinh_do]").each(function() {
             let val = $(this).val()
             if (trinhDo === val) {
-                $( this ).attr( 'checked', true )
+                $(this).attr('checked', true)
             }
         });
 
         let loaiHinhDaoTao = @json($loaiHinhDaoTao);
-        $("input[type=radio][name=loai_hinh_dao_tao]").each(function () {
+        $("input[type=radio][name=loai_hinh_dao_tao]").each(function() {
             let val = $(this).val()
             if (loaiHinhDaoTao === val) {
-                $( this ).attr( 'checked', true )
+                $(this).attr('checked', true)
             }
         });
 
         let honNhan = @json($honNhan);
-        $("input[type=radio][name=hon_nhan]").each(function () {
+        $("input[type=radio][name=hon_nhan]").each(function() {
             let val = $(this).val()
             if (honNhan === val) {
-                $( this ).attr( 'checked', true )
+                $(this).attr('checked', true)
             }
         });
 
         let lopHocNangCao = @json($lopHocNangCao);
-        $("input[type=radio][name=hoc_lop_nang_cao]").each(function () {
+        $("input[type=radio][name=hoc_lop_nang_cao]").each(function() {
             let val = $(this).val()
             if (lopHocNangCao === val) {
-                $( this ).attr( 'checked', true )
+                $(this).attr('checked', true)
             }
         });
 
         let chungChiHanhNghe = @json($chungChiHanhNghe);
-        $("input[type=radio][name=chung_chi_hanh_nghe]").each(function () {
+        $("input[type=radio][name=chung_chi_hanh_nghe]").each(function() {
             let val = $(this).val()
             if (chungChiHanhNghe === val) {
-                $( this ).attr( 'checked', true )
+                $(this).attr('checked', true)
             }
         });
     })

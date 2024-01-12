@@ -39,6 +39,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         input[type="file"] {
             display: none;
         }
+
         .custom-file-upload {
             border: 1px solid #ccc;
             display: block;
@@ -97,33 +98,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
         </div>
         <form id="ksBSForm" action="{{ route('nhansu.taoUngVien') }}" method="post"
-            class="w-75 border border-2 border-success p-5 rounded" style="margin: auto;" enctype="multipart/form-data">
+            class=" border border-2 border-success rounded" style="margin: auto;" enctype="multipart/form-data">
             @csrf
             <div class="container">
                 <div class="row">
                     <div class="col-3">
-                        <img id="profile-image-preview" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRK9A2qlhiiaIkO6qETm9ihfEy7AGvj3eAnH7fd-MQxqxouWOja2pxD9KE6JiLgn-gYOk&usqp=CAU"
-                             alt="" width="150px" height="130px">
-{{--                        <input type="file" name="image" id="profile-image" style="margin-top: 10px">--}}
+                        <img id="profile-image-preview"
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRK9A2qlhiiaIkO6qETm9ihfEy7AGvj3eAnH7fd-MQxqxouWOja2pxD9KE6JiLgn-gYOk&usqp=CAU"
+                            alt="" width="150px" height="130px">
+                        {{--                        <input type="file" name="image" id="profile-image" style="margin-top: 10px"> --}}
                         <label for="profile-image" class="custom-file-upload text-center">
                             <i class="bi bi-upload"></i> Tải ảnh
                         </label>
-                        <input id="profile-image" name="image" type="file"/>
+                        <input id="profile-image" name="image" type="file" />
                     </div>
                     <div class="col-9 ">
                         <div style="text-align: right;"><i>Ngày</i><input type="number" class="input"
-                                name="ngay_khao_sat" value="{{old('ngay_khao_sat') ?? ''}}" style="width: 5%;" min="1" max="31"
-                                placeholder="...."><i>Tháng</i><input type="number" class="input" value="{{old('thang_khao_sat') ?? ''}}"
-                                name="thang_khao_sat" min="1" max="12" style="width: 5%;"
-                                placeholder="...."><i>Năm</i><input type="number" class="input" name="nam_khao_sat" value="{{old('nam_khao_sat') ?? ''}}"
-                                style=" width: 10%;" placeholder="........"></div>
+                                name="ngay_khao_sat" value="{{ old('ngay_khao_sat') ?? '' }}" style="width: 5%;"
+                                min="1" max="31" placeholder="...."><i>Tháng</i><input type="number"
+                                class="input" value="{{ old('thang_khao_sat') ?? '' }}" name="thang_khao_sat"
+                                min="1" max="12" style="width: 5%;" placeholder="...."><i>Năm</i><input
+                                type="number" class="input" name="nam_khao_sat"
+                                value="{{ old('nam_khao_sat') ?? '' }}" style=" width: 10%;" placeholder="........">
+                        </div>
                         <h4 class="tieu_de" style="margin-left: 70px;">
                             PHIẾU
                             KHẢO SÁT</h4>
                         <i>(Đối tượng áp dụng: Bác sĩ)</i>
-                        <p style="font-weight: 600;"> Vị trí ứng tuyển: <input class="input" name="vi_tri_ung_tuyen" value="{{old('vi_tri_ung_tuyen') ?? ''}}"
-                                                                               required
-                                style="width: 100%px;"
+                        <p style="font-weight: 600;"> Vị trí ứng tuyển: <input class="input" name="vi_tri_ung_tuyen"
+                                value="{{ old('vi_tri_ung_tuyen') ?? '' }}" required style="width: 100%px;"
                                 placeholder="................................................................................................................................................">
                     </div>
                 </div>
@@ -138,42 +141,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             và các chi nhánh</p>
                         <p>Kính đề nghị Bác sĩ trả lời 1 số câu hỏi khảo sát sau:</p>
                         <div>
-                            <p style="display: inline;">Họ và tên:</p> <input class="input" required style="width: 30%;" value="{{old('ho_ten') ?? ''}}"
-                                name="ho_ten"
+                            <p style="display: inline;">Họ và tên:</p> <input class="input" required
+                                style="width: 30%;" value="{{ old('ho_ten') ?? '' }}" name="ho_ten"
                                 placeholder="......................................................................">
                             <div style="display: inline;" class="mt-3 form-group">
                                 <p style="display: inline;">Ngày sinh</p>
-                                <input required type="date" id="ngay_sinh" class="form-control" name="ngay_sinh" value="{{old('ngay_sinh') ?? ''}}"
-                                    style="width: 20% ;display: inline;">
+                                <input required type="date" id="ngay_sinh" class="form-control" name="ngay_sinh"
+                                    value="{{ old('ngay_sinh') ?? '' }}" style="width: 20% ;display: inline;">
                             </div> <br>
 
                             <p style="display: inline;">Chuyên ngành đào tạo:</p> <input class="input"
-                                style="width: 30%;" name="chuyen_nganh_dao_tao"
-                                                                                         required
+                                style="width: 30%;" name="chuyen_nganh_dao_tao" required
                                 value="{{ old('chuyen_nganh_dao_tao') ?? '' }}"
                                 placeholder="......................................................................"> Hệ
                             đào
                             tạo:
-                            <input class="input" name="he_dao_tao" style=" width: 10%px;" value="{{old('he_dao_tao') ?? ''}}"
-                                   required
+                            <input class="input" name="he_dao_tao" style=" width: 10%px;"
+                                value="{{ old('he_dao_tao') ?? '' }}" required
                                 placeholder="..................................."><br>
-                            <p style="display: inline;">Địa chỉ:</p> <input class="input" style=" width: 60%;" value="{{old('dia_chi') ?? ''}}"
-                                                                            required
-                                name="dia_chi"
+                            <p style="display: inline;">Địa chỉ:</p> <input class="input" style=" width: 60%;"
+                                value="{{ old('dia_chi') ?? '' }}" required name="dia_chi"
                                 placeholder="......................................................................................................................................................................"><br>
                             <p style="display: inline;">Điện thoại:</p> <input class="input" style="width: 30%;"
-                                value="{{old('dien_thoai') ?? ''}}"
-                                                                               required
-                                name="dien_thoai"
+                                value="{{ old('dien_thoai') ?? '' }}" required name="dien_thoai"
                                 placeholder="......................................................................">
                             Email:
-                            <input name="email" class="input" style="width: 25%;" value="{{old('email') ?? ''}}"
-                                   required
-                                   type="email"
+                            <input name="email" class="input" style="width: 25%;"
+                                value="{{ old('email') ?? '' }}" required type="email"
                                 placeholder="................................................................."><br>
-                            <p style="display: inline;">Trường đào tạo đại học:</p><input class="input"
-                                                                                          required
-                                style="width: 60%;" name="truong_dao_tao" value="{{old('truong_dao_tao') ?? ''}}"
+                            <p style="display: inline;">Trường đào tạo đại học:</p><input class="input" required
+                                style="width: 60%;" name="truong_dao_tao" value="{{ old('truong_dao_tao') ?? '' }}"
                                 placeholder="..........................................................................................................................................">
                             <br>
                             <p style="display: inline;">Tốt nghiệp loại:</p>
@@ -193,15 +190,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <input type="checkbox" name="van_bang[]" value="BSNT"> BSNT
                             <input type="checkbox" name="van_bang[]" value="NCS"> NCS
                             <br>
-                            <p style="display: inline;">Phạm vi hoạt động CCHN:</p> <input class="input" value="{{old('pham_vi_hoat_dong_cchn') ?? ''}}"
-                                style="width: 25%;" name="pham_vi_hoat_dong_cchn"
+                            <p style="display: inline;">Phạm vi hoạt động CCHN:</p> <input class="input"
+                                value="{{ old('pham_vi_hoat_dong_cchn') ?? '' }}" style="width: 25%;"
+                                name="pham_vi_hoat_dong_cchn"
                                 placeholder="......................................................................">
                             Thời gian
                             cấp
-                            CCHN: <input class="input" style="width: 15%;" name="thoi_gian_cap_cchn" value="{{old('thoi_gian_cap_cchn') ?? ''}}"
+                            CCHN: <input class="input" style="width: 15%;" name="thoi_gian_cap_cchn"
+                                value="{{ old('thoi_gian_cap_cchn') ?? '' }}"
                                 placeholder="..................................."><br>
-                            <p style="display: inline;">Các chứng chỉ đào tạo liên quan:</p> <input class="input" value="{{old('chung_chi_lien_quan') ?? ''}}"
-                                name="chung_chi_lien_quan" style="width: 60%;"
+                            <p style="display: inline;">Các chứng chỉ đào tạo liên quan:</p> <input class="input"
+                                value="{{ old('chung_chi_lien_quan') ?? '' }}" name="chung_chi_lien_quan"
+                                style="width: 60%;"
                                 placeholder="..........................................................................................................................."><br>
                             <p style="display: inline;">Tình trạng hôn nhân: </p>
                             <input type="radio" name="hon_nhan" value="Độc thân"> Độc thân
@@ -212,69 +212,72 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <i>(Tính từ
                             thời
                             điểm sau khi tốt nghiệp đại học Y đến nay)</i> <br>
-                        <table class="table table-bordered" style="width: 50%;">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Thời gian</th>
-                                    <th scope="col">Đơn vị công tác</th>
-                                    <th scope="col">Vị trí làm việc</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input name="thoi_gian_lam_viec[]" class="input">
-                                    </td>
-                                    <td><input name="don_vi_cong_tac[]" class="input" style="width: 280px"></td>
-                                    <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]"
-                                            class="input" style="width: 280px"></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 100px; height: 50px; "><input name="thoi_gian_lam_viec[]"
-                                            class="input">
-                                    </td>
-                                    <td style="width: 300px ; height: 50px;"><input name="don_vi_cong_tac[]"
-                                            class="input" style="width: 280px"></td>
-                                    <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]"
-                                            class="input" style="width: 280px"></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 100px; height: 50px; "><input name="thoi_gian_lam_viec[]"
-                                            class="input">
-                                    </td>
-                                    <td style="width: 300px ; height: 50px;"><input name="don_vi_cong_tac[]"
-                                            class="input" style="width: 280px"></td>
-                                    <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]"
-                                            class="input" style="width: 280px"></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 100px; height: 50px; "><input name="thoi_gian_lam_viec[]"
-                                            class="input">
-                                    </td>
-                                    <td style="width: 300px ; height: 50px;"><input name="don_vi_cong_tac[]"
-                                            class="input" style="width: 280px"></td>
-                                    <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]"
-                                            class="input" style="width: 280px"></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 100px; height: 50px; "><input name="thoi_gian_lam_viec[]"
-                                            class="input">
-                                    </td>
-                                    <td style="width: 300px ; height: 50px;"><input name="don_vi_cong_tac[]"
-                                            class="input" style="width: 280px"></td>
-                                    <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]"
-                                            class="input" style="width: 280px"></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 100px; height: 50px; "><input name="thoi_gian_lam_viec[]"
-                                            class="input">
-                                    </td>
-                                    <td style="width: 300px ; height: 50px;"><input name="don_vi_cong_tac[]"
-                                            class="input" style="width: 280px"></td>
-                                    <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]"
-                                            class="input" style="width: 280px"></td>
-                                </tr>
-                            </tbody>
-                        </table> <br>
+                        <div class="table-responsive-md">
+                            <table class="table table-bordered" style="width: 50%;">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Thời gian</th>
+                                        <th scope="col">Đơn vị công tác</th>
+                                        <th scope="col">Vị trí làm việc</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input name="thoi_gian_lam_viec[]" class="input">
+                                        </td>
+                                        <td><input name="don_vi_cong_tac[]" class="input" style="width: 280px"></td>
+                                        <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]"
+                                                class="input" style="width: 280px"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100px; height: 50px; "><input name="thoi_gian_lam_viec[]"
+                                                class="input">
+                                        </td>
+                                        <td style="width: 300px ; height: 50px;"><input name="don_vi_cong_tac[]"
+                                                class="input" style="width: 280px"></td>
+                                        <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]"
+                                                class="input" style="width: 280px"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100px; height: 50px; "><input name="thoi_gian_lam_viec[]"
+                                                class="input">
+                                        </td>
+                                        <td style="width: 300px ; height: 50px;"><input name="don_vi_cong_tac[]"
+                                                class="input" style="width: 280px"></td>
+                                        <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]"
+                                                class="input" style="width: 280px"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100px; height: 50px; "><input name="thoi_gian_lam_viec[]"
+                                                class="input">
+                                        </td>
+                                        <td style="width: 300px ; height: 50px;"><input name="don_vi_cong_tac[]"
+                                                class="input" style="width: 280px"></td>
+                                        <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]"
+                                                class="input" style="width: 280px"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100px; height: 50px; "><input name="thoi_gian_lam_viec[]"
+                                                class="input">
+                                        </td>
+                                        <td style="width: 300px ; height: 50px;"><input name="don_vi_cong_tac[]"
+                                                class="input" style="width: 280px"></td>
+                                        <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]"
+                                                class="input" style="width: 280px"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 100px; height: 50px; "><input name="thoi_gian_lam_viec[]"
+                                                class="input">
+                                        </td>
+                                        <td style="width: 300px ; height: 50px;"><input name="don_vi_cong_tac[]"
+                                                class="input" style="width: 280px"></td>
+                                        <td style="width: 300px ; height: 50px;"><input name="vi_tri_lam_viec[]"
+                                                class="input" style="width: 280px"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <br>
                         <p style="font-weight: 600; display: inline;"> 2.Anh(chị) tự đánh giá trình
                             độ
                             chuyên
@@ -300,7 +303,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         kỹ thuật
                         tuyến <p style="font-weight: 600; display: inline;">Tỉnh</p>)<br> <br>
                         <p style="display: inline;font-weight: 600;">Các kỹ năng đặc biệt khác:</p>
-                        <textarea class="form-control" aria-label="With textarea" style="width: 75%;" name="ky_nang_khac">{{old('chung_chi_lien_quan') ?? ''}}</textarea>
+                        <textarea class="form-control" aria-label="With textarea" style="width: 75%;" name="ky_nang_khac">{{ old('ky_nang_khac') ?? '' }}</textarea>
                         <p style="font-weight: 600; display: inline;"> 3.Anh(chị) có nhu cầu để tiếp
                             tục học
                             các
@@ -360,8 +363,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <i>- Đánh số theo thứ tự ưu tiên (1,2,3)</i> <br>
                         <i>- Một người được ứng tuyển 3 vị trí.</i>
                         <div>
-                            <input type="checkbox" name="ung_tuyen[]"
-                                value="Nội tổng hợp"> Nội
+                            <input type="checkbox" name="ung_tuyen[]" value="Nội tổng hợp"> Nội
                             tổng
                             hợp
                             <input type="checkbox" name="ung_tuyen[]" value="Ngoại tổng hợp"
@@ -423,7 +425,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             nhân
                         </div>
                         <div>
-                            <input type="checkbox" name="ung_tuyen[]" value="Da liễu" >
+                            <input type="checkbox" name="ung_tuyen[]" value="Da liễu">
                             Da liễu
                             <input type="checkbox" name="ung_tuyen[]" value="Tai mũi họng"
                                 style="margin-left: 158px;"> Tai
@@ -450,7 +452,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             hoạch tổng hợp
                         </div>
                         <div>
-                            <input type="checkbox" name="ung_tuyen[]" value="Nội tiết" >
+                            <input type="checkbox" name="ung_tuyen[]" value="Nội tiết">
                             Nội tiết
                             <input type="checkbox" name="ung_tuyen[]" value="Chống nhiễm khuẩn"
                                 style="margin-left: 154px;">
@@ -471,24 +473,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             bệnh
                             viện nào của công ty?</p><br>
                         <div>
-                            <input type="checkbox" name="don_vi_ung_tuyen[]" value="bv rhm ptthtm Thái Thượng Hoàng"> a.BV RHM và PTTHTM Thái Thượng Hoàng
+                            <input type="checkbox" name="don_vi_ung_tuyen[]" value="bv rhm ptthtm Thái Thượng Hoàng">
+                            a.BV RHM và PTTHTM Thái Thượng Hoàng
                             <input type="checkbox" name="don_vi_ung_tuyen[]" value="bv Đa Khoa Đức Thọ"
-                                style="margin-left: 50px;">
+                                style="margin-left: 90px;">
                             e.Bệnh viện Đa khoa TTH Đức Thọ
                         </div>
                         <div>
-                            <input type="checkbox" name="don_vi_ung_tuyen[]"
-                                value="bv Đa khoa TTH Vinh"> b.Bệnh
+                            <input type="checkbox" name="don_vi_ung_tuyen[]" value="bv Đa khoa TTH Vinh"> b.Bệnh
                             viện Đa khoa TTH Vinh
                             <input type="checkbox" name="don_vi_ung_tuyen[]" value="bv Đa Khoa TTH Quảng Bình"
-                                style="margin-left: 136px;">
+                                style="margin-left: 176px;">
                             f.Bệnh viện Đa khoa TTH Quảng Bình
                         </div>
                         <div>
                             <input type="checkbox" name="don_vi_ung_tuyen[]" value="bv Đa Khoa TTH Hưng Đông">
                             c.Bệnh viện Đa khoa TTH Hưng Đông
                             <input type="checkbox" name="don_vi_ung_tuyen[]" value="bv Đa Khoa TTH Quảng Trị"
-                                style="margin-left: 88px;">
+                                style="margin-left: 128px;">
                             h.Bệnh viện Đa khoa TTH Quảng Trị
                         </div>
                         <div>
@@ -521,20 +523,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             Nguồn khác
                         </div> <br>
                         <p style="font-weight: 600; display: inline;"> 8.Điểm yếu?</p><br>
-                        <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="diem_yeu">{{old('diem_yeu') ?? ''}}</textarea> <br> <br>
+                        <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="diem_yeu">{{ old('diem_yeu') ?? '' }}</textarea> <br> <br>
                         <p style="font-weight: 600; display: inline;"> 9.Điểm mạnh?</p><br>
-                        <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="diem_manh">{{old('diem_manh') ?? ''}}</textarea> <br> <br>
+                        <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="diem_manh">{{ old('diem_manh') ?? '' }}</textarea> <br> <br>
                         <p style="font-weight: 600; display: inline;"> 10.Mức lương mong muốn của
                             anh(chị)
                             khi
                             vào làm việc tại công ty?</p><br>
-                        <textarea required style=" width: 80%; height: 100px;" cols="30" rows="10"
-                            name="luong_mong_muon">{{old('luong_mong_muon') ?? ''}}</textarea> <br> <br>
+                        <textarea required style=" width: 80%; height: 100px;" cols="30" rows="10" name="luong_mong_muon">{{ old('luong_mong_muon') ?? '' }}</textarea> <br> <br>
                         <p style="font-weight: 600; display: inline;"> 11.Anh(chị) có kiến nghị, đề
                             xuất
                             hoặc
                             thắc mắc muốn Công ty giải đáp không?</p><br>
-                        <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="de_xuat">{{old('de_xuat') ?? ''}}</textarea>
+                        <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="de_xuat">{{ old('de_xuat') ?? '' }}</textarea>
                     </div>
                 </div>
                 <br>

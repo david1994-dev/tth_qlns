@@ -80,6 +80,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <body class="hold-transition sidebar-mini">
 <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            @if ($errors->count())
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $e)
+                            <li>{!! $e !!}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            @if ($message = session('error'))
+                <div class="alert alert-danger alert-block">
+                    {!! $message !!}
+                </div>
+            @endif
+            @if ($message = session('success'))
+                <div class="alert alert-success alert-block">
+                    {!! $message !!}
+                </div>
+            @endif
+        </div>
+    </div>
     <form action="{{route('sucoykhoa.taoBaoCao')}}" method="post" class=" border border-2 border-success  rounded"
           style="margin: auto;">
         @csrf
