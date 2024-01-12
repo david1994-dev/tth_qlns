@@ -1,5 +1,6 @@
 <?php
 
+use App\Modules\Nhansu\src\Models\ChiNhanh;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,9 +18,10 @@ return new class extends Migration
         Schema::create('chi_nhanh', function (Blueprint $table) {
             $table->id();
             $table->string('ma')->unique()->nullable();
-            $table->string('ten');
-            $table->tinyInteger('trang_thai');
-            $table->unsignedBigInteger('nguoi_cap_nhat_id');
+            $table->string('ten')->unique();
+            $table->string('slug')->unique();
+            $table->tinyInteger('trang_thai')->default(ChiNhanh::TRANGTHAI_DANG_HOAT_DONG);
+            $table->unsignedBigInteger('nguoi_cap_nhat_id')->nullable();
             $table->timestamps();
 
             $table->softDeletes();
@@ -34,3 +36,4 @@ return new class extends Migration
         Schema::dropIfExists('chi_nhanh');
     }
 };
+ 

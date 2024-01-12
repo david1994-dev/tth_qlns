@@ -13,11 +13,11 @@ Route::prefix('nhansu')->middleware('web')->name('nhansu.')->group(function () {
         Route::get('danh-sach-ung-vien', [UngVienController::class, 'danhSach'])->name('danhSachUngVien');
         Route::get('chi-tiet-ung-vien/{id}', [UngVienController::class, 'view'])->name('chiTietUngVien');
         Route::get('/', [NhanVienController::class, 'index'])->name('nhanSu.user.index');
-
+        Route::resource('chi-nhanh', ChiNhanhController::class);
     });
 
     Route::get('khao-sat-ung-vien', [UngVienController::class, 'index']);
-    Route::get('khao-sat-ung-vien/{type}', [UngVienController::class, 'viewKhaoSat'])->name('viewKhaoSat');
+    Route::get('khao-sat-ung-vien/{type}/{chiNhanhSlug}', [UngVienController::class, 'viewKhaoSat'])->name('viewKhaoSat');
     Route::post('khao-sat-ung-vien', [UngVienController::class, 'store'])->name('taoUngVien');
 
 });

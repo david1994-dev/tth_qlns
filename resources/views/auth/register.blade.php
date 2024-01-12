@@ -40,7 +40,18 @@
         </div>
 
         <div class="mt-4">
-            <input type="file" name="avatar">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="chiNhanh">Chi Nhánh</label>
+                        <select name="chi_nhanh_id" class="form-control w-full" id="chiNhanh">
+                            @foreach($chiNhanh as $cn)
+                                <option value="{{$cn->id}}">{{$cn->ten}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+               </div>
+            </div>
         </div>
 
         <div class="flex items-center justify-end mt-4">
