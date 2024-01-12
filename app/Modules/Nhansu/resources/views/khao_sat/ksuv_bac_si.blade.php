@@ -564,6 +564,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <input type="hidden" name="loai_ung_vien"
                 value="{{ \App\Modules\Nhansu\src\Models\UngVien::LOAI_UNG_VIEN_BAC_SI }}">
+            <input type="hidden" name="chi_nhanh_slug"
+                   value="{{ $chiNhanhSlug }}">
         </form>
 
     </div><!-- /.container-fluid -->
