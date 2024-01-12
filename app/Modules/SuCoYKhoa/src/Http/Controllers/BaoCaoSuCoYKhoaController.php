@@ -5,6 +5,7 @@ namespace App\Modules\SuCoYKhoa\src\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Modules\SuCoYKhoa\src\Http\Request\BaoCaoSuCoRequest;
 use App\Modules\SuCoYKhoa\src\Repositories\Interface\BaoCaoSuCoYKhoaRepositoryInterface;
+use App\Http\Requests\PaginationRequest;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -46,5 +47,33 @@ class BaoCaoSuCoYKhoaController extends Controller
 
         return redirect()
             ->back();
+    }
+
+    public function danhSach(PaginationRequest $request)
+    {
+        $paginate['limit']      = $request->limit();
+        $paginate['offset']     = $request->offset();
+        $paginate['order']      = $request->order();
+        $paginate['direction']  = $request->direction();
+        $paginate['baseUrl']    = route('sucoykhoa.danhSachSuCo');
+        $filter = [];
+        $keyword = $request->get('keyword');
+        if (!empty($keyword)) {
+            $filter['query'] = $keyword;
+        }
+
+        $count = $this->baoCaoSuCoYKhoaRepository->countByFilter($filter);
+        $models = $this->baoCaoSuCoYKhoaRepository->getByFilter($filter, $paginate['order'], $paginate['direction'], $paginate['offset'], $paginate['limit']);
+       dd($models);
+        
+        return view(
+            'SuCoYKhoa::quan_ly.danh_sach_bao_cao',
+            [
+                'models'    => $models,
+                'count'         => $count,
+                'paginate'      => $paginate,
+                'keyword'       => $keyword
+            ]
+        );
     }
 }

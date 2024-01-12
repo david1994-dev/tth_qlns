@@ -9,4 +9,5 @@ Route::prefix('sucoykhoa')->middleware('web')->name('sucoykhoa.')->group(functio
 
     Route::get('bao-cao-su-co', [BaoCaoSuCoYKhoaController::class, 'viewBaoCao'])->name('viewBaoCao');
     Route::post('bao-cao-su-co', [BaoCaoSuCoYKhoaController::class, 'create'])->name('taoBaoCao');
+    Route::get('danh-sach-su-co', [BaoCaoSuCoYKhoaController::class, 'danhSach'])->name('danhSachSuCo');
 });
