@@ -5,35 +5,41 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Modules\ModuleRouterServiceProvider;
+use App\Modules\Nhansu\src\Repositories\Interface\ChiNhanhRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\NhanVienRepositoryInterface;
 use App\Providers\RouteServiceProvider;
 use App\Repositories\Interface\UserRepositoryInterface;
 use App\Repositories\Interface\UserRoleRepositoryInterface;
 use App\Services\FileService;
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\DB;
 
 class RegisteredUserController extends Controller
 {
-    private NhanVienRepositoryInterface $employeeRepository;
+    private NhanVienRepositoryInterface $nhanVienRepository;
     private UserRepositoryInterface $userRepository;
     private UserRoleRepositoryInterface $userRoleRepository;
     private FileService $fileService;
+    private ChiNhanhRepositoryInterface $chiNhanhRepository;
 
     public function __construct(
-        NhanVienRepositoryInterface $employeeRepository,
+        NhanVienRepositoryInterface $nhanVienRepository,
         UserRepositoryInterface     $userRepository,
         FileService                 $fileService,
-        UserRoleRepositoryInterface $userRoleRepository
+        UserRoleRepositoryInterface $userRoleRepository,
+        ChiNhanhRepositoryInterface $chiNhanhRepository,
     ) {
-        $this->employeeRepository = $employeeRepository;
+        $this->nhanVienRepository = $nhanVienRepository;
         $this->userRepository = $userRepository;
         $this->fileService = $fileService;
         $this->userRoleRepository = $userRoleRepository;
+        $this->chiNhanhRepository = $chiNhanhRepository;
     }
 
     /**
@@ -41,7 +47,10 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $chiNhanh = $this->chiNhanhRepository->all();
+        return view('auth.register', [
+            'chiNhanh' => $chiNhanh
+        ]);
     }
 
     /**
@@ -57,11 +66,27 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $chiNhanhId = $request->get('chi_nhanh_id');
+
+        DB::beginTransaction();
+        try {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+
+
+            $nhanVien = $this->nhanVienRepository->create([
+                'chi_nhanh_id' => $chiNhanhId,
+                'user_id' => $user->id
+            ]);
+
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
 
         //create employee
 //        $this->employeeRepository->create([]);
@@ -72,6 +97,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(ModuleRouterServiceProvider::NHANSU_INDEX);
+        return redirect()->route('nhansu.danhSachUngVien');
     }
 }
