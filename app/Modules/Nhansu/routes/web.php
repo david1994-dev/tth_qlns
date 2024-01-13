@@ -3,6 +3,8 @@ use Illuminate\Support\Facades\Route;
 use App\Modules\Nhansu\src\Http\Controllers\NhanVienController;
 use App\Modules\Nhansu\src\Http\Controllers\ChiNhanhController;
 use \App\Modules\Nhansu\src\Http\Controllers\UngVienController;
+use App\Modules\Nhansu\src\Http\Controllers\PhongBanController;
+
 
 Route::prefix('nhansu')->middleware('web')->name('nhansu.')->group(function () {
     Route::middleware(['auth'])->group(function () {
@@ -14,6 +16,8 @@ Route::prefix('nhansu')->middleware('web')->name('nhansu.')->group(function () {
         Route::get('chi-tiet-ung-vien/{id}', [UngVienController::class, 'view'])->name('chiTietUngVien');
         Route::get('/', [NhanVienController::class, 'index'])->name('nhanSu.user.index');
         Route::resource('chi-nhanh', ChiNhanhController::class);
+
+        Route::resource('khoa-phong-ban', PhongBanController::class);
     });
 
     Route::get('khao-sat-ung-vien', [UngVienController::class, 'index']);
