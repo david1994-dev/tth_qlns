@@ -2,6 +2,7 @@
 
 namespace App\Modules\Nhansu\src\Http\Controllers;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PaginationRequest;
 use App\Modules\Nhansu\src\Repositories\Interface\ChiNhanhRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\PhongBanRepositoryInterface;
 use Illuminate\Http\Request;
@@ -9,7 +10,6 @@ use Illuminate\Support\Str;
 use App\Modules\Nhansu\src\Models\ChiNhanh;
 class PhongBanController extends Controller
 {
-
     private PhongBanRepositoryInterface $phongBanRepository;
     private ChiNhanhRepositoryInterface $chiNhanhRepository;
 
@@ -24,9 +24,32 @@ class PhongBanController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(PaginationRequest $request)
     {
-        //
+        $paginate['limit']      = $request->limit();
+        $paginate['offset']     = $request->offset();
+        $paginate['order']      = $request->order();
+        $paginate['direction']  = $request->direction();
+        $paginate['baseUrl']    = route('nhansu.khoa-phong-ban.index');
+        $keyword = $request->get('keyword');
+
+        $filter = [];
+        if (!empty($keyword)) {
+            $filter['query'] = $keyword;
+        }
+
+        $count = $this->phongBanRepository->countByFilter($filter);
+        $models = $this->phongBanRepository->getByFilter($filter, $paginate['order'], $paginate['direction'], $paginate['offset'], $paginate['limit']);
+
+        return view(
+            'Nhansu::phong_ban.index',
+            [
+                'models'    => $models,
+                'count'         => $count,
+                'paginate'      => $paginate,
+                'keyword'       => $keyword
+            ]
+        );
     }
 
     /**

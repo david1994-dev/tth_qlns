@@ -72,10 +72,6 @@ class ModuleServiceProvider extends ServiceProvider
             $this->loadViewsFrom($modulePath . "resources/views", $moduleName);
         }
 
-        if (File::exists($modulePath . "resources/views")) {
-            $this->loadViewsFrom($modulePath . "resources/views", $moduleName);
-        }
-
         if (File::exists($modulePath . "helpers")) {
             $helper_dir = File::allFiles($modulePath . "helpers");
             foreach ($helper_dir as $key => $value) {

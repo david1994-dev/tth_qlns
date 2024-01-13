@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Modules\ModuleRouterServiceProvider;
 use App\Modules\Nhansu\src\Repositories\Interface\ChiNhanhRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\NhanVienRepositoryInterface;
 use App\Providers\RouteServiceProvider;
@@ -19,7 +18,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
-
+use App\Modules\Nhansu\src\Repositories\Interface\PhongBanRepositoryInterface;
 class RegisteredUserController extends Controller
 {
     private NhanVienRepositoryInterface $nhanVienRepository;

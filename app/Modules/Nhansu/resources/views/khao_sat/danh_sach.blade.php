@@ -1,23 +1,4 @@
 @extends('adminlte.Layout.app')
-
-@section('metadata')
-@stop
-
-@section('styles')
-@stop
-
-@section('scripts')
-@stop
-
-@section('title')
-@stop
-
-@section('header')
-@stop
-
-@section('breadcrumb')
-@stop
-
 @section('content')
     <div class="box box-primary">
         <div class="box-header with-border">

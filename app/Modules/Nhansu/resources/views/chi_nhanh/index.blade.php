@@ -1,23 +1,4 @@
 @extends('adminlte.Layout.app')
-
-@section('metadata')
-@stop
-
-@section('styles')
-@stop
-
-@section('scripts')
-@stop
-
-@section('title')
-@stop
-
-@section('header')
-@stop
-
-@section('breadcrumb')
-@stop
-
 @section('content')
     <div class="box box-primary">
         <div class="box-header with-border">
@@ -60,22 +41,16 @@
                         <td>{{$model->ma}}</td>
                         <td>{{$model->ten}}</td>
                         <td>{{$model->slug}}</td>
-                        <td>{{$model->dien_thoai}}</td>
-                        <td>{{$model->email}}</td>
-                        <td>{{\Illuminate\Support\Arr::get(\App\Modules\Nhansu\src\Models\UngVien::LOAI_UNG_VIEN_TEXT, $model->loai_ung_vien, '')}} </td>
-                        <td>
-                            {{$model->vi_tri_ung_tuyen}}
-                        </td>
-                        <td>
-                            {{\Illuminate\Support\Arr::get($chiTiet, 'truong_dao_tao', '')}}
-                        </td>
-                        <td>
-                            {{$model->created_at->format('d/m/Y')}}
-                        </td>
+                        <td>{{$model->created_at->format('d/m/Y h:i:s')}}</td>
                         <td class="text-center">
-                            <a target="_blank" href="{{route('nhansu.chiTietUngVien', $model->id)}}">
+                            <a class="delete-button" data-delete-url="{{route('nhansu.chi-nhanh.destroy', $model->id)}}">
+                                <button class="btn btn-danger">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </a>
+                            <a target="_blank" href="{{route('nhansu.chi-nhanh.edit', $model->id)}}">
                                 <button class="btn btn-primary">
-                                    <i class="bi bi-eye-fill"></i>
+                                    <i class="bi bi-pencil-square"></i>
                                 </button>
                             </a>
                         </td>

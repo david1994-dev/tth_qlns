@@ -5,29 +5,6 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-8 offset-md-2">
-            @if ($errors->count())
-                <div class="alert alert-danger">
-                    <ul class="mb-0">
-                        @foreach ($errors->all() as $e)
-                            <li>{!! $e !!}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-            @if ($message = session('error'))
-                <div class="alert alert-danger alert-block">
-                    {!! $message !!}
-                </div>
-            @endif
-            @if ($message = session('success'))
-                <div class="alert alert-success alert-block">
-                    {!! $message !!}
-                </div>
-            @endif
-        </div>
-    </div>
-    <div class="row">
         <div class="col-md-12">
             <div class="card card-primary">
                 <div class="card-header">

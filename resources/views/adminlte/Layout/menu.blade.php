@@ -55,6 +55,12 @@
                 <p>Chi nhánh</p>
               </a>
             </li>
+              <li class="nav-item">
+                  <a href="{{route('nhansu.khoa-phong-ban.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Phòng ban</p>
+                  </a>
+              </li>
           </ul>
         </li>
       </ul>
