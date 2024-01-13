@@ -23,13 +23,13 @@
                 </div>
             </div>
         </div>
-        <div class="box-body" style=" overflow-x: scroll; ">
+        <div class="box-body card" style=" overflow-x: scroll; ">
             <table class="table table-bordered">
                 <thead>
                 <tr class="table table-striped">
                     <th>Mã Chi Nhánh</th>
                     <th>Tên Chi Nhánh</th>
-                    <th>Slug</th>
+                   
                     <th>Ngày Tạo</th>
                     <th class="text-center">Action</th>
                 </tr>
@@ -40,7 +40,7 @@
                     <tr>
                         <td>{{$model->ma}}</td>
                         <td>{{$model->ten}}</td>
-                        <td>{{$model->slug}}</td>
+                    
                         <td>{{$model->created_at->format('d/m/Y h:i:s')}}</td>
                         <td class="text-center">
                             <a class="delete-button" data-delete-url="{{route('nhansu.chi-nhanh.destroy', $model->id)}}">

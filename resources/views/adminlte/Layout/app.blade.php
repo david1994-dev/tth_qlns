@@ -24,11 +24,9 @@
     <!-------------------------------- End: Left Navigation ----------------------------------->
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper" style="min-height: 1302.26px;">
+    <div class="content-wrapper"  >
       <!-- Content Header (Page header) -->
-      <section class="content-header">
-
-      </section>
+ 
 
       <!-- Main content -->
       <div class="content">
