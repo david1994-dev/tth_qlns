@@ -4,16 +4,22 @@ namespace App\Modules\Nhansu\src\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PaginationRequest;
 use App\Modules\Nhansu\src\Repositories\Interface\ChiNhanhRepositoryInterface;
+use App\Modules\Nhansu\src\Repositories\Interface\PhongBanRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class ChiNhanhController extends Controller
 {
 
     private ChiNhanhRepositoryInterface $chinhanhRepository;
-    public function __construct(ChiNhanhRepositoryInterface $chinhanhRepository)
-    {
+    private PhongBanRepositoryInterface $phongBanRepository;
+    public function __construct(
+        ChiNhanhRepositoryInterface $chinhanhRepository,
+        PhongBanRepositoryInterface $phongBanRepository
+    ) {
         $this->chinhanhRepository = $chinhanhRepository;
+        $this->phongBanRepository = $phongBanRepository;
     }
 
     /**
@@ -130,9 +136,18 @@ class ChiNhanhController extends Controller
                 ->back();
         }
 
-        $this->chinhanhRepository->delete( $model );
+        DB::beginTransaction();
+        try {
+            $this->chinhanhRepository->delete( $model );
+            $this->phongBanRepository->deleteByFilter(['chi_nhanh_id' => $model->id]);
 
-        session()->flash('error', 'Bạn đã xóa chi nhánh thành công');
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+
+        session()->flash('success', 'Bạn đã xóa chi nhánh thành công');
 
         return redirect()
             ->back();

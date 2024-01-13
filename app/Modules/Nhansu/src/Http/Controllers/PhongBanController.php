@@ -40,6 +40,7 @@ class PhongBanController extends Controller
 
         $count = $this->phongBanRepository->countByFilter($filter);
         $models = $this->phongBanRepository->getByFilter($filter, $paginate['order'], $paginate['direction'], $paginate['offset'], $paginate['limit']);
+        $models = $this->phongBanRepository->load($models, ['chiNhanh']);
 
         return view(
             'Nhansu::phong_ban.index',
@@ -83,8 +84,7 @@ class PhongBanController extends Controller
 
         session()->flash('success', 'Bạn đã tạo khoa - phòng - ban thành công');
 
-        return redirect()
-            ->back();
+        return redirect()->route('nhansu.khoa-phong-ban.index');
     }
 
     /**
@@ -100,7 +100,14 @@ class PhongBanController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $model = $this->phongBanRepository->findById($id);
+        if (empty($model)) abort(404);
+        $list_chinhanh = $this->chiNhanhRepository->all();
+
+        return view('Nhansu::phong_ban.edit', [
+            'model' => $model,
+            'list_chinhanh' => $this->chiNhanhRepository->pluck($list_chinhanh, 'ten', 'id')
+        ]);
     }
 
     /**
@@ -108,7 +115,25 @@ class PhongBanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = auth()->user();
+        $model = $this->phongBanRepository->findById($id);
+        if (empty($model)) abort(404);
+
+        $input = $request->only(['ma', 'ten','chi_nhanh_id','dinh_bien']);
+        $input['dinh_bien'] =  $input['dinh_bien'] ?? 0;
+        $input['nguoi_cap_nhat_id'] = $user->id;
+
+        $isSuccess = $this->phongBanRepository->update($model, $input);
+
+        if (!$isSuccess) {
+            return redirect()
+                ->back()
+                ->withErrors('Cập nhật khoa - phòng - ban thất bại');
+        }
+
+        session()->flash('success', 'Bạn đã cập nhật khoa - phòng - ban thành công');
+
+        return redirect()->route('nhansu.khoa-phong-ban.index');
     }
 
     /**
@@ -116,6 +141,18 @@ class PhongBanController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $model = $this->phongBanRepository->findById($id);
+        if( empty( $model ) ) {
+            session()->flash('error', 'Phòng ban không tồn tại');
+            return redirect()
+                ->back();
+        }
+
+        $this->phongBanRepository->delete( $model );
+
+        session()->flash('success', 'Bạn đã xóa phòng ban thành công');
+
+        return redirect()
+            ->back();
     }
 }

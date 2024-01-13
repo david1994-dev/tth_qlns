@@ -420,4 +420,13 @@ class BaseRepository implements BaseRepositoryInterface
 
         return $query->delete();
     }
+
+    public function load($collections, $relationShip)
+    {
+        if (empty($collections)) {
+            return $collections;
+        }
+
+        return $collections->load($relationShip);
+    }
 }

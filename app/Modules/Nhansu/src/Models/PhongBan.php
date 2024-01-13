@@ -27,4 +27,8 @@ class PhongBan extends Base
         'deleted_at' => 'datetime:Y-m-d H:i:s'
     ];
 
+    public function chiNhanh()
+    {
+        return $this->belongsTo(ChiNhanh::class, 'chi_nhanh_id', 'id');
+    }
 }
