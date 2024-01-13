@@ -47,7 +47,7 @@ class PhongBanController extends Controller
     {
         $user = auth()->user();
         $input = $request->only(['ma', 'ten','chi_nhanh_id','dinh_bien']);
-        $input['dinh_bien'] =  !empty($input['dinh_bien']) ?? 0;
+        $input['dinh_bien'] =  $input['dinh_bien'] ?? 0;
         $input['nguoi_cap_nhat_id'] = $user->id;
 
         $phongBan = $this->phongBanRepository->create($input);
