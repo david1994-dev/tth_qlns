@@ -35,6 +35,16 @@ class UngVienController extends Controller
 
     public function viewKhaoSat($type, $chiNhanhSlug)
     {
+
+        if($chiNhanhSlug == 'benh-vien-yhct-nguyen-phuc') {
+            return match ($type) {
+                'bac-si' => view('Nhansu::khao_sat.nguyen_phuc.ksuv_bac_si', ['chiNhanhSlug' => $chiNhanhSlug]),
+                'duoc-si' => view('Nhansu::khao_sat.nguyen_phuc.ksuv_duoc_si', ['chiNhanhSlug' => $chiNhanhSlug]),
+                'van-phong' => view('Nhansu::khao_sat.nguyen_phuc.ksuv_van_phong', ['chiNhanhSlug' => $chiNhanhSlug]),
+                default => '',
+            };
+        }
+
         return match ($type) {
             'bac-si' => view('Nhansu::khao_sat.ksuv_bac_si', ['chiNhanhSlug' => $chiNhanhSlug]),
             'duoc-si' => view('Nhansu::khao_sat.ksuv_duoc_si', ['chiNhanhSlug' => $chiNhanhSlug]),
@@ -163,6 +173,18 @@ class UngVienController extends Controller
         if ($model->chi_nhanh_id != $nhanVien->chi_nhanh_id) {
             abort(403);
         }
+        
+        $chiNhanh = $this->chiNhanhRepository->findById($nhanVien->chi_nhanh_id);
+        if (!$chiNhanh) {
+            return redirect()
+                ->back()
+                ->withErrors('Chi Nhánh không tồn tại');
+        }
+
+        $prefix = '';
+        if($chiNhanh->slug == 'benh-vien-yhct-nguyen-phuc') {
+           $prefix = 'nguyen_phuc.';
+        }
 
         $blade = match ($model->loai_ung_vien) {
             UngVien::LOAI_UNG_VIEN_BAC_SI => 'chi_tiet_uv_bac_si',
@@ -170,6 +192,10 @@ class UngVienController extends Controller
             UngVien::LOAI_UNG_VIEN_VAN_PHONG => 'chi_tiet_uv_van_phong',
             default => '',
         };
+
+        if ($prefix) {
+            $blade = $prefix.$blade;
+        }
 
         return view(
             'Nhansu::khao_sat.chi_tiet_ung_vien.'.$blade,
