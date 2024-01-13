@@ -31,6 +31,11 @@ class ModuleServiceProvider extends ServiceProvider
         );
 
         $this->app->singleton(
+            \App\Modules\Nhansu\src\Repositories\Interface\PhongBanRepositoryInterface::class,
+            \App\Modules\Nhansu\src\Repositories\Eloquent\PhongBanRepository::class
+        );
+
+        $this->app->singleton(
             BaoCaoSuCoYKhoaRepositoryInterface::class,
             BaoCaoSuCoYKhoaRepository::class
         );

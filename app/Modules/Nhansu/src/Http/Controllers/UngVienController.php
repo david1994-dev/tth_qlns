@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PaginationRequest;
 use App\Modules\Nhansu\src\Http\Requests\NhanVien\UngVienRequest;
 use App\Modules\Nhansu\src\Models\UngVien;
+use App\Modules\Nhansu\src\Repositories\Interface\ChiNhanhRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\UngVienRepositoryInterface;
 use App\Services\FileService;
 use Carbon\Carbon;
@@ -15,13 +16,16 @@ use Illuminate\Support\Arr;
 class UngVienController extends Controller
 {
     private UngVienRepositoryInterface $ungVienRepository;
+    private ChiNhanhRepositoryInterface $chiNhanhRepository;
     private FileService $fileService;
     public function __construct(
         UngVienRepositoryInterface $ungVienRepository,
-        FileService $fileService
+        FileService $fileService,
+        ChiNhanhRepositoryInterface $chiNhanhRepository
     ) {
         $this->ungVienRepository = $ungVienRepository;
         $this->fileService = $fileService;
+        $this->chiNhanhRepository = $chiNhanhRepository;
     }
 
     public function index()
@@ -29,12 +33,12 @@ class UngVienController extends Controller
         return view('Nhansu::khao_sat.index');
     }
 
-    public function viewKhaoSat($type)
+    public function viewKhaoSat($type, $chiNhanhSlug)
     {
         return match ($type) {
-            'bac-si' => view('Nhansu::khao_sat.ksuv_bac_si'),
-            'duoc-si' => view('Nhansu::khao_sat.ksuv_duoc_si'),
-            'van-phong' => view('Nhansu::khao_sat.ksuv_van_phong'),
+            'bac-si' => view('Nhansu::khao_sat.ksuv_bac_si', ['chiNhanhSlug' => $chiNhanhSlug]),
+            'duoc-si' => view('Nhansu::khao_sat.ksuv_duoc_si', ['chiNhanhSlug' => $chiNhanhSlug]),
+            'van-phong' => view('Nhansu::khao_sat.ksuv_van_phong', ['chiNhanhSlug' => $chiNhanhSlug]),
             default => '',
         };
     }
@@ -46,10 +50,18 @@ class UngVienController extends Controller
             'ngay_sinh', 'loai_ung_vien', 'thoi_gian_lam_viec',
             'don_vi_cong_tac', 'vi_tri_lam_viec', '_token'
         ];
-        
+
+        $chiNhanh = $this->chiNhanhRepository->findBySlug($request->get('chi_nhanh_slug', ''));
+        if (empty($chiNhanh)) {
+            return redirect()
+                ->back()
+                ->withErrors('Tạo ứng viên thất bại!. Chi nhánh không tồn tại!');
+        }
+
         $input = $request->only($mainField);
         $input['ngay_sinh'] = Carbon::parse($input['ngay_sinh']);
         $input['ngay_ky'] = now()->clone();
+        $input['chi_nhanh_id'] = $chiNhanh->id;
 
         $workingProcess = [];
         $workTimes = $request->get('thoi_gian_lam_viec', []);
@@ -104,7 +116,17 @@ class UngVienController extends Controller
         $paginate['direction']  = $request->direction();
         $paginate['baseUrl']    = route('nhansu.danhSachUngVien');
 
-        $filter = [];
+        $user = auth()->user();
+        $nhanVien = $user->nhanVien;
+
+        if (!$nhanVien) {
+            return redirect()
+                ->back()
+                ->withErrors('Nhân viên không tồn tại');
+        }
+
+        $filter['chi_nhanh_id'] = $nhanVien->chi_nhanh_id;
+
         $keyword = $request->get('keyword');
         if (!empty($keyword)) {
             $filter['query'] = $keyword;
@@ -126,9 +148,21 @@ class UngVienController extends Controller
 
     public function view($id)
     {
+        $user = auth()->user();
+        $nhanVien = $user->nhanVien;
+        if (!$nhanVien) {
+            return redirect()
+                ->back()
+                ->withErrors('Nhân viên không tồn tại');
+        }
+
         $model = $this->ungVienRepository->findById($id);
-        
+
         if (!$model) abort(404);
+
+        if ($model->chi_nhanh_id != $nhanVien->chi_nhanh_id) {
+            abort(403);
+        }
 
         $blade = match ($model->loai_ung_vien) {
             UngVien::LOAI_UNG_VIEN_BAC_SI => 'chi_tiet_uv_bac_si',

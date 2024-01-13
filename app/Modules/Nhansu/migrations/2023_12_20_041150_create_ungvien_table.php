@@ -18,6 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string('mauv')->nullable()->index();
             $table->string('image')->nullable();
+            $table->unsignedBigInteger('chi_nhanh_id')->index()->nullable();
             $table->string('ho_ten');
             $table->date('ngay_sinh');
             $table->string('dien_thoai')->nullable();

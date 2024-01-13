@@ -44,7 +44,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="chiNhanh">Chi Nhánh</label>
-                        <select class="form-control w-full" id="chiNhanh">
+                        <select name="chi_nhanh_id" class="form-control w-full" id="chiNhanh">
                             @foreach($chiNhanh as $cn)
                                 <option value="{{$cn->id}}">{{$cn->ten}}</option>
                             @endforeach
