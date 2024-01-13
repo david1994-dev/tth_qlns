@@ -338,60 +338,46 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <i>- Đánh dấu 3 vị trí theo thứ tự ưu tiên </i>
                             <div class="row">
                                 <div class="col-4">
-                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên kinh doanh"> Nhân viên
-                                    kinh
-                                    doanh <br>
-                                    <input type="checkbox" name="ung_tuyen[]" value="NV Thiết kế"> NV
-                                    Thiết kế <br>
-                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên truyền thông"> Nhân
-                                    viên truyền thông <br>
-                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên hành chính"> Nhân viên
-                                    hành
-                                    chính <br>
-                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên CSKH">
-                                    Nhân viên CSKH <br>
-                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên quản trị web"> Nhân
-                                    viên quản trị web <br>
-                                    <input type="checkbox" name="ung_tuyen[]" value="NV Tư vấn PTTM"> NV
-                                    Tư vấn PTTM <br>
+                                    <input type="checkbox" name="ung_tuyen[]" value="Chuyên viên KHTH"> Chuyên viên KHTH<br>
+
+                                    <input type="checkbox" name="ung_tuyen[]" value="Chuyên viên hành chính"> Chuyên viên hành chính <br>
+
+                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên an ninh"> Nhân viên an ninh <br>
+
+                                    <input type="checkbox" name="ung_tuyen[]" value="Chuyên viên MKT"> Chuyên viên MKT <br>
+                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên nhà bếp">
+                                    Nhân viên nhà bếp <br>
+
+                                    <input type="checkbox" name="ung_tuyen[]" value="Hành chính khoa"> Hành chính khoa <br>
                                 </div>
                                 <div class="col-4">
-                                    <input type="checkbox" name="ung_tuyen[]" value="CV Nhân sự">
-                                    CV Nhân
-                                    sự <br>
-                                    <input type="checkbox" name="ung_tuyen[]" value="NV Điện nước"> NV
-                                    Điện nước <br>
-                                    <input type="checkbox" name="ung_tuyen[]" value="NV Thu ngân - Lễ tân"> NV Thu
-                                    ngân -
-                                    Lễ
-                                    tân <br>
-                                    <input type="checkbox" name="ung_tuyen[]" value="NV Văn thư">
-                                    NV Văn
-                                    thư <br>
-                                    <input type="checkbox" name="ung_tuyen[]" value="NV Kế hoạch"> NV Kế
-                                    hoạch <br>
-                                    <input type="checkbox" name="ung_tuyen[]" value="NV Kế toán"> NV Kế
-                                    toán <br>
-                                    <input type="checkbox" name="ung_tuyen[]" value="NV Lái xe">
-                                    NV Lái
-                                    xe
+                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên kế toán">
+                                    Nhân viên kế toán <br>
+
+                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên văn thư"> Nhân viên văn thư <br>
+
+                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên công vụ"> Nhân viên công vụ <br>
+
+                                    <input type="checkbox" name="ung_tuyen[]" value="Chuyên viên CSKH">
+                                    Chuyên viên CSKH <br>
+
+                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên pha chế"> Nhân viên pha chế <br>
+
+                                    <input type="checkbox" name="ung_tuyen[]" value="Khác"> Khác <br>
                                 </div>
                                 <div class="col-4">
-                                    <input type="checkbox" name="ung_tuyen[]" value="NV Pháp chế"> NV
-                                    Pháp chế <br>
-                                    <input type="checkbox" name="ung_tuyen[]" value="NV Bảo vệ">
-                                    NV Bảo
-                                    vệ <br>
-                                    <input type="checkbox" name="ung_tuyen[]" value="NV Quản lý dự án">
-                                    NV Quản lý dự án <br>
-                                    <input type="checkbox" name="ung_tuyen[]" value="NV Thiết kế phần">
-                                    NV Thiết kế phần
-                                    mềm <br>
-                                    <input type="checkbox" name="ung_tuyen[]" value="NV IT"> NV
-                                    IT <br>
-                                    <input type="checkbox" name="ung_tuyen[]" value="NV Đối ngoại và quan hệ QT"> NV
-                                    Đối ngoại và quan hệ QT <br>
-                                    <input type="checkbox" name="ung_tuyen[]" value="Khác"> Khác
+                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên Thu ngân"> Nhân viên Thu ngân <br>
+
+                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên kỹ thuật">
+                                    Nhân viên kỹ thuật <br>
+
+                                    <input type="checkbox" name="ung_tuyen[]" value="Chuyên viên nhân lực">
+                                    Chuyên viên nhân lực <br>
+
+                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên kinh doanh"> Nhân viên kinh doanh <br>
+
+                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên siêu thị">
+                                    Nhân viên siêu thị <br>
                                 </div>
                             </div> <br>
 
@@ -434,7 +420,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 value="{{ \App\Modules\Nhansu\src\Models\UngVien::LOAI_UNG_VIEN_VAN_PHONG }}">
 
             <input type="hidden" name="chi_nhanh_slug"
-                   value="{{ $chiNhanhSlug }}">
+                   value="benh-vien-yhct-nguyen-phuc">
         </form>
         </div>
     </div><!-- /.container-fluid -->
