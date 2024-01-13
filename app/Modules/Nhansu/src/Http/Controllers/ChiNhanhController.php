@@ -2,6 +2,7 @@
 
 namespace App\Modules\Nhansu\src\Http\Controllers;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PaginationRequest;
 use App\Modules\Nhansu\src\Repositories\Interface\ChiNhanhRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -18,9 +19,32 @@ class ChiNhanhController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(PaginationRequest $request)
     {
-        //
+        $paginate['limit']      = $request->limit();
+        $paginate['offset']     = $request->offset();
+        $paginate['order']      = $request->order();
+        $paginate['direction']  = $request->direction();
+        $paginate['baseUrl']    = route('nhansu.chi-nhanh.index');
+        $keyword = $request->get('keyword');
+
+        $filter = [];
+        if (!empty($keyword)) {
+            $filter['query'] = $keyword;
+        }
+
+        $count = $this->chinhanhRepository->countByFilter($filter);
+        $models = $this->chinhanhRepository->getByFilter($filter, $paginate['order'], $paginate['direction'], $paginate['offset'], $paginate['limit']);
+
+        return view(
+            'Nhansu::chi_nhanh.index',
+            [
+                'models'    => $models,
+                'count'         => $count,
+                'paginate'      => $paginate,
+                'keyword'       => $keyword
+            ]
+        );
     }
 
     /**
