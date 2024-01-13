@@ -403,41 +403,61 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 trí nào tại Công ty (*)</p><br>
                             <i>- Đánh số theo thứ tự ưu tiên (1,2,3)</i> <br>
                             <i>- Một người được ứng tuyển 3 vị trí.</i>
-
-
-{{--                            include--}}
-                            @include('Nhansu::khao_sat.components.ung_tuyen_nguyen_phuc')
-
-                            <p style="font-weight: 600; display: inline;"> 6.Anh(chị) mong muốn công tác
-                                tại
-                                bệnh
-                                viện nào của công ty?</p><br>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <input type="checkbox" name="don_vi_ung_tuyen[]"
-                                        value="bv rhm ptthtm Thái Thượng Hoàng">
-                                    BV RHM và PTTHTM Thái Thượng Hoàng <br>
-                                    <input type="checkbox" name="don_vi_ung_tuyen[]" value="bv Đa Khoa Đức Thọ">
-                                    Bệnh viện Đa khoa TTH Đức Thọ <br>
-                                    <input type="checkbox" name="don_vi_ung_tuyen[]" value="bv Đa khoa TTH Vinh">
-                                    Bệnh
-                                    viện Đa khoa TTH Vinh <br>
-                                    <input type="checkbox" name="don_vi_ung_tuyen[]" value="bv Đa Khoa TTH Hà Tĩnh">
-                                    Bệnh viện Đa khoa TTH Hà Tĩnh
+                                <div class="col-3">
+                                    <input type="checkbox" name="ung_tuyen[]" value="Khám bệnh cấp cứu"
+                                        max="3"> Khám bệnh cấp cứu <br>
+                                    <input type="checkbox" name="ung_tuyen[]" value="Trung tâm oxi cao áp"
+                                        max="3">
+                                    Trung tâm oxi cao áp<br>
+                                    <input type="checkbox" name="ung_tuyen[]" value="PHCN Tổng hợp"
+                                        max="3">
+                                    PHCN Tổng hợp<br>
+                                    <input type="checkbox" name="ung_tuyen[]" value="XN" max="3">
+                                    XN <br>
+                                    <input type="checkbox" name="ung_tuyen[]" value="Phòng KHTH" max="3">
+                                    Phòng KHTH
                                 </div>
-                                <div class="col-md-6">
-                                    <input type="checkbox" name="don_vi_ung_tuyen[]"
-                                        value="bv Đa Khoa TTH Hưng Đông">
-                                    Bệnh viện Đa khoa TTH Hưng Đông <br>
-                                    <input type="checkbox" name="don_vi_ung_tuyen[]"
-                                        value="bv Đa Khoa TTH Quảng Trị">
-                                    Bệnh viện Đa khoa TTH Quảng Trị <br>
-                                    <input type="checkbox" name="don_vi_ung_tuyen[]"
-                                        value="bv Đa Khoa TTH Quảng Bình">
-                                    Bệnh viện Đa khoa TTH Quảng Bình
+                                <div class="col-3">
+                                    <input type="checkbox" name="ung_tuyen[]" value="YHCT" max="3">
+                                    YHCT<br>
+                                    <input type="checkbox" name="ung_tuyen[]" value="PHCN sau đột quỵ"
+                                        max="3">
+                                    PHCN sau đột quỵ <br>
+                                    <input type="checkbox" name="ung_tuyen[]" value="PHCN Nhi" max="3">
+                                    PHCN Nhi <br>
+                                    <input type="checkbox" name="ung_tuyen[]" value="CĐHA-TDCN" max="3">
+                                    CĐHA-TDCN <br>
+                                    <input type="checkbox" name="ung_tuyen[]" value="Phòng QLCL" max="3">
+                                    Phòng QLCL
+                                </div>
+                                <div class="col-3">
+                                    <input type="checkbox" name="ung_tuyen[]" value="Lão Khoa" max="3">
+                                    Lão Khoa <br>
+                                    <input type="checkbox" name="ung_tuyen[]" value="PHCN sau chấn thương"
+                                        max="3"> PHCN sau chấn thương<br>
+                                    <input type="checkbox" name="ung_tuyen[]" value="PHCN ung thư"
+                                        max="3">
+                                    PHCN ung thư <br>
+                                    <input type="checkbox" name="ung_tuyen[]" value="Dược" max="3">
+                                    Dược <br>
+                                    <input type="checkbox" name="ung_tuyen[]" value="Phòng điều dưỡng" max="3">
+                                    Phòng điều dưỡng <br>
+                                </div>
+                                <div class="col-3">
+                                    <input type="checkbox" name="ung_tuyen[]" value="Cơ xương khớp" max="3">
+                                    Cơ xương khớp <br>
+                                    <input type="checkbox" name="ung_tuyen[]" value="PHCN hô hấp tim mạch"
+                                        max="3">
+                                        PHCN hô hấp tim mạch<br>
+                                    <input type="checkbox" name="ung_tuyen[]" value="KSNK"
+                                        max="3">
+                                    KSNK <br>
+                                    <input type="checkbox" name="ung_tuyen[]" value="Khác"
+                                        max="3"> Khác 
                                 </div>
                             </div> <br>
-                            <p style="font-weight: 600; display: inline;"> 7.Anh(chị) biết thông tin
+                            <p style="font-weight: 600; display: inline;"> 6.Anh(chị) biết thông tin
                                 tuyển dụng
                                 của
                                 Công ty qua kênh nào?</p><br>
@@ -460,16 +480,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <input type="checkbox" name="nguon_tuyen_dung[]" value="Nguồn khác"> Nguồn khác
                                 </div>
                             </div> <br>
-                            <p style="font-weight: 600; display: inline;"> 8.Điểm yếu?</p><br>
+                            <p style="font-weight: 600; display: inline;"> 7.Điểm yếu?</p><br>
                             <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="diem_yeu">{{ old('diem_yeu') ?? '' }}</textarea> <br> <br>
-                            <p style="font-weight: 600; display: inline;"> 9.Điểm mạnh?</p><br>
+                            <p style="font-weight: 600; display: inline;"> 8.Điểm mạnh?</p><br>
                             <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="diem_manh">{{ old('diem_manh') ?? '' }}</textarea> <br> <br>
-                            <p style="font-weight: 600; display: inline;"> 10.Mức lương mong muốn của
+                            <p style="font-weight: 600; display: inline;"> 9.Mức lương mong muốn của
                                 anh(chị)
                                 khi
                                 vào làm việc tại công ty?</p><br>
                             <textarea required style=" width: 80%; height: 100px;" cols="30" rows="10" name="luong_mong_muon">{{ old('luong_mong_muon') ?? '' }}</textarea> <br> <br>
-                            <p style="font-weight: 600; display: inline;"> 11.Anh(chị) có kiến nghị, đề
+                            <p style="font-weight: 600; display: inline;"> 10.Anh(chị) có kiến nghị, đề
                                 xuất
                                 hoặc
                                 thắc mắc muốn Công ty giải đáp không?</p><br>
@@ -500,7 +520,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <input type="hidden" name="loai_ung_vien"
                 value="{{ \App\Modules\Nhansu\src\Models\UngVien::LOAI_UNG_VIEN_BAC_SI }}">
             <input type="hidden" name="chi_nhanh_slug"
-                   value="{{ $chiNhanhSlug }}">
+                   value="benh-vien-yhct-nguyen-phuc">
         </form>
         </div>
     </div><!-- /.container-fluid -->

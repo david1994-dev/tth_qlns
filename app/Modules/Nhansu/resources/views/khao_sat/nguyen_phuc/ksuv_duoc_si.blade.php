@@ -330,94 +330,59 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 trí.</i>
                                 <div class="row">
                                     <div class="col-3">
-                                        <input type="checkbox" name="ung_tuyen[]" value="Nội khoa"
-                                            max="3">Nội
-                                        khoa <br>
-                                        <input type="checkbox" name="ung_tuyen[]" value="Sản phụ khoa"
+                                        <input type="checkbox" name="ung_tuyen[]" value="Khám bệnh cấp cứu"
+                                            max="3"> Khám bệnh cấp cứu <br>
+                                        <input type="checkbox" name="ung_tuyen[]" value="Trung tâm oxi cao áp"
                                             max="3">
-                                        Sản
-                                        phụ khoa <br>
-                                        <input type="checkbox" name="ung_tuyen[]" value="Xét nghiệm" max="3">
-                                        Xét
-                                        nghiệm <br>
-                                        <input type="checkbox" name="ung_tuyen[]" value="Răng hàm mặt"
+                                        Trung tâm oxi cao áp<br>
+                                        <input type="checkbox" name="ung_tuyen[]" value="PHCN Tổng hợp"
                                             max="3">
-                                        Răng
-                                        hàm mặt <br>
-                                        <input type="checkbox" name="ung_tuyen[]" value="Kiểm soát chất lượng BV"
-                                            max="3">
-                                        Kiểm soát chất lượng BV
-                                    </div>
-                                    <div class="col-3">
-                                        <input type="checkbox" name="ung_tuyen[]" value="Ngoại khoa" max="3">
-                                        Ngoại
-                                        khoa <br>
-                                        <input type="checkbox" name="ung_tuyen[]" value="Nhi khoa" max="3">
-                                        Nhi khoa <br>
-                                        <input type="checkbox" name="ung_tuyen[]"
-                                            value="Chẩn đoán hình ảnh- thăm dò CN" max="3"> Chẩn đoán hình ảnh-
-                                        thăm dò CN <br>
-                                        <input type="checkbox" name="ung_tuyen[]" value="Tai mũi họng"
-                                            max="3">
-                                        Tai
-                                        mũi họng
-                                    </div>
-                                    <div class="col-3">
-                                        <input type="checkbox" name="ung_tuyen[]" value="Mắt" max="3">
-                                        Mắt <br>
-                                        <input type="checkbox" name="ung_tuyen[]" value="U bước-Y học hạt nhân"
-                                            max="3"> U bước-Y học hạt nhân <br>
-                                        <input type="checkbox" name="ung_tuyen[]" value="dinh dưỡng" max="3">
-                                        dinh
-                                        dưỡng <br>
-                                        <input type="checkbox" name="ung_tuyen[]"
-                                            value="Chuyên viên kế hoạch tổng hợp" max="3"> Chuyên viên kế hoạch
-                                        tổng hợp <br>
+                                        PHCN Tổng hợp<br>
+                                        <input type="checkbox" name="ung_tuyen[]" value="XN" max="3">
+                                        XN <br>
+                                        <input type="checkbox" name="ung_tuyen[]" value="Phòng KHTH" max="3">
+                                        Phòng KHTH
                                     </div>
                                     <div class="col-3">
                                         <input type="checkbox" name="ung_tuyen[]" value="YHCT" max="3">
-                                        YHCT <br>
-                                        <input type="checkbox" name="ung_tuyen[]" value="Hồi sức cấp cứu"
+                                        YHCT<br>
+                                        <input type="checkbox" name="ung_tuyen[]" value="PHCN sau đột quỵ"
                                             max="3">
-                                        Hồi sức cấp cứu <br>
-                                        <input type="checkbox" name="ung_tuyen[]" value="Thẩm mỹ - da liễu"
+                                        PHCN sau đột quỵ <br>
+                                        <input type="checkbox" name="ung_tuyen[]" value="PHCN Nhi" max="3">
+                                        PHCN Nhi <br>
+                                        <input type="checkbox" name="ung_tuyen[]" value="CĐHA-TDCN" max="3">
+                                        CĐHA-TDCN <br>
+                                        <input type="checkbox" name="ung_tuyen[]" value="Phòng QLCL" max="3">
+                                        Phòng QLCL
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="checkbox" name="ung_tuyen[]" value="Lão Khoa" max="3">
+                                        Lão Khoa <br>
+                                        <input type="checkbox" name="ung_tuyen[]" value="PHCN sau chấn thương"
+                                            max="3"> PHCN sau chấn thương<br>
+                                        <input type="checkbox" name="ung_tuyen[]" value="PHCN ung thư"
                                             max="3">
-                                        Thẩm mỹ - da liễu <br>
-                                        <input type="checkbox" name="ung_tuyen[]" value="Gây mê - Phẫu thuật"
-                                            max="3"> Gây mê - Phẫu thuật
+                                        PHCN ung thư <br>
+                                        <input type="checkbox" name="ung_tuyen[]" value="Dược" max="3">
+                                        Dược <br>
+                                        <input type="checkbox" name="ung_tuyen[]" value="Phòng điều dưỡng" max="3">
+                                        Phòng điều dưỡng <br>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="checkbox" name="ung_tuyen[]" value="Cơ xương khớp" max="3">
+                                        Cơ xương khớp <br>
+                                        <input type="checkbox" name="ung_tuyen[]" value="PHCN hô hấp tim mạch"
+                                            max="3">
+                                            PHCN hô hấp tim mạch<br>
+                                        <input type="checkbox" name="ung_tuyen[]" value="KSNK"
+                                            max="3">
+                                        KSNK <br>
+                                        <input type="checkbox" name="ung_tuyen[]" value="Khác"
+                                            max="3"> Khác 
                                     </div>
                                 </div> <br>
-                            <p style="font-weight: 600; display: inline;"> 4.Anh(chị) mong muốn công tác tại
-                                bệnh
-                                viện nào của công ty?</p><br>
-                            <div class="row">
-                                <div class="col-6">
-                                    <input type="checkbox" name="don_vi_ung_tuyen[]"
-                                        value="BV RHM và PTTHTM Thái Thượng Hoàng"> BV RHM và PTTHTM Thái
-                                    Thượng Hoàng <br>
-                                    <input type="checkbox" name="don_vi_ung_tuyen[]"
-                                        value="Bệnh viện Đa khoa TTH Đức Thọ">
-                                    Bệnh viện Đa khoa TTH Đức Thọ <br>
-                                    <input type="checkbox" name="don_vi_ung_tuyen[]"
-                                        value="Bệnh viện Đa khoa TTH Vinh">
-                                    Bệnh viện Đa khoa TTH Vinh <br>
-                                    <input type="checkbox" name="don_vi_ung_tuyen[]"
-                                        value="Bệnh viện Đa khoa TTH Quảng Bình">
-                                    Bệnh viện Đa khoa TTH Quảng Bình <br>
-                                </div>
-                                <div class="col-6">
-                                    <input type="checkbox" name="don_vi_ung_tuyen[]"
-                                        value="Bệnh viện Đa khoa TTH Hưng Đông">
-                                    Bệnh viện Đa khoa TTH Hưng Đông <br>
-                                    <input type="checkbox" name="don_vi_ung_tuyen[]"
-                                        value="Bệnh viện Đa khoa TTH Quảng Trị">
-                                    Bệnh viện Đa khoa TTH Quảng Trị <br>
-                                    <input type="checkbox" name="don_vi_ung_tuyen[]"
-                                        value="Bệnh viện Đa khoa TTH Hà Tĩnh">
-                                    Bệnh viện Đa khoa TTH Hà Tĩnh <br>
-                                </div>
-                            </div> <br>
-                            <p style="font-weight: 600; display: inline;"> 5.Anh(chị) biết thông tin tuyển dụng
+                            <p style="font-weight: 600; display: inline;"> 4.Anh(chị) biết thông tin tuyển dụng
                                 của
                                 Công ty qua kênh nào?</p><br>
                             <div class="row">
@@ -439,15 +404,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <input type="checkbox" name="nguon_tuyen_dung[]" value="Nguồn khác"> Nguồn khác
                                 </div>
                             </div> <br>
-                            <p style="font-weight: 600; display: inline;"> 6.Điểm yếu?</p><br>
+                            <p style="font-weight: 600; display: inline;"> 5.Điểm yếu?</p><br>
                             <textarea name="diem_yeu" style=" width: 80%;" cols="30" rows="10">{{ old('diem_yeu') ?? '' }}</textarea> <br> <br>
-                            <p style="font-weight: 600; display: inline;"> 7.Điểm mạnh?</p><br>
+                            <p style="font-weight: 600; display: inline;"> 6.Điểm mạnh?</p><br>
                             <textarea name="diem_manh" style=" width: 80%;" cols="30" rows="10">{{ old('diem_manh') ?? '' }}</textarea> <br> <br>
-                            <p style="font-weight: 600; display: inline;"> 8.Mức lương mong muốn của anh(chị)
+                            <p style="font-weight: 600; display: inline;"> 7.Mức lương mong muốn của anh(chị)
                                 khi
                                 vào làm việc tại công ty?</p><br>
                             <textarea required name="luong_mong_muon" style="width: 80%;" cols="30" rows="10" value="">{{ old('luong_mong_muon') ?? '' }}</textarea> <br> <br>
-                            <p style="font-weight: 600; display: inline;"> 9.Anh(chị) có kiến nghị, đề xuất hoặc
+                            <p style="font-weight: 600; display: inline;"> 8.Anh(chị) có kiến nghị, đề xuất hoặc
                                 thắc mắc muốn Công ty giải đáp không?</p><br>
                             <textarea name="de_xuat" style=" width: 80%;" cols="30" rows="10" name="content" value="">{{ old('de_xuat') ?? '' }}</textarea>
                         </div>
@@ -457,7 +422,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <input type="hidden" name="loai_ung_vien"
                         value="{{ \App\Modules\Nhansu\src\Models\UngVien::LOAI_UNG_VIEN_DUOC_SI }}">
 
-                    <input type="hidden" name="chi_nhanh_slug" value="{{ $chiNhanhSlug }}">
+                    <input type="hidden" name="chi_nhanh_slug" value="benh-vien-yhct-nguyen-phuc">
 
                     <div class="row">
                         <div class="col-8">
