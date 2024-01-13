@@ -2,6 +2,7 @@
 
 namespace App\Modules\Nhansu\src\Http\Controllers;
 use App\Http\Controllers\Controller;
+use App\Modules\Nhansu\src\Repositories\Interface\ChiNhanhRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\PhongBanRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -10,9 +11,14 @@ class PhongBanController extends Controller
 {
 
     private PhongBanRepositoryInterface $phongBanRepository;
-    public function __construct(PhongBanRepositoryInterface $phongBanRepository)
-    {
+    private ChiNhanhRepositoryInterface $chiNhanhRepository;
+
+    public function __construct(
+        PhongBanRepositoryInterface $phongBanRepository,
+        ChiNhanhRepositoryInterface $chiNhanhRepository
+    ) {
         $this->phongBanRepository = $phongBanRepository;
+        $this->chiNhanhRepository = $chiNhanhRepository;
     }
 
     /**
@@ -28,8 +34,10 @@ class PhongBanController extends Controller
      */
     public function create()
     {
-        $list_chinhanh = ChiNhanh::get()->pluck('ten','id');
-        return view('Nhansu::phong_ban.create',['list_chinhanh'=>$list_chinhanh]);
+        $list_chinhanh = $this->chiNhanhRepository->all();
+        return view('Nhansu::phong_ban.create',[
+            'list_chinhanh' => $this->chiNhanhRepository->pluck($list_chinhanh, 'ten', 'id')
+        ]);
     }
 
     /**
@@ -39,8 +47,7 @@ class PhongBanController extends Controller
     {
         $user = auth()->user();
         $input = $request->only(['ma', 'ten','chi_nhanh_id','dinh_bien']);
-        $input['chi_nhanh_id'] =  $input['chi_nhanh_id'];
-        $input['dinh_bien'] =  !empty($input['dinh_bien'])?$input['dinh_bien']:0;
+        $input['dinh_bien'] =  !empty($input['dinh_bien']) ?? 0;
         $input['nguoi_cap_nhat_id'] = $user->id;
 
         $phongBan = $this->phongBanRepository->create($input);
