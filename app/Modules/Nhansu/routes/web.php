@@ -18,6 +18,7 @@ Route::prefix('nhansu')->middleware('web')->name('nhansu.')->group(function () {
         Route::resource('chi-nhanh', ChiNhanhController::class);
 
         Route::resource('khoa-phong-ban', PhongBanController::class);
+        Route::get('khoa-phong-ban/sodotochuc/{id}', [PhongBanController::class, 'sodotochuc'])->name('khoaphongban.sodotochuc');
     });
 
     Route::get('khao-sat-ung-vien', [UngVienController::class, 'index']);

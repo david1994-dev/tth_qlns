@@ -155,4 +155,13 @@ class PhongBanController extends Controller
         return redirect()
             ->back();
     }
+
+    public function sodotochuc($id)
+    {
+        $model = $this->phongBanRepository->findById($id);
+
+        return view('Nhansu::phong_ban.sodotochuc',compact('model'));
+    }
+
+
 }
