@@ -346,21 +346,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <input type="checkbox" name="nguon_tuyen_dung[]" value="Người thân giới thiệu">
                                     <label for="Người thân giới thiệu">Người thân giới thiệu</label> <br>
 
-                                    <input type="checkbox" name="nguon_tuyen_dung[]" value="Facebook"> 
+                                    <input type="checkbox" name="nguon_tuyen_dung[]" value="Facebook">
                                     <label for="Facebook">Facebook</label>
                                 </div>
                                 <div class="col-5">
                                     <input type="checkbox" name="nguon_tuyen_dung[]" value="Web/fanpage Công ty">
                                     <label for="Web/fanpage Công ty">Web/fanpage Công ty</label> <br>
 
-                                    <input type="checkbox" name="nguon_tuyen_dung[]" value="Vietnamwork"> 
+                                    <input type="checkbox" name="nguon_tuyen_dung[]" value="Vietnamwork">
                                     <label for="Vietnamwork">Vietnamwork</label>
                                 </div>
                                 <div class="col-3">
                                     <input type="checkbox" name="nguon_tuyen_dung[]" value="Báo chí/ Truyền hình">
                                     <label for="Báo chí/Truyền hình ">Báo chí/Truyền hình </label><br>
-                                    
-                                    <input type="checkbox" name="nguon_tuyen_dung[]" value="Nguồn khác"> 
+
+                                    <input class="input" style=" width: 50%;" type="text" name="nguon_tuyen_dung_khac"
+                                           value="{{ Arr::get($chiTietUngVien, 'nguon_tuyen_dung_khac', '') }}">
                                     <label for="Nguồn khác">Nguồn khác</label>
                                 </div>
                             </div> <br>
