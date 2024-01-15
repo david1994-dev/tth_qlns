@@ -5,20 +5,25 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PaginationRequest;
 use App\Modules\Nhansu\src\Repositories\Interface\ChiNhanhRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\PhongBanRepositoryInterface;
+use App\Modules\Nhansu\src\Repositories\Interface\SoDoToChucRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Modules\Nhansu\src\Models\ChiNhanh;
 class PhongBanController extends Controller
 {
     private PhongBanRepositoryInterface $phongBanRepository;
     private ChiNhanhRepositoryInterface $chiNhanhRepository;
+    private SoDoToChucRepositoryInterface $soDoToChucRepository;
 
     public function __construct(
         PhongBanRepositoryInterface $phongBanRepository,
-        ChiNhanhRepositoryInterface $chiNhanhRepository
+        ChiNhanhRepositoryInterface $chiNhanhRepository,
+        SoDoToChucRepositoryInterface $soDoToChucRepository
     ) {
         $this->phongBanRepository = $phongBanRepository;
         $this->chiNhanhRepository = $chiNhanhRepository;
+        $this->soDoToChucRepository = $soDoToChucRepository;
     }
 
     /**
@@ -158,10 +163,89 @@ class PhongBanController extends Controller
 
     public function sodotochuc($id)
     {
-        $model = $this->phongBanRepository->findById($id);
+        $phongBan = $this->phongBanRepository->findById($id);
+        $soDoToChuc = $this->soDoToChucRepository->all('id', 'asc');
 
-        return view('Nhansu::phong_ban.sodotochuc',compact('model'));
+        return view('Nhansu::phong_ban.sodotochuc', [
+            'phongBan' => $phongBan,
+            'soDoToChuc' => $soDoToChuc,
+        ]);
     }
 
+    public function taoSoDoToChuc(Request $request)
+    {
+        $user = auth()->user();
+        $input = $request->only(['phong_ban_id', 'chi_nhanh_id', 'ma_vi_tri']);
+        $input['parent_id'] = $request->get('parent_id', 0);
+        $input['nguoi_cap_nhat_id'] = $user->id;
 
+        $sodo = $this->soDoToChucRepository->create($input);
+        if (empty($sodo)) {
+            session()->flash('error', 'Tạo sơ đồ thất bại!');
+            return redirect()
+                ->back();
+        }
+
+        session()->flash('success', 'Bạn đã tạo sơ đồ thành công');
+
+        return redirect()
+            ->back();
+    }
+
+    public function editSoDoToChuc(Request $request, $id, $phongBanId)
+    {
+        $phongBan = $this->phongBanRepository->findById($phongBanId);
+        $soDoToChuc = $this->soDoToChucRepository->all('id', 'asc');
+        $model = $this->soDoToChucRepository->findById($id);
+        return view('Nhansu::phong_ban.sodotochuc', [
+            'model' => $model,
+            'phongBan' => $phongBan,
+            'soDoToChuc' => $soDoToChuc,
+        ]);
+    }
+
+    public function updateSoDoToChuc(Request $request)
+    {
+        $user = auth()->user();
+        $id = $request->get('so_do_to_chuc_id');
+        $model = $this->soDoToChucRepository->findById($id);
+        if (!$model) abort(404);
+
+        $input = $request->only(['ma_vi_tri']);
+        $input['parent_id'] = $request->get('parent_id', 0);
+        $input['nguoi_cap_nhat_id'] = $user->id;
+
+        $isSuccess = $this->soDoToChucRepository->update($model, $input);
+        if (!$isSuccess) {
+            session()->flash('error', 'Cập nhật sơ đồ thất bại!');
+            return redirect()
+                ->back();
+        }
+
+        session()->flash('success', 'Bạn đã cập nhật sơ đồ thành công');
+
+        return redirect()
+            ->back();
+    }
+
+    public function deleteSoDoToChuc(Request $request, $id)
+    {
+        $model = $this->soDoToChucRepository->findById($id);
+        if (!$model) abort(404);
+
+        DB::beginTransaction();
+        try {
+            $this->soDoToChucRepository->delete($model);
+            $this->soDoToChucRepository->deleteChild($model);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+
+        session()->flash('success', 'Bạn đã xóa sơ đồ thành công');
+
+        return redirect()
+            ->back();
+    }
 }

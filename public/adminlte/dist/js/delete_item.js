@@ -4,7 +4,6 @@ $(function () {
 
             var self = $(this),
                 url = self.attr('data-delete-url');
-
             $.ajax({
                 url: url,
                 method: 'DELETE',
@@ -14,10 +13,10 @@ $(function () {
                 error: function (xhr, error) {
                     console.log(error);
                     self.loading = false;
-                    location.reload();
+                    // location.reload();
                 },
                 success: function (response) {
-                    location.reload();
+                    // location.reload();
                 }
             });
         }

@@ -392,7 +392,7 @@ API.txt for details.
             d.setFullYear(floorInBase(d.getFullYear(), tickSize));
         }
 
-        // reset smaller components
+        // reset smaller includes
 
         if (step >= timeUnitSize.millisecond) {
             if (step >= timeUnitSize.second) {
