@@ -334,7 +334,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 
 			/*
    	The internal state object is used to store data about the current 'state' of slider.
-   	This includes values such as the `value`, `enabled`, etc...
+   	This components values such as the `value`, `enabled`, etc...
    */
 			this._state = {
 				value: null,
@@ -575,7 +575,7 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 				sliderTooltipMax.setAttribute('role', 'presentation');
 				createAndAppendTooltipSubElements(sliderTooltipMax);
 
-				/* Append includes to sliderElem */
+				/* Append components to sliderElem */
 				this.sliderElem.appendChild(sliderTrack);
 				this.sliderElem.appendChild(sliderTooltip);
 				this.sliderElem.appendChild(sliderTooltipMin);

@@ -2,38 +2,43 @@
 @section('content')
     <div class="box box-primary">
         <div class="box-header with-border">
-            <p>Cấu hình sơ đồ tổ chức cho Khoa/ phòng: <b>{{ $phongBan->ten }}</b>  - <b>{{ $phongBan->chiNhanh->ten }}</b></p>
+            <p>Cấu hình sơ đồ tổ chức cho Khoa/ phòng: <b>{{ $phongBan->ten }}</b> -
+                <b>{{ $phongBan->chiNhanh->ten }}</b></p>
 
         </div>
         <div class="box-body card">
             <div class="row">
                 <div class="col-md-5">
-                    <form method="POST" action="{{!isset($model) ? route('nhansu.khoaphongban.sodotochuc.tao') : route('nhansu.khoaphongban.sodotochuc.update', $model->id)}}">
+                    <form method="POST"
+                          action="{{!isset($model) ? route('nhansu.khoaphongban.sodotochuc.tao') : route('nhansu.khoaphongban.sodotochuc.update', $model->id)}}">
                         @csrf
-                        <input type="hidden" value="{{$phongBan->id}}" name="phong_ban_id" class="form-control" >
-                        <input type="hidden" value="{{$phongBan->chi_nhanh_id}}" name="chi_nhanh_id" class="form-control" >
+                        <input type="hidden" value="{{$phongBan->id}}" name="phong_ban_id" class="form-control">
+                        <input type="hidden" value="{{$phongBan->chi_nhanh_id}}" name="chi_nhanh_id"
+                               class="form-control">
                         @if(isset($model))
-                            <input type="hidden" value="{{$model->id}}" name="so_do_to_chuc_id" class="form-control" >
+                            <input type="hidden" value="{{$model->id}}" name="so_do_to_chuc_id" class="form-control">
                         @endif
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label>Thuộc cấp dưới của</label>
-                            <select name="parent_id" class="form-control">
-                                <option value="0">------</option>
-                                @foreach($soDoToChuc as $viTri)
-                                    <option @if(isset($model) && $model->parent_id == $viTri->id) selected  @endif value="{{$viTri->id}}">{{$viTri->ma_vi_tri}}</option>
-                                @endforeach
-                            </select>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Thuộc cấp dưới của</label>
+                                <select name="parent_id" class="form-control">
+                                    <option value="0">------</option>
+                                    @foreach($soDoToChuc as $viTri)
+                                        <option @if(isset($model) && $model->parent_id == $viTri->id) selected
+                                                @endif value="{{$viTri->id}}">{{$viTri->ma_vi_tri}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Mã Vị trí</label>
+                                <input type="text" value="{{isset($model) ? $model->ma_vi_tri : old('ma_vi_tri')}}"
+                                       name="ma_vi_tri" class="form-control" required>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Mã Vị trí</label>
-                            <input type="text" value="{{isset($model) ? $model->ma_vi_tri : old('ma_vi_tri')}}" name="ma_vi_tri" class="form-control" required>
-                        </div>
-                    </div>
 
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Xác nhận</button>
-                    </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Xác nhận</button>
+                        </div>
                     </form>
                 </div>
                 <div class="col-md-7">
@@ -50,10 +55,16 @@
                                         return $value->parent_id == $menu->id;
                                     });
                                 @endphp
-                                <li><div>{{$menu->ma_vi_tri}} <a href="{{route('nhansu.khoaphongban.sodotochuc.edit', [$menu->id, $menu->phong_ban_id])}}" class="btn btn-info btn-sm" >sửa</a>  <a href="{{route('nhansu.khoaphongban.sodotochuc.delete', $menu->id)}}" class="btn btn-danger btn-sm" >xóa</a></div></li>
-                                    @if(count($children))
-                                        @include('Nhansu::includes.sodotochuc', ['children' => $children, 'soDoToChuc' => $soDoToChuc])
-                                    @endif
+                                <li>
+                                    <div>{{$menu->ma_vi_tri}} <a
+                                            href="{{route('nhansu.khoaphongban.sodotochuc.edit', [$menu->id, $menu->phong_ban_id])}}"
+                                            class="btn btn-info btn-sm">sửa</a> <a
+                                            href="{{route('nhansu.khoaphongban.sodotochuc.delete', $menu->id)}}"
+                                            class="btn btn-danger btn-sm">xóa</a></div>
+                                </li>
+                                @if(count($children))
+                                    @include('Nhansu::components.sodotochuc', ['children' => $children, 'soDoToChuc' => $soDoToChuc])
+                                @endif
                             @endforeach
                         </ol>
                     </div>

@@ -6954,7 +6954,7 @@ __webpack_require__(561);
   } else {}
 })(void 0, function (CryptoJS) {
   /**
-   * Cipher core includes.
+   * Cipher core components.
    */
   CryptoJS.lib.Cipher || function (undefined) {
     // Shortcuts
@@ -7869,7 +7869,7 @@ __webpack_require__(561);
   /*globals window, global, require*/
 
   /**
-   * CryptoJS core includes.
+   * CryptoJS core components.
    */
   var CryptoJS = CryptoJS || function (Math, undefined) {
     var crypto; // Native crypto from window (Browser)
@@ -19584,12 +19584,12 @@ var PNGImage = /*#__PURE__*/function () {
 
       if (this.image.transparency.grayscale != null) {
         // Use Color Key Masking (spec section 4.8.5)
-        // An array with N elements, where N is two times the number of color includes.
+        // An array with N elements, where N is two times the number of color components.
         var val = this.image.transparency.grayscale;
         this.obj.data['Mask'] = [val, val];
       } else if (this.image.transparency.rgb) {
         // Use Color Key Masking (spec section 4.8.5)
-        // An array with N elements, where N is two times the number of color includes.
+        // An array with N elements, where N is two times the number of color components.
         var rgb = this.image.transparency.rgb;
         var mask = [];
 
@@ -34994,7 +34994,7 @@ function build_bl_tree(s) {
 
   /* Build the bit length tree: */
   build_tree(s, s.bl_desc);
-  /* opt_len now includes the length of the tree representations, except
+  /* opt_len now components the length of the tree representations, except
    * the lengths of the bit lengths codes and the 5+5+4 bits for the counts.
    */
 
@@ -35942,20 +35942,20 @@ var toIndexedObject = __webpack_require__(5656);
 var toAbsoluteIndex = __webpack_require__(1400);
 var lengthOfArrayLike = __webpack_require__(6244);
 
-// `Array.prototype.{ indexOf, includes }` methods implementation
+// `Array.prototype.{ indexOf, components }` methods implementation
 var createMethod = function (IS_INCLUDES) {
   return function ($this, el, fromIndex) {
     var O = toIndexedObject($this);
     var length = lengthOfArrayLike(O);
     var index = toAbsoluteIndex(fromIndex, length);
     var value;
-    // Array#includes uses SameValueZero equality algorithm
+    // Array#components uses SameValueZero equality algorithm
     // eslint-disable-next-line no-self-compare -- NaN check
     if (IS_INCLUDES && el != el) while (length > index) {
       value = O[index++];
       // eslint-disable-next-line no-self-compare -- NaN check
       if (value != value) return true;
-    // Array#indexOf ignores holes, Array#includes - not
+    // Array#indexOf ignores holes, Array#components - not
     } else for (;length > index; index++) {
       if ((IS_INCLUDES || index in O) && O[index] === el) return IS_INCLUDES || index || 0;
     } return !IS_INCLUDES && -1;
@@ -35963,7 +35963,7 @@ var createMethod = function (IS_INCLUDES) {
 };
 
 module.exports = {
-  // `Array.prototype.includes` method
+  // `Array.prototype.components` method
   // https://tc39.es/ecma262/#sec-array.prototype.includes
   includes: createMethod(true),
   // `Array.prototype.indexOf` method
@@ -39295,7 +39295,7 @@ var anObject = __webpack_require__(9670);
 
 var concat = uncurryThis([].concat);
 
-// all object keys, includes non-enumerable and symbols
+// all object keys, components non-enumerable and symbols
 module.exports = getBuiltIn('Reflect', 'ownKeys') || function ownKeys(it) {
   var keys = getOwnPropertyNamesModule.f(anObject(it));
   var getOwnPropertySymbols = getOwnPropertySymbolsModule.f;
@@ -40023,7 +40023,7 @@ if (!set || !clear) {
     defer = function (id) {
       Dispatch.now(runner(id));
     };
-  // Browsers with MessageChannel, includes WebWorkers
+  // Browsers with MessageChannel, components WebWorkers
   // except iOS - https://github.com/zloirock/core-js/issues/624
   } else if (MessageChannel && !IS_IOS) {
     channel = new MessageChannel();
@@ -40965,7 +40965,7 @@ var $ = __webpack_require__(2109);
 var $includes = (__webpack_require__(1318).includes);
 var addToUnscopables = __webpack_require__(1223);
 
-// `Array.prototype.includes` method
+// `Array.prototype.components` method
 // https://tc39.es/ecma262/#sec-array.prototype.includes
 $({ target: 'Array', proto: true }, {
   includes: function includes(el /* , fromIndex = 0 */) {
@@ -42682,7 +42682,7 @@ var correctIsRegExpLogic = __webpack_require__(4964);
 
 var stringIndexOf = uncurryThis(''.indexOf);
 
-// `String.prototype.includes` method
+// `String.prototype.components` method
 // https://tc39.es/ecma262/#sec-string.prototype.includes
 $({ target: 'String', proto: true, forced: !correctIsRegExpLogic('includes') }, {
   includes: function includes(searchString /* , position = 0 */) {
@@ -43941,7 +43941,7 @@ var $includes = (__webpack_require__(1318).includes);
 var aTypedArray = ArrayBufferViewCore.aTypedArray;
 var exportTypedArrayMethod = ArrayBufferViewCore.exportTypedArrayMethod;
 
-// `%TypedArray%.prototype.includes` method
+// `%TypedArray%.prototype.components` method
 // https://tc39.es/ecma262/#sec-%typedarray%.prototype.includes
 exportTypedArrayMethod('includes', function includes(searchElement /* , fromIndex */) {
   return $includes(aTypedArray(this), searchElement, arguments.length > 1 ? arguments[1] : undefined);
@@ -56749,8 +56749,8 @@ var maxp = new r.Struct({
   maxSizeOfInstructions: r.uint16,
   // Maximum byte count for glyph instructions
   maxComponentElements: r.uint16,
-  // Maximum number of includes referenced at “top level” for any composite glyph
-  maxComponentDepth: r.uint16 // Maximum levels of recursion; 1 for simple includes
+  // Maximum number of components referenced at “top level” for any composite glyph
+  maxComponentDepth: r.uint16 // Maximum levels of recursion; 1 for simple components
 
 });
 /**
@@ -58819,7 +58819,7 @@ var ImageTable = new r.Struct({
     return t.parent.parent.maxp.numGlyphs + 1;
   })
 }); // This is the Apple sbix table, used by the "Apple Color Emoji" font.
-// It includes several image tables with images for each bitmap glyph
+// It components several image tables with images for each bitmap glyph
 // of several different sizes.
 
 var sbix = new r.Struct({
@@ -64098,7 +64098,7 @@ function decompose(glyphs, i, font) {
   var t = T_BASE + s % T_COUNT;
   s = s / T_COUNT | 0;
   var l = L_BASE + s / V_COUNT | 0;
-  var v = V_BASE + s % V_COUNT; // Don't decompose if all of the includes are not available
+  var v = V_BASE + s % V_COUNT; // Don't decompose if all of the components are not available
 
   if (!font.hasGlyphForCodePoint(l) || !font.hasGlyphForCodePoint(v) || t !== T_BASE && !font.hasGlyphForCodePoint(t)) {
     return i;
@@ -65859,9 +65859,9 @@ var GSUBProcessor = /*#__PURE__*/function (_OTProcessor) {
             //   GPOS will fail to correctly position the mark ligature on top of the
             //   LAM,LAM,HEH ligature. See https://bugzilla.gnome.org/show_bug.cgi?id=676343
             //
-            // - If a ligature is formed of includes that some of which are also ligatures
-            //   themselves, and those ligature includes had marks attached to *their*
-            //   includes, we have to attach the marks to the new ligature component
+            // - If a ligature is formed of components that some of which are also ligatures
+            //   themselves, and those ligature components had marks attached to *their*
+            //   components, we have to attach the marks to the new ligature component
             //   positions!  Now *that*'s tricky!  And these marks may be following the
             //   last component of the whole sequence, so we should loop forward looking
             //   for them and update them.
@@ -65885,12 +65885,12 @@ var GSUBProcessor = /*#__PURE__*/function (_OTProcessor) {
             var lastNumComps = _curGlyph.codePoints.length;
             var curComps = lastNumComps;
             var idx = this.glyphIterator.index + 1; // Set ligatureID and ligatureComponent on glyphs that were skipped in the matched sequence.
-            // This allows GPOS to attach marks to the correct ligature includes.
+            // This allows GPOS to attach marks to the correct ligature components.
 
             for (var _iterator62 = _createForOfIteratorHelperLoose(matched), _step62; !(_step62 = _iterator62()).done;) {
               var matchIndex = _step62.value;
 
-              // Don't assign new ligature includes for mark ligatures (see above)
+              // Don't assign new ligature components for mark ligatures (see above)
               if (isMarkLigature) {
                 idx = matchIndex;
               } else {
@@ -65906,7 +65906,7 @@ var GSUBProcessor = /*#__PURE__*/function (_OTProcessor) {
               lastNumComps = this.glyphs[idx].codePoints.length;
               curComps += lastNumComps;
               idx++; // skip base glyph
-            } // Adjust ligature includes for any marks following
+            } // Adjust ligature components for any marks following
 
 
             if (lastLigID && !isMarkLigature) {
@@ -66730,7 +66730,7 @@ var Path = /*#__PURE__*/function () {
   }
   /**
    * Gets the "control box" of a path.
-   * This is like the bounding box, but it includes all points including
+   * This is like the bounding box, but it components all points including
    * control points of bezier segments and is much faster to compute than
    * the real bounding box.
    * @type {BBox}
@@ -67317,7 +67317,7 @@ var TTFGlyph = /*#__PURE__*/function (_Glyph) {
 
     return val;
   } // Decodes the glyph data into points for simple glyphs,
-  // or includes for composite glyphs
+  // or components for composite glyphs
   ;
 
   _proto34._decode = function _decode() {
@@ -69211,7 +69211,7 @@ var TTFSubset = /*#__PURE__*/function (_Subset) {
     var stream = this.font._getTableStream('glyf');
 
     stream.pos += curOffset;
-    var buffer = stream.readBuffer(nextOffset - curOffset); // if it is a compound glyph, include its includes
+    var buffer = stream.readBuffer(nextOffset - curOffset); // if it is a compound glyph, include its components
 
     if (glyf && glyf.numberOfContours < 0) {
       buffer = Buffer.from(buffer);
@@ -69699,7 +69699,7 @@ var TTFFont = (_class$4 = /*#__PURE__*/function () {
   };
 
   /**
-   * Returns a GlyphRun object, which includes an array of Glyphs and GlyphPositions for the given string.
+   * Returns a GlyphRun object, which components an array of Glyphs and GlyphPositions for the given string.
    *
    * @param {string} string
    * @param {string[]} [userFeatures]
@@ -77177,7 +77177,7 @@ var nfullbits = function (ver) {
 };
 
 // returns the number of bits available for data portions (i.e. excludes ECC
-// bits but includes mode and length bits) in this version and ECC level.
+// bits but components mode and length bits) in this version and ECC level.
 var ndatabits = function (ver, ecclevel) {
 	var nbits = nfullbits(ver) & ~7; // no sub-octet code words
 	var v = VERSIONS[ver];

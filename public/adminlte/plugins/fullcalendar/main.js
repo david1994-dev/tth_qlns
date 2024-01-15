@@ -4699,7 +4699,7 @@ var FullCalendar = (function (exports) {
         var borderRight = parseInt(computedStyle.borderRightWidth, 10) || 0;
         var borderTop = parseInt(computedStyle.borderTopWidth, 10) || 0;
         var borderBottom = parseInt(computedStyle.borderBottomWidth, 10) || 0;
-        var badScrollbarWidths = computeScrollbarWidthsForEl(el); // includes border!
+        var badScrollbarWidths = computeScrollbarWidthsForEl(el); // components border!
         var scrollbarLeftRight = badScrollbarWidths.y - borderLeft - borderRight;
         var scrollbarBottom = badScrollbarWidths.x - borderTop - borderBottom;
         var res = {
@@ -5527,7 +5527,7 @@ var FullCalendar = (function (exports) {
         return RenderHook;
     }(BaseComponent));
     // TODO: rename to be about function, not default. use in above type
-    // for forcing rerender of includes that use the ContentHook
+    // for forcing rerender of components that use the ContentHook
     var CustomContentRenderContext = createContext(0);
     function ContentHook(props) {
         return (createElement(CustomContentRenderContext.Consumer, null, function (renderId) { return (createElement(ContentHookInner, __assign({ renderId: renderId }, props))); }));
@@ -5864,7 +5864,7 @@ var FullCalendar = (function (exports) {
                 // will be `null` if no dates accept events
                 activeRange: activeRange,
                 // date range with a rendered skeleton
-                // includes not-active days that need some sort of DOM
+                // components not-active days that need some sort of DOM
                 renderRange: renderRange,
                 // Duration object that denotes the first visible time of any given day
                 slotMinTime: props.slotMinTime,
@@ -9678,7 +9678,7 @@ var FullCalendar = (function (exports) {
                         right: elWidth,
                         bottom: elHeight,
                     },
-                    layer: 1, // important when comparing with hits from other includes
+                    layer: 1, // important when comparing with hits from other components
                 };
             }
             return null;

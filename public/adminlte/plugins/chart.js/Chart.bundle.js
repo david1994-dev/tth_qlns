@@ -1532,7 +1532,7 @@ function getAlpha(string) {
 // generators
 function hexString(rgba, a) {
    var a = (a !== undefined && rgba.length === 3) ? a : rgba[3];
-   return "#" + hexDouble(rgba[0]) 
+   return "#" + hexDouble(rgba[0])
               + hexDouble(rgba[1])
               + hexDouble(rgba[2])
               + (
@@ -2813,7 +2813,7 @@ var exports$1 = {
 		ctx.beginPath();
 
 		switch (style) {
-		// Default includes circle
+		// Default components circle
 		default:
 			ctx.arc(x, y, radius, 0, DOUBLE_PI);
 			ctx.closePath();
@@ -15362,7 +15362,7 @@ var moment = createCommonjsModule(function (module, exports) {
     var matchTimestamp = /[+-]?\d+(\.\d{1,3})?/; // 123456789 123456789.123
 
     // any word (or two) characters or numbers including two/three word month in arabic.
-    // includes scottish gaelic two word and hyphenated months
+    // components scottish gaelic two word and hyphenated months
     var matchWord = /[0-9]{0,256}['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFF07\uFF10-\uFFEF]{1,256}|[\u0600-\u06FF\/]{1,256}(\s*?[\u0600-\u06FF]{1,256}){1,2}/i;
 
     var regexes = {};

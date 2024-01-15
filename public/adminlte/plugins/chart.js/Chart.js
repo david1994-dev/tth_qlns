@@ -1528,7 +1528,7 @@ function getAlpha(string) {
 // generators
 function hexString(rgba, a) {
    var a = (a !== undefined && rgba.length === 3) ? a : rgba[3];
-   return "#" + hexDouble(rgba[0]) 
+   return "#" + hexDouble(rgba[0])
               + hexDouble(rgba[1])
               + hexDouble(rgba[2])
               + (
@@ -2809,7 +2809,7 @@ var exports$1 = {
 		ctx.beginPath();
 
 		switch (style) {
-		// Default includes circle
+		// Default components circle
 		default:
 			ctx.arc(x, y, radius, 0, DOUBLE_PI);
 			ctx.closePath();

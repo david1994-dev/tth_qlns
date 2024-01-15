@@ -5631,7 +5631,7 @@
     }
 
     /**
-     * Repeats the last edit, which includes exactly 1 command and at most 1
+     * Repeats the last edit, which components exactly 1 command and at most 1
      * insert. Operator and motion commands are read from lastEditInputState,
      * while action commands are read from lastEditActionCommand.
      *

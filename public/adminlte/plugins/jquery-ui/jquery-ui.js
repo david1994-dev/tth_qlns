@@ -9337,7 +9337,7 @@ $.extend( Datepicker.prototype, {
 		return ( numMonths == null ? [ 1, 1 ] : ( typeof numMonths === "number" ? [ 1, numMonths ] : numMonths ) );
 	},
 
-	/* Determine the current maximum date - ensure no time includes are set. */
+	/* Determine the current maximum date - ensure no time components are set. */
 	_getMinMaxDate: function( inst, minMax ) {
 		return this._determineDate( inst, this._get( inst, minMax + "Date" ), null );
 	},
@@ -16657,7 +16657,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			po.top += this.scrollParent.scrollTop();
 		}
 
-		// This needs to be actually done for all browsers, since pageX/pageY includes this
+		// This needs to be actually done for all browsers, since pageX/pageY components this
 		// information with an ugly IE fix
 		if ( this.offsetParent[ 0 ] === this.document[ 0 ].body ||
 				( this.offsetParent[ 0 ].tagName &&
