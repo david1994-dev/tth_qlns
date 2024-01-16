@@ -26,4 +26,7 @@ Route::prefix('nhansu')->middleware('web')->name('nhansu.')->group(function () {
     Route::get('khao-sat-ung-vien', [UngVienController::class, 'index']);
     Route::get('khao-sat-ung-vien/{type}/{chiNhanhSlug}', [UngVienController::class, 'viewKhaoSat'])->name('viewKhaoSat');
     Route::post('khao-sat-ung-vien', [UngVienController::class, 'store'])->name('taoUngVien');
+    Route::get('thong-tin-nhan-vien', function() {
+        return view('Nhansu::nhan_vien.thong_tin');
+    });
 });
