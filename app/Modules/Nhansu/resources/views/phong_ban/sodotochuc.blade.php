@@ -21,7 +21,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Thuộc cấp dưới của</label>
-                                <select name="parent_id" class="form-control">
+                                <select name="parent_id" class="form-control" @if(isset($model)) disabled @endif>
                                     <option value="0">------</option>
                                     @foreach($soDoToChuc as $viTri)
                                         <option @if(isset($model) && $model->parent_id == $viTri->id) selected

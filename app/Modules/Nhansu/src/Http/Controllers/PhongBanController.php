@@ -212,7 +212,6 @@ class PhongBanController extends Controller
         if (!$model) abort(404);
 
         $input = $request->only(['ma_vi_tri']);
-        $input['parent_id'] = $request->get('parent_id', 0);
         $input['nguoi_cap_nhat_id'] = $user->id;
 
         $isSuccess = $this->soDoToChucRepository->update($model, $input);
