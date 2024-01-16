@@ -2,7 +2,7 @@
 @section('content')
     <div class="box box-primary">
         <div class="box-header with-border">
-            <form action="{{ route('nhansu.chi-nhanh.index') }}">
+            <form action="{{ route('nhansu.khoa-phong-ban.index') }}">
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
@@ -14,7 +14,7 @@
                 <div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Search</button>
-                        <a href="{{ route('nhansu.chi-nhanh.index') }}" class="btn btn-danger">Reset</a>
+                        <a href="{{ route('nhansu.khoa-phong-ban.index') }}" class="btn btn-danger">Reset</a>
                     </div>
                 </div>
             </form>

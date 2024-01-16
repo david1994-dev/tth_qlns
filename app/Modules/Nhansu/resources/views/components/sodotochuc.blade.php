@@ -7,9 +7,9 @@
         @endphp
         <li>
             <div>{{$child->ma_vi_tri}} <a
-                    href="{{route('nhansu.khoaphongban.sodotochuc.edit', [$child->id, $child->phong_ban_id])}}"
+                    href="{{route('nhansu.so-do-to-chuc.edit', $child->id)}}"
                     class="btn btn-info btn-sm">sửa</a> <a
-                    href="{{route('nhansu.khoaphongban.sodotochuc.delete', $child->id)}}" class="btn btn-danger btn-sm">xóa</a>
+                    data-delete-url="{{route('nhansu.so-do-to-chuc.destroy', $child->id)}}" class="btn btn-danger btn-sm delete-button">xóa</a>
             </div>
         </li>
         @if(count($subChild))

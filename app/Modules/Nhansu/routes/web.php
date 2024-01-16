@@ -4,6 +4,7 @@ use App\Modules\Nhansu\src\Http\Controllers\NhanVienController;
 use App\Modules\Nhansu\src\Http\Controllers\ChiNhanhController;
 use \App\Modules\Nhansu\src\Http\Controllers\UngVienController;
 use App\Modules\Nhansu\src\Http\Controllers\PhongBanController;
+use App\Modules\Nhansu\src\Http\Controllers\SoDoToChucController;
 
 
 Route::prefix('nhansu')->middleware('web')->name('nhansu.')->group(function () {
@@ -19,10 +20,7 @@ Route::prefix('nhansu')->middleware('web')->name('nhansu.')->group(function () {
 
         Route::resource('khoa-phong-ban', PhongBanController::class);
         Route::get('khoa-phong-ban/sodotochuc/{id}', [PhongBanController::class, 'sodotochuc'])->name('khoaphongban.sodotochuc');
-        Route::post('khoa-phong-ban/sodotochuc', [PhongBanController::class, 'taoSoDoToChuc'])->name('khoaphongban.sodotochuc.tao');
-        Route::get('khoa-phong-ban/sodotochuc/edit/{id}/{phongBanId}', [PhongBanController::class, 'editSoDoToChuc'])->name('khoaphongban.sodotochuc.edit');
-        Route::post('khoa-phong-ban/sodotochuc/edit/{id}', [PhongBanController::class, 'updateSoDoToChuc'])->name('khoaphongban.sodotochuc.update');
-        Route::get('khoa-phong-ban/sodotochuc/delete/{id}', [PhongBanController::class, 'deleteSoDoToChuc'])->name('khoaphongban.sodotochuc.delete');
+        Route::resource('so-do-to-chuc', SoDoToChucController::class);
     });
 
     Route::get('khao-sat-ung-vien', [UngVienController::class, 'index']);

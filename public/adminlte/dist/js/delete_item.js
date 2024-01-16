@@ -13,10 +13,13 @@ $(function () {
                 error: function (xhr, error) {
                     console.log(error);
                     self.loading = false;
-                    // location.reload();
+                    location.reload();
                 },
                 success: function (response) {
-                    // location.reload();
+                    location.reload();
+                },
+                complete: function () {
+                    location.reload();
                 }
             });
         }
