@@ -1,26 +1,27 @@
 @extends('adminlte.Layout.app')
 @section('content')
-<div class="box box-primary">
-    <div class="box-header with-border">
-        <form action="">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <input name="keyword" placeholder="Nhập mã chi nhánh, tên chi nhánh.." class="form-control"
-                            value="{{ $keyword ?? '' }}" />
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <form action="">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input name="keyword" placeholder="Nhập mã chi nhánh, tên chi nhánh.." class="form-control"
+                                value="{{ $keyword ?? '' }}" />
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Search</button>
-                    <a href="" class="btn btn-danger">Reset</a>
+                <div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                        <a href="" class="btn btn-danger">Reset</a>
+                    </div>
                 </div>
-            </div>
-        </form>
-        <div class="row">
-            <div class="col-sm-6">
-                <p style="display: inline-block;"><b></b> Nhân viên</p>
+            </form>
+            <div class="row">
+                <div class="col-sm-6">
+                    <p style="display: inline-block;"><b></b> Nhân viên</p>
+                </div>
             </div>
         </div>
     </div>
@@ -83,5 +84,4 @@
             [],
         ) !!}
     </div>
-</div>
 @stop
