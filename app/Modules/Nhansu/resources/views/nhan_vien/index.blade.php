@@ -57,7 +57,7 @@
                             <td></td>
                             <td class="text-center">
                                 <a class="btn btn-danger btn-sm delete-button"
-                                   data-delete-url="">
+                                   data-delete-url="{{route('nhansu.nhan-vien.destroy', $model->id)}}">
                                     Xóa <i class="bi bi-trash"></i>
                                 </a>
 {{--                                <a class="btn btn-primary btn-sm" target="_blank"--}}

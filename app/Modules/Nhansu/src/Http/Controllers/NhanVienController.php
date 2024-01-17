@@ -126,7 +126,7 @@ class NhanVienController extends Controller
             'ngay_cap_cmnd', 'noi_cap_cmnd', 'trinh_do_chuyen_mon', 'so_cchn', 'bo_sung_pham_vi_cm', 'ngay_cap_cchn',
             'dang_ki_hanh_nghe_hien_tai', 'bien_oto', 'bien_xe_may', 'size_quan', 'size_ao', 'size_giay_dep', 'bang_lai',
         ]);
-        
+
 
         DB::beginTransaction();
         try {
@@ -151,11 +151,22 @@ class NhanVienController extends Controller
      */
     public function destroy(string $id)
     {
+        $model = $this->nhanVienRepository->findById($id);
+        if (!$model) abort(404);
 
-    }
+        DB::beginTransaction();
+        try {
+            $this->nhanVienRepository->delete($model);
+            $this->chiTietNhanVienRepository->deleteByFilter(['nhan_vien_id' => $model->id]);
+            $this->userRepository->deleteByFilter(['id' => $model->user_id]);
 
-    public function sodotochuc($id)
-    {
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
 
+
+        return redirect()->route('nhansu.nhan-vien.index');
     }
 }

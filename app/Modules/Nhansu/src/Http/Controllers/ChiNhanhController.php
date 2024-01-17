@@ -132,8 +132,7 @@ class ChiNhanhController extends Controller
         $model = $this->chinhanhRepository->findById($id);
         if( empty( $model ) ) {
             session()->flash('error', 'Chi nhánh không tồn tại');
-            return redirect()
-                ->back();
+            return redirect()->route('nhansu.chi-nhanh.index');
         }
 
         DB::beginTransaction();
@@ -149,7 +148,6 @@ class ChiNhanhController extends Controller
 
         session()->flash('success', 'Bạn đã xóa chi nhánh thành công');
 
-        return redirect()
-            ->back();
+        return redirect()->route('nhansu.chi-nhanh.index');
     }
 }
