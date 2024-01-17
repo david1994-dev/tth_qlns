@@ -69,8 +69,8 @@
                             <div class="form-group col-md-6">
                                 <label for="ho_ten">Họ và tên<span style="color: red">*</span>:</label>
                                 <div class="input-group">
-                                    <input type="text" id="name" class="form-control" name="ho_ten"
-                                        value="{{ $model->ho_ten ?? old('ho_ten') }}" placeholder="Nhập họ và tên...">
+                                    <input type="text" id="name" class="form-control" name="ho_ten" 
+                                        value="{{ $model->ho_ten ?? old('ho_ten') }}" placeholder="Nhập họ và tên..." required>
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-person-circle"></i></span>
                                     </div>
@@ -107,7 +107,7 @@
                                 <div class="input-group">
                                     <input type="text" id="dien_thoai" class="form-control" name="dien_thoai_ca_nhan"
                                         value="{{ $model->chiTietNhanVien->dien_thoai_ca_nhan ?? old('dien_thoai_ca_nhan') }}"
-                                        placeholder="Nhập sô diện thoại...">
+                                        placeholder="Nhập sô diện thoại..." required>
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-telephone"></i></span>
                                     </div>
@@ -164,7 +164,7 @@
                                     <input type="text" id="dia_chi_thuong_tru" class="form-control"
                                         value="{{ $model->chiTietNhanVien->dia_chi_thuong_tru ?? old('dia_chi_thuong_tru') }}"
                                         name="dia_chi_thuong_tru" placeholder="Nhập địa chỉ thường trú...">
-                                    <div class="input-group-prepend">
+                                    <div class="input-group-prepend" required>
                                         <span class="input-group-text"><i class="bi bi-house-door-fill"></i></span>
                                     </div>
                                 </div>
@@ -253,7 +253,7 @@
                                 <div class="input-group">
                                     <input type="text" id="CMND" class="form-control" name="cmnd"
                                         value="{{ $model->chiTietNhanVien->cmnd ?? old('cmnd') }}"
-                                        placeholder="Nhập số CMND...">
+                                        placeholder="Nhập số CMND..." required>
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-credit-card"></i></span>
                                     </div>
@@ -270,7 +270,7 @@
                                 <div class="input-group">
                                     <input type="text" id="noi_cap_CMND" class="form-control" name="noi_cap_cmnd"
                                         value="{{ $model->chiTietNhanVien->noi_cap_cmnd ?? old('noi_cap_cmnd') }}"
-                                        placeholder="Nhập nơi cấp CMND...">
+                                        placeholder="Nhập nơi cấp CMND..." required>
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
                                     </div>
@@ -328,12 +328,12 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-2">
-                                <label for="bien_xe_o_to" class="h6">Biển xe ô tô<span style="color: red">*</span>:
+                                <label for="bien_xe_o_to" class="h6">Biển xe ô tô:
                                 </label>
                                 <div class="input-group">
                                     <input type="text" id="bien_xe_o_to" class="form-control" name="bien_oto"
                                         value="{{ $model->chiTietNhanVien->bien_oto ?? old('bien_oto') }}"
-                                        placeholder="Nhập biển số xe ô tô...">
+                                        placeholder="Nhập biển số xe ô tô..." >
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg"
                                                 width="16" height="16" fill="currentColor"
@@ -345,8 +345,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-2">
-                                <label for="bien_xe_may" class="h6">Biển xe máy<span
-                                        style="color: red">*</span>:</label>
+                                <label for="bien_xe_may" class="h6">Biển xe máy</span>:</label>
                                 <div class="input-group">
                                     <input type="text" id="bien_xe_may" class="form-control" name="bien_xe_may"
                                         value="{{ $model->chiTietNhanVien->bien_xe_may ?? old('bien_xe_may') }}"
