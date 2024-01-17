@@ -10,12 +10,13 @@
             <div class="row">
                 <div class="col-md-5">
                     <form method="POST"
-                          action="{{!isset($model) ? route('nhansu.khoaphongban.sodotochuc.tao') : route('nhansu.khoaphongban.sodotochuc.update', $model->id)}}">
+                          action="{{!isset($model) ? route('nhansu.so-do-to-chuc.store') : route('nhansu.so-do-to-chuc.update', $model->id)}}">
                         @csrf
                         <input type="hidden" value="{{$phongBan->id}}" name="phong_ban_id" class="form-control">
                         <input type="hidden" value="{{$phongBan->chi_nhanh_id}}" name="chi_nhanh_id"
                                class="form-control">
                         @if(isset($model))
+                            <input type="hidden" name="_method" value="PUT">
                             <input type="hidden" value="{{$model->id}}" name="so_do_to_chuc_id" class="form-control">
                         @endif
                         <div class="card-body">
@@ -57,10 +58,10 @@
                                 @endphp
                                 <li>
                                     <div>{{$menu->ma_vi_tri}} <a
-                                            href="{{route('nhansu.khoaphongban.sodotochuc.edit', [$menu->id, $menu->phong_ban_id])}}"
+                                            href="{{route('nhansu.so-do-to-chuc.edit', $menu->id)}}"
                                             class="btn btn-info btn-sm">sửa</a> <a
-                                            href="{{route('nhansu.khoaphongban.sodotochuc.delete', $menu->id)}}"
-                                            class="btn btn-danger btn-sm">xóa</a></div>
+                                            data-delete-url="{{route('nhansu.so-do-to-chuc.destroy', $menu->id)}}"
+                                            class="btn btn-danger btn-sm delete-button">xóa</a></div>
                                 </li>
                                 @if(count($children))
                                     @include('Nhansu::components.sodotochuc', ['children' => $children, 'soDoToChuc' => $soDoToChuc])
