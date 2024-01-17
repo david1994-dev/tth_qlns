@@ -29,7 +29,30 @@ class NhanVienController extends Controller
 
     public function index(PaginationRequest $request)
     {
+        $paginate['limit']      = $request->limit();
+        $paginate['offset']     = $request->offset();
+        $paginate['order']      = $request->order();
+        $paginate['direction']  = $request->direction();
+        $paginate['baseUrl']    = route('nhansu.khoa-phong-ban.index');
+        $keyword = $request->get('keyword');
 
+        $filter = [];
+        if (!empty($keyword)) {
+            $filter['query'] = $keyword;
+        }
+
+        $count = $this->nhanVienRepository->countByFilter($filter);
+        $models = $this->nhanVienRepository->getByFilter($filter, $paginate['order'], $paginate['direction'], $paginate['offset'], $paginate['limit']);
+
+        return view(
+            'Nhansu::nhan_vien.index',
+            [
+                'models'    => $models,
+                'count'         => $count,
+                'paginate'      => $paginate,
+                'keyword'       => $keyword
+            ]
+        );
     }
 
     /**
@@ -61,7 +84,13 @@ class NhanVienController extends Controller
      */
     public function edit(string $id)
     {
+        $model = $this->nhanVienRepository->findById($id);
+        $model = $this->nhanVienRepository->load($model, 'chiTietNhanVien');
+        if (!$model) abort(404);
 
+        return view('Nhansu::nhanh_vien.chi_tiet', [
+            'model' => $model
+        ]);
     }
 
     /**

@@ -8,6 +8,27 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class ChiTietNhanVien extends Base
 {
     use SoftDeletes;
+
+    const TRINH_DO_CHUYEN_MON = [
+        1 => 'Đại Học',
+        2 => 'Cao Đẳng',
+        3 => 'Trung Cấp'
+    ];
+
+    const TINH_TRANG_DOC_THAN = 1;
+    const TINH_TRANG_CO_GIA_DINH = 2;
+
+    const TINH_TRANG_HON_NHAN = [
+        self::TINH_TRANG_DOC_THAN => 'Độc Thân',
+        self::TINH_TRANG_CO_GIA_DINH => 'Đã Lập Gia Đình'
+    ];
+
+    const DAN_TOC = [
+        'Kinh' => 'Kinh',
+        'Mèo' => 'Mèo',
+        'Mường' => 'Mường',
+    ];
+
     protected $table = 'nhanvien_chitiet';
 
     protected $fillable = [

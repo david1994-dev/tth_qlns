@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('cmnd');
             $table->date('ngay_cap_cmnd');
             $table->string('noi_cap_cmnd');
-            $table->string('trinh_do_chuyen_mon')->nullable();
+            $table->tinyInteger('trinh_do_chuyen_mon')->nullable();
             $table->string('so_cchn')->nullable();
             $table->string('bo_sung_pham_vi_cm')->nullable();
             $table->date('ngay_cap_cchn')->nullable();
