@@ -24,4 +24,7 @@ Route::prefix('nhansu')->middleware('web')->name('nhansu.')->group(function () {
     Route::get('thong-tin-nhan-vien', function() {
         return view('Nhansu::nhan_vien.thong_tin');
     });
+    Route::get('danh-sach-nhan-vien', function() {
+        return view('Nhansu::nhan_vien.danh_sach');
+    });
 });
