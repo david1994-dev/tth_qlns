@@ -44,7 +44,7 @@
             <tbody>
                     @foreach($models as $model)
                         <tr>
-                            <td>{{ $loop->index }}</td>
+                            <td>{{ $loop->index + 1 }}</td>
                             <td>{{$model->ma}}</td>
                             <td>{{$model->email}}</td>
                             <td>{{$model->ho_ten}}</td>
