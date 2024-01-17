@@ -29,42 +29,59 @@ class NhanVienController extends Controller
 
     public function index(PaginationRequest $request)
     {
-        $paginate['limit']      = $request->limit();
-        $paginate['offset']     = $request->offset();
-        $paginate['order']      = $request->order();
-        $paginate['direction']  = $request->direction();
-        $paginate['baseUrl']    = route('nhanSu.user.index');
 
-        $filter = [];
-        $keyword = $request->get('keyword');
-        if (!empty($keyword)) {
-            $filter['query'] = $keyword;
-        }
-
-        $count = $this->nhanVienRepository->countByFilter($filter);
-        $models = $this->nhanVienRepository->getByFilter($filter, $paginate['order'], $paginate['direction'], $paginate['offset'], $paginate['limit']);
-
-        return view(
-            'Nhansu::users.index',
-            [
-                'models'    => $models,
-                'count'         => $count,
-                'paginate'      => $paginate,
-                'keyword'       => $keyword
-            ]
-        );
     }
 
-    public function store(NhanVienRequest $request) {
-        $input = $request->only(
-            [
-                'name',
-                'email',
-                'password',
-                're_password',
-                'locale',
-            ]
-        );
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+
     }
 
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+
+    }
+
+    public function sodotochuc($id)
+    {
+
+    }
 }

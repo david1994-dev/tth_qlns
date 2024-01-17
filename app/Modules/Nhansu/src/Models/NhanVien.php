@@ -12,23 +12,21 @@ class NhanVien extends Base
     protected $table = 'nhanvien';
     const GIOI_TINH_NU = 0;
     const GIOI_TINH_NAM = 1;
+
+    const LOAI_THU_VIEC = 1;
+    const LOAI_CHINH_THUC = 2;
+
     protected $fillable = [
+        'user_id',
         'ma',
         'ho_ten',
-        'user_id',
-        'image',
         'email',
-        'dien_thoai',
-        'cmnd',
-        'email_cong_viec',
+        'dien_thoai_cong_viec',
         'gioi_tinh',
+        'loai_nhan_vien',
         'ngay_sinh',
-        'ngay_bat_dau_lam_viec',
-        'ngay_ket_thuc_lam_viec',
         'chi_nhanh_id',
-        'vi_tri_cong_viec_id',
-        'phong_ban_id',
-        'chi_tiet'
+        'phong_ban_id'
     ];
 
     protected $casts = [
