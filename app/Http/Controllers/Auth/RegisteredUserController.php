@@ -89,6 +89,7 @@ class RegisteredUserController extends Controller
                 'phong_ban_id' => $phongBan->id,
                 'chi_nhanh_id' => $phongBan->chi_nhanh_id,
                 'user_id' => $user->id,
+                'email' => $user->email
             ]);
 
             $this->chiTietNhanVienRepository->create([
