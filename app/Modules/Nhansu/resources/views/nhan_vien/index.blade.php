@@ -41,82 +41,38 @@
                 </tr>
             </thead>
             <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>003437</td>
-                        <td>tranminhtien@gmail.com</td>
-                        <td>Trần Hậu Minh Tiến</td>
-                        <td>Nam</td>
-                        <td>04/10/2001</td>
-                        <td>TCT</td>
-                        <td>17/01/2024</td>
-                        <td></td>
-                        <td class="text-center">
-                            <a class="btn btn-danger btn-sm delete-button"
-                                data-delete-url="">
-                                Xóa <i class="bi bi-trash"></i>
-                            </a>
-                            <a class="btn btn-primary btn-sm" target="_blank"
-                                href="">
-                                Sửa <i class="bi bi-pencil-square"></i>
-                            </a>
-                            <a target="_blank" href="" class="btn btn-primary btn-sm">
-                                  Chi tiết  <i class="bi bi-eye-fill"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>003438</td>
-                        <td>giapbka@gmail.com</td>
-                        <td>Hoàng Văn Giáp</td>
-                        <td>Nam</td>
-                        <td>02/01/1994</td>
-                        <td>TCT</td>
-                        <td>17/01/2024</td>
-                        <td></td>
-                        <td class="text-center">
-                            <a class="btn btn-danger btn-sm delete-button"
-                                data-delete-url="">
-                                Xóa <i class="bi bi-trash"></i>
-                            </a>
-                            <a class="btn btn-primary btn-sm" target="_blank"
-                                href="">
-                                Sửa <i class="bi bi-pencil-square"></i>
-                            </a>
-                            <a target="_blank" href="" class="btn btn-primary btn-sm">
-                                  Chi tiết  <i class="bi bi-eye-fill"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>003439</td>
-                        <td>ngocnh@gmail.com</td>
-                        <td>Nguyễn Hải Ngọc</td>
-                        <td>Nam</td>
-                        <td>01/01/1991</td>
-                        <td>TCT</td>
-                        <td>17/01/2024</td>
-                        <td></td>
-                        <td class="text-center">
-                            <a class="btn btn-danger btn-sm delete-button"
-                                data-delete-url="">
-                                Xóa <i class="bi bi-trash"></i>
-                            </a>
-                            <a class="btn btn-primary btn-sm" target="_blank"
-                                href="">
-                                Sửa <i class="bi bi-pencil-square"></i>
-                            </a>
-                            <a target="_blank" href="" class="btn btn-primary btn-sm">
-                                  Chi tiết  <i class="bi bi-eye-fill"></i>
-                            </a>
-                        </td>
-                    </tr>
+                    @foreach($models as $model)
+                        <tr>
+                            <td>{{ $loop->index }}</td>
+                            <td>{{$model->ma}}</td>
+                            <td>{{$model->email}}</td>
+                            <td>{{$model->ho_ten}}</td>
+                            <td>
+                                {{\Illuminate\Support\Arr::get(\App\Modules\Nhansu\src\Models\NhanVien::GIOI_TINH, $model->gioi_tinh, '')}}
+                            </td>
+                            <td>{{$model->ngay_sinh ? $model->ngay_sinh->format('d/m/Y') : ''}}</td>
+                            <td>{{@$model->chiNhanh->ten}}</td>
+                            <td>{{$model->created_at->format('d/m/Y')}}</td>
+                            <td></td>
+                            <td class="text-center">
+                                <a class="btn btn-danger btn-sm delete-button"
+                                   data-delete-url="">
+                                    Xóa <i class="bi bi-trash"></i>
+                                </a>
+{{--                                <a class="btn btn-primary btn-sm" target="_blank"--}}
+{{--                                   href="">--}}
+{{--                                    Sửa <i class="bi bi-pencil-square"></i>--}}
+{{--                                </a>--}}
+                                <a target="_blank" href="{{route('nhansu.nhan-vien.edit', $model->id)}}" class="btn btn-primary btn-sm">
+                                    Chi tiết  <i class="bi bi-eye-fill"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
             </tbody>
         </table>
     </div>
-    {{-- <div class="box-footer">
+    <div class="box-footer">
         {!! \PaginationHelper::render(
             $paginate['order'],
             $paginate['direction'],
@@ -126,6 +82,6 @@
             $paginate['baseUrl'],
             [],
         ) !!}
-    </div> --}}
+    </div>
 </div>
 @stop

@@ -22,8 +22,8 @@ return new class extends Migration
             $table->tinyInteger('gioi_tinh')->default(NhanVien::GIOI_TINH_NU);
             $table->tinyInteger('loai_nhan_vien')->default(NhanVien::LOAI_THU_VIEC);
             $table->date('ngay_sinh')->nullable();
-            $table->unsignedBigInteger('chi_nhanh_id')->index()->nullable();
-            $table->unsignedBigInteger('phong_ban_id')->index()->nullable();
+            $table->unsignedBigInteger('chi_nhanh_id')->index();
+            $table->unsignedBigInteger('phong_ban_id')->index();
             $table->timestamps();
 
             $table->softDeletes();

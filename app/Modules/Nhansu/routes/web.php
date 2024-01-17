@@ -11,7 +11,7 @@ Route::prefix('nhansu')->middleware('web')->name('nhansu.')->group(function () {
     Route::middleware(['auth'])->group(function () {
         Route::get('danh-sach-ung-vien', [UngVienController::class, 'danhSach'])->name('danhSachUngVien');
         Route::get('chi-tiet-ung-vien/{id}', [UngVienController::class, 'view'])->name('chiTietUngVien');
-        Route::resource('nhan-vien', NhanVienController::class);
+//        Route::resource('nhan-vien', NhanVienController::class);
         Route::resource('chi-nhanh', ChiNhanhController::class);
         Route::resource('khoa-phong-ban', PhongBanController::class);
         Route::get('khoa-phong-ban/sodotochuc/{id}', [PhongBanController::class, 'sodotochuc'])->name('khoaphongban.sodotochuc');
@@ -21,10 +21,5 @@ Route::prefix('nhansu')->middleware('web')->name('nhansu.')->group(function () {
     Route::get('khao-sat-ung-vien', [UngVienController::class, 'index']);
     Route::get('khao-sat-ung-vien/{type}/{chiNhanhSlug}', [UngVienController::class, 'viewKhaoSat'])->name('viewKhaoSat');
     Route::post('khao-sat-ung-vien', [UngVienController::class, 'store'])->name('taoUngVien');
-    Route::get('thong-tin-nhan-vien', function() {
-        return view('Nhansu::nhan_vien.thong_tin');
-    });
-    Route::get('danh-sach-nhan-vien', function() {
-        return view('Nhansu::nhan_vien.danh_sach');
-    });
+    Route::resource('nhan-vien', NhanVienController::class);
 });

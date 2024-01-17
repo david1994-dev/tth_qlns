@@ -23,12 +23,12 @@ return new class extends Migration
             $table->string('dien_thoai_ca_nhan')->nullable();
             $table->tinyInteger('tinh_trang_hon_nhan')->default(1);
             $table->string('email_phu')->nullable();
-            $table->date('ngay_bat_dau_lam_viec');
+            $table->date('ngay_bat_dau_lam_viec')->nullable();
             $table->date('ngay_ket_thuc_lam_viec')->nullable();
             $table->date('ngay_thuc_te_lam_viec')->nullable();
-            $table->string('cmnd');
-            $table->date('ngay_cap_cmnd');
-            $table->string('noi_cap_cmnd');
+            $table->string('cmnd')->nullable();
+            $table->date('ngay_cap_cmnd')->nullable();
+            $table->string('noi_cap_cmnd')->nullable();
             $table->tinyInteger('trinh_do_chuyen_mon')->nullable();
             $table->string('so_cchn')->nullable();
             $table->string('bo_sung_pham_vi_cm')->nullable();
@@ -40,6 +40,8 @@ return new class extends Migration
             $table->string('size_ao')->nullable();
             $table->string('size_giay_dep')->nullable();
             $table->string('bang_lai')->nullable();
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }

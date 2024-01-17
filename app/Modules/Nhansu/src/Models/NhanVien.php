@@ -52,4 +52,14 @@ class NhanVien extends Base
     {
         return $this->hasOne(ChiTietNhanVien::class, 'nhan_vien_id', 'id');
     }
+
+    public function chiNhanh()
+    {
+        return $this->hasOne(ChiNhanh::class, 'id', 'chi_nhanh_id');
+    }
+
+    public function phongBan()
+    {
+        return $this->hasOne(PhongBan::class, 'id', 'phong_ban_id');
+    }
 }

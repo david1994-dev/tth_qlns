@@ -33,7 +33,7 @@ class NhanVienController extends Controller
         $paginate['offset']     = $request->offset();
         $paginate['order']      = $request->order();
         $paginate['direction']  = $request->direction();
-        $paginate['baseUrl']    = route('nhansu.khoa-phong-ban.index');
+        $paginate['baseUrl']    = route('nhansu.nhan-vien.index');
         $keyword = $request->get('keyword');
 
         $filter = [];
@@ -43,6 +43,7 @@ class NhanVienController extends Controller
 
         $count = $this->nhanVienRepository->countByFilter($filter);
         $models = $this->nhanVienRepository->getByFilter($filter, $paginate['order'], $paginate['direction'], $paginate['offset'], $paginate['limit']);
+        $this->nhanVienRepository->load($models, 'chiNhanh');
 
         return view(
             'Nhansu::nhan_vien.index',
@@ -88,7 +89,7 @@ class NhanVienController extends Controller
         $model = $this->nhanVienRepository->load($model, 'chiTietNhanVien');
         if (!$model) abort(404);
 
-        return view('Nhansu::nhanh_vien.chi_tiet', [
+        return view('Nhansu::nhan_vien.chi_tiet', [
             'model' => $model
         ]);
     }
