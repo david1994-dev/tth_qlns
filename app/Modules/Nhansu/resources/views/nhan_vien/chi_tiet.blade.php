@@ -68,8 +68,7 @@
                                 <label for="ho_ten">Họ và tên<span style="color: red">*</span>:</label>
                                 <div class="input-group">
                                     <input type="text" id="name" class="form-control" name="ho_ten"
-                                           value="{{$model->ho_ten ?? old('ho_ten')}}"
-                                        placeholder="Nhập họ và tên...">
+                                        value="{{ $model->ho_ten ?? old('ho_ten') }}" placeholder="Nhập họ và tên...">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-person-circle"></i></span>
                                     </div>
@@ -78,14 +77,16 @@
                             <div class="form-group col-md-3">
                                 <label for="gioi_tinh">Giới tính<span style="color: red">*</span>: </label>
                                 <select name="gioi_tinh" id="gioi_tinh" class="form-control">
-                                    @foreach(\App\Modules\Nhansu\src\Models\NhanVien::GIOI_TINH as $id => $gt)
-                                        <option value="{{$id}}" @if($model->gioi_tinh == $id) selected @endif>{{$gt}}</option>
+                                    @foreach (\App\Modules\Nhansu\src\Models\NhanVien::GIOI_TINH as $id => $gt)
+                                        <option value="{{ $id }}"
+                                            @if ($model->gioi_tinh == $id) selected @endif>{{ $gt }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="ngay_sinh" class="h6">Ngày sinh<span style="color: red">*</span>:</label>
-                                <input type="date" id="ngay_sinh" class="form-control" name="ngay_sinh" value="{{$model->ngay_sinh ?? old('ngay_sinh')}}">
+                                <input type="date" id="ngay_sinh" class="form-control" name="ngay_sinh"
+                                    value="{{ $model->ngay_sinh ?? old('ngay_sinh') }}">
                             </div>
                         </div>
                         <div class="form-row">
@@ -93,8 +94,7 @@
                                 <label for="email">Email:</label>
                                 <div class="input-group mb-3">
                                     <input type="email" id="email" class="form-control" name="email"
-                                           value="{{$model->email ?? old('email')}}"
-                                        placeholder="Nhập email...">
+                                        value="{{ $model->email ?? old('email') }}" placeholder="Nhập email...">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-envelope"></i></span>
                                     </div>
@@ -105,7 +105,7 @@
                                         style="color: red">*</span>:</label>
                                 <div class="input-group">
                                     <input type="text" id="dien_thoai" class="form-control" name="dien_thoai_ca_nhan"
-                                           value="{{$model->chiTietNhanVien->dien_thoai_ca_nhan ?? old('dien_thoai_ca_nhan')}}"
+                                        value="{{ $model->chiTietNhanVien->dien_thoai_ca_nhan ?? old('dien_thoai_ca_nhan') }}"
                                         placeholder="Nhập sô diện thoại...">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-telephone"></i></span>
@@ -115,8 +115,9 @@
                             <div class="form-group col-md-3">
                                 <label for="loai_ho_so">Loại hồ sơ<span style="color: red">*</span>: </label>
                                 <select id="loai_ho_so" class="form-control" name="loai_nhan_vien">
-                                    @foreach(\App\Modules\Nhansu\src\Models\NhanVien::LOAI_NHAN_VIEN as $id => $lnv)
-                                        <option value="{{$id}}" @if($model->loai_nhan_vien == $id) selected @endif>{{$lnv}}</option>
+                                    @foreach (\App\Modules\Nhansu\src\Models\NhanVien::LOAI_NHAN_VIEN as $id => $lnv)
+                                        <option value="{{ $id }}"
+                                            @if ($model->loai_nhan_vien == $id) selected @endif>{{ $lnv }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -126,7 +127,7 @@
                                 <label for="que_quan">Quê quán:</label>
                                 <div class="input-group">
                                     <input type="text" id="que_quan" class="form-control" name="que_quan"
-                                           value="{{$model->chiTietNhanVien->que_quan ?? old('que_quan')}}"
+                                        value="{{ $model->chiTietNhanVien->que_quan ?? old('que_quan') }}"
                                         placeholder="Nhập quê quán...">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-house"></i></span>
@@ -136,8 +137,9 @@
                             <div class="form-group col-md-3">
                                 <label for="dan_toc">Dân tộc: </label>
                                 <select id="dan_toc" class="form-control" name="dan_toc">
-                                    @foreach(\App\Modules\Nhansu\src\Models\ChiTietNhanVien::DAN_TOC as $id => $dt)
-                                        <option value="{{$id}}" @if($model->chiTietNhanVien->dan_toc == $id) selected @endif>{{$dt}}</option>
+                                    @foreach (\App\Modules\Nhansu\src\Models\ChiTietNhanVien::DAN_TOC as $id => $dt)
+                                        <option value="{{ $id }}"
+                                            @if ($model->chiTietNhanVien->dan_toc == $id) selected @endif>{{ $dt }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -145,7 +147,7 @@
                                 <label for="ton_giao" class="h6">Tôn giáo:</label>
                                 <div class="input-group">
                                     <input type="text" id="ton_giao" class="form-control" name="ton_giao"
-                                           value="{{$model->chiTietNhanVien->ton_giao ?? old('ton_giao')}}"
+                                        value="{{ $model->chiTietNhanVien->ton_giao ?? old('ton_giao') }}"
                                         placeholder="Nhập tôn giáo...">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-person-badge-fill"></i></span>
@@ -159,7 +161,7 @@
                                         style="color: red">*</span>:</label>
                                 <div class="input-group">
                                     <input type="text" id="dia_chi_thuong_tru" class="form-control"
-                                           value="{{$model->chiTietNhanVien->dia_chi_thuong_tru ?? old('dia_chi_thuong_tru')}}"
+                                        value="{{ $model->chiTietNhanVien->dia_chi_thuong_tru ?? old('dia_chi_thuong_tru') }}"
                                         name="dia_chi_thuong_tru" placeholder="Nhập địa chỉ thường trú...">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-house-door-fill"></i></span>
@@ -170,7 +172,7 @@
                                 <label for="dia_chi_tam_tru" class="h6">Địa chỉ tạm trú:</label>
                                 <div class="input-group">
                                     <input type="text" id="dia_chi_tam_tru" class="form-control"
-                                           value="{{$model->chiTietNhanVien->dia_chi_tam_tru ?? old('dia_chi_tam_tru')}}"
+                                        value="{{ $model->chiTietNhanVien->dia_chi_tam_tru ?? old('dia_chi_tam_tru') }}"
                                         name="dia_chi_tam_tru" placeholder="Nhập địa chỉ tạm trú...">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-house"></i></span>
@@ -184,7 +186,7 @@
                                 <label for="ma_so_thue">Mã số thuế:</label>
                                 <div class="input-group">
                                     <input type="text" id="ma_so_thue" class="form-control" name="ma_so_thue"
-                                           value="{{$model->chiTietNhanVien->ma_so_thue ?? old('ma_so_thue')}}"
+                                        value="{{ $model->chiTietNhanVien->ma_so_thue ?? old('ma_so_thue') }}"
                                         placeholder="Nhập mã số thuế...">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-upc"></i></span>
@@ -195,7 +197,7 @@
                                 <label for="dien_thoai_cong_viec" class="h6">Điện thoại công việc:</label>
                                 <div class="input-group">
                                     <input type="text" id="dien_thoai_cong_viec" class="form-control"
-                                           value="{{$model->dien_thoai_cong_viec ?? old('dien_thoai_cong_viec')}}"
+                                        value="{{ $model->dien_thoai_cong_viec ?? old('dien_thoai_cong_viec') }}"
                                         name="dien_thoai_cong_viec" placeholder="Nhập số điện hoại công việc...">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-telephone-plus"></i></span>
@@ -205,8 +207,9 @@
                             <div class="form-group col-md-3">
                                 <label for="hon_nhan">Tình trạng hôn nhân: </label>
                                 <select id="hon_nhan" class="form-control" name="tinh_trang_hon_nhan">
-                                    @foreach(\App\Modules\Nhansu\src\Models\ChiTietNhanVien::TINH_TRANG_HON_NHAN as $id => $tt)
-                                        <option value="{{$id}}" @if($model->chiTietNhanVien->tinh_trang_hon_nhan == $id) selected  @endif>{{$tt}}</option>
+                                    @foreach (\App\Modules\Nhansu\src\Models\ChiTietNhanVien::TINH_TRANG_HON_NHAN as $id => $tt)
+                                        <option value="{{ $id }}"
+                                            @if ($model->chiTietNhanVien->tinh_trang_hon_nhan == $id) selected @endif>{{ $tt }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -214,7 +217,7 @@
                                 <label for="email_phu" class="h6">Email phụ:</label>
                                 <div class="input-group">
                                     <input type="text" id="email_phu" class="form-control" name="email_phu"
-                                           value="{{$model->chiTietNhanVien->email_phu ?? old('email_phu')}}"
+                                        value="{{ $model->chiTietNhanVien->email_phu ?? old('email_phu') }}"
                                         placeholder="Nhập email phụ...">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-envelope"></i></span>
@@ -227,19 +230,19 @@
                                 <label for="ngay_bat_dau_lam_viec" class="h6">Ngày bắt đầu làm việc<span
                                         style="color: red">*</span>:</label>
                                 <input type="date" id="ngay_bat_dau_lam_viec" class="form-control"
-                                       value="{{$model->chiTietNhanVien->ngay_bat_dau_lam_viec ?? old('ngay_bat_dau_lam_viec')}}"
+                                    value="{{ $model->chiTietNhanVien->ngay_bat_dau_lam_viec ?? old('ngay_bat_dau_lam_viec') }}"
                                     name="ngay_bat_dau_lam_viec">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="ngay_ket_thuc_lam_viec" class="h6">Ngày kết thúc làm việc:</label>
                                 <input type="date" id="ngay_ket_thuc_lam_viec" class="form-control"
-                                       value="{{$model->chiTietNhanVien->ngay_ket_thuc_lam_viec ?? old('ngay_ket_thuc_lam_viec')}}"
+                                    value="{{ $model->chiTietNhanVien->ngay_ket_thuc_lam_viec ?? old('ngay_ket_thuc_lam_viec') }}"
                                     name="ngay_ket_thuc_lam_viec">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="ngay_thuc_te_lam_viec" class="h6">Ngày thực tế làm việc:</label>
                                 <input type="date" id="ngay_thuc_te_lam_viec" class="form-control"
-                                       value="{{$model->chiTietNhanVien->ngay_thuc_te_lam_viec ?? old('ngay_thuc_te_lam_viec')}}"
+                                    value="{{ $model->chiTietNhanVien->ngay_thuc_te_lam_viec ?? old('ngay_thuc_te_lam_viec') }}"
                                     name="ngay_thuc_te_lam_viec">
                             </div>
                         </div>
@@ -248,7 +251,7 @@
                                 <label for="CMND" class="h6">CMND <span style="color: red">*</span>: </label>
                                 <div class="input-group">
                                     <input type="text" id="CMND" class="form-control" name="cmnd"
-                                           value="{{$model->chiTietNhanVien->cmnd ?? old('cmnd')}}"
+                                        value="{{ $model->chiTietNhanVien->cmnd ?? old('cmnd') }}"
                                         placeholder="Nhập số CMND...">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-credit-card"></i></span>
@@ -258,13 +261,16 @@
                             <div class="form-group col-md-3">
                                 <label for="ngay_cap_CMND" class="h6">Ngày cấp<span style="color: red">*</span>:
                                 </label>
-                                <input type="date" id="ngay_cap_CMND" class="form-control" value="{{$model->chiTietNhanVien->ngay_cap_cmnd ?? old('ngay_cap_cmnd')}}" name="ngay_cap_cmnd">
+                                <input type="date" id="ngay_cap_CMND" class="form-control"
+                                    value="{{ $model->chiTietNhanVien->ngay_cap_cmnd ?? old('ngay_cap_cmnd') }}"
+                                    name="ngay_cap_cmnd">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="noi_cap_CMND" class="h6">Nơi cấp<span style="color: red">*</span>:
                                 </label>
                                 <div class="input-group">
-                                    <input type="text" id="noi_cap_CMND" class="form-control" name="noi_cap_cmnd" value="{{$model->chiTietNhanVien->noi_cap_cmnd ?? old('noi_cap_cmnd')}}"
+                                    <input type="text" id="noi_cap_CMND" class="form-control" name="noi_cap_cmnd"
+                                        value="{{ $model->chiTietNhanVien->noi_cap_cmnd ?? old('noi_cap_cmnd') }}"
                                         placeholder="Nhập nơi cấp CMND...">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
@@ -277,8 +283,9 @@
                                 <label for="trinh_do_chuyen_mon">Trình độ chuyên môn<span style="color: red">*</span>:
                                 </label>
                                 <select id="trinh_do_chuyen_mon" class="form-control" name="trinh_do_chuyen_mon">
-                                    @foreach(\App\Modules\Nhansu\src\Models\ChiTietNhanVien::TRINH_DO_CHUYEN_MON as $id => $td)
-                                        <option value="{{$id}}" @if($model->chiTietNhanVien->trinh_do_chuyen_mon == $id) selected @endif>{{$td}}</option>
+                                    @foreach (\App\Modules\Nhansu\src\Models\ChiTietNhanVien::TRINH_DO_CHUYEN_MON as $id => $td)
+                                        <option value="{{ $id }}"
+                                            @if ($model->chiTietNhanVien->trinh_do_chuyen_mon == $id) selected @endif>{{ $td }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -286,7 +293,7 @@
                                 <label for="so_cchn" class="h6">Số CCHN: </label>
                                 <div class="input-group">
                                     <input type="text" id="so_cchn" class="form-control" name="so_cchn"
-                                           value="{{$model->chiTietNhanVien->so_cchn ?? old('so_cchn')}}"
+                                        value="{{ $model->chiTietNhanVien->so_cchn ?? old('so_cchn') }}"
                                         placeholder="Nhập số CCHN...">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-upc-scan"></i></span>
@@ -296,8 +303,9 @@
                             <div class="form-group col-md-6">
                                 <label for="bo_sung_HĐ_CM" class="h6">Bổ sung phạm vi HĐ CM: </label>
                                 <div class="input-group">
-                                    <input type="text" id="bo_sung_HĐ_CM" class="form-control" name="bo_sung_pham_vi_cm"
-                                           value="{{$model->chiTietNhanVien->bo_sung_pham_vi_cm ?? old('bo_sung_pham_vi_cm')}}"
+                                    <input type="text" id="bo_sung_HĐ_CM" class="form-control"
+                                        name="bo_sung_pham_vi_cm"
+                                        value="{{ $model->chiTietNhanVien->bo_sung_pham_vi_cm ?? old('bo_sung_pham_vi_cm') }}"
                                         placeholder="Nhập bổ sung phạm vi HĐ CM...">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-map"></i></span>
@@ -308,13 +316,14 @@
                         <div class="form-row">
                             <div class="form-group col-md-3">
                                 <label for="ngay_cap_CCHN" class="h6">Ngày cấp CCHN: </label>
-                                <input type="date" id="ngay_cap_CCHN" class="form-control" name="ngay_cap_cchn" value="{{$model->chiTietNhanVien->ngay_cap_cchn ?? old('ngay_cap_cchn')}}">
+                                <input type="date" id="ngay_cap_CCHN" class="form-control" name="ngay_cap_cchn"
+                                    value="{{ $model->chiTietNhanVien->ngay_cap_cchn ?? old('ngay_cap_cchn') }}">
                             </div>
                             <div class="form-group col-md-5">
                                 <label for="dk_hanh_nghe_tai" class="h6">ĐK Hành nghề tại: </label>
                                 <div class="input-group">
                                     <input type="text" id="dk_hanh_nghe_tai" class="form-control"
-                                           value="{{$model->chiTietNhanVien->dang_ki_hanh_nghe_hien_tai ?? old('dang_ki_hanh_nghe_hien_tai')}}"
+                                        value="{{ $model->chiTietNhanVien->dang_ki_hanh_nghe_hien_tai ?? old('dang_ki_hanh_nghe_hien_tai') }}"
                                         name="dang_ki_hanh_nghe_hien_tai" placeholder="Nhập nơi ĐK hành nghề...">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
@@ -326,7 +335,7 @@
                                 </label>
                                 <div class="input-group">
                                     <input type="text" id="bien_xe_o_to" class="form-control" name="bien_oto"
-                                           value="{{$model->chiTietNhanVien->bien_oto ?? old('bien_oto')}}"
+                                        value="{{ $model->chiTietNhanVien->bien_oto ?? old('bien_oto') }}"
                                         placeholder="Nhập biển số xe ô tô...">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg"
@@ -343,7 +352,7 @@
                                         style="color: red">*</span>:</label>
                                 <div class="input-group">
                                     <input type="text" id="bien_xe_may" class="form-control" name="bien_xe_may"
-                                           value="{{$model->chiTietNhanVien->bien_xe_may ?? old('bien_xe_may')}}"
+                                        value="{{ $model->chiTietNhanVien->bien_xe_may ?? old('bien_xe_may') }}"
                                         placeholder="Nhập biển số xe máy...">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-bicycle"></i></span>
@@ -356,7 +365,7 @@
                                 <label for="size_quan">Size quần<span style="color: red">*</span>:</label>
                                 <div class="input-group">
                                     <input type="text" id="size_quan" class="form-control" name="size_quan"
-                                           value="{{$model->chiTietNhanVien->size_quan ?? old('size_quan')}}"
+                                        value="{{ $model->chiTietNhanVien->size_quan ?? old('size_quan') }}"
                                         placeholder="Nhập size quần...">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-list-ol"></i></span>
@@ -367,7 +376,7 @@
                                 <label for="size_ao" class="h6">Size áo<span style="color: red">*</span>:</label>
                                 <div class="input-group">
                                     <input type="text" id="size_ao" class="form-control" name="size_ao"
-                                           value="{{$model->chiTietNhanVien->size_ao ?? old('size_ao')}}"
+                                        value="{{ $model->chiTietNhanVien->size_ao ?? old('size_ao') }}"
                                         placeholder="Nhập size áo...">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-list-ol"></i></span>
@@ -379,7 +388,7 @@
                                         style="color: red">*</span>:</label>
                                 <div class="input-group">
                                     <input type="text" id="size_giay_dep" class="form-control" name="size_giay_dep"
-                                           value="{{$model->chiTietNhanVien->size_giay_dep ?? old('size_giay_dep')}}"
+                                        value="{{ $model->chiTietNhanVien->size_giay_dep ?? old('size_giay_dep') }}"
                                         placeholder="Nhập size giày dép...">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-list-ol"></i></span>
@@ -390,12 +399,22 @@
                                 <label for="bang_lai" class="h6">Bằng lái:</label>
                                 <div class="input-group">
                                     <input type="text" id="bang_lai" class="form-control" name="bang_lai"
-                                           value="{{$model->chiTietNhanVien->bang_lai ?? old('bang_lai')}}"
+                                        value="{{ $model->chiTietNhanVien->bang_lai ?? old('bang_lai') }}"
                                         placeholder="Nhập bằng lái...">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-credit-card"></i></span>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-3">
+                                <button  class="btn btn-info mb-2" style="text-align: center">Làm mới <i class="bi bi-arrow-clockwise"></i></button>
+                            </div>
+                            <div class="col-md-3"></div>
+                            <div class="col-md-3 ">
+                                <button type="submit" class="btn btn-primary mb-2">Lưu <i class="bi bi-download"></i></button>
                             </div>
                         </div>
                     </form>
