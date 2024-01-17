@@ -1,12 +1,12 @@
 @extends('adminlte.Layout.app')
 @section('content')
-    <div class="box box-primary">
+    <div class="box box-primary mt-5">
         <div class="box-header with-border">
             <form action="">
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <input name="keyword" placeholder="Nhập mã chi nhánh, tên chi nhánh.." class="form-control"
+                            <input name="keyword" placeholder="Nhập họ và tên,email,mã nhân viên" class="form-control"
                                 value="{{ $keyword ?? '' }}" />
                         </div>
                     </div>
@@ -20,7 +20,7 @@
             </form>
             <div class="row">
                 <div class="col-sm-6">
-                    <p style="display: inline-block;"><b></b> Nhân viên</p>
+                    <p style="display: inline-block;"><b>{{$count}}</b> Nhân viên</p>
                 </div>
             </div>
         </div>
@@ -60,10 +60,6 @@
                                    data-delete-url="{{route('nhansu.nhan-vien.destroy', $model->id)}}">
                                     Xóa <i class="bi bi-trash"></i>
                                 </a>
-{{--                                <a class="btn btn-primary btn-sm" target="_blank"--}}
-{{--                                   href="">--}}
-{{--                                    Sửa <i class="bi bi-pencil-square"></i>--}}
-{{--                                </a>--}}
                                 <a target="_blank" href="{{route('nhansu.nhan-vien.edit', $model->id)}}" class="btn btn-primary btn-sm">
                                     Chi tiết  <i class="bi bi-eye-fill"></i>
                                 </a>
