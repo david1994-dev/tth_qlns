@@ -44,7 +44,7 @@
             <tbody>
                     @foreach($models as $model)
                         <tr>
-                            <td>{{ $loop->index }}</td>
+                            <td>{{ $loop->index + 1 }}</td>
                             <td>{{$model->ma}}</td>
                             <td>{{$model->email}}</td>
                             <td>{{$model->ho_ten}}</td>
@@ -57,7 +57,7 @@
                             <td></td>
                             <td class="text-center">
                                 <a class="btn btn-danger btn-sm delete-button"
-                                   data-delete-url="">
+                                   data-delete-url="{{route('nhansu.nhan-vien.destroy', $model->id)}}">
                                     Xóa <i class="bi bi-trash"></i>
                                 </a>
                                 <a target="_blank" href="{{route('nhansu.nhan-vien.edit', $model->id)}}" class="btn btn-primary btn-sm">

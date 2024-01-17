@@ -88,7 +88,7 @@ class RegisteredUserController extends Controller
             $nhanVien = $this->nhanVienRepository->create([
                 'phong_ban_id' => $phongBan->id,
                 'chi_nhanh_id' => $phongBan->chi_nhanh_id,
-                'user_id' => $user->id
+                'user_id' => $user->id,
             ]);
 
             $this->chiTietNhanVienRepository->create([

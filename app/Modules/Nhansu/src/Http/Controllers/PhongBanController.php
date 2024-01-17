@@ -149,16 +149,14 @@ class PhongBanController extends Controller
         $model = $this->phongBanRepository->findById($id);
         if( empty( $model ) ) {
             session()->flash('error', 'Phòng ban không tồn tại');
-            return redirect()
-                ->back();
+            return redirect()->route('nhansu.khoa-phong-ban.index');
         }
 
         $this->phongBanRepository->delete( $model );
 
         session()->flash('success', 'Bạn đã xóa phòng ban thành công');
 
-        return redirect()
-            ->back();
+        return redirect()->route('nhansu.khoa-phong-ban.index');
     }
 
     public function sodotochuc($id)
