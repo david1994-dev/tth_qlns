@@ -8,7 +8,7 @@ use App\Repositories\Eloquent\BaseRepository;
 
 class NhanVienRepository extends BaseRepository implements NhanVienRepositoryInterface
 {
-    protected array $querySearchTargets = ['hoten', 'email', 'manv'];
+    protected array $querySearchTargets = ['ho_ten', 'email', 'ma'];
     public function getBlankModel()
     {
         return new NhanVien();
