@@ -85,7 +85,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="ngay_sinh" class="h6">Ngày sinh<span style="color: red">*</span>:</label>
-                                <input type="date" id="ngay_sinh" class="form-control" name="ngay_sinh" value="{{$model->ngay_sinh ?? old('ngay_sinh')}}">
+                                <input type="date" id="ngay_sinh" class="form-control" name="ngay_sinh" value="{{$model->ngay_sinh ? $model->ngay_sinh->format('Y-m-d') : old('ngay_sinh')}}">
                             </div>
                         </div>
                         <div class="form-row">
@@ -227,19 +227,19 @@
                                 <label for="ngay_bat_dau_lam_viec" class="h6">Ngày bắt đầu làm việc<span
                                         style="color: red">*</span>:</label>
                                 <input type="date" id="ngay_bat_dau_lam_viec" class="form-control"
-                                       value="{{$model->chiTietNhanVien->ngay_bat_dau_lam_viec ?? old('ngay_bat_dau_lam_viec')}}"
+                                       value="{{$model->chiTietNhanVien->ngay_bat_dau_lam_viec ? $model->chiTietNhanVien->ngay_bat_dau_lam_viec->format('Y-m-d') : old('ngay_bat_dau_lam_viec')}}"
                                     name="ngay_bat_dau_lam_viec">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="ngay_ket_thuc_lam_viec" class="h6">Ngày kết thúc làm việc:</label>
                                 <input type="date" id="ngay_ket_thuc_lam_viec" class="form-control"
-                                       value="{{$model->chiTietNhanVien->ngay_ket_thuc_lam_viec ?? old('ngay_ket_thuc_lam_viec')}}"
+                                       value="{{$model->chiTietNhanVien->ngay_ket_thuc_lam_viec ? $model->chiTietNhanVien->ngay_ket_thuc_lam_viec->format('Y-m-d') : old('ngay_ket_thuc_lam_viec')}}"
                                     name="ngay_ket_thuc_lam_viec">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="ngay_thuc_te_lam_viec" class="h6">Ngày thực tế làm việc:</label>
                                 <input type="date" id="ngay_thuc_te_lam_viec" class="form-control"
-                                       value="{{$model->chiTietNhanVien->ngay_thuc_te_lam_viec ?? old('ngay_thuc_te_lam_viec')}}"
+                                       value="{{$model->chiTietNhanVien->ngay_thuc_te_lam_viec ? $model->chiTietNhanVien->ngay_thuc_te_lam_viec->format('Y-m-d') : old('ngay_thuc_te_lam_viec')}}"
                                     name="ngay_thuc_te_lam_viec">
                             </div>
                         </div>
@@ -258,7 +258,7 @@
                             <div class="form-group col-md-3">
                                 <label for="ngay_cap_CMND" class="h6">Ngày cấp<span style="color: red">*</span>:
                                 </label>
-                                <input type="date" id="ngay_cap_CMND" class="form-control" value="{{$model->chiTietNhanVien->ngay_cap_cmnd ?? old('ngay_cap_cmnd')}}" name="ngay_cap_cmnd">
+                                <input type="date" id="ngay_cap_CMND" class="form-control" value="{{$model->chiTietNhanVien->ngay_cap_cmnd ? $model->chiTietNhanVien->ngay_cap_cmnd->format('Y-m-d') : old('ngay_cap_cmnd')}}" name="ngay_cap_cmnd">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="noi_cap_CMND" class="h6">Nơi cấp<span style="color: red">*</span>:
@@ -308,7 +308,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-3">
                                 <label for="ngay_cap_CCHN" class="h6">Ngày cấp CCHN: </label>
-                                <input type="date" id="ngay_cap_CCHN" class="form-control" name="ngay_cap_cchn" value="{{$model->chiTietNhanVien->ngay_cap_cchn ?? old('ngay_cap_cchn')}}">
+                                <input type="date" id="ngay_cap_CCHN" class="form-control" name="ngay_cap_cchn" value="{{$model->chiTietNhanVien->ngay_cap_cchn ? $model->chiTietNhanVien->ngay_cap_cchn->format('Y-m-d') : old('ngay_cap_cchn')}}">
                             </div>
                             <div class="form-group col-md-5">
                                 <label for="dk_hanh_nghe_tai" class="h6">ĐK Hành nghề tại: </label>
