@@ -1,6 +1,18 @@
 @extends('adminlte.Layout.app')
-@section('content')
+@section('styles')
+    <style>
+        label {
+            font-weight: 400 !important;
+        }
 
+        .nav-link {
+            font-weight: 500;
+        }
+    </style>
+@stop
+
+
+@section('content')
     <div class="row">
         <div class="col-md-12">
             <h1 class="text-center fw-bold" style="background-color: blue ;color: white">THÔNG TIN NHÂN VIÊN</h1>
