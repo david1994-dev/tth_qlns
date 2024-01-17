@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Modules\ModuleRouterServiceProvider;
 use App\Modules\Nhansu\src\Repositories\Interface\ChiNhanhRepositoryInterface;
+use App\Modules\Nhansu\src\Repositories\Interface\ChiTietNhanVienRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\NhanVienRepositoryInterface;
 use App\Providers\RouteServiceProvider;
 use App\Repositories\Interface\UserRepositoryInterface;
@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
-
+use App\Modules\Nhansu\src\Repositories\Interface\PhongBanRepositoryInterface;
 class RegisteredUserController extends Controller
 {
     private NhanVienRepositoryInterface $nhanVienRepository;
@@ -29,6 +29,8 @@ class RegisteredUserController extends Controller
     private ChiNhanhRepositoryInterface $chiNhanhRepository;
     private PhongBanRepositoryInterface $phongBanRepository;
 
+    private ChiTietNhanVienRepositoryInterface $chiTietNhanVienRepository;
+
     public function __construct(
         NhanVienRepositoryInterface $nhanVienRepository,
         UserRepositoryInterface     $userRepository,
@@ -36,6 +38,7 @@ class RegisteredUserController extends Controller
         UserRoleRepositoryInterface $userRoleRepository,
         ChiNhanhRepositoryInterface $chiNhanhRepository,
         PhongBanRepositoryInterface $phongBanRepository,
+        ChiTietNhanVienRepositoryInterface $chiTietNhanVienRepository
     ) {
         $this->nhanVienRepository = $nhanVienRepository;
         $this->userRepository = $userRepository;
@@ -43,6 +46,7 @@ class RegisteredUserController extends Controller
         $this->userRoleRepository = $userRoleRepository;
         $this->chiNhanhRepository = $chiNhanhRepository;
         $this->phongBanRepository = $phongBanRepository;
+        $this->chiTietNhanVienRepository = $chiTietNhanVienRepository;
     }
 
     /**
@@ -50,9 +54,9 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        $chiNhanh = $this->chiNhanhRepository->all();
+        $phongBan = $this->phongBanRepository->all();
         return view('auth.register', [
-            'chiNhanh' => $chiNhanh
+            'phongBan' => $phongBan
         ]);
     }
 
@@ -69,7 +73,8 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $chiNhanhId = $request->get('chi_nhanh_id');
+        $phongBanId = $request->get('phong_ban_id');
+        $phongBan = $this->phongBanRepository->findById($phongBanId);
 
         DB::beginTransaction();
         try {
@@ -81,8 +86,13 @@ class RegisteredUserController extends Controller
 
 
             $nhanVien = $this->nhanVienRepository->create([
-                'chi_nhanh_id' => $chiNhanhId,
+                'phong_ban_id' => $phongBan->id,
+                'chi_nhanh_id' => $phongBan->chi_nhanh_id,
                 'user_id' => $user->id
+            ]);
+
+            $this->chiTietNhanVienRepository->create([
+                'nhan_vien_id' => $nhanVien->id
             ]);
 
             DB::commit();

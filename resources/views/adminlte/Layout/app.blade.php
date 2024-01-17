@@ -3,7 +3,8 @@
 <head>
   <!-------------------------------- Begin: Meta ----------------------------------->
   @yield('metadata')
-  <!-------------------------------- End: Meta ----------------------------------->
+    <meta name="_token" content="{{ csrf_token() }}">
+    <!-------------------------------- End: Meta ----------------------------------->
 
   <!-------------------------------- Begin: stylesheet ----------------------------------->
   @include('adminlte.Layout.style')
@@ -23,15 +24,36 @@
     <!-------------------------------- End: Left Navigation ----------------------------------->
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper" style="min-height: 1302.26px;">
+    <div class="content-wrapper"  >
       <!-- Content Header (Page header) -->
-      <section class="content-header">
-
-      </section>
+ 
 
       <!-- Main content -->
       <div class="content">
       <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-8 offset-md-2">
+                  @if ($errors->count())
+                      <div class="alert alert-danger">
+                          <ul class="mb-0">
+                              @foreach ($errors->all() as $e)
+                                  <li>{!! $e !!}</li>
+                              @endforeach
+                          </ul>
+                      </div>
+                  @endif
+                  @if ($message = session('error'))
+                      <div class="alert alert-danger alert-block">
+                          {!! $message !!}
+                      </div>
+                  @endif
+                  @if ($message = session('success'))
+                      <div class="alert alert-success alert-block">
+                          {!! $message !!}
+                      </div>
+                  @endif
+              </div>
+          </div>
         @yield('content')
       </div>
       </div>

@@ -43,10 +43,10 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="chiNhanh">Chi Nhánh</label>
-                        <select name="chi_nhanh_id" class="form-control w-full" id="chiNhanh">
-                            @foreach($chiNhanh as $cn)
-                                <option value="{{$cn->id}}">{{$cn->ten}}</option>
+                        <label for="phong_ban">Phòng Ban</label>
+                        <select name="phong_ban_id" class="form-control w-full" id="phong_ban">
+                            @foreach($phongBan as $pb)
+                                <option value="{{$pb->id}}">{{$pb->ten}}</option>
                             @endforeach
                         </select>
                     </div>

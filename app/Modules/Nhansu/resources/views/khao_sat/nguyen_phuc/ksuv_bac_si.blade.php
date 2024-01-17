@@ -149,26 +149,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </div>
                                 <div style="display: inline;" class="col-md-6">
                                     <p style="display: inline;">Ngày sinh</p>
-                                    <input type="date" id="ngay_sinh" name="ngay_sinh" required 
+                                    <input type="date" id="ngay_sinh" name="ngay_sinh" required
                                         value="{{ old('ngay_sinh') ?? '' }}" style="width: 50% ;display: inline;  border-radius: 4px;
                                         border: 2px solid;
                                         border-color: #bcbcbc;">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <p style="display: inline;">Chuyên ngành đào tạo:</p> <input class="input"
-                                        value="{{ old('chuyen_nganh_dao_tao') ?? '' }}" name="chuyen_nganh_dao_tao"
-                                        style="width: 50%;"
-                                        placeholder="......................................................................">
-                                </div>
-                                <div class="col-md-6">
-                                    Hệ
-                                    đào
-                                    tạo:
-                                    <input class="input" name="he_dao_tao" style="width: 50%;"
-                                        value="{{ old('he_dao_tao') ?? '' }}"
-                                        placeholder="...........................................................................">
                                 </div>
                             </div>
                             <p style="display: inline;">Địa chỉ:</p> <input class="input" style=" width: 60%;"
@@ -192,6 +176,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 style="width: 50%;" name="truong_dao_tao" value="{{ old('truong_dao_tao') ?? '' }}"
                                 placeholder="..........................................................................................................................................">
                             <br>
+                            <p style="display: inline;">Chuyên ngành đào tạo:</p> <input class="input"
+                                                                                         value="{{ old('chuyen_nganh_dao_tao') ?? '' }}" name="chuyen_nganh_dao_tao"
+                                                                                         style="width: 50%;"
+                                                                                         placeholder="......................................................................">
+                            <br>
                             <p style="display: inline;">Tốt nghiệp loại:</p>
                             <input type="radio" name="loai_tot_nghiep" value="Giỏi"> Giỏi
                             <input type="radio" name="loai_tot_nghiep" value="Khá"> Khá
@@ -202,7 +191,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <input type="radio" name="loai_hinh_dao_tao" value="Chuyên tu"> Chuyên tu <br>
 
                             <p style="display: inline;">Văn bằng đã hoàn thành: </p>
-                            <input type="checkbox" name="van_bang[]" value="BSDK"> BSDK
+                            <input type="checkbox" name="van_bang[]" value="BS"> BS
                             <input type="checkbox" name="van_bang[]" value="Thạc sỹ"> Thạc sỹ
                             <input type="checkbox" name="van_bang[]" value="CKI"> CKI
                             <input type="checkbox" name="van_bang[]" value="CKII"> CKII
@@ -393,8 +382,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="col-md-3">
                                     <input type="radio" name="thoi_han_hop_dong" value="17 Năm"> 17
                                     năm <br>
-                                    <input type="radio" name="thoi_han_hop_dong" value="khác">
-                                    Khác
+                                    Khác:
+                                    <input class="input" style=" width: 50%;" type="text" name="thoi_han_hop_dong_khac"
+                                           value="{{ old('thoi_han_hop_dong_khac') ?? '' }}"
+                                           placeholder=".................................................................">
                                 </div>
                             </div> <br>
                             <p style="font-weight: 600; display: inline;"> 5.Anh(chị) có nguyện vọng làm
@@ -454,7 +445,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         max="3">
                                     KSNK <br>
                                     <input type="checkbox" name="ung_tuyen[]" value="Khác"
-                                        max="3"> Khác 
+                                        max="3"> Khác
                                 </div>
                             </div> <br>
                             <p style="font-weight: 600; display: inline;"> 6.Anh(chị) biết thông tin
@@ -477,7 +468,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <input type="checkbox" name="nguon_tuyen_dung[]" value="Báo chí/ Truyền hình">
                                     Báo
                                     chí/Truyền hình <br>
-                                    <input type="checkbox" name="nguon_tuyen_dung[]" value="Nguồn khác"> Nguồn khác
+                                    Nguồn khác:
+                                    <input class="input" style=" width: 50%;" type="text" name="nguon_tuyen_dung_khac"
+                                           value="{{ old('nguon_tuyen_dung_khac') ?? '' }}"
+                                           placeholder=".................................................................">
                                 </div>
                             </div> <br>
                             <p style="font-weight: 600; display: inline;"> 7.Điểm yếu?</p><br>

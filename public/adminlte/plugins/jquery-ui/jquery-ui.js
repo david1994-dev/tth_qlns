@@ -5,7 +5,7 @@
 
 ( function( factory ) {
 	"use strict";
-	
+
 	if ( typeof define === "function" && define.amd ) {
 
 		// AMD. Register as an anonymous module.
@@ -16657,7 +16657,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			po.top += this.scrollParent.scrollTop();
 		}
 
-		// This needs to be actually done for all browsers, since pageX/pageY includes this
+		// This needs to be actually done for all browsers, since pageX/pageY components this
 		// information with an ugly IE fix
 		if ( this.offsetParent[ 0 ] === this.document[ 0 ].body ||
 				( this.offsetParent[ 0 ].tagName &&

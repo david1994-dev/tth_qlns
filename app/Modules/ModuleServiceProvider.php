@@ -2,6 +2,19 @@
 
 namespace App\Modules;
 
+use App\Modules\Nhansu\src\Models\UngVien;
+use App\Modules\Nhansu\src\Repositories\Eloquent\ChiNhanhRepository;
+use App\Modules\Nhansu\src\Repositories\Eloquent\ChiTietNhanVienRepository;
+use App\Modules\Nhansu\src\Repositories\Eloquent\NhanVienRepository;
+use App\Modules\Nhansu\src\Repositories\Eloquent\PhongBanRepository;
+use App\Modules\Nhansu\src\Repositories\Eloquent\SoDoToChucRepository;
+use App\Modules\Nhansu\src\Repositories\Eloquent\UngVienRepository;
+use App\Modules\Nhansu\src\Repositories\Interface\ChiNhanhRepositoryInterface;
+use App\Modules\Nhansu\src\Repositories\Interface\ChiTietNhanVienRepositoryInterface;
+use App\Modules\Nhansu\src\Repositories\Interface\NhanVienRepositoryInterface;
+use App\Modules\Nhansu\src\Repositories\Interface\PhongBanRepositoryInterface;
+use App\Modules\Nhansu\src\Repositories\Interface\SoDoToChucRepositoryInterface;
+use App\Modules\Nhansu\src\Repositories\Interface\UngVienRepositoryInterface;
 use App\Modules\SuCoYKhoa\src\Repositories\Eloquent\BaoCaoSuCoYKhoaRepository;
 use App\Modules\SuCoYKhoa\src\Repositories\Interface\BaoCaoSuCoYKhoaRepositoryInterface;
 use Illuminate\Support\Facades\File;
@@ -16,28 +29,38 @@ class ModuleServiceProvider extends ServiceProvider
     {
         //nhan su module
         $this->app->singleton(
-            \App\Modules\Nhansu\src\Repositories\Interface\NhanVienRepositoryInterface::class,
-            \App\Modules\Nhansu\src\Repositories\Eloquent\NhanVienRepository::class
+            NhanVienRepositoryInterface::class,
+            NhanVienRepository::class
         );
 
         $this->app->singleton(
-            \App\Modules\Nhansu\src\Repositories\Interface\ChiNhanhRepositoryInterface::class,
-            \App\Modules\Nhansu\src\Repositories\Eloquent\ChiNhanhRepository::class
+            ChiNhanhRepositoryInterface::class,
+            ChiNhanhRepository::class
         );
 
         $this->app->singleton(
-            \App\Modules\Nhansu\src\Repositories\Interface\UngVienRepositoryInterface::class,
-            \App\Modules\Nhansu\src\Repositories\Eloquent\UngVienRepository::class
+            UngVienRepositoryInterface::class,
+            UngVienRepository::class
         );
 
         $this->app->singleton(
-            \App\Modules\Nhansu\src\Repositories\Interface\PhongBanRepositoryInterface::class,
-            \App\Modules\Nhansu\src\Repositories\Eloquent\PhongBanRepository::class
+            PhongBanRepositoryInterface::class,
+            PhongBanRepository::class
         );
 
         $this->app->singleton(
             BaoCaoSuCoYKhoaRepositoryInterface::class,
             BaoCaoSuCoYKhoaRepository::class
+        );
+
+        $this->app->singleton(
+            SoDoToChucRepositoryInterface::class,
+            SoDoToChucRepository::class
+        );
+
+        $this->app->singleton(
+            ChiTietNhanVienRepositoryInterface::class,
+            ChiTietNhanVienRepository::class
         );
     }
 
@@ -66,10 +89,6 @@ class ModuleServiceProvider extends ServiceProvider
         if (File::exists($modulePath . "resources/lang")) {
             $this->loadTranslationsFrom($modulePath . "resources/lang", $moduleName);
             $this->loadJSONTranslationsFrom($modulePath . 'resources/lang');
-        }
-
-        if (File::exists($modulePath . "resources/views")) {
-            $this->loadViewsFrom($modulePath . "resources/views", $moduleName);
         }
 
         if (File::exists($modulePath . "resources/views")) {

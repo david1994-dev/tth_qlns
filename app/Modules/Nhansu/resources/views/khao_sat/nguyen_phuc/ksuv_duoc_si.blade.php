@@ -379,7 +379,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             max="3">
                                         KSNK <br>
                                         <input type="checkbox" name="ung_tuyen[]" value="Khác"
-                                            max="3"> Khác 
+                                            max="3"> Khác
                                     </div>
                                 </div> <br>
                             <p style="font-weight: 600; display: inline;"> 4.Anh(chị) biết thông tin tuyển dụng
@@ -401,7 +401,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <input type="checkbox" name="nguon_tuyen_dung[]" value="Báo chí/ Truyền hình">
                                     Báo
                                     chí/Truyền hình <br>
-                                    <input type="checkbox" name="nguon_tuyen_dung[]" value="Nguồn khác"> Nguồn khác
+                                    Nguồn khác:
+                                    <input class="input" style=" width: 50%;" type="text" name="nguon_tuyen_dung_khac"
+                                           value="{{ old('nguon_tuyen_dung_khac') ?? '' }}"
+                                           placeholder=".................................................................">
                                 </div>
                             </div> <br>
                             <p style="font-weight: 600; display: inline;"> 5.Điểm yếu?</p><br>

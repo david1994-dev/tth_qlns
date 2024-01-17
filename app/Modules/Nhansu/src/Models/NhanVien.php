@@ -12,23 +12,34 @@ class NhanVien extends Base
     protected $table = 'nhanvien';
     const GIOI_TINH_NU = 0;
     const GIOI_TINH_NAM = 1;
+    const GIOI_TINH_LGBT = 2;
+
+    const GIOI_TINH = [
+        self::GIOI_TINH_NU => 'Nữ',
+        self::GIOI_TINH_NAM => 'Nam',
+        self::GIOI_TINH_LGBT => 'LGBT',
+    ];
+
+    const LOAI_NHAN_VIEN = [
+        self::LOAI_THU_VIEC => 'Thử Việc',
+        self::LOAI_CHINH_THUC => 'Chính Thức',
+    ];
+
+    const LOAI_THU_VIEC = 1;
+    const LOAI_CHINH_THUC = 2;
+
+
     protected $fillable = [
+        'user_id',
         'ma',
         'ho_ten',
-        'user_id',
-        'image',
         'email',
-        'dien_thoai',
-        'cmnd',
-        'email_cong_viec',
+        'dien_thoai_cong_viec',
         'gioi_tinh',
+        'loai_nhan_vien',
         'ngay_sinh',
-        'ngay_bat_dau_lam_viec',
-        'ngay_ket_thuc_lam_viec',
         'chi_nhanh_id',
-        'vi_tri_cong_viec_id',
-        'phong_ban_id',
-        'chi_tiet'
+        'phong_ban_id'
     ];
 
     protected $casts = [
@@ -36,4 +47,19 @@ class NhanVien extends Base
         'deleted_at' => 'datetime:Y-m-d H:i:s',
         'ngay_sinh' => 'date'
     ];
+
+    public function chiTietNhanVien()
+    {
+        return $this->hasOne(ChiTietNhanVien::class, 'nhan_vien_id', 'id');
+    }
+
+    public function chiNhanh()
+    {
+        return $this->hasOne(ChiNhanh::class, 'id', 'chi_nhanh_id');
+    }
+
+    public function phongBan()
+    {
+        return $this->hasOne(PhongBan::class, 'id', 'phong_ban_id');
+    }
 }

@@ -2154,7 +2154,7 @@ var uPlot = (function () {
 					let lft = pxRound(xPos - xShift);
 					let btm = pxRound(max(yPos, y0Pos));
 					let top = pxRound(min(yPos, y0Pos));
-					// this includes the stroke
+					// this components the stroke
 					let barHgt = btm - top;
 
 					let r = radius * barWid;

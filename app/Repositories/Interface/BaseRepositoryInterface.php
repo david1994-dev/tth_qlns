@@ -113,6 +113,5 @@ interface BaseRepositoryInterface
     public function update($model, $input);
     public function save($model);
     public function delete($model);
-
-
+    public function load($collections, $relationShip);
 }

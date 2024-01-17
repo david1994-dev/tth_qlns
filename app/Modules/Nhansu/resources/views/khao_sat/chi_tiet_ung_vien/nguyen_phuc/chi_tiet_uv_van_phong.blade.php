@@ -278,7 +278,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <input type="checkbox" name="nguon_tuyen_dung[]" value="Vietnamwork">
                                     <label for="Vietnamwork">Vietnamwork</label> <br>
 
-                                    <input type="checkbox" name="nguon_tuyen_dung[]" value="Nguồn khác">
+                                    <input class="input" style=" width: 50%;" type="text" name="nguon_tuyen_dung_khac"
+                                           value="{{ Arr::get($chiTietUngVien, 'nguon_tuyen_dung_khac', '') }}">
                                     <label for="Nguồn khác">Nguồn khác</label>
                                 </div>
                             </div> <br>
@@ -288,45 +289,45 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <i>- Đánh dấu 3 vị trí theo thứ tự ưu tiên </i>
                             <div class="row">
                                 <div class="col-4">
-                                    <input type="checkbox" name="ung_tuyen[]" value="Chuyên viên KHTH"> 
+                                    <input type="checkbox" name="ung_tuyen[]" value="Chuyên viên KHTH">
                                     <label for="Chuyên viên KHTH">Chuyên viên KHTH</label><br>
 
-                                    <input type="checkbox" name="ung_tuyen[]" value="Chuyên viên hành chính"> 
+                                    <input type="checkbox" name="ung_tuyen[]" value="Chuyên viên hành chính">
                                     <label for="Chuyên viên hành chính">Chuyên viên hành chính</label> <br>
 
-                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên an ninh"> 
+                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên an ninh">
                                     <label for="Nhân viên an ninh">Nhân viên an ninh</label> <br>
 
-                                    <input type="checkbox" name="ung_tuyen[]" value="Chuyên viên MKT"> 
+                                    <input type="checkbox" name="ung_tuyen[]" value="Chuyên viên MKT">
                                     <label for="Chuyên viên MKT">Chuyên viên MKT</label> <br>
 
                                     <input type="checkbox" name="ung_tuyen[]" value="Nhân viên nhà bếp">
                                     <label for="Nhân viên nhà bếp">Nhân viên nhà bếp</label> <br>
 
-                                    <input type="checkbox" name="ung_tuyen[]" value="Hành chính khoa"> 
+                                    <input type="checkbox" name="ung_tuyen[]" value="Hành chính khoa">
                                     <label for="Hành chính khoa">Hành chính khoa</label> <br>
                                 </div>
                                 <div class="col-4">
                                     <input type="checkbox" name="ung_tuyen[]" value="Nhân viên kế toán">
                                     <label for="Nhân viên kế toán">Nhân viên kế toán</label> <br>
 
-                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên văn thư"> 
+                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên văn thư">
                                     <label for="Nhân viên văn thư">Nhân viên văn thư</label> <br>
 
-                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên công vụ"> 
+                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên công vụ">
                                     <label for="Nhân viên công vụ">Nhân viên công vụ</label> <br>
 
                                     <input type="checkbox" name="ung_tuyen[]" value="Chuyên viên CSKH">
                                     <label for="Chuyên viên CSKH">Chuyên viên CSKH</label> <br>
 
-                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên pha chế"> 
+                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên pha chế">
                                     <label for="Nhân viên pha chế">Nhân viên pha chế</label> <br>
 
-                                    <input type="checkbox" name="ung_tuyen[]" value="Khác"> 
+                                    <input type="checkbox" name="ung_tuyen[]" value="Khác">
                                     <label for="Khác">Khác</label> <br>
                                 </div>
                                 <div class="col-4">
-                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên Thu ngân"> 
+                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên Thu ngân">
                                     <label for="Nhân viên Thu ngân">Nhân viên Thu ngân</label> <br>
 
                                     <input type="checkbox" name="ung_tuyen[]" value="Nhân viên kỹ thuật">
@@ -335,10 +336,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <input type="checkbox" name="ung_tuyen[]" value="Chuyên viên nhân lực">
                                     <label for="Chuyên viên nhân lực">Chuyên viên nhân lực</label> <br>
 
-                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên kinh doanh"> 
+                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên kinh doanh">
                                     <label for="Nhân viên kinh doanh">Nhân viên kinh doanh</label> <br>
 
-                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên siêu thị"> 
+                                    <input type="checkbox" name="ung_tuyen[]" value="Nhân viên siêu thị">
                                     <label for="Nhân viên siêu thị">Nhân viên siêu thị</label> <br>
                                 </div>
                             </div> <br>

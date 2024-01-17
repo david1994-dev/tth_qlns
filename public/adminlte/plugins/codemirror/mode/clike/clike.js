@@ -270,7 +270,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
     "static else struct switch extern typedef union for goto while enum const " +
     "volatile inline restrict asm fortran";
 
-  // Keywords from https://en.cppreference.com/w/cpp/keyword includes C++20.
+  // Keywords from https://en.cppreference.com/w/cpp/keyword components C++20.
   var cppKeywords = "alignas alignof and and_eq audit axiom bitand bitor catch " +
   "class compl concept constexpr const_cast decltype delete dynamic_cast " +
   "explicit export final friend import module mutable namespace new noexcept " +
@@ -771,7 +771,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
   def("text/x-nesc", {
     name: "clike",
     keywords: words(cKeywords + " as atomic async call command component components configuration event generic " +
-                    "implementation includes interface module new norace nx_struct nx_union post provides " +
+                    "implementation components interface module new norace nx_struct nx_union post provides " +
                     "signal task uses abstract extends"),
     types: cTypes,
     blockKeywords: words(cBlockKeywords),

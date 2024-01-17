@@ -4210,7 +4210,7 @@ var FullCalendar = (function (exports) {
         moreLinkText: 'more',
         noEventsText: 'No events to display',
     };
-    var RAW_EN_LOCALE = __assign(__assign({}, MINIMAL_RAW_EN_LOCALE), { 
+    var RAW_EN_LOCALE = __assign(__assign({}, MINIMAL_RAW_EN_LOCALE), {
         // Includes things we don't want other locales to inherit,
         // things that derive from other translatable strings.
         buttonHints: {
@@ -4699,7 +4699,7 @@ var FullCalendar = (function (exports) {
         var borderRight = parseInt(computedStyle.borderRightWidth, 10) || 0;
         var borderTop = parseInt(computedStyle.borderTopWidth, 10) || 0;
         var borderBottom = parseInt(computedStyle.borderBottomWidth, 10) || 0;
-        var badScrollbarWidths = computeScrollbarWidthsForEl(el); // includes border!
+        var badScrollbarWidths = computeScrollbarWidthsForEl(el); // components border!
         var scrollbarLeftRight = badScrollbarWidths.y - borderLeft - borderRight;
         var scrollbarBottom = badScrollbarWidths.x - borderTop - borderBottom;
         var res = {
@@ -5864,7 +5864,7 @@ var FullCalendar = (function (exports) {
                 // will be `null` if no dates accept events
                 activeRange: activeRange,
                 // date range with a rendered skeleton
-                // includes not-active days that need some sort of DOM
+                // components not-active days that need some sort of DOM
                 renderRange: renderRange,
                 // Duration object that denotes the first visible time of any given day
                 slotMinTime: props.slotMinTime,
@@ -6789,7 +6789,7 @@ var FullCalendar = (function (exports) {
         var endMarker = framingRange.end;
         var instanceStarts = [];
         while (dayMarker < endMarker) {
-            var instanceStart 
+            var instanceStart
             // if everyday, or this particular day-of-week
             = void 0;
             // if everyday, or this particular day-of-week
@@ -13816,7 +13816,7 @@ var FullCalendar = (function (exports) {
             if (!slatCoords) {
                 return null;
             }
-            return segs.map(function (seg, i) { return (createElement(NowIndicatorRoot, { isAxis: false, date: date, 
+            return segs.map(function (seg, i) { return (createElement(NowIndicatorRoot, { isAxis: false, date: date,
                 // key doesn't matter. will only ever be one
                 key: i }, function (rootElRef, classNames, innerElRef, innerContent) { return (createElement("div", { ref: rootElRef, className: ['fc-timegrid-now-indicator-line'].concat(classNames).join(' '), style: { top: slatCoords.computeDateTop(seg.start, date) } }, innerContent)); })); });
         };

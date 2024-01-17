@@ -4,16 +4,22 @@ namespace App\Modules\Nhansu\src\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PaginationRequest;
 use App\Modules\Nhansu\src\Repositories\Interface\ChiNhanhRepositoryInterface;
+use App\Modules\Nhansu\src\Repositories\Interface\PhongBanRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class ChiNhanhController extends Controller
 {
 
     private ChiNhanhRepositoryInterface $chinhanhRepository;
-    public function __construct(ChiNhanhRepositoryInterface $chinhanhRepository)
-    {
+    private PhongBanRepositoryInterface $phongBanRepository;
+    public function __construct(
+        ChiNhanhRepositoryInterface $chinhanhRepository,
+        PhongBanRepositoryInterface $phongBanRepository
+    ) {
         $this->chinhanhRepository = $chinhanhRepository;
+        $this->phongBanRepository = $phongBanRepository;
     }
 
     /**
@@ -75,8 +81,7 @@ class ChiNhanhController extends Controller
 
         session()->flash('success', 'Bạn đã tạo chi nhánh thành công');
 
-        return redirect()
-            ->back();
+        return redirect()->route('nhansu.chi-nhanh.index');
     }
 
     /**
@@ -92,7 +97,12 @@ class ChiNhanhController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $model = $this->chinhanhRepository->findById($id);
+        if (empty($model)) abort(404);
+
+        return view('Nhansu::chi_nhanh.edit', [
+            'model' => $model
+        ]);
     }
 
     /**
@@ -100,7 +110,18 @@ class ChiNhanhController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = auth()->user();
+        $model = $this->chinhanhRepository->findById($id);
+        if (empty($model)) abort(404);
+        $input = $request->only(['ma', 'ten']);
+        $input['slug'] = Str::slug($input['ten']);
+        $input['nguoi_cap_nhat_id'] = $user->id;
+
+        $this->chinhanhRepository->update($model, $input);
+
+        session()->flash('success', 'Bạn đã cập nhật chi nhánh thành công');
+
+        return redirect()->route('nhansu.chi-nhanh.index');
     }
 
     /**
@@ -108,6 +129,27 @@ class ChiNhanhController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $model = $this->chinhanhRepository->findById($id);
+        if( empty( $model ) ) {
+            session()->flash('error', 'Chi nhánh không tồn tại');
+            return redirect()
+                ->back();
+        }
+
+        DB::beginTransaction();
+        try {
+            $this->chinhanhRepository->delete( $model );
+            $this->phongBanRepository->deleteByFilter(['chi_nhanh_id' => $model->id]);
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+
+        session()->flash('success', 'Bạn đã xóa chi nhánh thành công');
+
+        return redirect()
+            ->back();
     }
 }

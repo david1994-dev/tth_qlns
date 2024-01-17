@@ -1491,7 +1491,7 @@
   function extraRight(marker) { return marker.inclusiveRight ? 1 : 0 }
 
   // Returns a number indicating which of two overlapping collapsed
-  // spans is larger (and thus includes the other). Falls back to
+  // spans is larger (and thus components the other). Falls back to
   // comparing ids when the spans cover exactly the same range.
   function compareCollapsedMarkers(a, b) {
     var lenDiff = a.lines.length - b.lines.length;

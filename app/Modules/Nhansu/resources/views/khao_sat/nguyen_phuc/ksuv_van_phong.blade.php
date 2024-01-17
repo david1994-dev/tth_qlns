@@ -144,7 +144,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </div>
                                 <div style="display: inline;" class="col-md-6">
                                     <p style="display: inline;">Ngày sinh</p>
-                                    <input type="date" id="ngay_sinh" name="ngay_sinh" required 
+                                    <input type="date" id="ngay_sinh" name="ngay_sinh" required
                                         value="{{ old('ngay_sinh') ?? '' }}" style="width: 50% ;display: inline;  border-radius: 4px;
                                         border: 2px solid;
                                         border-color: #bcbcbc;">
@@ -327,8 +327,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="col-4">
                                     <input type="checkbox" name="nguon_tuyen_dung[]" value="Vietnamwork">
                                     Vietnamwork <br>
-                                    <input type="checkbox" name="nguon_tuyen_dung[]" value="Nguồn khác">
-                                    Nguồn khác
+                                    Nguồn khác:
+                                    <input class="input" style=" width: 50%;" type="text" name="nguon_tuyen_dung_khac"
+                                           value="{{ old('nguon_tuyen_dung_khac') ?? '' }}"
+                                           placeholder=".................................................................">
                                 </div>
                             </div>
                             <br>
