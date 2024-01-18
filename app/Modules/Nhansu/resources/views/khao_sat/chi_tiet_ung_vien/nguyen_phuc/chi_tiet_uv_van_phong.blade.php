@@ -37,8 +37,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <style>
         @media print {
             body {
-                /*width: 400mm;*/
-                /*height: 297mm;*/
                 margin: 0;
                 padding: 0;
             }
@@ -108,12 +106,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     @endif
                 </div>
             </div>
-            <form id="ksVPForm" method="post" class="border border-2 border-success rounded" style="margin: auto;"
+            <form id="ksVPForm" method="post" class=" rounded" style="margin: auto;"
                 enctype="multipart/form-data">
                 @csrf
                 <div class="container">
                     <div class="row">
-                        <div class="col-3">
+                        <div class="col-4">
                             @if (!$model->image)
                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRK9A2qlhiiaIkO6qETm9ihfEy7AGvj3eAnH7fd-MQxqxouWOja2pxD9KE6JiLgn-gYOk&usqp=CAU"
                                     alt="" width="100px" height="130px">
@@ -122,7 +120,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     height="130px">
                             @endif
                         </div>
-                        <div class="col-9 ">
+                        <div class="col-8 ">
                             <div style="text-align: right;"><i>Ngày</i><input type="number" class="input"
                                     value="{{ $model->created_at->day }}" name="ngay_khao_sat" style="width: 5%;font-style:italic"
                                     placeholder="...."><i>Tháng</i><input type="number" class="input"
@@ -130,10 +128,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     placeholder="...."><i>Năm</i><input type="number" class="input"
                                     value="{{ $model->created_at->year }}" name="nam_khao_sat" style=" width: 10%;font-style:italic"
                                     placeholder="........"></div>
-                            <h4 class="tieu_de" style="margin-left: 70px;">
+                            <h4 class="tieu_de">
                                 PHIẾU
                                 KHẢO SÁT ỨNG VIÊN</h4>
-                            <i style="margin-left: 70px;">(Đối tượng áp dụng: vị trí Văn phòng)</i>
+                            <i>(Đối tượng áp dụng: vị trí Văn phòng)</i>
                             <p style="font-weight: 600;"> Vị trí ứng tuyển: <input name="vi_tri_ung_tuyen"
                                     class="input" value="{{ $model->vi_tri_ung_tuyen }}" style=" width: 40%;"
                                     placeholder="................................................................................................................................................">
@@ -278,9 +276,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <input type="checkbox" name="nguon_tuyen_dung[]" value="Vietnamwork">
                                     <label for="Vietnamwork">Vietnamwork</label> <br>
 
+                                    @if(Arr::get($chiTietUngVien, 'nguon_tuyen_dung_khac', ''))
                                     <input class="input" style=" width: 50%;" type="text" name="nguon_tuyen_dung_khac"
                                            value="{{ Arr::get($chiTietUngVien, 'nguon_tuyen_dung_khac', '') }}">
                                     <label for="Nguồn khác">Nguồn khác</label>
+                                    @endif
                                 </div>
                             </div> <br>
                             <p style="font-weight: 600; display: inline;"> 4.Anh(chị) đồng ý chuyển vị trí công
