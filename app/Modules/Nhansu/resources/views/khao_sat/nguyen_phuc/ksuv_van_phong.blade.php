@@ -19,8 +19,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <style>
         @media print {
             body {
-                width: 400mm;
-                height: 297mm;
                 margin: 0;
                 padding: 0;
             }
@@ -99,7 +97,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
             </div>
             <form id="ksVPForm" action="{{ route('nhansu.taoUngVien') }}" method="post"
-                class=" border border-2 border-success rounded" style="margin: auto;" enctype="multipart/form-data">
+                class=" rounded" style="margin: auto;" enctype="multipart/form-data">
                 @csrf
                 <div class="container">
                     <div class="row">

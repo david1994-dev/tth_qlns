@@ -124,14 +124,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="col-9 ">
                             <div style="text-align: right;"><i>Ngày</i>
                                <input type="number" class="input"
-                                    value="{{ $model->created_at->day }}" name="ngay_khao_sat" style="width: 5%; font-style:italic"
+                                    value="{{ $model->created_at->day }}" name="ngay_khao_sat" style="width: 7%; font-style:italic"
                                     placeholder="....">
                                     <i>Tháng</i><input type="number" class="input"
-                                    name="thang_khao_sat" style="width: 5%;font-style:italic" value="{{ $model->created_at->month }}"
+                                    name="thang_khao_sat" style="width: 7%;font-style:italic" value="{{ $model->created_at->month }}"
                                     placeholder="...."><i>Năm</i><input type="number" class="input"
-                                    value="{{ $model->created_at->year }}" name="nam_khao_sat" style=" width: 10%;font-style:italic"
+                                    value="{{ $model->created_at->year }}" name="nam_khao_sat" style=" width: 15%;font-style:italic"
                                     placeholder="........"></div>
-                            <h4 class="tieu_de" style="margin-left: 70px;">
+                            <h4 class="tieu_de">
                                 PHIẾU
                                 KHẢO SÁT ỨNG VIÊN</h4>
                             <i>(Đối tượng áp dụng: Nhân viên điều dưỡng,KTV,Dược sỹ)</i>
@@ -156,13 +156,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     placeholder=".......................................................................................">
                                 <div style="text-align: right; display: inline;">
                                     <p style="display: inline;">Sinh ngày</p><input type="number" class="input"
-                                        value="{{ $model->ngay_sinh->day }}" style="width: 3%;" name="ngay_sinh"
+                                        value="{{ $model->ngay_sinh->day }}" style="width:4%;" name="ngay_sinh"
                                         placeholder="........">
                                     <p style="display: inline;">Tháng</p><input type="number" class="input"
-                                        style="width: 3%;" value="{{ $model->ngay_sinh->month }}" name="thang_sinh"
+                                        style="width: 4%;" value="{{ $model->ngay_sinh->month }}" name="thang_sinh"
                                         placeholder="........">
                                     <p style="display: inline;">Năm</p><input type="number" class="input"
-                                        style="width: 8%;" value="{{ $model->ngay_sinh->year }}" name="nam_sinh"
+                                        style="width: 10%;" value="{{ $model->ngay_sinh->year }}" name="nam_sinh"
                                         placeholder=".............">
                                 </div> <br>
                                 <p style="display: inline;">Trường đào tạo:</p> <input class="input"
@@ -223,7 +223,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 cho
                                 những người đã có kinh nghiệm công tác)</i> <br>
                             <div class="table-responsive-md">
-                                <table class="table table-bordered" style="width: 800px;">
+                                <table class="table table-bordered" >
                                     <thead>
                                         <tr>
                                             <th scope="col">Thời gian</th>
@@ -322,7 +322,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </div>
                                 <div class="col-3">
                                     <input type="checkbox" name="ung_tuyen[]" value="Cơ xương khớp" max="3">
-                                    <label for="Cơ xương khớp ">Cơ xương khớp </label><br>
+                                    <label for="Cơ xương khớp">Cơ xương khớp </label><br>
 
                                     <input type="checkbox" name="ung_tuyen[]" value="PHCN hô hấp tim mạch"
                                         max="3">
@@ -364,16 +364,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </div>
                             </div> <br>
                             <p style="font-weight: 600; display: inline;"> 6.Điểm yếu?</p><br>
-                            <textarea name="diem_yeu" style=" width: 80%;" cols="30" rows="10">{{ Arr::get($chiTietUngVien, 'diem_yeu', '') }}</textarea> <br> <br>
+                            <textarea name="diem_yeu" style=" width: 100%;" cols="30" rows="10">{{ Arr::get($chiTietUngVien, 'diem_yeu', '') }}</textarea> <br> <br>
                             <p style="font-weight: 600; display: inline;"> 7.Điểm mạnh?</p><br>
-                            <textarea name="diem_manh" style=" width: 80%;" cols="30" rows="10">{{ Arr::get($chiTietUngVien, 'diem_manh', '') }}</textarea> <br> <br>
+                            <textarea name="diem_manh" style=" width: 100%;" cols="30" rows="10">{{ Arr::get($chiTietUngVien, 'diem_manh', '') }}</textarea> <br> <br>
                             <p style="font-weight: 600; display: inline;"> 8.Mức lương mong muốn của anh(chị)
                                 khi
                                 vào làm việc tại công ty?</p><br>
-                            <textarea required name="luong_mong_muon" style="width: 80%;" cols="30" rows="10" value="">{{ Arr::get($chiTietUngVien, 'luong_mong_muon', '') }}</textarea> <br> <br>
+                            <textarea required name="luong_mong_muon" style="width: 100%;" cols="30" rows="10" value="">{{ Arr::get($chiTietUngVien, 'luong_mong_muon', '') }}</textarea> <br> <br>
                             <p style="font-weight: 600; display: inline;"> 9.Anh(chị) có kiến nghị, đề xuất hoặc
                                 thắc mắc muốn Công ty giải đáp không?</p><br>
-                            <textarea name="de_xuat" style=" width: 80%;" cols="30" rows="10" name="content" value="">{{ Arr::get($chiTietUngVien, 'de_xuat', '') }}</textarea>
+                            <textarea name="de_xuat" style=" width: 100%;" cols="30" rows="10" name="content" value="">{{ Arr::get($chiTietUngVien, 'de_xuat', '') }}</textarea>
                         </div>
                     </div>
 

@@ -224,7 +224,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 thời
                                 điểm sau khi tốt nghiệp đại học Y đến nay)</i> <br>
                             <div class="table-responsive-md">
-                                <table class="table table-bordered" style="width: 50%;">
+                                <table class="table table-bordered" >
                                     <thead>
                                         <tr>
                                             <th scope="col">Thời gian</th>
@@ -282,7 +282,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             kỹ thuật
                             tuyến <p style="font-weight: 600; display: inline;">Tỉnh</p>)<br> <br>
                             <p style="display: inline;font-weight: 600;">Các kỹ năng đặc biệt khác:</p>
-                            <textarea class="form-control" aria-label="With textarea" style="width: 75%;" name="ky_nang_khac">{{ Arr::get($chiTietUngVien, 'ky_nang_khac', '') }}</textarea>
+                            <textarea class="form-control" aria-label="With textarea" style="width: 100%;" name="ky_nang_khac">{{ Arr::get($chiTietUngVien, 'ky_nang_khac', '') }}</textarea>
                             <br>
                             <p style="font-weight: 600; display: inline;"> 3.Anh(chị) có nhu cầu để tiếp
                                 tục học
@@ -296,7 +296,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <br>
                             <p>Nếu có anh (chị) lựa chọn hình thức đào tạo gì?</p>
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-4">
                                     <input type="checkbox" name="hinh_thuc_dao_tao[]" value="Thạc sĩ">
                                     <label for="Thạc sỹ">Thạc sỹ</label> <br>
 
@@ -304,14 +304,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <label for="Chuyên khoa I">Chuyên khoa I</label>
 
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-4">
                                     <input type="checkbox" name="hinh_thuc_dao_tao[]" value="Nghiên cứu sinh">
                                     <label for="Nghiên cứu sinh ">Nghiên cứu sinh </label> <br>
 
                                     <input type="checkbox" name="hinh_thuc_dao_tao[]" value="CKII">
                                     <label for="Chuyên khoa II">Chuyên khoa II</label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-4">
                                     <input type="checkbox" name="hinh_thuc_dao_tao[]" value="Du học nước ngoài">
                                     <label for=" Du học nước ngoài"> Du học nước ngoài</label> <br>
 
@@ -324,27 +324,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 kết
                                 hợp đồng như thế nào nếu được tuyển dụng vào làm việc tại Công ty?</p><br>
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-3">
                                     <input type="radio" name="thoi_han_hop_dong" value="7 Năm"> 7
                                     năm <br>
                                     <input type="radio" name="thoi_han_hop_dong" value="20 Năm"> 20
                                     năm
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-3">
                                     <input type="radio" name="thoi_han_hop_dong" value="12 Năm"> 12
                                     năm <br>
                                     <input type="radio" name="thoi_han_hop_dong" value="25 Năm"> 25
                                     năm
 
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-3">
                                     <input type="radio" name="thoi_han_hop_dong" value="15 Năm"> 15
                                     năm <br>
                                     <input type="radio" name="thoi_han_hop_dong" value="30 Năm"> 30
                                     năm
 
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-3">
                                     <input type="radio" name="thoi_han_hop_dong" value="17 Năm"> 17
                                     năm <br>
                                     Khác:
@@ -458,19 +458,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </div>
                             </div> <br>
                             <p style="font-weight: 600; display: inline;"> 7.Điểm yếu?</p><br>
-                            <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="diem_yeu">{{ Arr::get($chiTietUngVien, 'diem_yeu', '') }}</textarea> <br> <br>
+                            <textarea style=" width: 100%; height: 100px;" cols="30" rows="10" name="diem_yeu">{{ Arr::get($chiTietUngVien, 'diem_yeu', '') }}</textarea> <br> <br>
                             <p style="font-weight: 600; display: inline;"> 8.Điểm mạnh?</p><br>
-                            <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="diem_manh">{{ Arr::get($chiTietUngVien, 'diem_manh', '') }}</textarea> <br> <br>
+                            <textarea style=" width: 100%; height: 100px;" cols="30" rows="10" name="diem_manh">{{ Arr::get($chiTietUngVien, 'diem_manh', '') }}</textarea> <br> <br>
                             <p style="font-weight: 600; display: inline;"> 9.Mức lương mong muốn của
                                 anh(chị)
                                 khi
                                 vào làm việc tại công ty?</p><br>
-                            <textarea required style=" width: 80%; height: 100px;" cols="30" rows="10" name="luong_mong_muon">{{ Arr::get($chiTietUngVien, 'luong_mong_muon', '') }}</textarea> <br> <br>
+                            <textarea required style=" width: 100%; height: 100px;" cols="30" rows="10" name="luong_mong_muon">{{ Arr::get($chiTietUngVien, 'luong_mong_muon', '') }}</textarea> <br> <br>
                             <p style="font-weight: 600; display: inline;"> 10.Anh(chị) có kiến nghị, đề
                                 xuất
                                 hoặc
                                 thắc mắc muốn Công ty giải đáp không?</p><br>
-                            <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="de_xuat">{{ Arr::get($chiTietUngVien, 'de_xuat', '') }}</textarea>
+                            <textarea style=" width: 100%; height: 100px;" cols="30" rows="10" name="de_xuat">{{ Arr::get($chiTietUngVien, 'de_xuat', '') }}</textarea>
                         </div>
                     </div>
                     <br>
