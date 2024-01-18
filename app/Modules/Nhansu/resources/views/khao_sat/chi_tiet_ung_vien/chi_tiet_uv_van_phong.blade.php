@@ -148,7 +148,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <p>Kính đề nghị ứng viên trả lời 1 số câu hỏi khảo sát sau:</p>
                             <div>
                                 <p style="display: inline;">Họ và tên:</p> <input class="input" name="ho_ten"
-                                    value="{{ $model->vi_tri_ung_tuyen }}" 
+                                    value="{{ $model->ho_ten }}" style="width: 30%;"
                                     placeholder="..............................................................................................">
                                 <div style="text-align: right; display: inline;">
                                     <p style="display: inline;">Sinh ngày</p><input type="number" class="input"
@@ -317,7 +317,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                     <input type="checkbox" name="ung_tuyen[]" value="NV Điện nước">
                                     <label for="NV Điện nước">NV Điện nước</label> <br>
-                                
+
                                     <input type="checkbox" name="ung_tuyen[]" value="NV Thu ngân - Lễ tân">
                                     <label for="NV Thu ngân - Lễ tân">NV Thu ngân - Lễ tân</label> <br>
 
@@ -340,9 +340,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                     <input type="checkbox" name="ung_tuyen[]" value="NV Đối ngoại và quan hệ QT">
                                     <label for="NV Đối ngoại và quan hệ QT">NV Đối ngoại và quan hệ QT</label> <br>
-                                    
+
                                     <input type="checkbox" name="ung_tuyen[]" value="Khác">
-                                    <label for="Khác">Khác</label> 
+                                    <label for="Khác">Khác</label>
                                 </div>
                             </div> <br>
 

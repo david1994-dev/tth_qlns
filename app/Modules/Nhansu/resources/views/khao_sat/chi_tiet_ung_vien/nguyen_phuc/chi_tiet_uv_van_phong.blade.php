@@ -147,13 +147,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 ty
                                 và các chi nhánh</p>
                             <p>Kính đề nghị ứng viên trả lời 1 số câu hỏi khảo sát sau:</p>
-                            <div class="row">
-                                <div class="col-6">
-                                    <p style="display: inline;">Họ và tên:</p> <input class="input" name="ho_ten"
-                                        required value="{{ $model->vi_tri_ung_tuyen }}" style="width: 60%;"
-                                        placeholder="..............................................................................................">
-                                </div>
-                                <div class="col-6" style=" display: inline;">
+                            <div>
+                                <p style="display: inline;">Họ và tên:</p> <input class="input" name="ho_ten"
+                                    value="{{ $model->ho_ten }}" style="width: 30%;"
+                                    placeholder="..............................................................................................">
+                                <div style="text-align: right; display: inline;">
                                     <p style="display: inline;">Sinh ngày</p><input type="number" class="input"
                                         value="{{ $model->ngay_sinh->day }}" style="width: 9%;" name="ngay_sinh"
                                         placeholder="........">
