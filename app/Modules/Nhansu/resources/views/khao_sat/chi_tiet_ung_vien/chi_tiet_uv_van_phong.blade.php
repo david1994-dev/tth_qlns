@@ -217,7 +217,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 cho
                                 những người đã có kinh nghiệm công tác)</i> <br>
                             <div class="table-responsive-md">
-                                <table class="table table-bordered" style="width: 50%;">
+                                <table class="table table-bordered">
                                     <thead>
                                         <tr>
                                             <th scope="col">Thời gian</th>
@@ -347,23 +347,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </div> <br>
 
                             <p style="font-weight: 600; display: inline;"> 5.Điểm yếu?</p><br>
-                            <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="diem_yeu">{{ Arr::get($chiTietUngVien, 'diem_yeu', '') }}</textarea> <br> <br>
+                            <textarea style=" width: 100%; height: 100px;" cols="30" rows="10" name="diem_yeu">{{ Arr::get($chiTietUngVien, 'diem_yeu', '') }}</textarea> <br> <br>
                             <p style="font-weight: 600; display: inline;">
                                 6.Điểm mạnh?</p><br>
-                            <textarea style="width: 80%; height: 100px;" cols="30" rows="10" name="diem_manh">{{ Arr::get($chiTietUngVien, 'diem_manh', '') }}</textarea> <br> <br>
+                            <textarea style="width: 100%; height: 100px;" cols="30" rows="10" name="diem_manh">{{ Arr::get($chiTietUngVien, 'diem_manh', '') }}</textarea> <br> <br>
                             <p style="font-weight: 600; display: inline;"> 7.Mục tiêu ngắn hạn/dài hạn của
                                 anh(chị)
                                 là gì?</p><br>
-                            <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="muc_tieu">{{ Arr::get($chiTietUngVien, 'muc_tieu', '') }}</textarea> <br> <br>
+                            <textarea style=" width: 100%; height: 100px;" cols="30" rows="10" name="muc_tieu">{{ Arr::get($chiTietUngVien, 'muc_tieu', '') }}</textarea> <br> <br>
                             <p style="font-weight: 600; display: inline;"> 8.Mức lương mong muốn của anh(chị)
                                 khi
                                 vào
                                 làm việc tại công ty?</p><br>
-                            <textarea required style=" width: 80%; height: 100px;" cols="30" rows="10" name="luong_mong_muon">{{ Arr::get($chiTietUngVien, 'luong_mong_muon', '') }}</textarea> <br> <br>
+                            <textarea required style=" width: 100%; height: 100px;" cols="30" rows="10" name="luong_mong_muon">{{ Arr::get($chiTietUngVien, 'luong_mong_muon', '') }}</textarea> <br> <br>
                             <p style="font-weight: 600; display: inline;"> 9.Anh(chị) có kiến nghị, đề xuất hoặc
                                 thắc
                                 mắc muốn Công ty giải đáp không?</p><br>
-                            <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="de_xuat">{{ Arr::get($chiTietUngVien, 'de_xuat', '') }}</textarea>
+                            <textarea style=" width: 100%; height: 100px;" cols="30" rows="10" name="de_xuat">{{ Arr::get($chiTietUngVien, 'de_xuat', '') }}</textarea>
                         </div>
                     </div>
                     <br>
