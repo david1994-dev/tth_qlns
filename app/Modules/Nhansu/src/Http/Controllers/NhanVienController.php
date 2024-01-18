@@ -5,6 +5,7 @@ namespace App\Modules\Nhansu\src\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PaginationRequest;
 use App\Modules\Nhansu\src\Http\Requests\NhanVien\NhanVienRequest;
+use App\Modules\Nhansu\src\Models\NhanVien;
 use App\Modules\Nhansu\src\Repositories\Interface\ChiTietNhanVienRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\NhanVienRepositoryInterface;
 use App\Repositories\Interface\UserRepositoryInterface;
@@ -168,5 +169,22 @@ class NhanVienController extends Controller
 
 
         return redirect()->route('nhansu.nhan-vien.index');
+    }
+
+    public function capNhatLoaiNhanVien(Request $request)
+    {
+        $id = $request->get('id');
+        $model = $this->nhanVienRepository->findById($id);
+        if (!$model) return response()->json(['status' => 'error' ,'message' => 'Nhân viên không tồn tại'], 404);
+
+        $loaiNhanVien = $request->get('loai_nhan_vien', -1);
+        if (!in_array($loaiNhanVien, array_keys(NhanVien::LOAI_NHAN_VIEN))) {
+            return response()->json(['status' => 'error' ,'message' => 'Loại nhân viên không tồn tại'], 422);
+        }
+
+        $model->loai_nhan_vien = $loaiNhanVien;
+        $model->save();
+
+        return response()->json(['status' => 'success' ,'message' => 'Chập nhật loại nhân viên thành công']);
     }
 }

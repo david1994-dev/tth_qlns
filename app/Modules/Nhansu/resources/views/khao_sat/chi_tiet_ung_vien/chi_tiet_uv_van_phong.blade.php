@@ -37,8 +37,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <style>
         @media print {
             body {
-                width: 400mm;
-                height: 297mm;
+                /*width: 400mm;*/
+                /*height: 297mm;*/
                 margin: 0;
                 padding: 0;
             }
@@ -201,11 +201,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 học vừa làm <br>
 
                                 <p style="display: inline;">Chiều cao:</p> <input name="chieu_cao" class="input"
-                                value="{{ Arr::get($chiTietUngVien, 'chieu_cao', '') }}" style="width: 30%;" 
+                                value="{{ Arr::get($chiTietUngVien, 'chieu_cao', '') }}" style="width: 30%;"
                                     placeholder="......................................................................">
                                 Cân nặng:
                                 <input name="can_nang" class="input" style="width: 25%;" class="input"
-                                value="{{ Arr::get($chiTietUngVien, 'can_nang', '') }}" 
+                                value="{{ Arr::get($chiTietUngVien, 'can_nang', '') }}"
                                     placeholder="........................................................."><br>
                                 <p style="display: inline;">Tình trạng hôn nhân: </p>
                                 <input type="radio" name="hon_nhan" value="Độc thân"> Độc thân
@@ -284,17 +284,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 (nếu đạt PV) qua vị trí nào sau đây? </p><br>
                             <i>- Đánh dấu 3 vị trí theo thứ tự ưu tiên </i>
                             <div>
-                                <input type="checkbox" name="ung_tuyen[]" value="Nhân viên kinh doanh"> 
+                                <input type="checkbox" name="ung_tuyen[]" value="Nhân viên kinh doanh">
                                 <label for="Nhân viên kinh doanh">Nhân viên kinh doanh</label>
                                 <input type="checkbox" name="ung_tuyen[]" value="NV Thiết kế"
-                                    style="margin-left: 35px;"> 
+                                    style="margin-left: 35px;">
                                     <label for="NV Thiết kế">NV Thiết kế</label>
                                 <input type="checkbox" name="ung_tuyen[]" value="Nhân viên truyền thông"
-                                    style="margin-left: 50px;"> 
+                                    style="margin-left: 50px;">
                                     <label for="Nhân viên truyền thông">Nhân viên truyền thông</label>
                             </div>
                             <div>
-                                <input type="checkbox" name="ung_tuyen[]" value="Nhân viên hành chính"> 
+                                <input type="checkbox" name="ung_tuyen[]" value="Nhân viên hành chính">
                                 <label for="Nhân viên hành chính">Nhân viên hành chính</label>
                                 <input type="checkbox" name="ung_tuyen[]" value="Nhân viên CSKH"
                                     style="margin-left: 36px;">
@@ -310,21 +310,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     style="margin-left: 72px;">
                                     <label for="CV Nhân sự">CV Nhân sự</label>
                                 <input type="checkbox" name="ung_tuyen[]" value="NV Điện nước"
-                                    style="margin-left: 50px;"> 
+                                    style="margin-left: 50px;">
                                     <label for="NV Điện nước">NV Điện nước</label>
                             </div>
                             <div>
-                                <input type="checkbox" name="ung_tuyen[]" value="NV Thu ngân - Lễ tân"> 
+                                <input type="checkbox" name="ung_tuyen[]" value="NV Thu ngân - Lễ tân">
                                 <label for="NV Thu ngân - Lễ tân">NV Thu ngân - Lễ tân</label>
                                 <input type="checkbox" name="ung_tuyen[]" value="NV Văn thư"
                                     style="margin-left: 39px;">
                                     <label for="NV Văn thư">NV Văn thư</label>
                                 <input type="checkbox" name="ung_tuyen[]" value="NV Kế hoạch"
-                                    style="margin-left: 53px;"> 
+                                    style="margin-left: 53px;">
                                     <label for="NV Kế hoạch">NV Kế hoạch</label>
                             </div>
                             <div>
-                                <input type="checkbox" name="ung_tuyen[]" value="NV Kế toán"> 
+                                <input type="checkbox" name="ung_tuyen[]" value="NV Kế toán">
                                 <label for="NV Kế toán">NV Kế toán</label>
                                 <input type="checkbox" name="ung_tuyen[]" value="NV Lái xe"
                                     style="margin-left: 110px;">
@@ -334,7 +334,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <label for="NV Thiết kế phần">NV Thiết kế phần</label>
                             </div>
                             <div>
-                                <input type="checkbox" name="ung_tuyen[]" value="NV Pháp chế"> 
+                                <input type="checkbox" name="ung_tuyen[]" value="NV Pháp chế">
                                 <label for="NV Pháp chế">NV Pháp chế</label>
                                 <input type="checkbox" name="ung_tuyen[]" value="NV Bảo vệ"
                                     style="margin-left: 99px;">
@@ -344,13 +344,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <label for="NV Quản lý dự án">NV Quản lý dự án</label>
                             </div>
                             <div>
-                                <input type="checkbox" name="ung_tuyen[]" value="Khác"> 
+                                <input type="checkbox" name="ung_tuyen[]" value="Khác">
                                 <label for="Khác">Khác</label>
                                 <input type="checkbox" name="ung_tuyen[]" value="NV IT"
-                                    style="margin-left: 155px;"> 
+                                    style="margin-left: 155px;">
                                     <label for="NV IT">NV IT</label>
                                 <input type="checkbox" name="ung_tuyen[]" value="NV Đối ngoại và quan hệ QT"
-                                    style="margin-left: 95px;"> 
+                                    style="margin-left: 95px;">
                                     <label for="NV Đối ngoại và quan hệ QT">NV Đối ngoại và quan hệ QT</label>
                             </div> <br>
 

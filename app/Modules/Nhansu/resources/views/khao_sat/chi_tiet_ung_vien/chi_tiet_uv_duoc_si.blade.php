@@ -38,8 +38,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <style>
         @media print {
             body {
-                width: 400mm;
-                height: 297mm;
+                /*width: 400mm;*/
+                /*height: 297mm;*/
                 margin: 0;
                 padding: 0;
             }
@@ -275,7 +275,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <input type="checkbox" name="ung_tuyen[]" value="Sản phụ khoa" max="3">
                                     <label for="Sản phụ khoa"> Sản phụ khoa </label> <br>
 
-                                    <input type="checkbox" name="ung_tuyen[]" value="Xét nghiệm" max="3"> 
+                                    <input type="checkbox" name="ung_tuyen[]" value="Xét nghiệm" max="3">
                                     <label for="Xét nghiệm"> Xét nghiệm</label> <br>
 
                                     <input type="checkbox" name="ung_tuyen[]" value="Răng hàm mặt" max="3">

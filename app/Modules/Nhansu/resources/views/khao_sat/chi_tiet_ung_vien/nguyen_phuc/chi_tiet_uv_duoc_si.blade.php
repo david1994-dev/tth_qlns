@@ -38,8 +38,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <style>
         @media print {
             body {
-                width: 400mm;
-                height: 297mm;
+                /*width: 400mm;*/
+                /*height: 297mm;*/
                 margin: 0;
                 padding: 0;
             }

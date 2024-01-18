@@ -16,10 +16,11 @@ Route::prefix('nhansu')->middleware('web')->name('nhansu.')->group(function () {
         Route::resource('khoa-phong-ban', PhongBanController::class);
         Route::get('khoa-phong-ban/sodotochuc/{id}', [PhongBanController::class, 'sodotochuc'])->name('khoaphongban.sodotochuc');
         Route::resource('so-do-to-chuc', SoDoToChucController::class);
+        Route::resource('nhan-vien', NhanVienController::class);
+        Route::post('chuyen-nhan-vien', [NhanVienController::class, 'capNhatLoaiNhanVien'])->name('nhansu.nhan-vien.capNhatLoaiNhanVien');
     });
 
     Route::get('khao-sat-ung-vien', [UngVienController::class, 'index']);
     Route::get('khao-sat-ung-vien/{type}/{chiNhanhSlug}', [UngVienController::class, 'viewKhaoSat'])->name('viewKhaoSat');
     Route::post('khao-sat-ung-vien', [UngVienController::class, 'store'])->name('taoUngVien');
-    Route::resource('nhan-vien', NhanVienController::class);
 });
