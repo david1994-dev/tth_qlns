@@ -148,7 +148,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <p>Kính đề nghị ứng viên trả lời 1 số câu hỏi khảo sát sau:</p>
                             <div>
                                 <p style="display: inline;">Họ và tên:</p> <input class="input" name="ho_ten"
-                                    value="{{ $model->vi_tri_ung_tuyen }}" style="width: 30%;"
+                                    value="{{ $model->ho_ten }}" style="width: 30%;"
                                     placeholder="..............................................................................................">
                                 <div style="text-align: right; display: inline;">
                                     <p style="display: inline;">Sinh ngày</p><input type="number" class="input"
