@@ -1,6 +1,6 @@
 @extends('adminlte.Layout.app')
 @section('content')
-    <div class="box box-primary mt-5">
+    <div class="box box-primary mt-3">
         <div class="box-header with-border">
             <form action="">
                 <div class="row">
