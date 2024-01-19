@@ -155,13 +155,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     placeholder="......................................................................">
                                 <div style="text-align: right; display: inline;">
                                     <p style="display: inline;">Sinh ngày</p><input type="number" class="input"
-                                        value="{{ $model->ngay_sinh->day }}" style="width: 3%;" name="ngay_sinh"
+                                        value="{{ $model->ngay_sinh->day }}" style="width: 5%;" name="ngay_sinh"
                                         placeholder="........">
                                     <p style="display: inline;">Tháng</p><input type="number" class="input"
-                                        style="width: 3%;" value="{{ $model->ngay_sinh->month }}" name="thang_sinh"
+                                        style="width: 5%;" value="{{ $model->ngay_sinh->month }}" name="thang_sinh"
                                         placeholder="........">
                                     <p style="display: inline;">Năm</p><input type="number" class="input"
-                                        style="width: 8%;" value="{{ $model->ngay_sinh->year }}" name="nam_sinh"
+                                        style="width: 10%;" value="{{ $model->ngay_sinh->year }}" name="nam_sinh"
                                         placeholder=".............">
                                 </div> <br>
                                 <p style="display: inline;">Địa chỉ:</p> <input class="input" style=" width: 60%;"
@@ -210,10 +210,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 CCHN: <input class="input" style="width: 15%;" name="thoi_gian_cap_cchn"
                                     value="{{ Arr::get($chiTietUngVien, 'thoi_gian_cap_cchn', '') }}"
                                     placeholder="..................................."><br>
-                                <p style="display: inline;">Các chứng chỉ đào tạo liên quan:</p> <input class="input"
-                                    value="{{ Arr::get($chiTietUngVien, 'chung_chi_lien_quan', '') }}"
-                                    name="chung_chi_lien_quan" style="width: 60%;"
-                                    placeholder="..........................................................................................................................."><br>
+                                <p style="display: inline;">Các chứng chỉ đào tạo liên quan:</p> 
+                                <textarea name="chung_chi_lien_quan" style=" width: 100%;" cols="30" rows="4">{{ Arr::get($chiTietUngVien, 'chung_chi_lien_quan', '') }}</textarea> <br>
                                 <p style="display: inline;">Tình trạng hôn nhân: </p>
                                 <input type="radio" name="hon_nhan" value="Độc thân"> Độc thân
                                 <input type="radio" name="hon_nhan" value="Đã có gia đình"> Đã có gia đình

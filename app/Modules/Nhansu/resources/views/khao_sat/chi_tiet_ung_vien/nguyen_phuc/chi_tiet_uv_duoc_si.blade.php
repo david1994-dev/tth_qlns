@@ -207,11 +207,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <p style="display: inline;">Tình trạng Chứng chỉ hành nghề: </p>
                                 <input type="radio" name="chung_chi_hanh_nghe" value="Đã có"> Đã có
                                 <input type="radio" name="chung_chi_hanh_nghe" value="Chưa có"> Chưa có
-                                <br>
-                                <p style="display: inline;">Các chứng chỉ đào tạo khác:</p> <input class="input"
-                                    value="{{ Arr::get($chiTietUngVien, 'chung_chi_khac', '') }}"
-                                    name="chung_chi_khac" style="width: 60%;"
-                                    placeholder="...........................................................................................................................">
+                                <br> 
+                                <p style="display: inline;">Các chứng chỉ đào tạo khác:</p> 
+                                <textarea name="chung_chi_khac" style=" width: 100%;" cols="30" rows="4">{{ Arr::get($chiTietUngVien, 'chung_chi_khac', '') }}</textarea>
                             </div> <br>
                         </div>
                     </div>
@@ -364,16 +362,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </div>
                             </div> <br>
                             <p style="font-weight: 600; display: inline;"> 6.Điểm yếu?</p><br>
-                            <textarea name="diem_yeu" style=" width: 100%;" cols="30" rows="10">{{ Arr::get($chiTietUngVien, 'diem_yeu', '') }}</textarea> <br> <br>
+                            <textarea name="diem_yeu" style=" width: 100%;" cols="30" rows="5">{{ Arr::get($chiTietUngVien, 'diem_yeu', '') }}</textarea> <br> <br>
                             <p style="font-weight: 600; display: inline;"> 7.Điểm mạnh?</p><br>
-                            <textarea name="diem_manh" style=" width: 100%;" cols="30" rows="10">{{ Arr::get($chiTietUngVien, 'diem_manh', '') }}</textarea> <br> <br>
+                            <textarea name="diem_manh" style=" width: 100%;" cols="30" rows="5">{{ Arr::get($chiTietUngVien, 'diem_manh', '') }}</textarea> <br> <br>
                             <p style="font-weight: 600; display: inline;"> 8.Mức lương mong muốn của anh(chị)
                                 khi
                                 vào làm việc tại công ty?</p><br>
-                            <textarea required name="luong_mong_muon" style="width: 100%;" cols="30" rows="10" value="">{{ Arr::get($chiTietUngVien, 'luong_mong_muon', '') }}</textarea> <br> <br>
+                            <textarea required name="luong_mong_muon" style="width: 100%;" cols="30" rows="5" value="">{{ Arr::get($chiTietUngVien, 'luong_mong_muon', '') }}</textarea> <br> <br>
                             <p style="font-weight: 600; display: inline;"> 9.Anh(chị) có kiến nghị, đề xuất hoặc
                                 thắc mắc muốn Công ty giải đáp không?</p><br>
-                            <textarea name="de_xuat" style=" width: 100%;" cols="30" rows="10" name="content" value="">{{ Arr::get($chiTietUngVien, 'de_xuat', '') }}</textarea>
+                            <textarea name="de_xuat" style=" width: 100%;" cols="30" rows="5" name="content" value="">{{ Arr::get($chiTietUngVien, 'de_xuat', '') }}</textarea>
                         </div>
                     </div>
 
