@@ -225,10 +225,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <input type="radio" name="chung_chi_hanh_nghe" value="Đã có"> Đã có
                                 <input type="radio" name="chung_chi_hanh_nghe" value="Chưa có"> Chưa có
                                 <br>
-                                <p style="display: inline;">Các chứng chỉ đào tạo khác:</p> <input class="input"
+                                <p style="display: inline;">Các chứng chỉ đào tạo khác:</p> 
+                                <textarea name="chung_chi_khac" style=" width: 100%;" cols="30" rows="4">{{ old('chung_chi_khac') ?? '' }}</textarea> <br>
+
+                                {{-- <input class="input"
                                     value="{{ old('chung_chi_khac') ?? '' }}" name="chung_chi_khac"
                                     style="width: 40%;"
-                                    placeholder="...........................................................................................................................">
+                                    placeholder="..........................................................................................................................."> --}}
                             </div> <br>
                         </div>
                     </div>
