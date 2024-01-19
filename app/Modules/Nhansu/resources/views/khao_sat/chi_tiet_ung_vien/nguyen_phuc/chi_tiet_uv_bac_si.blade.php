@@ -128,10 +128,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 PHIẾU
                                 KHẢO SÁT</h4>
                             <i>(Đối tượng áp dụng: Bác sĩ)</i>
-                            <p style="font-weight: 600;"> Vị trí ứng tuyển: <input class="input"
-                                    name="vi_tri_ung_tuyen" value="{{ $model->vi_tri_ung_tuyen }}"
-                                    style="width: 100%px;"
-                                    placeholder="................................................................................................................................................">
+                            <p style="font-weight: 600;"> Vị trí ứng tuyển: {{ $model->vi_tri_ung_tuyen }}
                         </div>
                     </div>
                     <div class="row">
