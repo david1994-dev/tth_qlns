@@ -121,21 +121,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             @endif
                         </div>
                         <div class="col-8 ">
-                            <div style="text-align: right;"><i>Ngày</i><input type="number" class="input"
-                                    value="{{ $model->created_at->day }}" name="ngay_khao_sat"
-                                    style="width: 7%;font-style:italic" placeholder="...."><i>Tháng</i><input
-                                    type="number" class="input" name="thang_khao_sat"
-                                    style="width: 7%;font-style:italic" value="{{ $model->created_at->month }}"
-                                    placeholder="...."><i>Năm</i><input type="number" class="input"
-                                    value="{{ $model->created_at->year }}" name="nam_khao_sat"
-                                    style=" width: 10%;font-style:italic" placeholder="........"></div>
+                            <div style="text-align: right;"><i>Ngày {{ $model->created_at->day }}</i>
+                                <i>Tháng {{ $model->created_at->month }}</i>
+                                <i>Năm {{ $model->created_at->year }}</i>
+                            </div>
                             <h4 class="tieu_de">
                                 PHIẾU
                                 KHẢO SÁT ỨNG VIÊN</h4>
                             <i>(Đối tượng áp dụng: vị trí Văn phòng)</i>
-                            <p style="font-weight: 600;"> Vị trí ứng tuyển: <input name="vi_tri_ung_tuyen"
-                                    class="input" value="{{ $model->vi_tri_ung_tuyen }}" style=" width: 40%;"
-                                    placeholder="................................................................................................................................................">
+                            <p style="font-weight: 600;"> Vị trí ứng tuyển: {{ $model->vi_tri_ung_tuyen }}
                         </div>
                     </div>
                     <div class="row">
@@ -147,57 +141,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 ty
                                 và các chi nhánh</p>
                             <p>Kính đề nghị ứng viên trả lời 1 số câu hỏi khảo sát sau:</p>
-                            <div>
-                                <p style="display: inline;">Họ và tên:</p> <input class="input" name="ho_ten"
-                                    value="{{ $model->ho_ten }}" style="width: 30%;"
-                                    placeholder="..............................................................................................">
-                                <div style="text-align: right; display: inline;">
-                                    <p style="display: inline;">Sinh ngày</p><input type="number" class="input"
-                                        value="{{ $model->ngay_sinh->day }}" style="width: 9%;" name="ngay_sinh"
-                                        placeholder="........">
-                                    <p style="display: inline;">Tháng</p><input type="number" class="input"
-                                        style="width: 9%;" value="{{ $model->ngay_sinh->month }}" name="thang_sinh"
-                                        placeholder="........">
-                                    <p style="display: inline;">Năm</p><input type="number" class="input"
-                                        style="width: 15%;" value="{{ $model->ngay_sinh->year }}" name="nam_sinh"
-                                        placeholder=".............">
-                                </div>
-                            </div>
-                            <p style="display: inline;">Địa chỉ:</p> <input class="input" name="dia_chi" required
-                                value="{{ $model->dia_chi }}"
-                                placeholder="......................................................................................................................................................."><br>
                             <div class="row">
                                 <div class="col-6">
-                                    <p style="display: inline;">Điện thoại:</p> <input class="input"
-                                        name="dien_thoai" required value="{{ $model->dien_thoai }}"
-                                        placeholder="......................................................................">
+                                    <p style="display: inline;">Họ và tên:</p> {{ $model->ho_ten }}
+                                </div>
+                                <div style=" display: inline;" class="col-6">
+                                    <p style="display: inline;">Sinh ngày </p>{{ $model->ngay_sinh->day }}
+                                    <p style="display: inline;">Tháng </p>{{ $model->ngay_sinh->month }}
+                                    <p style="display: inline;">Năm </p>{{ $model->ngay_sinh->year }}
+                                </div>
+                            </div>
+                            <p style="display: inline;">Địa chỉ:</p> {{ $model->dia_chi }}
+                            <div class="row">
+                                <div class="col-6">
+                                    <p style="display: inline;">Điện thoại:</p> {{ $model->dien_thoai }}
                                 </div>
                                 <div class="col-6">
-                                    Email:
-                                    <input class="input" type="email" name="email" required
-                                        value="{{ $model->email }}"
-                                        placeholder=".................................................................">
+                                    Email: {{ $model->email }}
                                 </div>
                             </div>
 
 
-                            <p style="display: inline;">Trường đào tạo:</p> <input class="input"
-                                value="{{ Arr::get($chiTietUngVien, 'truong_dao_tao', '') }}" name="truong_dao_tao"
-                                placeholder="..........................................................................................................................................">
+                            <p style="display: inline;">Trường đào tạo:</p> {{ Arr::get($chiTietUngVien, 'truong_dao_tao', '') }}
                             <br>
                             <div class="row">
                                 <div class="col-6">
-                                    <p style="display: inline;">Chuyên ngành đào tạo:</p> <input class="input"
-                                        value="{{ Arr::get($chiTietUngVien, 'chuyen_nganh_dao_tao', '') }}"
-                                        name="chuyen_nganh_dao_tao"
-                                        placeholder="......................................................................">
+                                    <p style="display: inline;">Chuyên ngành đào tạo:</p> {{ Arr::get($chiTietUngVien, 'chuyen_nganh_dao_tao', '') }}
                                 </div>
                                 <div class="col-6">
                                     Hệ đào
-                                    tạo:
-                                    <input name="he_dao_tao" class="input"
-                                        value="{{ Arr::get($chiTietUngVien, 'he_dao_tao', '') }}"
-                                        placeholder=".............................................................................">
+                                    tạo:{{ Arr::get($chiTietUngVien, 'he_dao_tao', '') }}
                                 </div>
                             </div>
                             <p style="display: inline;">Tốt nghiệp loại:</p>
@@ -213,15 +186,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             học vừa làm <br>
                             <div class="row">
                                 <div class="col-5">
-                                    <p style="display: inline;">Chiều cao:</p> <input name="chieu_cao" class="input"
-                                        value="{{ Arr::get($chiTietUngVien, 'chieu_cao', '') }}" required
-                                        placeholder="......................................................................">
+                                    <p style="display: inline;">Chiều cao:</p> {{ Arr::get($chiTietUngVien, 'chieu_cao', '') }}
                                 </div>
                                 <div class="col-7">
-                                    Cân nặng:
-                                    <input name="can_nang" class="input" class="input"
-                                        value="{{ Arr::get($chiTietUngVien, 'can_nang', '') }}" required
-                                        placeholder=".........................................................">
+                                    Cân nặng: {{ Arr::get($chiTietUngVien, 'can_nang', '') }}
                                 </div>
                             </div>
                             <div class="row">
@@ -232,9 +200,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </div>
                                 <div class="col-5">
                                     <p style="display: inline;">
-                                        Số con: </p> <input class="input"
-                                        value="{{ Arr::get($chiTietUngVien, 'so_con', '') }}" name="so_con"
-                                        placeholder="......................................................................">
+                                        Số con: </p> {{ Arr::get($chiTietUngVien, 'so_con', '') }}
                                 </div>
                             </div>
                         </div>
@@ -259,18 +225,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <tbody>
                                         @foreach ($quaTrinhLamViec as $date => $value)
                                             <tr>
-                                                <td style="width: 100px; height: 50px; "><input
-                                                        name="thoi_gian_lam_viec[]" value="{{ $date }}"
-                                                        class="input"></td>
+                                                <td>{{ $date }}</td>
                                                 @foreach ($value as $cty => $viTri)
-                                                    <td style="width: 300px ; height: 50px;"><input
-                                                            name="don_vi_cong_tac[]" value="{{ $cty }}"
-                                                            class="input" style="width: 280px">
-                                                    </td>
-                                                    <td style="width: 300px ; height: 50px;"><input
-                                                            name="vi_tri_lam_viec[]" value="{{ $viTri }}"
-                                                            class="input" style="width: 280px">
-                                                    </td>
+                                                    <td>{{ $cty }}</td>
+                                                    <td>{{ $viTri }}</td>
                                                 @endforeach
                                             </tr>
                                         @endforeach
