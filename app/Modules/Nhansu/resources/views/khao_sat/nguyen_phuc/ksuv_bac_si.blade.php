@@ -112,7 +112,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                         <div class="col-7 ">
                             <div style="text-align: right;"><i>Ngày</i><input type="number" class="input"
-                                    name="ngay_khao_sat" value="{{ old('ngay_khao_sat') ?? '' }}" style="width: 15%;"
+                                    name="ngay_khao_sat" value="{{ old('ngay_khao_sat') ?? '' }}" style="width: 7%;"
                                     min="1" max="31" placeholder="...."><i>Tháng</i><input type="number"
                                     class="input" value="{{ old('thang_khao_sat') ?? '' }}" name="thang_khao_sat"
                                     min="1" max="12" style="width: 7%;" placeholder="...."><i>Năm</i><input

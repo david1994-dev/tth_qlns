@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="{{asset('bieu_mau/css/bieu_mau.css')}}">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+<link href="{{ asset('adminlte/dist/select2.min.css') }}" rel="stylesheet" />
 <style>
     @media print {
       body {
