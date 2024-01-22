@@ -37,6 +37,7 @@
                     <th>Trường Đào Tạo</th>
                     <th>Ngày Lập Phiếu</th>
                     <th class="text-center">Chi tiết</th>
+                    <th class="text-center">Action</th>
                 </tr>
                 </thead>
 
@@ -66,6 +67,12 @@
                                 <button class="btn btn-primary">
                                     <i class="bi bi-eye-fill"></i>
                                 </button>
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <a class="btn btn-danger btn-sm delete-button"
+                               data-delete-url="{{route('nhansu.ung-vien.destroy', $model->id)}}">
+                                <i class="bi bi-trash"></i>
                             </a>
                         </td>
                     </tr>
