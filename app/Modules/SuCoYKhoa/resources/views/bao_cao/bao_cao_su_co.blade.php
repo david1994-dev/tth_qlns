@@ -12,9 +12,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('adminlte/dist/select2/dist/css/select2.min.css')}}" />
+    <link rel="stylesheet" href="{{ asset('adminlte/dist/select2/dist/css/select2.min.css') }}" />
 
-    {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <style>
@@ -100,14 +99,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 @endif
             </div>
         </div>
-        <form action="{{ route('sucoykhoa.taoBaoCao') }}" method="post" class="  rounded" style="margin: auto;">
+        <form action="{{ route('sucoykhoa.taoBaoCao') }}" method="post" class=" rounded" style="margin: auto;">
+            <input type="hidden" name="chi_nhanh_slug" value="{{ $chi_nhanh->slug }}">
             @csrf
             <div class="container">
                 <div class="row">
                     <div class="col-5">
-                        <h6 class="tieu_de text-center">BỆNH VIỆN RHM VÀ PTTHTM</h6>
+                        <h6 class="tieu_de text-center text-uppercase">{{ $chi_nhanh->ten }}</h6>
                         <h6 class="tieu_de" style="text-align: center"><u>THÁI THƯỢNG HOÀNG</u></h6>
-
                     </div>
                     <div class="col-7 ">
                         <h6 style="text-align: center" class="tieu_de">
@@ -123,7 +122,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <h5 class="tieu_de" style="text-align: center">BÁO CÁO SỰ CỐ Y KHOA</h5>
                         <div class="text-center"><i>(Ban hành kèm theo Thông tư số 43/2018/TT-BYT ngày 26/12/2018 của
                                 Bộ trưởng Bộ Y tế)</i></div>
-                        <div class="table-responsive-md">
+                        <div class="table-responsive-sm">
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -140,7 +139,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         style="display: inline;"> </div>
                                             </div>
                                             <span>Đơn vị báo cáo:</span> <input type="text" class="input"
-                                                value="{{ old('don_vi_bao_cao') ?? '' }}" name="don_vi_bao_cao"
+                                                value="{{ $chi_nhanh->ten }}" name="don_vi_bao_cao"
                                                 placeholder="...................................">
                                         </th>
                                     </tr>
@@ -189,15 +188,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </tr>
                                     <tr>
                                         <td class="tieu_de">
-                                            <span>Khoa/phòng/vị trí xảy ra sự cố:</span>
-                                            <select class="js-example-basic-single" style="width: 100%" name="state">
-                                                <option value="...">...</option>
-                                                <option value="....">....</option>
+                                            <span>Khoa/phòng/vị trí xảy ra sự cố:</span> <br>
+                                            <select class="js-example-basic-single" name="khoa_phong_ban_id"
+                                                style="width: 100%">
+                                                @foreach ($phongBan as $id => $name)
+                                                    <option value="{{ $id }}">{{ $name }}</option>
+                                                @endforeach
                                             </select>
+
+
                                         </td>
                                         <td class="tieu_de">
                                             <span>Vị trí cụ thể:</span> <br>
-                                            <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="vi_tri_cu_the" class="input">{{ old('vi_tri_cu_the') ?? '' }}</textarea>
+                                            <textarea style=" width: 100%; height: 100px;" cols="30" rows="10" name="vi_tri_cu_the" class="input">{{ old('vi_tri_cu_the') ?? '' }}</textarea>
                                         </td>
                                     </tr>
                                     <tr>
@@ -321,12 +324,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <div class="col-md-4"><span>Đánh giá ban đầu về mức độ ảnh hưởng của sự
                                                         cố: </span></div>
                                                 <div class="col-md-8">
-                                                    <select class="js-example-basic-single" style="width: 100%" name="state">
-                                                        <option value="...">...</option>
-                                                        <option value="....">....</option>
+                                                    <select class="js-example-basic-single" name="muc_do"
+                                                        style="width: 100%">
+                                                        @foreach (\App\Modules\SuCoYKhoa\Helpers\ConfigHelper::MUC_DO_TON_THUONG as $id => $name)
+                                                            <option value="{{ $id }}">{{ $name }}
+                                                            </option>
+                                                        @endforeach
                                                     </select>
+
                                                 </div>
                                             </div>
+
+
                                         </td>
                                     </tr>
                                     <tr>
@@ -334,12 +343,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <div class="row">
                                                 <div class="col-md-2"><span>Nhóm sự cố:</span></div>
                                                 <div class="col-md-10">
-                                                    <select class="js-example-basic-single" style="width: 100%" name="state">
-                                                        <option value="...">...</option>
-                                                        <option value="....">....</option>
+                                                    <select class="js-example-basic-single" name="nhom_su_co" style="width: 100%">
+                                                        @foreach (\App\Modules\SuCoYKhoa\Helpers\ConfigHelper::NHOM_SU_CO as $id => $name)
+                                                            <option value="{{ $id }}">{{ $name }}
+                                                            </option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
+
+
                                         </td>
                                     </tr>
                                     <tr>
@@ -445,7 +458,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <button type="submit" class="btn btn-primary">--Ký tên--</button>
                             </div>
                         </div>
-                        <br>
                     </div>
                 </div>
 
@@ -463,8 +475,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
-<script src="{{asset('adminlte/dist/select2/dist/js/select2.min.js')}}"></script>
-{{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
+<script src="{{ asset('adminlte/dist/select2/dist/js/select2.min.js') }}"></script>
 
 <script>
     var loadFile = function(event) {

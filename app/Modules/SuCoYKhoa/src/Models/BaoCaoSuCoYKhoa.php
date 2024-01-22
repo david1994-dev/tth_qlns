@@ -18,16 +18,20 @@ class BaoCaoSuCoYKhoa extends Base
         'ho_ten_nguoi_benh',
         'ngay_bao_cao',
         'ngay_su_co',
-        'khoa_phong_su_co',
+        'khoa_phong_ban_id',
+        'chi_nhanh_id',
         'mo_ta',
         'de_xuat_giai_phap',
         'giai_phap_da_thuc_hien',
         'ho_ten_nguoi_bao_cao',
-        'chi_tiet'
+        'chi_tiet',
+        'muc_do',
+        'images'
     ];
 
     protected $casts = [
         'chi_tiet' => 'array',
+        'images' => 'array',
         'ngay_bao_cao' => 'date:Y-m-d',
         'ngay_su_co' => 'datetime:Y-m-d H:i:s',
         'deleted_at' => 'datetime:Y-m-d H:i:s'
