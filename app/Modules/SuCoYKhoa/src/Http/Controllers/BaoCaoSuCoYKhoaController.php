@@ -46,7 +46,7 @@ class BaoCaoSuCoYKhoaController extends Controller
     }
 
 
-    public function create(Request $request)
+    public function create(BaoCaoSuCoRequest $request)
     {
         $mainField = [
             'ho_ten_nguoi_benh', 'ngay_bao_cao', 'ngay_su_co', 'khoa_phong_ban_id', 'mo_ta', 'de_xuat_giai_phap',
