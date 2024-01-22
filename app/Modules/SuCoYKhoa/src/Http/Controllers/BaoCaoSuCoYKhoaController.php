@@ -4,9 +4,12 @@ namespace App\Modules\SuCoYKhoa\src\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Nhansu\src\Repositories\Interface\ChiNhanhRepositoryInterface;
+use App\Modules\Nhansu\src\Repositories\Interface\PhongBanRepositoryInterface;
 use App\Modules\SuCoYKhoa\src\Http\Request\BaoCaoSuCoRequest;
 use App\Modules\SuCoYKhoa\src\Repositories\Interface\BaoCaoSuCoYKhoaRepositoryInterface;
 use App\Http\Requests\PaginationRequest;
+use App\Repositories\Interface\ImageRepositoryInterface;
+use App\Services\FileService;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -14,13 +17,22 @@ class BaoCaoSuCoYKhoaController extends Controller
 {
     private BaoCaoSuCoYKhoaRepositoryInterface $baoCaoSuCoYKhoaRepository;
     private ChiNhanhRepositoryInterface $chiNhanhRepository;
+    private FileService $fileService;
+    private ImageRepositoryInterface $imageRepository;
+    private PhongBanRepositoryInterface $phongBanRepository;
 
     public function __construct(
         BaoCaoSuCoYKhoaRepositoryInterface $baoCaoSuCoYKhoaRepository,
-        ChiNhanhRepositoryInterface $chiNhanhRepository
+        ChiNhanhRepositoryInterface $chiNhanhRepository,
+        FileService $fileService,
+        ImageRepositoryInterface $imageRepository,
+        PhongBanRepositoryInterface $phongBanRepository
     ) {
         $this->baoCaoSuCoYKhoaRepository = $baoCaoSuCoYKhoaRepository;
         $this->chiNhanhRepository = $chiNhanhRepository;
+        $this->fileService = $fileService;
+        $this->imageRepository = $imageRepository;
+        $this->phongBanRepository = $phongBanRepository;
     }
 
     public function viewBaoCao($cnSlug)
@@ -28,14 +40,19 @@ class BaoCaoSuCoYKhoaController extends Controller
         $chiNhanh = $this->chiNhanhRepository->findBySlug($cnSlug);
         if (!$chiNhanh) abort(404);
 
-        return view('SuCoYKhoa::bao_cao.bao_cao_su_co', ['chi_nhanh' => $cnSlug]);
+        $phongBan = $this->phongBanRepository->allByChiNhanhId($chiNhanh->id);
+
+        return view('SuCoYKhoa::bao_cao.bao_cao_su_co', [
+            'chi_nhanh_slug' => $cnSlug,
+            'phongBan' => $this->phongBanRepository->pluck($phongBan, 'ten', 'id')
+        ]);
     }
 
     public function create(BaoCaoSuCoRequest $request)
     {
         $mainField = [
             'ho_ten_nguoi_benh', 'ngay_bao_cao', 'ngay_su_co', 'khoa_phong_ban_id', 'mo_ta', 'de_xuat_giai_phap',
-            'giai_phap_da_thuc_hien', 'ho_ten_nguoi_bao_cao', '_token'
+            'giai_phap_da_thuc_hien', 'ho_ten_nguoi_bao_cao', '_token', 'muc_do'
         ];
 
         $input = $request->only($mainField);
@@ -54,6 +71,7 @@ class BaoCaoSuCoYKhoaController extends Controller
         }
 
         $baoCao->ma = $this->baoCaoSuCoYKhoaRepository->renderMaBc($baoCao);
+        $baoCao->chi_nhanh_id = $chiNhanh->id;
         $baoCao->save();
 
         session()->flash('success', 'Bạn đã gửi báo cáo thành công! Mã báo cáo là: <b>'.$baoCao->ma.'</b>');

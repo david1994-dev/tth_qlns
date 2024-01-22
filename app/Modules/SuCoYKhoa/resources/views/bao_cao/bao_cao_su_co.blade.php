@@ -104,6 +104,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
         <form action="{{ route('sucoykhoa.taoBaoCao') }}" method="post"
             class=" border border-2 border-success  rounded" style="margin: auto;">
+            <input type="hidden" name="chi_nhanh_slug" value="{{$chi_nhanh_slug}}">
             @csrf
             <div class="container">
                 <div class="row">
@@ -189,12 +190,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <tr>
                                         <td class="tieu_de">
                                             <span>Khoa/phòng/vị trí xảy ra sự cố:</span>
-                                            <select class="custom-select">
-                                                <option selected>Khoa ngoại</option>
-                                                <option value="1">...</option>
-                                                <option value="2">...</option>
-                                                <option value="3">...</option>
-                                              </select>
+{{--                                            <label>--}}
+                                                <select class="custom-select" name="khoa_phong_ban_id">
+                                                    @foreach($phongBan as $id => $name)
+                                                        <option value="{{$id}}">{{$name}}</option>
+                                                    @endforeach
+                                                  </select>
+{{--                                            </label>--}}
                                             {{-- <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="khoa_phong_su_co" class="input">{{ old('khoa_phong_su_co') ?? '' }}</textarea> --}}
                                         </td>
                                         <td class="tieu_de">
@@ -289,30 +291,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <tr>
                                         <td colspan="2" class="tieu_de">
                                             <span>Đánh giá ban đầu về mức độ ảnh hưởng của sự cố: </span>
-                                            <select class="custom-select" style="width:66%; display:inline">
+                                            <select class="custom-select" name="muc_do" style="width:66%; display:inline">
                                                 <option selected disabled>Chọn đánh giá ban đầu về mức độ ảnh hưởng... </option>
-                                                <option value="1">...</option>
-                                                <option value="2">...</option>
+                                                @foreach(\App\Modules\SuCoYKhoa\Helpers\ConfigHelper::MUC_DO_TON_THUONG as $id => $name)
+                                                    <option value="{{$id}}">{{$name}}</option>
+                                                @endforeach
                                               </select>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="2" class="tieu_de">
                                             <span>Nhóm sự cố:</span>
-                                            <select class="custom-select" style="width:90%; display:inline">
+                                            <select class="custom-select" name="nhom_su_co" style="width:90%; display:inline">
                                                 <option selected disabled>Chọn nhóm sự cố...</option>
-                                                <option value="1">1. Thực hiện quy trình kỹ thuật, thủ thuật chuyên môn</option>
-                                                <option value="2">2. Nhiễm khuẩn bệnh viện</option>
-                                                <option value="3">3. Thuốc và dịch truyền</option>
-                                                <option value="4">4. Máu và các chế phẩm máu</option>
-                                                <option value="5">5. Thiết bị y tế</option>
-                                                <option value="6">6. Hành vi</option>
-                                                <option value="7">7. Té ngã</option>
-                                                <option value="8">8. Hạ tầng cơ sở</option>
-                                                <option value="9">9. Quản lý nguồn lực, tổ chức</option>
-                                                <option value="10">10. Hồ sơ, tài liệu, thủ tục hành chính</option>
-                                                <option value="11">11. Khác</option>
-                                              </select>
+                                                @foreach(\App\Modules\SuCoYKhoa\Helpers\ConfigHelper::NHOM_SU_CO as $id => $name)
+                                                    <option value="{{$id}}">{{$name}}</option>
+                                                @endforeach
+                                            </select>
                                         </td>
                                     </tr>
                                     <tr>
@@ -326,14 +321,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 name="ho_ten_nguoi_bao_cao"
                                                 value="{{ old('ho_ten_nguoi_bao_cao') ?? '' }}"
                                                 placeholder="................................................................................"
-                                                style="width: 20%; display: inline"> 
+                                                style="width: 20%; display: inline">
 
                                                 <span>Số điện thoại:</span> <input
                                                 value="{{ old('dien_thoai_nguoi_bao') ?? '' }}" type="text"
                                                 class="input" name="dien_thoai_nguoi_bao"
                                                 placeholder="......................................................................................"
-                                                style="width: 15%; display: inline"> 
-                                                
+                                                style="width: 15%; display: inline">
+
                                                 <span>Email:</span> <input
                                                 type="text" value="{{ old('email_nguoi_bao') ?? '' }}"
                                                 name="email_nguoi_bao" class="input"
@@ -341,7 +336,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 style="width: 20%; display: inline">
 
                                                 <span>MSNV:</span> <input
-                                                type="text" 
+                                                type="text"
                                                 name="email_nguoi_bao" class="input"
                                                 placeholder="....................................................................................."
                                                 style="width: 15%; display: inline">

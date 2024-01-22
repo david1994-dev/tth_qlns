@@ -27,6 +27,7 @@ return new class extends Migration
             $table->text('de_xuat_giai_phap')->nullable();
             $table->text('giai_phap_da_thuc_hien')->nullable();
             $table->text('chi_tiet')->nullable();
+            $table->text('images')->nullable();
             $table->timestamps();
 
             $table->softDeletes();
