@@ -8,30 +8,25 @@ use App\Modules\Nhansu\src\Repositories\Interface\PhongBanRepositoryInterface;
 use App\Modules\SuCoYKhoa\src\Http\Request\BaoCaoSuCoRequest;
 use App\Modules\SuCoYKhoa\src\Repositories\Interface\BaoCaoSuCoYKhoaRepositoryInterface;
 use App\Http\Requests\PaginationRequest;
-use App\Repositories\Interface\ImageRepositoryInterface;
 use App\Services\FileService;
-use Illuminate\Http\Request;
-use Carbon\Carbon;
 
 class BaoCaoSuCoYKhoaController extends Controller
 {
     private BaoCaoSuCoYKhoaRepositoryInterface $baoCaoSuCoYKhoaRepository;
     private ChiNhanhRepositoryInterface $chiNhanhRepository;
     private FileService $fileService;
-    private ImageRepositoryInterface $imageRepository;
+
     private PhongBanRepositoryInterface $phongBanRepository;
 
     public function __construct(
         BaoCaoSuCoYKhoaRepositoryInterface $baoCaoSuCoYKhoaRepository,
         ChiNhanhRepositoryInterface $chiNhanhRepository,
         FileService $fileService,
-        ImageRepositoryInterface $imageRepository,
         PhongBanRepositoryInterface $phongBanRepository
     ) {
         $this->baoCaoSuCoYKhoaRepository = $baoCaoSuCoYKhoaRepository;
         $this->chiNhanhRepository = $chiNhanhRepository;
         $this->fileService = $fileService;
-        $this->imageRepository = $imageRepository;
         $this->phongBanRepository = $phongBanRepository;
     }
 
@@ -43,10 +38,11 @@ class BaoCaoSuCoYKhoaController extends Controller
         $phongBan = $this->phongBanRepository->allByChiNhanhId($chiNhanh->id);
 
         return view('SuCoYKhoa::bao_cao.bao_cao_su_co', [
-            'chi_nhanh_slug' => $cnSlug,
+            'chi_nhanh' => $chiNhanh,
             'phongBan' => $this->phongBanRepository->pluck($phongBan, 'ten', 'id')
         ]);
     }
+
 
     public function create(BaoCaoSuCoRequest $request)
     {

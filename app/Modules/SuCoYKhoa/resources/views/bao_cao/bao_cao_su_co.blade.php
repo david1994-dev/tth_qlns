@@ -104,14 +104,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
         <form action="{{ route('sucoykhoa.taoBaoCao') }}" method="post"
             class=" border border-2 border-success  rounded" style="margin: auto;">
-            <input type="hidden" name="chi_nhanh_slug" value="{{$chi_nhanh_slug}}">
+            <input type="hidden" name="chi_nhanh_slug" value="{{$chi_nhanh->slug}}">
             @csrf
             <div class="container">
                 <div class="row">
                     <div class="col-5">
-                        <h6 class="tieu_de text-center">BỆNH VIỆN RHM VÀ PTTHTM</h6>
+                        <h6 class="tieu_de text-center text-uppercase">{{$chi_nhanh->ten}}</h6>
                         <h6 class="tieu_de" style="text-align: center"><u>THÁI THƯỢNG HOÀNG</u></h6>
-
                     </div>
                     <div class="col-7 ">
                         <h6 style="text-align: center" class="tieu_de">
@@ -141,7 +140,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 class="form-control" name="ngay_bao_cao"
                                                 style="width: 50% ;display: inline;"> <br>
                                             <span>Đơn vị báo cáo:</span> <input type="text" class="input"
-                                                value="{{ old('don_vi_bao_cao') ?? '' }}" name="don_vi_bao_cao"
+                                                value="{{ $chi_nhanh->ten }}" name="don_vi_bao_cao"
                                                 placeholder="...................................">
                                         </th>
                                     </tr>
