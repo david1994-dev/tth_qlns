@@ -103,14 +103,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
         </div>
         <form action="{{ route('sucoykhoa.taoBaoCao') }}" method="post"
-            class=" border border-2 border-success  rounded" style="margin: auto;">
+            class=" border border-2 border-success  rounded" style="margin: auto;" enctype="multipart/form-data">
             <input type="hidden" name="chi_nhanh_slug" value="{{$chi_nhanh->slug}}">
             @csrf
             <div class="container">
                 <div class="row">
                     <div class="col-5">
                         <h6 class="tieu_de text-center text-uppercase">{{$chi_nhanh->ten}}</h6>
-                        <h6 class="tieu_de" style="text-align: center"><u>THÁI THƯỢNG HOÀNG</u></h6>
                     </div>
                     <div class="col-7 ">
                         <h6 style="text-align: center" class="tieu_de">
@@ -384,7 +383,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                         <div class="file-field medium row">
                             <div class="btn btn-outline-primary waves-effect ">
-                              <input type="file" multiple="">
+                              <input name="images[]" type="file" multiple="true">
                             </div>
                           </div>
                         <div class="row">

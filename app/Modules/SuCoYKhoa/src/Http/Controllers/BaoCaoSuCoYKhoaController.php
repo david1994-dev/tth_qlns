@@ -5,10 +5,12 @@ namespace App\Modules\SuCoYKhoa\src\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Modules\Nhansu\src\Repositories\Interface\ChiNhanhRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\PhongBanRepositoryInterface;
+use App\Modules\SuCoYKhoa\Helpers\PostApiHelper;
 use App\Modules\SuCoYKhoa\src\Http\Request\BaoCaoSuCoRequest;
 use App\Modules\SuCoYKhoa\src\Repositories\Interface\BaoCaoSuCoYKhoaRepositoryInterface;
 use App\Http\Requests\PaginationRequest;
 use App\Services\FileService;
+use Illuminate\Http\Request;
 
 class BaoCaoSuCoYKhoaController extends Controller
 {
@@ -44,7 +46,7 @@ class BaoCaoSuCoYKhoaController extends Controller
     }
 
 
-    public function create(BaoCaoSuCoRequest $request)
+    public function create(Request $request)
     {
         $mainField = [
             'ho_ten_nguoi_benh', 'ngay_bao_cao', 'ngay_su_co', 'khoa_phong_ban_id', 'mo_ta', 'de_xuat_giai_phap',
@@ -69,6 +71,23 @@ class BaoCaoSuCoYKhoaController extends Controller
         $baoCao->ma = $this->baoCaoSuCoYKhoaRepository->renderMaBc($baoCao);
         $baoCao->chi_nhanh_id = $chiNhanh->id;
         $baoCao->save();
+
+        $images = [];
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                $image = $this->fileService->uploadImage('sucoykhoa', $file);
+                if (!empty($image)) {
+                    $images[] = $image;
+                }
+            }
+        }
+
+        $baoCao->images = $images;
+        $baoCao->save();
+
+        $dataPost = $request->all();
+        $dataPost['images'] = json_encode($images);
+        PostApiHelper::postDataToHDH($dataPost);
 
         session()->flash('success', 'Bạn đã gửi báo cáo thành công! Mã báo cáo là: <b>'.$baoCao->ma.'</b>');
 
