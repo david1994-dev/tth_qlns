@@ -12,15 +12,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminlte/dist/select2/dist/css/select2.min.css') }}" />
 
-    {{--    <link rel="stylesheet" href="{{ asset('bieu_mau/css/bieu_mau.css') }}"> --}}
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <style>
         @media print {
             body {
-                width: 400mm;
-                height: 297mm;
                 margin: 0;
                 padding: 0;
             }
@@ -36,8 +34,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             line-height: 20px;
         }
 
-        input[type="file"] {
-        }
+        input[type="file"] {}
 
         .custom-file-upload {
             border: 1px solid #ccc;
@@ -103,7 +100,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
         </div>
         <form action="{{ route('sucoykhoa.taoBaoCao') }}" method="post"
-            class=" border border-2 border-success  rounded" style="margin: auto;" enctype="multipart/form-data">
+            class="  rounded" style="margin: auto;" enctype="multipart/form-data">
             <input type="hidden" name="chi_nhanh_slug" value="{{$chi_nhanh->slug}}">
             @csrf
             <div class="container">
@@ -125,7 +122,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <h5 class="tieu_de" style="text-align: center">BÁO CÁO SỰ CỐ Y KHOA</h5>
                         <div class="text-center"><i>(Ban hành kèm theo Thông tư số 43/2018/TT-BYT ngày 26/12/2018 của
                                 Bộ trưởng Bộ Y tế)</i></div>
-                        <div class="table-responsive-md">
+                        <div class="table-responsive-sm">
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -135,9 +132,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </th>
                                         <th scope="col" class="tieu_de">
                                             <span>Số báo cáo/Mã số sự cố:</span> <br>
-                                            <span>Ngày báo cáo:</span> <input type="date" id="ngay_sinh"
-                                                class="form-control" name="ngay_bao_cao"
-                                                style="width: 50% ;display: inline;"> <br>
+                                            <div class="row">
+                                                <div class="col-md-3"><span>Ngày báo cáo:</span> </div>
+                                                <div class="col-md-9"><input type="date" id="ngay_sinh"
+                                                        class="form-control" name="ngay_bao_cao"
+                                                        style="display: inline;"> </div>
+                                            </div>
                                             <span>Đơn vị báo cáo:</span> <input type="text" class="input"
                                                 value="{{ $chi_nhanh->ten }}" name="don_vi_bao_cao"
                                                 placeholder="...................................">
@@ -172,7 +172,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 value="Người nhà/khách đến thăm ">
                                             <span>Người nhà/khách đến thăm </span>
                                             <br>
-                                            <input type="radio" name="doi_tuong_xay_ra_su_co" value="Nhân viên y tế ">
+                                            <input type="radio" name="doi_tuong_xay_ra_su_co"
+                                                value="Nhân viên y tế ">
                                             <span>Nhân viên y tế</span>
                                             <br>
                                             <input type="radio" name="doi_tuong_xay_ra_su_co"
@@ -187,19 +188,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </tr>
                                     <tr>
                                         <td class="tieu_de">
-                                            <span>Khoa/phòng/vị trí xảy ra sự cố:</span>
-{{--                                            <label>--}}
-                                                <select class="custom-select" name="khoa_phong_ban_id">
-                                                    @foreach($phongBan as $id => $name)
-                                                        <option value="{{$id}}">{{$name}}</option>
-                                                    @endforeach
-                                                  </select>
-{{--                                            </label>--}}
-                                            {{-- <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="khoa_phong_su_co" class="input">{{ old('khoa_phong_su_co') ?? '' }}</textarea> --}}
+                                            <span>Khoa/phòng/vị trí xảy ra sự cố:</span> <br>
+                                            <select class="js-example-basic-single" name="khoa_phong_ban_id"
+                                                style="width: 100%">
+                                                @foreach ($phongBan as $id => $name)
+                                                    <option value="{{ $id }}">{{ $name }}</option>
+                                                @endforeach
+                                            </select>
+
+
                                         </td>
                                         <td class="tieu_de">
                                             <span>Vị trí cụ thể:</span> <br>
-                                            <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="vi_tri_cu_the" class="input">{{ old('vi_tri_cu_the') ?? '' }}</textarea>
+                                            <textarea style=" width: 100%; height: 100px;" cols="30" rows="10" name="vi_tri_cu_the" class="input">{{ old('vi_tri_cu_the') ?? '' }}</textarea>
                                         </td>
                                     </tr>
                                     <tr>
@@ -238,18 +239,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="radio" name="thong_bao_bac_si" value="Có"> Có
-                                            <input type="radio" name="thong_bao_bac_si" value="Không"> Không
-                                            <input type="radio" name="thong_bao_bac_si" value="Không ghi nhận">
-                                            Không
-                                            ghi nhận
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <input type="radio" name="thong_bao_bac_si" value="Có"> Có
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <input type="radio" name="thong_bao_bac_si" value="Không">
+                                                    Không
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <input type="radio" name="thong_bao_bac_si"
+                                                        value="Không ghi nhận">
+                                                    Không
+                                                    ghi nhận
+                                                </div>
+                                            </div>
                                         </td>
                                         <td>
-                                            <input type="radio" name="ghi_nhan_vao_ho_so" value="Có"> Có
-                                            <input type="radio" name="ghi_nhan_vao_ho_so" value="Không"> Không
-                                            <input type="radio" name="ghi_nhan_vao_ho_so" value="Không ghi nhận">
-                                            Không ghi
-                                            nhận
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <input type="radio" name="ghi_nhan_vao_ho_so" value="Có">
+                                                    Có
+                                                </div>
+                                                <div class="col-md-4"><input type="radio" name="ghi_nhan_vao_ho_so"
+                                                        value="Không"> Không</div>
+                                                <div class="col-md-4"><input type="radio" name="ghi_nhan_vao_ho_so"
+                                                        value="Không ghi nhận">
+                                                    Không ghi
+                                                    nhận</div>
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -262,16 +280,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="radio" name="thong_bao_nguoi_nha" value="Có"> Có
-                                            <input type="radio" name="thong_bao_nguoi_nha" value="Không"> Không
-                                            <input type="radio" name="thong_bao_nguoi_nha" value="Không ghi nhận">
-                                            Không ghi nhận
+                                            <div class="row">
+                                                <div class="col-md-4"><input type="radio"
+                                                        name="thong_bao_nguoi_nha" value="Có"> Có</div>
+                                                <div class="col-md-4"><input type="radio"
+                                                        name="thong_bao_nguoi_nha" value="Không"> Không</div>
+                                                <div class="col-md-4"><input type="radio"
+                                                        name="thong_bao_nguoi_nha" value="Không ghi nhận">Không ghi
+                                                    nhận</div>
+                                            </div>
                                         </td>
                                         <td>
-                                            <input type="radio" name="thong_bao_benh_nhan" value="Có"> Có
-                                            <input type="radio" name="thong_bao_benh_nhan" value="Không"> Không
-                                            <input type="radio" name="thong_bao_benh_nhan" value="Không ghi nhận">
-                                            Không ghi nhận
+                                            <div class="row">
+                                                <div class="col-md-4"><input type="radio"
+                                                        name="thong_bao_benh_nhan" value="Có"> Có</div>
+                                                <div class="col-md-4"><input type="radio"
+                                                        name="thong_bao_benh_nhan" value="Không"> Không</div>
+                                                <div class="col-md-4"><input type="radio"
+                                                        name="thong_bao_benh_nhan" value="Không ghi nhận">
+                                                    Không ghi nhận</div>
+                                            </div>
+
+
+
                                         </td>
                                     </tr>
                                     <tr>
@@ -281,31 +312,47 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </tr>
                                     <tr>
                                         <td colspan="2">
-                                            <input type="radio" name="phan_loai_ban_dau" value="Chưa xảy ra"> Chưa xảy ra
+                                            <input type="radio" name="phan_loai_ban_dau" value="Chưa xảy ra"> Chưa
+                                            xảy ra
                                             <input type="radio" name="phan_loai_ban_dau" value="Đã xảy ra"
                                                 style="margin-left: 30%"> Đã xảy ra
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="2" class="tieu_de">
-                                            <span>Đánh giá ban đầu về mức độ ảnh hưởng của sự cố: </span>
-                                            <select class="custom-select" name="muc_do" style="width:66%; display:inline">
-                                                <option selected disabled>Chọn đánh giá ban đầu về mức độ ảnh hưởng... </option>
-                                                @foreach(\App\Modules\SuCoYKhoa\Helpers\ConfigHelper::MUC_DO_TON_THUONG as $id => $name)
-                                                    <option value="{{$id}}">{{$name}}</option>
-                                                @endforeach
-                                              </select>
+                                            <div class="row">
+                                                <div class="col-md-4"><span>Đánh giá ban đầu về mức độ ảnh hưởng của sự
+                                                        cố: </span></div>
+                                                <div class="col-md-8">
+                                                    <select class="js-example-basic-single" name="muc_do"
+                                                        style="width: 100%">
+                                                        @foreach (\App\Modules\SuCoYKhoa\Helpers\ConfigHelper::MUC_DO_TON_THUONG as $id => $name)
+                                                            <option value="{{ $id }}">{{ $name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+
+                                                </div>
+                                            </div>
+
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="2" class="tieu_de">
-                                            <span>Nhóm sự cố:</span>
-                                            <select class="custom-select" name="nhom_su_co" style="width:90%; display:inline">
-                                                <option selected disabled>Chọn nhóm sự cố...</option>
-                                                @foreach(\App\Modules\SuCoYKhoa\Helpers\ConfigHelper::NHOM_SU_CO as $id => $name)
-                                                    <option value="{{$id}}">{{$name}}</option>
-                                                @endforeach
-                                            </select>
+                                            <div class="row">
+                                                <div class="col-md-2"><span>Nhóm sự cố:</span></div>
+                                                <div class="col-md-10">
+                                                    <select class="js-example-basic-single" name="nhom_su_co" style="width: 100%">
+                                                        @foreach (\App\Modules\SuCoYKhoa\Helpers\ConfigHelper::NHOM_SU_CO as $id => $name)
+                                                            <option value="{{ $id }}">{{ $name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
                                         </td>
                                     </tr>
                                     <tr>
@@ -315,49 +362,66 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </tr>
                                     <tr>
                                         <td colspan="2">
-                                            <span>Họ tên:</span><input type="text" class="input"
-                                                name="ho_ten_nguoi_bao_cao"
-                                                value="{{ old('ho_ten_nguoi_bao_cao') ?? '' }}"
-                                                placeholder="................................................................................"
-                                                style="width: 20%; display: inline">
-
-                                                <span>Số điện thoại:</span> <input
-                                                value="{{ old('dien_thoai_nguoi_bao') ?? '' }}" type="text"
-                                                class="input" name="dien_thoai_nguoi_bao"
-                                                placeholder="......................................................................................"
-                                                style="width: 15%; display: inline">
-
-                                                <span>Email:</span> <input
-                                                type="text" value="{{ old('email_nguoi_bao') ?? '' }}"
-                                                name="email_nguoi_bao" class="input"
-                                                placeholder="....................................................................................."
-                                                style="width: 20%; display: inline">
-
-                                                <span>MSNV:</span> <input
-                                                type="text"
-                                                name="email_nguoi_bao" class="input"
-                                                placeholder="....................................................................................."
-                                                style="width: 15%; display: inline">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <span>Họ tên:</span><input type="text" class="input"
+                                                        name="ho_ten_nguoi_bao_cao"
+                                                        value="{{ old('ho_ten_nguoi_bao_cao') ?? '' }}"
+                                                        placeholder="......................................................................................................................................................................................................................................."
+                                                        style=" display: inline">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <span>SĐT:</span> <input
+                                                        value="{{ old('dien_thoai_nguoi_bao') ?? '' }}"
+                                                        type="text" class="input" name="dien_thoai_nguoi_bao"
+                                                        placeholder="..............................................................................................................................................................................................................................................................."
+                                                        style=" display: inline">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <span>Email:</span> <input type="text"
+                                                        value="{{ old('email_nguoi_bao') ?? '' }}"
+                                                        name="email_nguoi_bao" class="input"
+                                                        placeholder="............................................................................................................................................................................................................................................................"
+                                                        style=" display: inline">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <span>MSNV:</span> <input type="text" name="msnv"
+                                                        class="input"
+                                                        placeholder="............................................................................................................................................................................................................................."
+                                                        style=" display: inline">
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="2">
-                                            <input type="radio" name="doi_tuong_bao_cao"
-                                                value="Điều dưỡng (chức danh)"> Điều dưỡng
-                                            (chức danh)
-                                            <input type="radio" name="doi_tuong_bao_cao" value="Người bệnh"
-                                                style="margin-left: 15%"> Người bệnh
-                                            <input type="radio" name="doi_tuong_bao_cao"
-                                                value="Người nhà/khách đến thăm" style="margin-left: 15%"> Người
-                                            nhà/khách đến thăm <br>
-                                            <input type="radio" name="doi_tuong_bao_cao"
-                                                value="Bác sỹ (chức danh)"> Bác sỹ (chức danh)
-                                            <input type="radio" name="doi_tuong_bao_cao" value="Khác (ghi cụ thể)"
-                                                style="margin-left: 18.6%"> Khác (ghi cụ thể): <input type="text"
-                                                name="doi_tuong_bao_cao_khac" class="input"
-                                                value="{{ old('doi_tuong_bao_cao_khac') ?? '' }}"
-                                                placeholder="....................................................................................."
-                                                style="width: 25%; display: inline">
+                                            <div class="row">
+                                                <div class="col-md-4"><input type="radio" name="doi_tuong_bao_cao"
+                                                        value="Điều dưỡng (chức danh)"> Điều dưỡng
+                                                    (chức danh)</div>
+                                                <div class="col-md-4"><input type="radio" name="doi_tuong_bao_cao"
+                                                        value="Người bệnh"> Người bệnh</div>
+                                                <div class="col-md-4"><input type="radio" name="doi_tuong_bao_cao"
+                                                        value="Người nhà/khách đến thăm"> Người
+                                                    nhà/khách đến thăm </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <input type="radio" name="doi_tuong_bao_cao"
+                                                        value="Bác sỹ (chức danh)"> Bác sỹ (chức danh)
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <input type="radio" name="doi_tuong_bao_cao"
+                                                        value="Khác (ghi cụ thể)"> Khác
+                                                    (ghi cụ thể): <input type="text" name="doi_tuong_bao_cao_khac"
+                                                        class="input"
+                                                        value="{{ old('doi_tuong_bao_cao_khac') ?? '' }}"
+                                                        placeholder="....................................................................................."
+                                                        style=" display: inline">
+                                                </div>
+                                            </div>
+
+
                                         </td>
                                     </tr>
                                     <tr>
@@ -366,16 +430,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 value="{{ old('nguoi_chung_kien_1') ?? '' }}"
                                                 name="nguoi_chung_kien_1"
                                                 placeholder="................................................................................"
-                                                style="width: 25%; display: inline">
+                                                style=" display: inline">
                                         </td>
                                         <td class="text-center">
                                             <span>Người chứng kiến 2:</span>
-                                            {{--                                    <button type="submit" class="btn btn-primary">--Ký --}}
-                                            {{--                                        tên--</button> --}}
                                             <input type="text" class="input" name="nguoi_chung_kien_2"
                                                 value="{{ old('nguoi_chung_kien_2') ?? '' }}"
                                                 placeholder="................................................................................"
-                                                style="width: 25%; display: inline">
+                                                style="display: inline">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -385,18 +447,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="btn btn-outline-primary waves-effect ">
                               <input name="images[]" type="file" multiple="true">
                             </div>
-                          </div>
+
+                        </div>
+                        <img id="output" />
+
                         <div class="row">
                             <div class="col-8">
                             </div>
                             <div class="col-4 ">
-                                        <button type="submit" class="btn btn-primary">--Ký tên--</button>
+                                <button type="submit" class="btn btn-primary">--Ký tên--</button>
                             </div>
                         </div>
-
-                        <br>
-
-
                     </div>
                 </div>
 
@@ -414,5 +475,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
+<script src="{{ asset('adminlte/dist/select2/dist/js/select2.min.js') }}"></script>
 
-<script></script>
+<script>
+    var loadFile = function(event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function() {
+            URL.revokeObjectURL(output.src) // free memory
+        }
+    };
+
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+    });
+</script>
