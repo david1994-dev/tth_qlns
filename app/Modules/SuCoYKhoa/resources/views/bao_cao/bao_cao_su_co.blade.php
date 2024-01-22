@@ -37,7 +37,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         }
 
         input[type="file"] {
-            display: none;
         }
 
         .custom-file-upload {
@@ -190,10 +189,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <tr>
                                         <td class="tieu_de">
                                             <span>Khoa/phòng/vị trí xảy ra sự cố:</span>
-                                            <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="khoa_phong_su_co" class="input">{{ old('khoa_phong_su_co') ?? '' }}</textarea>
+                                            <select class="custom-select">
+                                                <option selected>Khoa ngoại</option>
+                                                <option value="1">...</option>
+                                                <option value="2">...</option>
+                                                <option value="3">...</option>
+                                              </select>
+                                            {{-- <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="khoa_phong_su_co" class="input">{{ old('khoa_phong_su_co') ?? '' }}</textarea> --}}
                                         </td>
                                         <td class="tieu_de">
-                                            <span>Vị trí cụ thể:</span>
+                                            <span>Vị trí cụ thể:</span> <br>
                                             <textarea style=" width: 80%; height: 100px;" cols="30" rows="10" name="vi_tri_cu_the" class="input">{{ old('vi_tri_cu_the') ?? '' }}</textarea>
                                         </td>
                                     </tr>
@@ -276,25 +281,38 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </tr>
                                     <tr>
                                         <td colspan="2">
-                                            <input type="radio" name="phan_loai_ban_dau" value="Chưa xảy ra"> Chưa
-                                            xảy
-                                            ra
+                                            <input type="radio" name="phan_loai_ban_dau" value="Chưa xảy ra"> Chưa xảy ra
                                             <input type="radio" name="phan_loai_ban_dau" value="Đã xảy ra"
                                                 style="margin-left: 30%"> Đã xảy ra
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="2" class="tieu_de">
-                                            <span>Đánh giá ban đầu về mức độ ảnh hưởng của sự cố</span>
+                                            <span>Đánh giá ban đầu về mức độ ảnh hưởng của sự cố: </span>
+                                            <select class="custom-select" style="width:66%; display:inline">
+                                                <option selected disabled>Chọn đánh giá ban đầu về mức độ ảnh hưởng... </option>
+                                                <option value="1">...</option>
+                                                <option value="2">...</option>
+                                              </select>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2">
-                                            <input type="radio" name="danh_gia_ban_dau" value="Nặng"> Nặng <br>
-                                            <input type="radio" name="danh_gia_ban_dau" value="Trung bình"> Trung
-                                            bình
-                                            <br>
-                                            <input type="radio" name="danh_gia_ban_dau" value="Nhẹ"> Nhẹ
+                                        <td colspan="2" class="tieu_de">
+                                            <span>Nhóm sự cố:</span>
+                                            <select class="custom-select" style="width:90%; display:inline">
+                                                <option selected disabled>Chọn nhóm sự cố...</option>
+                                                <option value="1">1. Thực hiện quy trình kỹ thuật, thủ thuật chuyên môn</option>
+                                                <option value="2">2. Nhiễm khuẩn bệnh viện</option>
+                                                <option value="3">3. Thuốc và dịch truyền</option>
+                                                <option value="4">4. Máu và các chế phẩm máu</option>
+                                                <option value="5">5. Thiết bị y tế</option>
+                                                <option value="6">6. Hành vi</option>
+                                                <option value="7">7. Té ngã</option>
+                                                <option value="8">8. Hạ tầng cơ sở</option>
+                                                <option value="9">9. Quản lý nguồn lực, tổ chức</option>
+                                                <option value="10">10. Hồ sơ, tài liệu, thủ tục hành chính</option>
+                                                <option value="11">11. Khác</option>
+                                              </select>
                                         </td>
                                     </tr>
                                     <tr>
@@ -308,15 +326,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 name="ho_ten_nguoi_bao_cao"
                                                 value="{{ old('ho_ten_nguoi_bao_cao') ?? '' }}"
                                                 placeholder="................................................................................"
-                                                style="width: 25%; display: inline"> <span>Số điện thoại:</span> <input
+                                                style="width: 20%; display: inline"> 
+
+                                                <span>Số điện thoại:</span> <input
                                                 value="{{ old('dien_thoai_nguoi_bao') ?? '' }}" type="text"
                                                 class="input" name="dien_thoai_nguoi_bao"
                                                 placeholder="......................................................................................"
-                                                style="width: 25%; display: inline"> <span>Email:</span> <input
+                                                style="width: 15%; display: inline"> 
+                                                
+                                                <span>Email:</span> <input
                                                 type="text" value="{{ old('email_nguoi_bao') ?? '' }}"
                                                 name="email_nguoi_bao" class="input"
                                                 placeholder="....................................................................................."
-                                                style="width: 25%; display: inline">
+                                                style="width: 20%; display: inline">
+
+                                                <span>MSNV:</span> <input
+                                                type="text" 
+                                                name="email_nguoi_bao" class="input"
+                                                placeholder="....................................................................................."
+                                                style="width: 15%; display: inline">
                                         </td>
                                     </tr>
                                     <tr>
@@ -360,11 +388,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </tbody>
                             </table>
                         </div>
-
-                        <div class="row">
-                            <div class="col-6">
+                        <div class="file-field medium row">
+                            <div class="btn btn-outline-primary waves-effect ">
+                              <input type="file" multiple="">
                             </div>
-                            <div class="col-6 ">
+                          </div>
+                        <div class="row">
+                            <div class="col-8">
+                            </div>
+                            <div class="col-4 ">
+                                        <button type="submit" class="btn btn-primary">--Ký tên--</button>
                             </div>
                         </div>
 
@@ -373,12 +406,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                     </div>
                 </div>
-                <div class="row text-right pb-4">
-                    <div class="col-2 offset-10">
-                        <button type="submit" class="btn btn-primary">--Ký
-                            tên--</button>
-                    </div>
-                </div>
+
             </div>
         </form>
 
