@@ -18,9 +18,11 @@ return new class extends Migration
             $table->tinyInteger('status')->default(BaoCaoSuCoYKhoa::STATUS_UNDER_REVIEW);
             $table->string('ho_ten_nguoi_benh')->nullable();
             $table->string('ho_ten_nguoi_bao_cao')->nullable();
+            $table->string('muc_do', 2)->nullable();
             $table->date('ngay_bao_cao')->nullable();
             $table->dateTime('ngay_su_co')->nullable();
-            $table->string('khoa_phong_su_co')->nullable();
+            $table->unsignedBigInteger('khoa_phong_ban_id')->index()->nullable();
+            $table->unsignedBigInteger('chi_nhanh_id')->index()->nullable();
             $table->text('mo_ta')->nullable();
             $table->text('de_xuat_giai_phap')->nullable();
             $table->text('giai_phap_da_thuc_hien')->nullable();
