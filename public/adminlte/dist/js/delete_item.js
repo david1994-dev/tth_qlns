@@ -16,6 +16,7 @@ $(function () {
                     location.reload();
                 },
                 success: function (response) {
+                    console.log(response)
                     location.reload();
                 },
                 complete: function () {

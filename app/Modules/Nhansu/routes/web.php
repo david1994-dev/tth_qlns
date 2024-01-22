@@ -10,6 +10,7 @@ use App\Modules\Nhansu\src\Http\Controllers\SoDoToChucController;
 Route::prefix('nhansu')->middleware('web')->name('nhansu.')->group(function () {
     Route::middleware(['auth'])->group(function () {
         Route::get('danh-sach-ung-vien', [UngVienController::class, 'danhSach'])->name('danhSachUngVien');
+        Route::delete('delete-ung-vien/{id}', [UngVienController::class, 'destroy'])->name('ung-vien.destroy');
         Route::get('chi-tiet-ung-vien/{id}', [UngVienController::class, 'view'])->name('chiTietUngVien');
 //        Route::resource('nhan-vien', NhanVienController::class);
         Route::resource('chi-nhanh', ChiNhanhController::class);
