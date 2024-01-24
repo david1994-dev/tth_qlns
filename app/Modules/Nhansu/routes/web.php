@@ -5,6 +5,7 @@ use App\Modules\Nhansu\src\Http\Controllers\ChiNhanhController;
 use \App\Modules\Nhansu\src\Http\Controllers\UngVienController;
 use App\Modules\Nhansu\src\Http\Controllers\PhongBanController;
 use App\Modules\Nhansu\src\Http\Controllers\SoDoToChucController;
+use App\Modules\Nhansu\src\Http\Controllers\LoaiNhanVienController;
 
 
 Route::prefix('nhansu')->middleware('web')->name('nhansu.')->group(function () {
@@ -19,6 +20,7 @@ Route::prefix('nhansu')->middleware('web')->name('nhansu.')->group(function () {
         Route::resource('so-do-to-chuc', SoDoToChucController::class);
         Route::resource('nhan-vien', NhanVienController::class);
         Route::post('chuyen-nhan-vien', [NhanVienController::class, 'capNhatLoaiNhanVien'])->name('nhansu.nhan-vien.capNhatLoaiNhanVien');
+        Route::resource('loai-nhan-vien', LoaiNhanVienController::class);
     });
 
     Route::get('khao-sat-ung-vien', [UngVienController::class, 'index']);

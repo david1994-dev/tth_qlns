@@ -21,14 +21,8 @@ class NhanVien extends Base
     ];
 
     const LOAI_NHAN_VIEN = [
-        self::LOAI_HOC_VIEC => 'Học Việc',
-        self::LOAI_THU_VIEC => 'Thử Việc',
-        self::LOAI_CHINH_THUC => 'Chính Thức',
-    ];
 
-    const LOAI_HOC_VIEC = 0;
-    const LOAI_THU_VIEC = 1;
-    const LOAI_CHINH_THUC = 2;
+    ];
 
     protected $fillable = [
         'user_id',
