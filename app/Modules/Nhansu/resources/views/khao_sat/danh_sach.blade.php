@@ -7,9 +7,13 @@
         }
 
         .child {
+            /* border: solid 1px; */
+            /* border-radius: 7px; */
+            /* padding: 5px; */
             flex: 1 0 15%;
+            /* explanation below */
             margin-bottom: 5px;
-
+            /* background-color: blue; */
             text-align: center;
         }
     </style>

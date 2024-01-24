@@ -2,25 +2,34 @@
 @section('content')
     <div class="box box-primary">
         <div class="box-header with-border">
-            <form action="{{ route('nhansu.khoa-phong-ban.index') }}">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <input name="keyword" placeholder="Nhập mã chi nhánh, tên chi nhánh.." class="form-control"
-                                value="{{ $keyword ?? '' }}" />
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Search</button>
-                        <a href="{{ route('nhansu.khoa-phong-ban.index') }}" class="btn btn-danger">Reset</a>
-                    </div>
-                </div>
-            </form>
             <div class="row">
-                <div class="col-sm-6">
-                    <p style="display: inline-block;"><b>{{ $count }}</b> Chi Nhánh</p>
+                <div class="col-6">
+                    <form class="input-group mt-3 mb-3 " role="search" action="{{ route('nhansu.khoa-phong-ban.index') }}">
+                        <input type="text" class="form-control"
+                            placeholder="Nhập mã phòng ban, tên phòng ban..." name="keyword"
+                            aria-label="Recipient's username" aria-describedby="basic-addon2" value="{{ $keyword ?? '' }}">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search"></i></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-6">
+                    <a href="{{ route('nhansu.khoa-phong-ban.index') }}" class="btn btn-primary mt-3 mb-3"><i
+                            class="bi bi-arrow-clockwise"></i></a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-10">
+                    <p style="display: inline-block;"><b>{{ $count }}</b> Phòng Ban</p>
+                </div>
+                <div class="col-sm-2">
+                    <a href="{{ route('nhansu.khoa-phong-ban.create') }}">
+                        <button class="btn btn-success  btn-sm mb-3">
+                            <span class="fa-solid fa-person-circle-plus text-light h5 my-auto me-1"></span>
+                            <span class="text-light"> Thêm mới phòng ban <i class="bi bi-plus-circle"></i></span>
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
