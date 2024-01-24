@@ -2,22 +2,22 @@
 @section('content')
     <div class="box box-primary mt-3">
         <div class="box-header with-border">
-            <form action="">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <input name="keyword" placeholder="Nhập họ và tên,email,mã nhân viên" class="form-control"
-                                value="{{ $keyword ?? '' }}" />
+            <div class="row">
+                <div class="col-6">
+                    <form class="input-group mt-3 mb-3 " role="search" action="">
+                        <input type="text" class="form-control"
+                            placeholder="Nhập mã ứng viên, email, số điện thoại, họ tên..." name="keyword"
+                            aria-label="Recipient's username" aria-describedby="basic-addon2" value="{{ $keyword ?? '' }}">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search"></i></button>
                         </div>
-                    </div>
+                    </form>
                 </div>
-                <div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Search</button>
-                        <a href="" class="btn btn-danger">Reset</a>
-                    </div>
+                <div class="col-6">
+                    <a href="" class="btn btn-primary mt-3 mb-3"><i
+                            class="bi bi-arrow-clockwise"></i></a>
                 </div>
-            </form>
+            </div>
             <div class="row">
                 <div class="col-sm-6">
                     <p style="display: inline-block;"><b>{{$count}}</b> Nhân viên</p>
