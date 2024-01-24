@@ -99,14 +99,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 @endif
             </div>
         </div>
-        <form action="{{ route('sucoykhoa.taoBaoCao') }}" method="post"
-            class="  rounded" style="margin: auto;" enctype="multipart/form-data">
-            <input type="hidden" name="chi_nhanh_slug" value="{{$chi_nhanh->slug}}">
+        <form action="{{ route('sucoykhoa.taoBaoCao') }}" method="post" class="  rounded" style="margin: auto;"
+            enctype="multipart/form-data">
+            <input type="hidden" name="chi_nhanh_slug" value="{{ $chi_nhanh->slug }}">
             @csrf
             <div class="container">
                 <div class="row">
                     <div class="col-5">
-                        <h6 class="tieu_de text-center text-uppercase">{{$chi_nhanh->ten}}</h6>
+                        <h6 class="tieu_de text-center text-uppercase">{{ $chi_nhanh->ten }}</h6>
                     </div>
                     <div class="col-7 ">
                         <h6 style="text-align: center" class="tieu_de">
@@ -300,9 +300,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         name="thong_bao_benh_nhan" value="Không ghi nhận">
                                                     Không ghi nhận</div>
                                             </div>
-
-
-
                                         </td>
                                     </tr>
                                     <tr>
@@ -343,7 +340,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <div class="row">
                                                 <div class="col-md-2"><span>Nhóm sự cố:</span></div>
                                                 <div class="col-md-10">
-                                                    <select class="js-example-basic-single" name="nhom_su_co" style="width: 100%">
+                                                    <select class="js-example-basic-single" name="nhom_su_co"
+                                                        style="width: 100%">
                                                         @foreach (\App\Modules\SuCoYKhoa\Helpers\ConfigHelper::NHOM_SU_CO as $id => $name)
                                                             <option value="{{ $id }}">{{ $name }}
                                                             </option>
@@ -351,8 +349,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     </select>
                                                 </div>
                                             </div>
-
-
                                         </td>
                                     </tr>
                                     <tr>
@@ -443,19 +439,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </tbody>
                             </table>
                         </div>
-                        <div class="file-field medium row">
-                            <div class="btn btn-outline-primary waves-effect ">
-                              <input name="images[]" type="file" multiple="true">
-                            </div>
+                        <label class="btn btn-info col fileinput-button dz-clickable" id="image">
+                            <input type="file" name="images[]" multiple class="d-none" id="image"
+                                onchange="loadFile(event)" accept="image/*">
+                            <i class="fas fa-upload"></i>
+                            <span> Tải lên hình ảnh sự cố</span>
+                        </label>
 
-                        </div>
-                        <img id="output" />
+                        <div id="output" ></div>
 
                         <div class="row">
                             <div class="col-8">
                             </div>
                             <div class="col-4 ">
-                                <button type="submit" class="btn btn-primary">--Ký tên--</button>
+                                <button type="submit" class="btn btn-primary" style="position: fixed ; bottom:50% ; right :10%">--Ký tên--</button>
                             </div>
                         </div>
                     </div>
@@ -478,15 +475,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('adminlte/dist/select2/dist/js/select2.min.js') }}"></script>
 
 <script>
+    const img = (src) => `<img src=${src} width="560px" height="300px"/>`;
+
     var loadFile = function(event) {
         var output = document.getElementById('output');
-        output.src = URL.createObjectURL(event.target.files[0]);
-        output.onload = function() {
-            URL.revokeObjectURL(output.src) // free memory
-        }
+        output.innerHTML = '';
+
+        [...event.target.files].forEach(
+            (file) => (output.innerHTML += img(URL.createObjectURL(file)))
+        );
     };
 
     $(document).ready(function() {
         $('.js-example-basic-single').select2();
     });
+    
 </script>
