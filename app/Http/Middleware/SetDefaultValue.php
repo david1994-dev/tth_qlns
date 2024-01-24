@@ -9,12 +9,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SetDefaultValue
 {
-
-    private NhanVienRepositoryInterface $nhanVienRepository;
-    public function __construct(NhanVienRepositoryInterface $nhanVienRepository)
-    {
-        $this->nhanVienRepository = $nhanVienRepository;
-    }
     /**
      * Handle an incoming request.
      *
@@ -22,8 +16,6 @@ class SetDefaultValue
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $nhanVienByType = $this->nhanVienRepository->countByType();
         return $next($request);
     }
 }
-

@@ -2,9 +2,13 @@
 
 namespace App\Modules\Nhansu\src\Repositories\Eloquent;
 
+use App\Modules\Nhansu\src\Models\LoaiNhanVien;
 use App\Modules\Nhansu\src\Models\NhanVien;
 use App\Modules\Nhansu\src\Repositories\Interface\NhanVienRepositoryInterface;
 use App\Repositories\Eloquent\BaseRepository;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 
 class NhanVienRepository extends BaseRepository implements NhanVienRepositoryInterface
 {
@@ -16,7 +20,9 @@ class NhanVienRepository extends BaseRepository implements NhanVienRepositoryInt
 
     public function countByType()
     {
-        $type = NhanVien::LOAI_NHAN_VIEN;
-        return [];
+        return  DB::table('nhanvien')
+            ->select('loai_nhan_vien_id', DB::raw('count(*) as total'))
+            ->groupBy('loai_nhan_vien_id')
+            ->pluck('total', 'loai_nhan_vien_id')->toArray();
     }
 }
