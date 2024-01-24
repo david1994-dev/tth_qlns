@@ -452,7 +452,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="col-8">
                             </div>
                             <div class="col-4 ">
-                                <button type="submit" class="btn btn-primary">--Ký tên--</button>
+                                <button type="submit" class="btn btn-primary" style="position: fixed ; bottom:50% ; right :10%">--Ký tên--</button>
                             </div>
                         </div>
                     </div>
@@ -489,12 +489,5 @@ scratch. This page gets rid of all links and provides the needed markup only.
     $(document).ready(function() {
         $('.js-example-basic-single').select2();
     });
-
-    $("#image").on("change", function() {
-    if ($("#image")[0].files.length > 2) {
-        alert("You can select only 2 images");
-    } else {
-        $("#imageUploadForm").submit();
-    }
-});
+    
 </script>
