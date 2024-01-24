@@ -7,6 +7,7 @@ use App\Http\Requests\PaginationRequest;
 use App\Modules\Nhansu\src\Http\Requests\NhanVien\NhanVienRequest;
 use App\Modules\Nhansu\src\Models\NhanVien;
 use App\Modules\Nhansu\src\Repositories\Interface\ChiTietNhanVienRepositoryInterface;
+use App\Modules\Nhansu\src\Repositories\Interface\LoaiNhanVienRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\NhanVienRepositoryInterface;
 use App\Repositories\Interface\UserRepositoryInterface;
 use App\Repositories\Interface\UserRoleRepositoryInterface;
@@ -20,18 +21,21 @@ class NhanVienController extends Controller
     private UserRepositoryInterface $userRepository;
     private UserRoleRepositoryInterface $userRoleRepository;
     private ChiTietNhanVienRepositoryInterface $chiTietNhanVienRepository;
+    private LoaiNhanVienRepositoryInterface $loaiNhanVienRepository;
 
 
     public function __construct(
         UserRepositoryInterface $userRepository,
         UserRoleRepositoryInterface $userRoleRepository,
         NhanVienRepositoryInterface $nhanVienRepository,
-        ChiTietNhanVienRepositoryInterface $chiTietNhanVienRepository
+        ChiTietNhanVienRepositoryInterface $chiTietNhanVienRepository,
+        LoaiNhanVienRepositoryInterface $loaiNhanVienRepository
     ) {
         $this->userRepository = $userRepository;
         $this->userRoleRepository = $userRoleRepository;
         $this->nhanVienRepository = $nhanVienRepository;
         $this->chiTietNhanVienRepository = $chiTietNhanVienRepository;
+        $this->loaiNhanVienRepository = $loaiNhanVienRepository;
     }
 
     public function index(PaginationRequest $request)
@@ -50,7 +54,7 @@ class NhanVienController extends Controller
 
         $count = $this->nhanVienRepository->countByFilter($filter);
         $models = $this->nhanVienRepository->getByFilter($filter, $paginate['order'], $paginate['direction'], $paginate['offset'], $paginate['limit']);
-        $this->nhanVienRepository->load($models, 'chiNhanh');
+        $this->nhanVienRepository->load($models, ['chiNhanh', 'loaiNhanVien']);
 
         return view(
             'Nhansu::nhan_vien.index',
@@ -66,9 +70,16 @@ class NhanVienController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-
+    public function create(){
+        return view (
+            'Nhansu::nhan_vien.create',
+            [
+                // 'models'    => $models,
+                // 'count'         => $count,
+                // 'paginate'      => $paginate,
+                // 'keyword'       => $keyword
+            ]
+        );
     }
 
     /**
@@ -96,8 +107,11 @@ class NhanVienController extends Controller
         $model = $this->nhanVienRepository->load($model, 'chiTietNhanVien');
         if (!$model) abort(404);
 
+        $loaiNhanVien = $this->loaiNhanVienRepository->all();
+
         return view('Nhansu::nhan_vien.chi_tiet', [
-            'model' => $model
+            'model' => $model,
+            'loaiNhanVien' => $this->loaiNhanVienRepository->pluck($loaiNhanVien, 'ten', 'id')
         ]);
     }
 
@@ -117,7 +131,7 @@ class NhanVienController extends Controller
             'email',
             'dien_thoai_cong_viec',
             'gioi_tinh',
-            'loai_nhan_vien',
+            'loai_nhan_vien_id',
             'ngay_sinh',
         ]);
 

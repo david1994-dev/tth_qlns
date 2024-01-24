@@ -41,22 +41,6 @@
 
 
 
-            {{-- <form action="{{ route('nhansu.danhSachUngVien') }}">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <input name="keyword" placeholder="Nhập mã ứng viên, email, số điện thoại, họ tên..."
-                                class="form-control" value="{{ $keyword ?? '' }}" />
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Search</button>
-                        <a href="{{ route('nhansu.danhSachUngVien') }}" class="btn btn-danger">Reset</a>
-                    </div>
-                </div>
-            </form> --}}
 
             <div class="col-sm-12 col-md-12">
                 <div class="dt-buttons btn-group flex-wrap"> <button class="btn btn-primary buttons-copy buttons-html5 child"

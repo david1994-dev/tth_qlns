@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('email')->unique()->index()->nullable();
             $table->string('dien_thoai_cong_viec')->nullable();
             $table->tinyInteger('gioi_tinh')->default(NhanVien::GIOI_TINH_NU);
-            $table->tinyInteger('loai_nhan_vien')->default(NhanVien::LOAI_THU_VIEC);
+            $table->unsignedBigInteger('loai_nhan_vien_id')->default(0)->index();
             $table->date('ngay_sinh')->nullable();
             $table->unsignedBigInteger('chi_nhanh_id')->index();
             $table->unsignedBigInteger('phong_ban_id')->index();

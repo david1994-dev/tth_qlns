@@ -13,4 +13,10 @@ class NhanVienRepository extends BaseRepository implements NhanVienRepositoryInt
     {
         return new NhanVien();
     }
+
+    public function countByType()
+    {
+        $type = NhanVien::LOAI_NHAN_VIEN;
+        return [];
+    }
 }

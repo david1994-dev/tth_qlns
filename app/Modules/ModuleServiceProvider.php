@@ -2,15 +2,16 @@
 
 namespace App\Modules;
 
-use App\Modules\Nhansu\src\Models\UngVien;
 use App\Modules\Nhansu\src\Repositories\Eloquent\ChiNhanhRepository;
 use App\Modules\Nhansu\src\Repositories\Eloquent\ChiTietNhanVienRepository;
+use App\Modules\Nhansu\src\Repositories\Eloquent\LoaiNhanVienRepository;
 use App\Modules\Nhansu\src\Repositories\Eloquent\NhanVienRepository;
 use App\Modules\Nhansu\src\Repositories\Eloquent\PhongBanRepository;
 use App\Modules\Nhansu\src\Repositories\Eloquent\SoDoToChucRepository;
 use App\Modules\Nhansu\src\Repositories\Eloquent\UngVienRepository;
 use App\Modules\Nhansu\src\Repositories\Interface\ChiNhanhRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\ChiTietNhanVienRepositoryInterface;
+use App\Modules\Nhansu\src\Repositories\Interface\LoaiNhanVienRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\NhanVienRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\PhongBanRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\SoDoToChucRepositoryInterface;
@@ -61,6 +62,11 @@ class ModuleServiceProvider extends ServiceProvider
         $this->app->singleton(
             ChiTietNhanVienRepositoryInterface::class,
             ChiTietNhanVienRepository::class
+        );
+
+        $this->app->singleton(
+            LoaiNhanVienRepositoryInterface::class,
+            LoaiNhanVienRepository::class
         );
     }
 
