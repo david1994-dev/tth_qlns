@@ -52,9 +52,18 @@ class NhanVienController extends Controller
             $filter['query'] = $keyword;
         }
 
+        $loaiNVSearch = $request->get('type', null);
+        if ($loaiNVSearch) {
+            $filter['loai_nhan_vien_id'] =  $loaiNVSearch;
+        }
+
         $count = $this->nhanVienRepository->countByFilter($filter);
         $models = $this->nhanVienRepository->getByFilter($filter, $paginate['order'], $paginate['direction'], $paginate['offset'], $paginate['limit']);
+
         $this->nhanVienRepository->load($models, ['chiNhanh', 'loaiNhanVien']);
+
+        $nhanVienByType = $this->nhanVienRepository->countByType();
+        $loaiNhanVien = $this->loaiNhanVienRepository->all();
 
         return view(
             'Nhansu::nhan_vien.index',
@@ -62,7 +71,9 @@ class NhanVienController extends Controller
                 'models'    => $models,
                 'count'         => $count,
                 'paginate'      => $paginate,
-                'keyword'       => $keyword
+                'keyword'       => $keyword,
+                'nhanVienByType' => $nhanVienByType,
+                'loaiNhanVien' => $this->loaiNhanVienRepository->pluck($loaiNhanVien, 'ten', 'id'),
             ]
         );
     }
@@ -177,22 +188,5 @@ class NhanVienController extends Controller
         session()->flash('success', 'Xóa nhân viên thành công!');
 
         return redirect()->route('nhansu.nhan-vien.index');
-    }
-
-    public function capNhatLoaiNhanVien(Request $request)
-    {
-        $id = $request->get('id');
-        $model = $this->nhanVienRepository->findById($id);
-        if (!$model) return response()->json(['status' => 'error' ,'message' => 'Nhân viên không tồn tại'], 404);
-
-        $loaiNhanVien = $request->get('loai_nhan_vien', -1);
-        if (!in_array($loaiNhanVien, array_keys(NhanVien::LOAI_NHAN_VIEN))) {
-            return response()->json(['status' => 'error' ,'message' => 'Loại nhân viên không tồn tại'], 422);
-        }
-
-        $model->loai_nhan_vien = $loaiNhanVien;
-        $model->save();
-
-        return response()->json(['status' => 'success' ,'message' => 'Chập nhật loại nhân viên thành công']);
     }
 }

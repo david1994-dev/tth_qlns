@@ -34,26 +34,6 @@
                 </div>
             </div>
 
-{{--           <div class="row">--}}
-{{--               <div class="col-sm-12 col-md-12">--}}
-{{--                   <div class="dt-buttons btn-group flex-wrap"> <button class="btn btn-primary buttons-copy buttons-html5 child"--}}
-{{--                                                                        tabindex="0" aria-controls="example1" type="button"><span>Danh sách nhân viên(60)</span></button> <button--}}
-{{--                           class="btn btn-primary buttons-csv buttons-html5 child" tabindex="0" aria-controls="example1"--}}
-{{--                           type="button"><span>Danh sách nhân viên(60)</span></button> <button--}}
-{{--                           class="btn btn-primary buttons-excel buttons-html5 child" tabindex="0" aria-controls="example1"--}}
-{{--                           type="button"><span>Danh sách nhân viên(60)</span></button> <button--}}
-{{--                           class="btn btn-primary buttons-pdf buttons-html5 child" tabindex="0" aria-controls="example1"--}}
-{{--                           type="button"><span>Danh sách nhân viên(60)</span></button>--}}
-{{--                       <button class="btn btn-primary buttons-print child"--}}
-{{--                               tabindex="0" aria-controls="example1" type="button"><span>Danh sách nhân viên(60)</span></button>--}}
-{{--                       <button class="btn btn-primary buttons-print child"--}}
-{{--                               tabindex="0" aria-controls="example1" type="button"><span>Danh sách nhân viên(60)</span></button>--}}
-{{--                       <button class="btn btn-primary buttons-print child"--}}
-{{--                               tabindex="0" aria-controls="example1" type="button"><span>Danh sách nhân viên(60)</span></button>--}}
-{{--                   </div>--}}
-{{--               </div>--}}
-{{--           </div>--}}
-
             {{-- <div class="row">
                 <div class="col-11">
                 </div>

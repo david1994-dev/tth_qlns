@@ -23,6 +23,18 @@
                     <p style="display: inline-block;"><b>{{$count}}</b> Nhân viên</p>
                 </div>
             </div>
+
+           <div class="row">
+               <div class="col-sm-12 col-md-12">
+                   <div class="dt-buttons btn-group flex-wrap">
+                       @foreach($nhanVienByType as $type => $total)
+                           <a href="{{route('nhansu.nhan-vien.index').'?type='.$type}}" class="btn btn-primary buttons-copy buttons-html5 child"
+                              tabindex="0" aria-controls="example1" type="button"><span>{{\Illuminate\Support\Arr::get($loaiNhanVien, $type, '')}}({{$total}})</span>
+                           </a>
+                       @endforeach
+                   </div>
+               </div>
+           </div>
         </div>
     </div>
     <div class="box-body card" style=" overflow-x: scroll; ">

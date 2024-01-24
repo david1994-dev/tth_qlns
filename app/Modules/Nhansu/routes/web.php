@@ -8,7 +8,7 @@ use App\Modules\Nhansu\src\Http\Controllers\SoDoToChucController;
 use App\Modules\Nhansu\src\Http\Controllers\LoaiNhanVienController;
 
 
-Route::prefix('nhansu')->middleware('web')->name('nhansu.')->group(function () {
+Route::prefix('nhansu')->middleware(['web', 'setDefaultValue'])->name('nhansu.')->group(function () {
     Route::middleware(['auth'])->group(function () {
         Route::get('danh-sach-ung-vien', [UngVienController::class, 'danhSach'])->name('danhSachUngVien');
         Route::delete('delete-ung-vien/{id}', [UngVienController::class, 'destroy'])->name('ung-vien.destroy');
@@ -19,7 +19,7 @@ Route::prefix('nhansu')->middleware('web')->name('nhansu.')->group(function () {
         Route::get('khoa-phong-ban/sodotochuc/{id}', [PhongBanController::class, 'sodotochuc'])->name('khoaphongban.sodotochuc');
         Route::resource('so-do-to-chuc', SoDoToChucController::class);
         Route::resource('nhan-vien', NhanVienController::class);
-        Route::post('chuyen-nhan-vien', [NhanVienController::class, 'capNhatLoaiNhanVien'])->name('nhansu.nhan-vien.capNhatLoaiNhanVien');
+        Route::post('chuyen-nhan-vien', [NhanVienController::class, 'chuyenN'])->name('nhansu.nhan-vien.capNhatLoaiNhanVien');
         Route::resource('loai-nhan-vien', LoaiNhanVienController::class);
     });
 
