@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('loai_nhan_vien', function (Blueprint $table) {
             $table->id();
             $table->string('ten');
-            $table->unsignedBigInteger('nguoi_tao_id');
+            $table->unsignedBigInteger('nguoi_cap_nhat_id');
             $table->timestamps();
         });
     }

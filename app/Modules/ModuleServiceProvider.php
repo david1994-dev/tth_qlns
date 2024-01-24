@@ -2,10 +2,9 @@
 
 namespace App\Modules;
 
-use App\Modules\Nhansu\src\Models\LoaiNhanVien;
-use App\Modules\Nhansu\src\Models\UngVien;
 use App\Modules\Nhansu\src\Repositories\Eloquent\ChiNhanhRepository;
 use App\Modules\Nhansu\src\Repositories\Eloquent\ChiTietNhanVienRepository;
+use App\Modules\Nhansu\src\Repositories\Eloquent\LoaiNhanVienRepository;
 use App\Modules\Nhansu\src\Repositories\Eloquent\NhanVienRepository;
 use App\Modules\Nhansu\src\Repositories\Eloquent\PhongBanRepository;
 use App\Modules\Nhansu\src\Repositories\Eloquent\SoDoToChucRepository;
@@ -67,7 +66,7 @@ class ModuleServiceProvider extends ServiceProvider
 
         $this->app->singleton(
             LoaiNhanVienRepositoryInterface::class,
-            LoaiNhanVien::class
+            LoaiNhanVienRepository::class
         );
     }
 

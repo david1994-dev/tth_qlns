@@ -69,7 +69,7 @@
                             <div class="form-group col-md-6">
                                 <label for="ho_ten">Họ và tên<span style="color: red">*</span>:</label>
                                 <div class="input-group">
-                                    <input type="text" id="name" class="form-control" name="ho_ten" 
+                                    <input type="text" id="name" class="form-control" name="ho_ten"
                                         value="{{ $model->ho_ten ?? old('ho_ten') }}" placeholder="Nhập họ và tên..." required>
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-person-circle"></i></span>
@@ -115,10 +115,10 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="loai_ho_so">Loại hồ sơ<span style="color: red">*</span>: </label>
-                                <select id="loai_ho_so" class="form-control" name="loai_nhan_vien">
-                                    @foreach (\App\Modules\Nhansu\src\Models\NhanVien::LOAI_NHAN_VIEN as $id => $lnv)
+                                <select id="loai_ho_so" class="form-control" name="loai_nhan_vien_id">
+                                    @foreach ($loaiNhanVien as $id => $ten)
                                         <option value="{{ $id }}"
-                                            @if ($model->loai_nhan_vien == $id) selected @endif>{{ $lnv }}</option>
+                                            @if ($model->loai_nhan_vien == $id) selected @endif>{{ $ten }}</option>
                                     @endforeach
                                 </select>
                             </div>

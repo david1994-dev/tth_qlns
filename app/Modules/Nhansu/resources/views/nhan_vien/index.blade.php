@@ -56,7 +56,7 @@
                             <td>{{@$model->chiNhanh->ten}}</td>
                             <td>{{$model->created_at->format('d/m/Y')}}</td>
                             <td></td>
-                            <td>{{\Illuminate\Support\Arr::get(\App\Modules\Nhansu\src\Models\NhanVien::LOAI_NHAN_VIEN, $model->loai_nhan_vien, '')}}</td>
+                            <td>{{$model->loaiNhanVien->ten}}</td>
                             <td class="text-center">
                                 <a class="btn btn-danger btn-sm delete-button"
                                    data-delete-url="{{route('nhansu.nhan-vien.destroy', $model->id)}}">

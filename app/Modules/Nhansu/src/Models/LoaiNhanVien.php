@@ -11,8 +11,8 @@ class LoaiNhanVien extends Base
 
     public function user()
     {
-        return $this->hasOne(User::class, 'nguoi_tao_id', 'id');
+        return $this->hasOne(User::class, 'nguoi_cap_nhat_id', 'id');
     }
 
-    protected $fillable = ['ten', 'nguoi_tao_id'];
+    protected $fillable = ['ten', 'nguoi_cap_nhat_id'];
 }
