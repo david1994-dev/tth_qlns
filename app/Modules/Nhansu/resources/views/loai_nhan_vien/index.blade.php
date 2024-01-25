@@ -48,11 +48,11 @@
 
                         <td>{{$model->created_at->format('d/m/Y h:i:s')}}</td>
                         <td class="text-center">
-                            <a class="delete-button" data-delete-url="{{route('nhansu.loai-nhan-vien.destroy', $model->id)}}">
-                                <button class="btn btn-danger">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                            </a>
+{{--                            <a class="delete-button" data-delete-url="{{route('nhansu.loai-nhan-vien.destroy', $model->id)}}">--}}
+{{--                                <button class="btn btn-danger">--}}
+{{--                                    <i class="bi bi-trash"></i>--}}
+{{--                                </button>--}}
+{{--                            </a>--}}
                             <a target="_blank" href="{{route('nhansu.loai-nhan-vien.edit', $model->id)}}">
                                 <button class="btn btn-primary">
                                     <i class="bi bi-pencil-square"></i>

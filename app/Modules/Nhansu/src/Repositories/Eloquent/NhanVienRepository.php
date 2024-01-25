@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\View;
 
 class NhanVienRepository extends BaseRepository implements NhanVienRepositoryInterface
 {
-    protected array $querySearchTargets = ['ho_ten', 'email', 'ma'];
+    protected array $querySearchTargets = ['ho_ten', 'email', 'id', 'dien_thoai_cong_viec'];
     public function getBlankModel()
     {
         return new NhanVien();

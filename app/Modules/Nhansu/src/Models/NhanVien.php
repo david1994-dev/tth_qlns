@@ -22,7 +22,6 @@ class NhanVien extends Base
 
     protected $fillable = [
         'user_id',
-        'ma',
         'ho_ten',
         'email',
         'dien_thoai_cong_viec',

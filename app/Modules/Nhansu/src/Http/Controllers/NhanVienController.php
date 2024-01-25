@@ -4,11 +4,13 @@ namespace App\Modules\Nhansu\src\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PaginationRequest;
+use App\Modules\Nhansu\Helpers\NhanVienHelper;
 use App\Modules\Nhansu\src\Http\Requests\NhanVien\NhanVienRequest;
 use App\Modules\Nhansu\src\Models\NhanVien;
 use App\Modules\Nhansu\src\Repositories\Interface\ChiTietNhanVienRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\LoaiNhanVienRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\NhanVienRepositoryInterface;
+use App\Modules\Nhansu\src\Repositories\Interface\UngVienRepositoryInterface;
 use App\Repositories\Interface\UserRepositoryInterface;
 use App\Repositories\Interface\UserRoleRepositoryInterface;
 use Illuminate\Http\RedirectResponse;
@@ -22,6 +24,7 @@ class NhanVienController extends Controller
     private UserRoleRepositoryInterface $userRoleRepository;
     private ChiTietNhanVienRepositoryInterface $chiTietNhanVienRepository;
     private LoaiNhanVienRepositoryInterface $loaiNhanVienRepository;
+    private UngVienRepositoryInterface $ungVienRepository;
 
 
     public function __construct(
@@ -29,13 +32,15 @@ class NhanVienController extends Controller
         UserRoleRepositoryInterface $userRoleRepository,
         NhanVienRepositoryInterface $nhanVienRepository,
         ChiTietNhanVienRepositoryInterface $chiTietNhanVienRepository,
-        LoaiNhanVienRepositoryInterface $loaiNhanVienRepository
+        LoaiNhanVienRepositoryInterface $loaiNhanVienRepository,
+        UngVienRepositoryInterface $ungVienRepository,
     ) {
         $this->userRepository = $userRepository;
         $this->userRoleRepository = $userRoleRepository;
         $this->nhanVienRepository = $nhanVienRepository;
         $this->chiTietNhanVienRepository = $chiTietNhanVienRepository;
         $this->loaiNhanVienRepository = $loaiNhanVienRepository;
+        $this->ungVienRepository = $ungVienRepository;
     }
 
     public function index(PaginationRequest $request)
@@ -193,6 +198,30 @@ class NhanVienController extends Controller
         }
 
         session()->flash('success', 'Xóa nhân viên thành công!');
+
+        return redirect()->route('nhansu.nhan-vien.index');
+    }
+
+    public function chuyenUngVien(Request $request, $id)
+    {
+        $ungVien = $this->ungVienRepository->findById($id);
+        if (!$ungVien) abort(404);
+
+        //create nhan vien mapping voi ung vien thong qua so dien thoai
+        $nhanVien = $this->nhanVienRepository->create([
+            'ho_ten' => $ungVien->ho_ten,
+            'email' => NhanVienHelper::renderTTHEmail($ungVien->ho_ten),
+            'ngay_sinh' => $ungVien->ngay_sinh,
+            'dien_thoai_cong_viec' => $ungVien->dien_thoai,
+            'loai_nhan_vien_id' => 3, //hoc viec
+        ]);
+
+        if (!$nhanVien) {
+            session()->flash('error', 'Tạo nhân viên thất bại');
+            return redirect()->route('nhansu.danhSachUngVien');
+        }
+
+        session()->flash('success', 'Tạo nhân viên thành công!');
 
         return redirect()->route('nhansu.nhan-vien.index');
     }
