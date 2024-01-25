@@ -4,12 +4,11 @@
 <link rel="stylesheet" href="{{asset('bieu_mau/css/bieu_mau.css')}}">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-<link href="{{ asset('adminlte/dist/select2.min.css') }}" rel="stylesheet" />
+<link rel="stylesheet" href="{{asset('adminlte/dist/select2/dist/css/select2.min.css')}}">
 <style>
     @media print {
       body {
-        width: 400mm;
-        height: 297mm;
+
         margin: 0;
         padding: 0;
       }
