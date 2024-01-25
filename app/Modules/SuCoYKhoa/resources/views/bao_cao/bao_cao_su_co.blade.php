@@ -71,6 +71,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             border-style: solid;
             border-color: black;
         }
+
+
     </style>
 </head>
 
@@ -138,9 +140,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                         class="form-control" name="ngay_bao_cao"
                                                         style="display: inline;"> </div>
                                             </div>
-                                            <span>Đơn vị báo cáo:</span> <input type="text" class="input"
-                                                value="{{ $chi_nhanh->ten }}" name="don_vi_bao_cao"
-                                                placeholder="...................................">
+                                            <span>Đơn vị báo cáo:</span> {{ $chi_nhanh->ten }}
                                         </th>
                                     </tr>
                                     <tr>
@@ -446,13 +446,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <span> Tải lên hình ảnh sự cố</span>
                         </label>
 
-                        <div id="output" ></div>
+                        <div id="output"></div>
 
                         <div class="row">
                             <div class="col-8">
                             </div>
                             <div class="col-4 ">
-                                <button type="submit" class="btn btn-primary" style="position: fixed ; bottom:50% ; right :10%">--Ký tên--</button>
+                                <button type="submit" class="btn btn-primary"
+                                    style="position: fixed ; bottom:50% ; right :10%">--Ký tên--</button>
                             </div>
                         </div>
                     </div>
@@ -489,5 +490,4 @@ scratch. This page gets rid of all links and provides the needed markup only.
     $(document).ready(function() {
         $('.js-example-basic-single').select2();
     });
-    
 </script>
