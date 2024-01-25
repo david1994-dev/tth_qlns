@@ -526,8 +526,12 @@
                                         <a href="" class="btn btn-info mb-2" style="text-align: center">Làm mới <i
                                                 class="bi bi-arrow-clockwise"></i></a>
                                     </div>
-                                    <div class="col-md-3"></div>
+                                    <div class="col-md-3">
+                                        
+                                    </div>
                                     <div class="col-md-3 ">
+                                        <button type="submit" class="btn btn-primary mb-2">Lưu <i
+                                            class="bi bi-download"></i></button>
                                     </div>
                                 </div>
                             </form>
