@@ -521,7 +521,7 @@
                                     <label for="nhapLaiMatKhau" class="col-sm-2 col-form-label">Nhập lại mật khẩu:</label>
                                     <div class="input-group col-sm-8">
                                         <input type="text" id="nhapLaiMatKhau" class="form-control"
-                                            name="password_repeat" value="{{old('password_repeat')}}" placeholder="Nhập lại mật khẩu..."
+                                            name="password_confirmation" value="{{old('password_confirmation')}}" placeholder="Nhập lại mật khẩu..."
                                             required>
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="bi bi-upc-scan"></i></span>
