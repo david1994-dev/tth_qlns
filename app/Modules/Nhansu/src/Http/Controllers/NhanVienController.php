@@ -81,9 +81,16 @@ class NhanVienController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-
+    public function create(){
+        return view (
+            'Nhansu::nhan_vien.create',
+            [
+                // 'models'    => $models,
+                // 'count'         => $count,
+                // 'paginate'      => $paginate,
+                // 'keyword'       => $keyword
+            ]
+        );
     }
 
     /**
