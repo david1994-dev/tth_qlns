@@ -19,7 +19,7 @@ Route::prefix('nhansu')->middleware(['web', 'setDefaultValue'])->name('nhansu.')
         Route::get('khoa-phong-ban/sodotochuc/{id}', [PhongBanController::class, 'sodotochuc'])->name('khoaphongban.sodotochuc');
         Route::resource('so-do-to-chuc', SoDoToChucController::class);
         Route::resource('nhan-vien', NhanVienController::class);
-        Route::post('chuyen-ung-vien{id}', [NhanVienController::class, 'chuyenUngVien'])->name('nhansu.nhan-vien.chuyenUngVien');
+        Route::get('chuyen-ung-vien/{id}', [NhanVienController::class, 'chuyenUngVien'])->name('nhan-vien.chuyenUngVien');
         Route::resource('loai-nhan-vien', LoaiNhanVienController::class);
     });
 

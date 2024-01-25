@@ -207,14 +207,26 @@ class NhanVienController extends Controller
         $ungVien = $this->ungVienRepository->findById($id);
         if (!$ungVien) abort(404);
 
-        //create nhan vien mapping voi ung vien thong qua so dien thoai
-        $nhanVien = $this->nhanVienRepository->create([
-            'ho_ten' => $ungVien->ho_ten,
-            'email' => NhanVienHelper::renderTTHEmail($ungVien->ho_ten),
-            'ngay_sinh' => $ungVien->ngay_sinh,
-            'dien_thoai_cong_viec' => $ungVien->dien_thoai,
-            'loai_nhan_vien_id' => 3, //hoc viec
-        ]);
+        DB::beginTransaction();
+        try {
+            //create nhan vien mapping voi ung vien thong qua so dien thoai
+            $nhanVien = $this->nhanVienRepository->create([
+                'ho_ten' => $ungVien->ho_ten,
+                'email' => NhanVienHelper::renderTTHEmail($ungVien->ho_ten),
+                'ngay_sinh' => $ungVien->ngay_sinh,
+                'dien_thoai_cong_viec' => $ungVien->dien_thoai,
+                'loai_nhan_vien_id' => 3, //hoc viec
+            ]);
+
+            $this->chiTietNhanVienRepository->create([
+                'nhan_vien_id' => $nhanVien->id,
+                'email_phu' => $nhanVien->email,
+            ]);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
 
         if (!$nhanVien) {
             session()->flash('error', 'Tạo nhân viên thất bại');
