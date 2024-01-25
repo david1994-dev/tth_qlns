@@ -21,6 +21,7 @@ Route::prefix('nhansu')->middleware(['web', 'setDefaultValue'])->name('nhansu.')
         Route::resource('nhan-vien', NhanVienController::class);
         Route::get('chuyen-ung-vien/{id}', [NhanVienController::class, 'chuyenUngVien'])->name('nhan-vien.chuyenUngVien');
         Route::resource('loai-nhan-vien', LoaiNhanVienController::class);
+        Route::post('tao-user', [NhanVienController::class, 'taoAccount'])->name('nhan-vien.taoAccount');
     });
 
     Route::get('khao-sat-ung-vien', [UngVienController::class, 'index']);

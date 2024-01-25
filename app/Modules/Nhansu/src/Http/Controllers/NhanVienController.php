@@ -4,6 +4,7 @@ namespace App\Modules\Nhansu\src\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PaginationRequest;
+use App\Models\User;
 use App\Modules\Nhansu\Helpers\NhanVienHelper;
 use App\Modules\Nhansu\src\Http\Requests\NhanVien\NhanVienRequest;
 use App\Modules\Nhansu\src\Models\NhanVien;
@@ -16,6 +17,7 @@ use App\Repositories\Interface\UserRoleRepositoryInterface;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class NhanVienController extends Controller
 {
@@ -236,5 +238,28 @@ class NhanVienController extends Controller
         session()->flash('success', 'Tạo nhân viên thành công!');
 
         return redirect()->route('nhansu.nhan-vien.index');
+    }
+
+    public function taoAccount(Request $request)
+    {
+        $nhanVienId = $request->get('nhan_vien_id', 0);
+        $nhanVien = $this->nhanVienRepository->findById($nhanVienId);
+        if (!$nhanVien) {
+            return response()->json(['status' => 'error', 'message' => 'Nhân viên không tồn tại!']);
+        }
+
+        $password = $request->get('password', '12345678');
+
+        $user = User::query()->create([
+            'name' => $request->get('name'),
+            'email' => $nhanVien->email,
+            'password' => Hash::make($password),
+        ]);
+
+        if (!$user) {
+            return response()->json(['status' => 'error', 'message' => 'Tạo account thất bại!']);
+        }
+
+        return response()->json(['status' => 'success', 'message' => 'Tạo account thành công!']);
     }
 }
