@@ -86,6 +86,7 @@ class BaoCaoSuCoYKhoaController extends Controller
         $baoCao->save();
 
         $dataPost = $request->all();
+        $dataPost['chi_nhanh_id'] = $baoCao->chi_nhanh_id;
         $dataPost['images'] = json_encode($images);
         PostApiHelper::postDataToHDH($dataPost);
 
