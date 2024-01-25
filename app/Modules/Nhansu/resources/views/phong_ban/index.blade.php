@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="box-body card" style=" overflow-x: scroll; ">
-            <table class="table table-bordered">
+            <table class="table table-striped">
                 <thead>
                     <tr class="table table-striped">
                         <th>Mã Phòng Ban</th>
