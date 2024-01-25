@@ -208,6 +208,12 @@ class NhanVienController extends Controller
         $ungVien = $this->ungVienRepository->findById($id);
         if (!$ungVien) abort(404);
 
+        $isExist = $this->nhanVienRepository->findByDienThoaiCongViec($ungVien->dien_thoai);
+        if ($isExist) {
+            session()->flash('error', 'Nhân viên đã tồn tại!');
+            return redirect()->route('nhansu.danhSachUngVien');
+        }
+
         DB::beginTransaction();
         try {
             //create nhan vien mapping voi ung vien thong qua so dien thoai
