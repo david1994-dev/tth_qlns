@@ -128,16 +128,16 @@ class LoaiNhanVienController extends Controller
      */
     public function destroy(string $id)
     {
-        $model = $this->loaiNhanVienRepository->findById($id);
-        if( empty( $model ) ) {
-            session()->flash('error', 'Loại nhân viên không tồn tại');
-            return redirect()->route('nhansu.loai-nhan-vien.index');
-        }
-
-        $this->loaiNhanVienRepository->delete( $model );
-
-        session()->flash('success', 'Bạn đã xóa loại nhân viên thành công');
-
-        return redirect()->route('nhansu.loai-nhan-vien.index');
+//        $model = $this->loaiNhanVienRepository->findById($id);
+//        if( empty( $model ) ) {
+//            session()->flash('error', 'Loại nhân viên không tồn tại');
+//            return redirect()->route('nhansu.loai-nhan-vien.index');
+//        }
+//
+//        $this->loaiNhanVienRepository->delete( $model );
+//
+//        session()->flash('success', 'Bạn đã xóa loại nhân viên thành công');
+//
+//        return redirect()->route('nhansu.loai-nhan-vien.index');
     }
 }
