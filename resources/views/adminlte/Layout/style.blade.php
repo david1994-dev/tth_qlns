@@ -1,4 +1,6 @@
 <link rel="stylesheet" href="{{asset('adminlte/plugins/fontawesome-free/css/all.min.css')}}">
+<link rel="stylesheet" href="{{asset('adminlte/plugins/toastr/toastr.css')}}">
+
 <link rel="stylesheet" href="{{asset('adminlte/dist/css/adminlte.min.css')}}">
 
 <link rel="stylesheet" href="{{asset('bieu_mau/css/bieu_mau.css')}}">
@@ -12,13 +14,13 @@
         margin: 0;
         padding: 0;
       }
-  
+
       .content {
         font-size: 16px;
         line-height: 20px;
       }
     }
-  
+
     .content {
       font-size: 16px;
       line-height: 20px;

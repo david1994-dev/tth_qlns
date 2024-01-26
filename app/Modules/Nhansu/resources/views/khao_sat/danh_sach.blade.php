@@ -101,7 +101,7 @@
                                             <i class="bi bi-trash"></i>
                                         </button>
                                     </a>
-                                    <a href="" class="col-4">
+                                    <a href="{{route('nhansu.nhan-vien.chuyenUngVien', $model->id)}}" onclick="return confirm('Bạn có muốn chuyển {{$model->ho_ten}} thành nhân viên không?')" class="col-4">
                                         <button class="btn btn-info" data-toggle="tooltip" data-placement="top"
                                             title="Chuyển thành nhân viên">
                                             <i class="bi bi-arrow-repeat"></i>

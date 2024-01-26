@@ -14,6 +14,24 @@
 <script>
         $(document).ready(function() {
         $('.js-example-basic-single').select2();
+
+        $('.jsCreateAccount').on('click', function () {
+            const btn = $(this);
+            const form = btn.closest("form");
+            let nhanVienId = btn.data('nhan-vien-id')
+            let token = $('meta[name="_token"]').attr('content');
+            $.post("{{route('nhansu.nhan-vien.taoAccount')}}", form.serialize() + `&nhan_vien_id=${nhanVienId}` + `&_token=${token}`, function (response) {
+                form.find("button").prop("disabled", true);
+
+                if (response.status === "success") {
+                    toastr.success(response.message)
+                } else {
+                    toastr.error(response.message)
+                }
+            }).done(function () {
+                form.find("button").prop("disabled", false);
+            });
+        });
     });
 </script>
 @stop
@@ -471,8 +489,8 @@
                                     <label for="tenDangNhap" class="col-sm-2 col-form-label">Tên đăng nhập <span
                                             style="color: red">*</span>:</label>
                                     <div class="input-group col-sm-8">
-                                        <input type="text" id="tenDangNhap" class="form-control" name="tenDangNhap"
-                                            value="" placeholder="Nhập tên đăng nhập..." required>
+                                        <input type="text" id="tenDangNhap" class="form-control" name="email"
+                                            value="{{$model->email}}" placeholder="Nhập tên đăng nhập..." required>
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="bi bi-person-circle"></i></span>
                                         </div>
@@ -482,8 +500,8 @@
                                     <label for="ten" class="col-sm-2 col-form-label">Tên <span
                                             style="color: red">*</span>:</label>
                                     <div class="input-group col-sm-8">
-                                        <input type="text" id="ten" class="form-control" name="ten"
-                                            value="" placeholder="Nhập tên..." required>
+                                        <input type="text" id="ten" class="form-control" name="name"
+                                            value="{{old('name')}}" placeholder="Nhập tên..." required>
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="bi bi-person-lines-fill"></i></span>
                                         </div>
@@ -493,8 +511,8 @@
                                     <label for="matKhau" class="col-sm-2 col-form-label">Mật khẩu <span
                                             style="color: red">*</span>:</label>
                                     <div class="input-group col-sm-8">
-                                        <input type="text" id="matKhau" class="form-control" name="matKhau"
-                                            value="" placeholder="Nhập mật khẩu..." required>
+                                        <input type="text" id="matKhau" class="form-control" name="password"
+                                            value="{{old('password')}}" placeholder="Nhập mật khẩu..." required>
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="bi bi-upc"></i></span>
                                         </div>
@@ -504,34 +522,34 @@
                                     <label for="nhapLaiMatKhau" class="col-sm-2 col-form-label">Nhập lại mật khẩu:</label>
                                     <div class="input-group col-sm-8">
                                         <input type="text" id="nhapLaiMatKhau" class="form-control"
-                                            name="nhapLaiMatKhau" value="" placeholder="Nhập lại mật khẩu..."
+                                            name="password_confirmation" value="{{old('password_confirmation')}}" placeholder="Nhập lại mật khẩu..."
                                             required>
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="bi bi-upc-scan"></i></span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="roles" class="col-sm-2 col-form-label">Roles:</label>
-                                    <div class="input-group col-sm-8">
-                                        <select class="js-example-basic-single" name="roles" style="width: 100%">
-                                            <option value="AL">Alabama</option>
-                                            ...
-                                            <option value="WY">Wyoming</option>
-                                        </select>
-                                    </div>
-                                </div>
+{{--                                <div class="form-group row">--}}
+{{--                                    <label for="roles" class="col-sm-2 col-form-label">Roles:</label>--}}
+{{--                                    <div class="input-group col-sm-8">--}}
+{{--                                        <select class="js-example-basic-single" name="roles" style="width: 100%">--}}
+{{--                                            <option value="AL">Alabama</option>--}}
+{{--                                            ...--}}
+{{--                                            <option value="WY">Wyoming</option>--}}
+{{--                                        </select>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="form-row">
                                     <div class="col-md-2"></div>
                                     <div class="col-md-4">
-                                        <a href="" class="btn btn-info mb-2" style="text-align: center">Làm mới <i
-                                                class="bi bi-arrow-clockwise"></i></a>
+{{--                                        <a href="" class="btn btn-info mb-2" style="text-align: center">Làm mới <i--}}
+{{--                                                class="bi bi-arrow-clockwise"></i></a>--}}
                                     </div>
                                     <div class="col-md-3">
-                                        
+
                                     </div>
                                     <div class="col-md-3 ">
-                                        <button type="submit" class="btn btn-primary mb-2">Lưu <i
+                                        <button type="button" class="btn btn-primary mb-2 jsCreateAccount" data-nhan-vien-id="{{$model->id}}">Lưu <i
                                             class="bi bi-download"></i></button>
                                     </div>
                                 </div>

@@ -4,18 +4,19 @@ namespace App\Modules\Nhansu\src\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PaginationRequest;
+use App\Models\User;
 use App\Modules\Nhansu\Helpers\NhanVienHelper;
-use App\Modules\Nhansu\src\Http\Requests\NhanVien\NhanVienRequest;
-use App\Modules\Nhansu\src\Models\NhanVien;
 use App\Modules\Nhansu\src\Repositories\Interface\ChiTietNhanVienRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\LoaiNhanVienRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\NhanVienRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\UngVienRepositoryInterface;
 use App\Repositories\Interface\UserRepositoryInterface;
 use App\Repositories\Interface\UserRoleRepositoryInterface;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class NhanVienController extends Controller
 {
@@ -207,14 +208,32 @@ class NhanVienController extends Controller
         $ungVien = $this->ungVienRepository->findById($id);
         if (!$ungVien) abort(404);
 
-        //create nhan vien mapping voi ung vien thong qua so dien thoai
-        $nhanVien = $this->nhanVienRepository->create([
-            'ho_ten' => $ungVien->ho_ten,
-            'email' => NhanVienHelper::renderTTHEmail($ungVien->ho_ten),
-            'ngay_sinh' => $ungVien->ngay_sinh,
-            'dien_thoai_cong_viec' => $ungVien->dien_thoai,
-            'loai_nhan_vien_id' => 3, //hoc viec
-        ]);
+        $isExist = $this->nhanVienRepository->findByDienThoaiCongViec($ungVien->dien_thoai);
+        if ($isExist) {
+            session()->flash('error', 'Nhân viên đã tồn tại!');
+            return redirect()->route('nhansu.danhSachUngVien');
+        }
+
+        DB::beginTransaction();
+        try {
+            //create nhan vien mapping voi ung vien thong qua so dien thoai
+            $nhanVien = $this->nhanVienRepository->create([
+                'ho_ten' => $ungVien->ho_ten,
+                'email' => NhanVienHelper::renderTTHEmail($ungVien->ho_ten),
+                'ngay_sinh' => $ungVien->ngay_sinh,
+                'dien_thoai_cong_viec' => $ungVien->dien_thoai,
+                'loai_nhan_vien_id' => 3, //hoc viec
+            ]);
+
+            $this->chiTietNhanVienRepository->create([
+                'nhan_vien_id' => $nhanVien->id,
+                'email_phu' => $nhanVien->email,
+            ]);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
 
         if (!$nhanVien) {
             session()->flash('error', 'Tạo nhân viên thất bại');
@@ -224,5 +243,41 @@ class NhanVienController extends Controller
         session()->flash('success', 'Tạo nhân viên thành công!');
 
         return redirect()->route('nhansu.nhan-vien.index');
+    }
+
+    public function taoAccount(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'password' => 'required|string|confirmed',
+            'email' => ['required', 'email', Rule::unique('users')->whereNull('deleted_at')],
+        ]);
+
+        if (!$validator->passes()) {
+            return response()->json(['status' => 'error', 'message' => 'Tạo account thất bại!. Email đã được đăng kí hoặc sai định dạng thông tin!']);
+        }
+
+        $nhanVienId = $request->get('nhan_vien_id', 0);
+        $nhanVien = $this->nhanVienRepository->findById($nhanVienId);
+        if (!$nhanVien) {
+            return response()->json(['status' => 'error', 'message' => 'Nhân viên không tồn tại!']);
+        }
+
+        $password = $request->get('password', '12345678');
+
+        $user = User::query()->create([
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'password' => Hash::make($password),
+        ]);
+
+        if (!$user) {
+            return response()->json(['status' => 'error', 'message' => 'Tạo account thất bại!']);
+        }
+
+        $nhanVien->user_id = $user->id;
+        $nhanVien->save();
+
+        return response()->json(['status' => 'success', 'message' => 'Tạo account thành công!']);
     }
 }
