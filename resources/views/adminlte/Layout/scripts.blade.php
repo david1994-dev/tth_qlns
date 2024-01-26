@@ -6,7 +6,7 @@
 <script src="{{asset('adminlte/plugins/toastr/toastr.min.js')}}"></script>
 <script src="{{asset('adminlte/dist/js/adminlte.min.js')}}"></script>
 <script src="{{asset('adminlte/dist/js/delete_item.js')}}"></script>
-<script src="{{asset('adminlte/dist/select2/dist/js/select2.min.js')}}"></script>
+<script src="{{asset('adminlte\plugins\select2\js\select2.min.js')}}"></script>
 
 
 
