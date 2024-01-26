@@ -88,13 +88,12 @@ class NhanVienController extends Controller
      * Show the form for creating a new resource.
      */
     public function create(){
+        $loaiNhanVien = $this->loaiNhanVienRepository->all();
+
         return view (
             'Nhansu::nhan_vien.create',
             [
-                // 'models'    => $models,
-                // 'count'         => $count,
-                // 'paginate'      => $paginate,
-                // 'keyword'       => $keyword
+                'loaiNhanVien' => $this->loaiNhanVienRepository->pluck($loaiNhanVien, 'ten', 'id')
             ]
         );
     }
@@ -105,6 +104,46 @@ class NhanVienController extends Controller
     public function store(Request $request)
     {
 
+        $inputNhanVien = $request->only([
+            'ho_ten',
+            'email',
+            'dien_thoai_cong_viec',
+            'gioi_tinh',
+            'loai_nhan_vien_id',
+            'ngay_sinh',
+        ]);
+
+        $inputChiTiet = $request->only([
+            'que_quan', 'dan_toc', 'ton_giao', 'dia_chi_thuong_tru', 'dia_chi_tam_tru', 'ma_so_thue', 'dien_thoai_ca_nhan',
+            'tinh_trang_hon_nhan', 'email_phu', 'ngay_bat_dau_lam_viec', 'ngay_ket_thuc_lam_viec', 'ngay_thuc_te_lam_viec', 'cmnd',
+            'ngay_cap_cmnd', 'noi_cap_cmnd', 'trinh_do_chuyen_mon', 'so_cchn', 'bo_sung_pham_vi_cm', 'ngay_cap_cchn',
+            'dang_ki_hanh_nghe_hien_tai', 'bien_oto', 'bien_xe_may', 'size_quan', 'size_ao', 'size_giay_dep', 'bang_lai',
+        ]);
+
+        $inputNhanVien['email'] = NhanVienHelper::renderTTHEmail($inputNhanVien['ho_ten']);
+
+        DB::beginTransaction();
+        try {
+
+            $nhanVien = $this->nhanVienRepository->create($inputNhanVien);
+
+            $maNv = $this->nhanVienRepository->renderMaNv($nhanVien->id);
+            $nhanVien->ma = $maNv;
+            $nhanVien->save();
+
+            $inputChiTiet['nhan_vien_id'] = $nhanVien->id;
+            $this->chiTietNhanVienRepository->create($inputChiTiet);
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+
+        }
+
+        session()->flash('success', 'Bạn đã tạo nhân viên thành công, mã nhân viên là: <b>'.$nhanVien->ma.'</b>');
+        return redirect()
+            ->back();
     }
 
     /**
@@ -158,7 +197,6 @@ class NhanVienController extends Controller
             'ngay_cap_cmnd', 'noi_cap_cmnd', 'trinh_do_chuyen_mon', 'so_cchn', 'bo_sung_pham_vi_cm', 'ngay_cap_cchn',
             'dang_ki_hanh_nghe_hien_tai', 'bien_oto', 'bien_xe_may', 'size_quan', 'size_ao', 'size_giay_dep', 'bang_lai',
         ]);
-
 
         DB::beginTransaction();
         try {
@@ -225,6 +263,10 @@ class NhanVienController extends Controller
                 'loai_nhan_vien_id' => 3, //hoc viec
             ]);
 
+            $maNv = $this->nhanVienRepository->renderMaNv($nhanVien->id);
+            $nhanVien->ma = $maNv;
+            $nhanVien->save();
+
             $this->chiTietNhanVienRepository->create([
                 'nhan_vien_id' => $nhanVien->id,
                 'email_phu' => $nhanVien->email,
@@ -240,7 +282,7 @@ class NhanVienController extends Controller
             return redirect()->route('nhansu.danhSachUngVien');
         }
 
-        session()->flash('success', 'Tạo nhân viên thành công!');
+        session()->flash('success', 'Bạn đã tạo nhân viên thành công, mã nhân viên là: <b>'.$nhanVien->ma.'</b>');
 
         return redirect()->route('nhansu.nhan-vien.index');
     }

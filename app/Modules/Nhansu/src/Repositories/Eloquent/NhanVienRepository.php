@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\View;
 
 class NhanVienRepository extends BaseRepository implements NhanVienRepositoryInterface
 {
-    protected array $querySearchTargets = ['ho_ten', 'email', 'id', 'dien_thoai_cong_viec'];
+    protected array $querySearchTargets = ['ho_ten', 'email', 'ma', 'dien_thoai_cong_viec'];
     public function getBlankModel()
     {
         return new NhanVien();
@@ -24,5 +24,10 @@ class NhanVienRepository extends BaseRepository implements NhanVienRepositoryInt
             ->select('loai_nhan_vien_id', DB::raw('count(*) as total'))
             ->groupBy('loai_nhan_vien_id')
             ->pluck('total', 'loai_nhan_vien_id')->toArray();
+    }
+
+    public function renderMaNv($id)
+    {
+        return sprintf("%05s", $id);
     }
 }
