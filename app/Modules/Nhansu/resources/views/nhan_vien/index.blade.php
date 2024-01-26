@@ -82,10 +82,13 @@
                             <td class="text-center">
                                 <a class="btn btn-danger btn-sm delete-button"
                                    data-delete-url="{{route('nhansu.nhan-vien.destroy', $model->id)}}">
-                                    Xóa <i class="bi bi-trash"></i>
+                                    <i class="bi bi-trash"></i>
                                 </a>
-                                <a target="_blank" href="{{route('nhansu.nhan-vien.edit', $model->id)}}" class="btn btn-primary btn-sm">
-                                    Chi tiết  <i class="bi bi-eye-fill"></i>
+                                <a class="btn btn-primary btn-sm" target="_blank" href="{{route('nhansu.nhan-vien.edit', $model->id)}}">
+                                        <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <a target="_blank" href="{{route('nhansu.nhan-vien.show', $model->id)}}" class="btn btn-primary btn-sm">
+                                    <i class="bi bi-eye-fill"></i>
                                 </a>
                             </td>
                         </tr>

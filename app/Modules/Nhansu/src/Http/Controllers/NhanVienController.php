@@ -151,7 +151,13 @@ class NhanVienController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $model = $this->nhanVienRepository->findById($id);
+        $model = $this->nhanVienRepository->load($model, ['chiTietNhanVien', 'loaiNhanVien']);
+        if (!$model) abort(404);
+
+        return view('Nhansu::nhan_vien.view', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -165,7 +171,7 @@ class NhanVienController extends Controller
 
         $loaiNhanVien = $this->loaiNhanVienRepository->all();
 
-        return view('Nhansu::nhan_vien.chi_tiet', [
+        return view('Nhansu::nhan_vien.edit', [
             'model' => $model,
             'loaiNhanVien' => $this->loaiNhanVienRepository->pluck($loaiNhanVien, 'ten', 'id')
         ]);
@@ -292,7 +298,7 @@ class NhanVienController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'password' => 'required|string|confirmed',
-            'email' => ['required', 'email', Rule::unique('users')->whereNull('deleted_at')],
+            'email' => 'required|email|unique:users|max:255',
         ]);
 
         if (!$validator->passes()) {
