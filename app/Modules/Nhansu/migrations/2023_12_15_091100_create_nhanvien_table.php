@@ -14,6 +14,7 @@ return new class extends Migration
     {
         Schema::create('nhanvien', function (Blueprint $table) {
             $table->id();
+            $table->string('ma')->nullable()->index();
             $table->unsignedBigInteger('user_id')->index()->nullable();
             $table->string('ho_ten')->nullable();
             $table->string('email')->unique()->index()->nullable();

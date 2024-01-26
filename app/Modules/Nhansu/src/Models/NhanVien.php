@@ -21,6 +21,7 @@ class NhanVien extends Base
     ];
 
     protected $fillable = [
+        'ma',
         'user_id',
         'ho_ten',
         'email',

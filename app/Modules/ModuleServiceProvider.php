@@ -101,12 +101,12 @@ class ModuleServiceProvider extends ServiceProvider
             $this->loadViewsFrom($modulePath . "resources/views", $moduleName);
         }
 
-        if (File::exists($modulePath . "helpers")) {
-            $helper_dir = File::allFiles($modulePath . "helpers");
-            foreach ($helper_dir as $key => $value) {
-                $file = $value->getPathName();
-                require $file;
-            }
-        }
+//        if (File::exists($modulePath . "helpers")) {
+//            $helper_dir = File::allFiles($modulePath . "helpers");
+//            foreach ($helper_dir as $key => $value) {
+//                $file = $value->getPathName();
+//                require $file;
+//            }
+//        }
     }
 }
