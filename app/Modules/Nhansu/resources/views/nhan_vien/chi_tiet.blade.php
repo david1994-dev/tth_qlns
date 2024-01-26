@@ -8,32 +8,50 @@
         .nav-link {
             font-weight: 500;
         }
+         
+        .roles .select2-container .select2-selection--multiple {
+            min-height: 38px;
+        }
+
+        .option-roles .select2-container--default .select2-selection--multiple .select2-selection__choice {
+            background-color: #007bff;
+        }
+
+        .exit-option .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+            color: red;
+        }
+ 
+        .select22 .select2-container .select2-selection--single {
+            height: calc(2.25rem + 1px) !important;
+        }
     </style>
 @stop
 @section('scripts')
-<script>
+    <script>
         $(document).ready(function() {
-        $('.js-example-basic-single').select2();
+            $('.select2').select2()
 
-        $('.jsCreateAccount').on('click', function () {
-            const btn = $(this);
-            const form = btn.closest("form");
-            let nhanVienId = btn.data('nhan-vien-id')
-            let token = $('meta[name="_token"]').attr('content');
-            $.post("{{route('nhansu.nhan-vien.taoAccount')}}", form.serialize() + `&nhan_vien_id=${nhanVienId}` + `&_token=${token}`, function (response) {
-                form.find("button").prop("disabled", true);
+            $('.jsCreateAccount').on('click', function() {
+                const btn = $(this);
+                const form = btn.closest("form");
+                let nhanVienId = btn.data('nhan-vien-id')
+                let token = $('meta[name="_token"]').attr('content');
+                $.post("{{ route('nhansu.nhan-vien.taoAccount') }}", form.serialize() +
+                    `&nhan_vien_id=${nhanVienId}` + `&_token=${token}`,
+                    function(response) {
+                        form.find("button").prop("disabled", true);
 
-                if (response.status === "success") {
-                    toastr.success(response.message)
-                } else {
-                    toastr.error(response.message)
-                }
-            }).done(function () {
-                form.find("button").prop("disabled", false);
+                        if (response.status === "success") {
+                            toastr.success(response.message)
+                        } else {
+                            toastr.error(response.message)
+                        }
+                    }).done(function() {
+                    form.find("button").prop("disabled", false);
+                });
             });
         });
-    });
-</script>
+    </script>
 @stop
 @section('content')
     <div class="row">
@@ -103,7 +121,8 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="gioi_tinh">Giới tính<span style="color: red">*</span>: </label>
-                                <select class="js-example-basic-single form-control" name="gioi_tinh" style="width: 100%" id="gioi_tinh">
+                                <select class="js-example-basic-single form-control" name="gioi_tinh" style="width: 100%"
+                                    id="gioi_tinh">
                                     @foreach (\App\Modules\Nhansu\src\Models\NhanVien::GIOI_TINH as $id => $gt)
                                         <option value="{{ $id }}"
                                             @if ($model->gioi_tinh == $id) selected @endif>{{ $gt }}</option>
@@ -139,13 +158,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-3 select22">
                                 <label for="loai_ho_so">Loại hồ sơ<span style="color: red">*</span>: </label>
-                                <select class="js-example-basic-single form-control" name="loai_nhan_vien_id" style="width: 100%" id="loai_nhan_vien_id">
+                                <select class="select2 form-control" name="loai_nhan_vien_id"
+                                    style="width: 100%" id="loai_nhan_vien_id">
                                     @foreach ($loaiNhanVien as $id => $ten)
-                                    <option value="{{ $id }}"
-                                        @if ($model->loai_nhan_vien == $id) selected @endif>{{ $ten }}</option>
-                                @endforeach
+                                        <option value="{{ $id }}"
+                                            @if ($model->loai_nhan_vien == $id) selected @endif>{{ $ten }}</option>
+                                    @endforeach
                                 </select>
 
                             </div>
@@ -162,9 +182,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-3 select22">
                                 <label for="dan_toc">Dân tộc: </label>
-                                <select class="js-example-basic-single form-control" name="dan_toc" style="width: 100%" id="dan_toc">
+                                <select class="select2 form-control" name="dan_toc" style="width: 100%"
+                                    id="dan_toc">
                                     @foreach (\App\Modules\Nhansu\src\Models\ChiTietNhanVien::DAN_TOC as $id => $dt)
                                         <option value="{{ $id }}"
                                             @if ($model->chiTietNhanVien->dan_toc == $id) selected @endif>{{ $dt }}</option>
@@ -232,9 +253,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-3 select22">
                                 <label for="hon_nhan">Tình trạng hôn nhân: </label>
-                                <select class="js-example-basic-single form-control" name="tinh_trang_hon_nhan" style="width: 100%" id="tinh_trang_hon_nhan">
+                                <select class="select2 form-control" name="tinh_trang_hon_nhan"
+                                    style="width: 100%" id="tinh_trang_hon_nhan">
                                     @foreach (\App\Modules\Nhansu\src\Models\ChiTietNhanVien::TINH_TRANG_HON_NHAN as $id => $tt)
                                         <option value="{{ $id }}"
                                             @if ($model->chiTietNhanVien->tinh_trang_hon_nhan == $id) selected @endif>{{ $tt }}</option>
@@ -307,10 +329,11 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-3 select22 ">
                                 <label for="trinh_do_chuyen_mon">Trình độ chuyên môn<span style="color: red">*</span>:
                                 </label>
-                                <select class="js-example-basic-single form-control" name="trinh_do_chuyen_mon" style="width: 100%" id="trinh_do_chuyen_mon">
+                                <select class=" select2 form-control" name="trinh_do_chuyen_mon"
+                                    style="width: 100%" id="trinh_do_chuyen_mon">
                                     @foreach (\App\Modules\Nhansu\src\Models\ChiTietNhanVien::TRINH_DO_CHUYEN_MON as $id => $td)
                                         <option value="{{ $id }}"
                                             @if ($model->chiTietNhanVien->trinh_do_chuyen_mon == $id) selected @endif>{{ $td }}</option>
@@ -490,7 +513,7 @@
                                             style="color: red">*</span>:</label>
                                     <div class="input-group col-sm-8">
                                         <input type="text" id="tenDangNhap" class="form-control" name="email"
-                                            value="{{$model->email}}" placeholder="Nhập tên đăng nhập..." required>
+                                            value="{{ $model->email }}" placeholder="Nhập tên đăng nhập..." required>
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="bi bi-person-circle"></i></span>
                                         </div>
@@ -501,7 +524,7 @@
                                             style="color: red">*</span>:</label>
                                     <div class="input-group col-sm-8">
                                         <input type="text" id="ten" class="form-control" name="name"
-                                            value="{{old('name')}}" placeholder="Nhập tên..." required>
+                                            value="{{ old('name') }}" placeholder="Nhập tên..." required>
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="bi bi-person-lines-fill"></i></span>
                                         </div>
@@ -512,7 +535,7 @@
                                             style="color: red">*</span>:</label>
                                     <div class="input-group col-sm-8">
                                         <input type="text" id="matKhau" class="form-control" name="password"
-                                            value="{{old('password')}}" placeholder="Nhập mật khẩu..." required>
+                                            value="{{ old('password') }}" placeholder="Nhập mật khẩu..." required>
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="bi bi-upc"></i></span>
                                         </div>
@@ -522,35 +545,40 @@
                                     <label for="nhapLaiMatKhau" class="col-sm-2 col-form-label">Nhập lại mật khẩu:</label>
                                     <div class="input-group col-sm-8">
                                         <input type="text" id="nhapLaiMatKhau" class="form-control"
-                                            name="password_confirmation" value="{{old('password_confirmation')}}" placeholder="Nhập lại mật khẩu..."
-                                            required>
+                                            name="password_confirmation" value="{{ old('password_confirmation') }}"
+                                            placeholder="Nhập lại mật khẩu..." required>
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="bi bi-upc-scan"></i></span>
                                         </div>
                                     </div>
                                 </div>
-{{--                                <div class="form-group row">--}}
-{{--                                    <label for="roles" class="col-sm-2 col-form-label">Roles:</label>--}}
-{{--                                    <div class="input-group col-sm-8">--}}
-{{--                                        <select class="js-example-basic-single" name="roles" style="width: 100%">--}}
-{{--                                            <option value="AL">Alabama</option>--}}
-{{--                                            ...--}}
-{{--                                            <option value="WY">Wyoming</option>--}}
-{{--                                        </select>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+                                <div class="form-group row roles">
+                                    <label for="roles" class="col-sm-2 col-form-label">Roles:</label>
+                                    <div class="input-group col-sm-8 option-roles exit-option">
+                                        <select class="select2 " multiple="multiple" data-placeholder="Chọn roles..."
+                                            style="width: 93.8%;">
+                                            <option value="Nhân viên khoa phòng">Nhân viên khoa phòng</option>
+                                            <option value="Chuyên viên trưởng">Chuyên viên trưởng</option>
+                                            <option value="Trưởng phòng">Trưởng phòng</option>
+                                        </select>
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="bi bi-people-fill"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-row">
                                     <div class="col-md-2"></div>
                                     <div class="col-md-4">
-{{--                                        <a href="" class="btn btn-info mb-2" style="text-align: center">Làm mới <i--}}
-{{--                                                class="bi bi-arrow-clockwise"></i></a>--}}
+                                        {{--                                        <a href="" class="btn btn-info mb-2" style="text-align: center">Làm mới <i --}}
+                                        {{--                                                class="bi bi-arrow-clockwise"></i></a> --}}
                                     </div>
                                     <div class="col-md-3">
 
                                     </div>
                                     <div class="col-md-3 ">
-                                        <button type="button" class="btn btn-primary mb-2 jsCreateAccount" data-nhan-vien-id="{{$model->id}}">Lưu <i
-                                            class="bi bi-download"></i></button>
+                                        <button type="button" class="btn btn-primary mb-2 jsCreateAccount"
+                                            data-nhan-vien-id="{{ $model->id }}">Lưu <i
+                                                class="bi bi-download"></i></button>
                                     </div>
                                 </div>
                             </form>
