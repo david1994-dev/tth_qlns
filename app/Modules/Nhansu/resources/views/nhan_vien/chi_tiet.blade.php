@@ -85,7 +85,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="gioi_tinh">Giới tính<span style="color: red">*</span>: </label>
-                                <select name="gioi_tinh" id="gioi_tinh" class="form-control">
+                                <select class="js-example-basic-single form-control" name="gioi_tinh" style="width: 100%" id="gioi_tinh">
                                     @foreach (\App\Modules\Nhansu\src\Models\NhanVien::GIOI_TINH as $id => $gt)
                                         <option value="{{ $id }}"
                                             @if ($model->gioi_tinh == $id) selected @endif>{{ $gt }}</option>
@@ -123,12 +123,13 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="loai_ho_so">Loại hồ sơ<span style="color: red">*</span>: </label>
-                                <select id="loai_ho_so" class="form-control" name="loai_nhan_vien_id">
+                                <select class="js-example-basic-single form-control" name="loai_nhan_vien_id" style="width: 100%" id="loai_nhan_vien_id">
                                     @foreach ($loaiNhanVien as $id => $ten)
-                                        <option value="{{ $id }}"
-                                            @if ($model->loai_nhan_vien == $id) selected @endif>{{ $ten }}</option>
-                                    @endforeach
+                                    <option value="{{ $id }}"
+                                        @if ($model->loai_nhan_vien == $id) selected @endif>{{ $ten }}</option>
+                                @endforeach
                                 </select>
+
                             </div>
                         </div>
                         <div class="form-row">
@@ -145,7 +146,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="dan_toc">Dân tộc: </label>
-                                <select id="dan_toc" class="form-control" name="dan_toc">
+                                <select class="js-example-basic-single form-control" name="dan_toc" style="width: 100%" id="dan_toc">
                                     @foreach (\App\Modules\Nhansu\src\Models\ChiTietNhanVien::DAN_TOC as $id => $dt)
                                         <option value="{{ $id }}"
                                             @if ($model->chiTietNhanVien->dan_toc == $id) selected @endif>{{ $dt }}</option>
@@ -215,7 +216,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="hon_nhan">Tình trạng hôn nhân: </label>
-                                <select id="hon_nhan" class="form-control" name="tinh_trang_hon_nhan">
+                                <select class="js-example-basic-single form-control" name="tinh_trang_hon_nhan" style="width: 100%" id="tinh_trang_hon_nhan">
                                     @foreach (\App\Modules\Nhansu\src\Models\ChiTietNhanVien::TINH_TRANG_HON_NHAN as $id => $tt)
                                         <option value="{{ $id }}"
                                             @if ($model->chiTietNhanVien->tinh_trang_hon_nhan == $id) selected @endif>{{ $tt }}</option>
@@ -291,7 +292,7 @@
                             <div class="form-group col-md-3">
                                 <label for="trinh_do_chuyen_mon">Trình độ chuyên môn<span style="color: red">*</span>:
                                 </label>
-                                <select id="trinh_do_chuyen_mon" class="form-control" name="trinh_do_chuyen_mon">
+                                <select class="js-example-basic-single form-control" name="trinh_do_chuyen_mon" style="width: 100%" id="trinh_do_chuyen_mon">
                                     @foreach (\App\Modules\Nhansu\src\Models\ChiTietNhanVien::TRINH_DO_CHUYEN_MON as $id => $td)
                                         <option value="{{ $id }}"
                                             @if ($model->chiTietNhanVien->trinh_do_chuyen_mon == $id) selected @endif>{{ $td }}</option>
