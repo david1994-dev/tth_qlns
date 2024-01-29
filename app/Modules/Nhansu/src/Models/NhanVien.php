@@ -30,7 +30,8 @@ class NhanVien extends Base
         'loai_nhan_vien_id',
         'ngay_sinh',
         'chi_nhanh_id',
-        'phong_ban_id'
+        'phong_ban_id',
+        'last_notification_id'
     ];
 
     protected $casts = [

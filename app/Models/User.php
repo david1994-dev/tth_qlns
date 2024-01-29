@@ -87,4 +87,9 @@ class User extends Authenticatable
 
         return false;
     }
+
+    public function thongBao()
+    {
+        return $this->belongsToMany(User::class, 'thong_bao_users', 'user_id', 'thong_bao_id');
+    }
 }
