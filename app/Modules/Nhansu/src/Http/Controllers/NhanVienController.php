@@ -313,7 +313,7 @@ class NhanVienController extends Controller
 
         $password = $request->get('password', '12345678');
 
-        $user = User::query()->create([
+        $user = $this->userRepository->createAccount([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
             'password' => Hash::make($password),

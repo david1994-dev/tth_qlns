@@ -78,12 +78,11 @@ class RegisteredUserController extends Controller
 
         DB::beginTransaction();
         try {
-            $user = User::create([
+            $user = $this->userRepository->createAccount([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);
-
 
             $nhanVien = $this->nhanVienRepository->create([
                 'phong_ban_id' => $phongBan->id,
