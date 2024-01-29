@@ -7,6 +7,8 @@ use App\Models\User;
 
 class ThongBao extends Base
 {
+    const TYPE_CONG_VAN = 1;
+
     protected $table = 'thong_bao';
     protected $fillable = [
        'receive_id',

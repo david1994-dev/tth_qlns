@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('thong_bao', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('receive_id')->index()->default(0);
+            $table->tinyInteger('type')->index()->default(\App\Modules\Nhansu\src\Models\ThongBao::TYPE_CONG_VAN);
             $table->string('title')->nullable();
             $table->text('content')->nullable();
             $table->text('images')->nullable();
