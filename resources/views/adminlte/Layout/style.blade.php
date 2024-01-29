@@ -7,6 +7,9 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 <link rel="stylesheet" href="{{asset('adminlte\plugins\select2\css\select2.min.css')}}">
+
+<link rel="stylesheet" href="{{asset('adminlte\dist\css\laravelui\style.css')}}">
+
 <style>
     @media print {
       body {
