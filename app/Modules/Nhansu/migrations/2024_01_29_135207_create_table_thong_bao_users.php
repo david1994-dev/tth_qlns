@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->index();
             $table->unsignedBigInteger('thong_bao_id')->index();
             $table->tinyInteger('status')->default(\App\Modules\Nhansu\src\Models\ThongBaoUser::STATUS_CHUA_DOC);
+            $table->unique(['user_id', 'thong_bao_id']);
+
             $table->timestamps();
         });
     }

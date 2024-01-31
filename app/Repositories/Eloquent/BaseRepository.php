@@ -161,6 +161,24 @@ class BaseRepository implements BaseRepositoryInterface
             unset($filter['whereNotIn']);
         }
 
+        if(array_key_exists('greaterThan', $filter)) {
+            $params = Arr::get($filter, 'greaterThan');
+            foreach ($params as $column => $values) {
+                $query = $query->where($tableName.'.'.$column, '>',$values);
+            }
+
+            unset($filter['greaterThan']);
+        }
+
+        if(array_key_exists('lessThan', $filter)) {
+            $params = Arr::get($filter, 'lessThan');
+            foreach ($params as $column => $values) {
+                $query = $query->where($tableName.'.'.$column, '<',$values);
+            }
+
+            unset($filter['lessThan']);
+        }
+
         foreach ($filter as $column => $value) {
             if (is_array($value)) {
                 $query = $query->whereIn($tableName.'.'.$column, $value);
@@ -206,6 +224,66 @@ class BaseRepository implements BaseRepositoryInterface
 
         $model = $this->getBlankModel();
         $model = $this->update($model, $input);
+
+        $queries = DB::getQueryLog();
+        $query = $queries[count($queries) - 1];
+        foreach( $query['bindings'] as $key => $value ) {
+            $query['query'] = preg_replace("/\?/", "`$value`", $query['query'], 1);
+        }
+
+        if( App::environment() != 'testing' ) {
+            $user = auth()->user();
+            if( !empty($user) ) {
+//                Log::create(
+//                    [
+//                        'user_id' => $user->id,
+//                        'table'     => $this->getBlankModel()->getTable(),
+//                        'action'    => Log::TYPE_ACTION_INSERT,
+//                        'record_id' => $model->id,
+//                        'query'     => $query['query'],
+//                    ]
+//                );
+            }
+        }
+
+        return $model;
+    }
+
+    public function updateOrCreate($input, $update)
+    {
+        DB::connection()->enableQueryLog();
+
+        $model = $this->getBlankModel()->updateOrCreate($input, $update);
+
+        $queries = DB::getQueryLog();
+        $query = $queries[count($queries) - 1];
+        foreach( $query['bindings'] as $key => $value ) {
+            $query['query'] = preg_replace("/\?/", "`$value`", $query['query'], 1);
+        }
+
+        if( App::environment() != 'testing' ) {
+            $user = auth()->user();
+            if( !empty($user) ) {
+//                Log::create(
+//                    [
+//                        'user_id' => $user->id,
+//                        'table'     => $this->getBlankModel()->getTable(),
+//                        'action'    => Log::TYPE_ACTION_INSERT,
+//                        'record_id' => $model->id,
+//                        'query'     => $query['query'],
+//                    ]
+//                );
+            }
+        }
+
+        return $model;
+    }
+
+    public function insert($inputs)
+    {
+        DB::connection()->enableQueryLog();
+
+        $model = $this->getBlankModel()->insert($inputs);
 
         $queries = DB::getQueryLog();
         $query = $queries[count($queries) - 1];

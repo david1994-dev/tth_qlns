@@ -6,6 +6,7 @@ use \App\Modules\Nhansu\src\Http\Controllers\UngVienController;
 use App\Modules\Nhansu\src\Http\Controllers\PhongBanController;
 use App\Modules\Nhansu\src\Http\Controllers\SoDoToChucController;
 use App\Modules\Nhansu\src\Http\Controllers\LoaiNhanVienController;
+use App\Modules\Nhansu\src\Http\Controllers\ThongBaoController;
 
 
 Route::prefix('nhansu')->middleware(['web', 'setDefaultValue'])->name('nhansu.')->group(function () {
@@ -16,6 +17,7 @@ Route::prefix('nhansu')->middleware(['web', 'setDefaultValue'])->name('nhansu.')
 //        Route::resource('nhan-vien', NhanVienController::class);
         Route::resource('chi-nhanh', ChiNhanhController::class);
         Route::resource('khoa-phong-ban', PhongBanController::class);
+        Route::resource('thong-bao', ThongBaoController::class);
         Route::get('khoa-phong-ban/sodotochuc/{id}', [PhongBanController::class, 'sodotochuc'])->name('khoaphongban.sodotochuc');
         Route::resource('so-do-to-chuc', SoDoToChucController::class);
         Route::resource('nhan-vien', NhanVienController::class);
