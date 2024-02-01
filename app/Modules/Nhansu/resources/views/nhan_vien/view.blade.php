@@ -24,7 +24,7 @@
         .select22 .select2-container .select2-selection--single {
             height: calc(2.25rem + 1px) !important;
         }
-
+        
 
         .card {
             position: relative;
@@ -534,7 +534,7 @@
                     </div>
 
                 </div>
-                <div class="tab-pane text-left fade active show" id="tao-tai-khoan" role="tabpanel" aria-labelledby="tao-tai-khoan-tab">
+                <div class="tab-pane text-left fade " id="tao-tai-khoan" role="tabpanel" aria-labelledby="tao-tai-khoan-tab">
                     <div class="card">
                         <div class="card-header border-0 tieu_de"> TẠO TÀI KHOẢN</div>
                         <div class="card-body">
