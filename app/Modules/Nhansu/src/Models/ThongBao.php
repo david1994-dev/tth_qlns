@@ -9,6 +9,8 @@ class ThongBao extends Base
 {
     const TYPE_CONG_VAN = 1;
 
+    const STATUS_KHAN = 1;
+
     const RECEIVE_ALL = 0;
 
     protected $table = 'thong_bao';
@@ -17,7 +19,8 @@ class ThongBao extends Base
         'title',
         'content',
         'images',
-        'creator_id'
+        'creator_id',
+        'status'
     ];
 
     protected $casts = [

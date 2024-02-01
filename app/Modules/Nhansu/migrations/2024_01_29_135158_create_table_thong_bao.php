@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('receive_id')->index()->default(0);
             $table->tinyInteger('type')->index()->default(\App\Modules\Nhansu\src\Models\ThongBao::TYPE_CONG_VAN);
+            $table->tinyInteger('status')->default(\App\Modules\Nhansu\src\Models\ThongBao::STATUS_KHAN);
             $table->string('title')->nullable();
             $table->text('content')->nullable();
             $table->text('images')->nullable();
