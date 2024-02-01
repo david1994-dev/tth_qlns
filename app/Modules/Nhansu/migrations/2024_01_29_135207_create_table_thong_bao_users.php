@@ -18,6 +18,7 @@ return new class extends Migration
             $table->tinyInteger('status')->default(\App\Modules\Nhansu\src\Models\ThongBaoUser::STATUS_CHUA_DOC);
             $table->unique(['user_id', 'thong_bao_id']);
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }

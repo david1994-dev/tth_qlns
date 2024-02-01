@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('ten');
             $table->unsignedBigInteger('nguoi_cap_nhat_id');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

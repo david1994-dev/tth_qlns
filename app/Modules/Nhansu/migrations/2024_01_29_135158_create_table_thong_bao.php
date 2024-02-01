@@ -13,13 +13,22 @@ return new class extends Migration
     {
         Schema::create('thong_bao', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('receive_id')->index()->default(0);
-            $table->tinyInteger('type')->index()->default(\App\Modules\Nhansu\src\Models\ThongBao::TYPE_CONG_VAN);
-            $table->tinyInteger('status')->default(\App\Modules\Nhansu\src\Models\ThongBao::STATUS_KHAN);
-            $table->string('title')->nullable();
-            $table->text('content')->nullable();
-            $table->text('images')->nullable();
-            $table->unsignedBigInteger('creator_id')->default(0);
+            $table->string('slug');
+            $table->string('tieu_de');
+            $table->boolean('gui_tat_ca')->index()->default(false);
+            $table->text('chi_nhanh_ids')->index()->nullable();
+            $table->text('phong_ban_ids')->index()->nullable();
+            $table->text('nhom_nguoi_nhan_ids')->index()->nullable();
+            $table->text('nguoi_nhan_ids')->index()->nullable();
+
+            $table->unsignedBigInteger('loai_thong_bao')->index()->default(0);
+            $table->tinyInteger('muc_do')->default(\App\Modules\Nhansu\src\Models\ThongBao::MUC_DO_BINH_THUONG);
+            $table->text('noi_dung')->nullable();
+            $table->text('dinh_kem')->nullable();
+            $table->boolean('xuat_ban')->default(false);
+            $table->unsignedBigInteger('nguoi_gui_id')->default(0);
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }

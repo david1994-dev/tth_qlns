@@ -36,17 +36,10 @@ class ThongBaoController extends Controller
             $filter['query'] = $keyword;
         }
 
-        $lastId = $user->last_notification_id;
-        $filter['greaterThan'] = [
-            'id' => $lastId,
-        ];
-
-        $filter['receive_id'] = [ThongBao::RECEIVE_ALL, $user->id];
-
-        $count = $this->thongBaoRepository->countByFilter($filter);
-        $models = $this->thongBaoRepository->getByFilter($filter, $paginate['order'], $paginate['direction'], $paginate['offset'], $paginate['limit']);
-        $models = $this->thongBaoRepository->load($models, ['userRead']);
-        $thongBaoByType = $this->thongBaoRepository->countByType($user, $lastId);
+        $count = $this->thongBaoRepository->countNotifications($user, $filter);
+        $models = $this->thongBaoRepository->getNotifications($user, $filter, $paginate['order'], $paginate['direction'], $paginate['offset'], $paginate['limit']);
+        $models = $this->thongBaoRepository->load($models, ['userRead', 'loaiThongBao']);
+        $thongBaoByType = $this->thongBaoRepository->countByType($user, $filter);
 
         return view(
             'Nhansu::thong_bao.index',

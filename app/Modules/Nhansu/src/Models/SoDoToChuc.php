@@ -4,9 +4,11 @@ namespace App\Modules\Nhansu\src\Models;
 
 use App\Models\Base;
 use App\Models\User;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SoDoToChuc extends Base
 {
+    use SoftDeletes;
 
     protected $table = 'so_do_to_chuc';
     protected $fillable = [
