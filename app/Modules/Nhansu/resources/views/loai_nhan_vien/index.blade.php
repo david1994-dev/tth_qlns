@@ -24,7 +24,7 @@
             <div class="col-sm-2">
                 <a href="{{ route('nhansu.loai-nhan-vien.create') }}">
                     <button class="btn btn-success  btn-sm mb-3">
-                        <span class="text-light"> Thêm loại nhân viên <i class="bi bi-plus-circle"></i></span>
+                        <span class="text-white"> Thêm loại nhân viên <i class="bi bi-plus-circle"></i></span>
                     </button>
                 </a>
             </div>
