@@ -92,6 +92,13 @@
                                 <p>Loại nhân viên</p>
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('nhansu.loai-thong-bao.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Loại thông báo</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>

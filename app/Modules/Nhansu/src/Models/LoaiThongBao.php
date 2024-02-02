@@ -5,21 +5,22 @@ namespace App\Modules\Nhansu\src\Models;
 use App\Models\Base;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ThongBaoUser extends Base
+class LoaiThongBao extends Base
 {
     use SoftDeletes;
 
-    const STATUS_CHUA_DOC = 1;
-    const STATUS_DA_DOC = 2;
-
-    protected $table = 'thong_bao_users';
+    protected $table = 'loai_thong_bao';
     protected $fillable = [
-        'user_id',
-        'thong_bao_id',
-        'status',
+        'nguoi_tao_id',
+        'ten'
     ];
 
     protected $casts = [
         'deleted_at' => 'datetime:Y-m-d H:i:s'
     ];
+
+    public function thongBao()
+    {
+        return $this->hasMany(ThongBao::class, 'loai_thong_bao', 'id');
+    }
 }
