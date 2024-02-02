@@ -5,10 +5,11 @@
             font-weight: 500 !important;
         }
 
-        .placeholder1 .select2-container--default .select2-selection--single .select2-selection__rendered{
+        .placeholder1 .select2-container--default .select2-selection--single .select2-selection__rendered {
             line-height: 0px !important;
         }
-    
+
+
         .select22 .select2-container .select2-selection--single {
             height: calc(2.25rem + 1px) !important;
         }
@@ -30,12 +31,24 @@
     <script>
         $(document).ready(function() {
             $('.select2').select2()
-            $('.tat-ca-chi-nhanh.select2').select2({placeholder: "Chọn chi nhánh... "})
-            $('.nguoi-nhan-khoa-phong.select2').select2({placeholder: "Chọn khoa phòng... "})
-            $('.nhom-nguoi-dung.select2').select2({placeholder: "Chọn nhóm người dùng... "})
-            $('.nguoi-nhan-ca-nhan.select2').select2({placeholder: "Chọn người nhận cá nhân... "})
-            $('.muc-do.select2').select2({placeholder: "Chọn mức độ... "})
-            $('.loai-thong-bao.select2').select2({placeholder: "Chọn loại thông báo... "})
+            $('.tat-ca-chi-nhanh.select2').select2({
+                placeholder: "Chọn chi nhánh... "
+            })
+            $('.nguoi-nhan-khoa-phong.select2').select2({
+                placeholder: "Chọn khoa phòng... "
+            })
+            $('.nhom-nguoi-dung.select2').select2({
+                placeholder: "Chọn nhóm người dùng... "
+            })
+            $('.nguoi-nhan-ca-nhan.select2').select2({
+                placeholder: "Chọn người nhận cá nhân... "
+            })
+            $('.muc-do.select2').select2({
+                placeholder: "Chọn mức độ... "
+            })
+            $('.loai-thong-bao.select2').select2({
+                placeholder: "Chọn loại thông báo... "
+            })
         });
     </script>
     <script src="https://cdn.tiny.cloud/1/s5czkzl43fj1mskq5fews6aaqgi3szoefx33i9biqutkvdxn/tinymce/6/tinymce.min.js"
@@ -99,7 +112,8 @@
                                     <label class="form-label mb-0 ">Gửi Tất Cả Nhân Viên Trong Chi Nhánh:</label>
                                 </div>
                                 <div class="col-xl-7 select22">
-                                    <select class="js-example-basic-single form-control select2 tat-ca-chi-nhanh " name="" placeholder= "abc">
+                                    <select class="js-example-basic-single form-control select2 tat-ca-chi-nhanh "
+                                        name="" placeholder= "abc">
                                     </select>
                                 </div>
                             </div>
@@ -111,7 +125,8 @@
                                 </div>
                                 <div class="col-xl-7 ">
                                     <div class="option exit-option">
-                                        <select class="js-example-basic-single form-control select2 nguoi-nhan-khoa-phong" name="" multiple >
+                                        <select class="js-example-basic-single form-control select2 nguoi-nhan-khoa-phong"
+                                            name="" multiple>
                                             <option>Phòng cơ chế chính sách</option>
                                             <option>Phòng số hóa</option>
                                         </select>
@@ -126,7 +141,8 @@
                                 </div>
                                 <div class="col-xl-7">
                                     <div class="option exit-option">
-                                        <select class="js-example-basic-single form-control select2 nhom-nguoi-dung" name="" multiple >
+                                        <select class="js-example-basic-single form-control select2 nhom-nguoi-dung"
+                                            name="" multiple>
                                             <option>Phòng cơ chế chính sách</option>
                                             <option>Phòng số hóa</option>
                                         </select>
@@ -141,7 +157,8 @@
                                 </div>
                                 <div class="col-xl-7">
                                     <div class="option exit-option">
-                                        <select class="js-example-basic-single form-control select2 nguoi-nhan-ca-nhan" name="" multiple >
+                                        <select class="js-example-basic-single form-control select2 nguoi-nhan-ca-nhan"
+                                            name="" multiple>
                                             <option>Phòng cơ chế chính sách</option>
                                             <option>Phòng số hóa</option>
                                         </select>
@@ -156,7 +173,7 @@
                                     <label class="form-label mb-0 ">Mức Độ:</label>
                                 </div>
                                 <div class="col-xl-7">
-                                    <select class="js-example-basic-single form-control select2 muc-do" name=""  >
+                                    <select class="js-example-basic-single form-control select2 muc-do" name="">
                                         <option>Bình thường</option>
                                         <option>Khẩn</option>
                                         <option>Mật</option>
@@ -170,8 +187,9 @@
                                     <label class="form-label mb-0 ">Loại Thông Báo<span style="color: red">*</span>:</label>
                                 </div>
                                 <div class="col-xl-7">
-                                    <select class="js-example-basic-single select2 loai-thong-bao form-control"  name=""  >
-                                        
+                                    <select class="js-example-basic-single select2 loai-thong-bao form-control"
+                                        name="">
+
                                     </select>
                                 </div>
                             </div>
@@ -182,7 +200,8 @@
                                     <label class="form-label mb-0 ">Người Theo Dõi:</label>
                                 </div>
                                 <div class="col-xl-7">
-                                    <input type="text" class="form-control" placeholder="Nhập người theo dõi..." value="">
+                                    <input type="text" class="form-control" placeholder="Nhập người theo dõi..."
+                                        value="">
                                 </div>
                             </div>
                         </div>
@@ -208,8 +227,8 @@
                     <div class="card-header border-bottom-0">
                         <h3 class="card-title">NỘI DUNG THÔNG BÁO</h3>
                     </div>
-                    <div class="card-body">
-                        <form>
+                    <form>
+                        <div class="card-body">
                             <div class="form-group">
                                 <div class="row align-items-center">
                                     <label class="col-sm-2 form-label">Tiêu đề <span style="color: red">*</span>:</label>
@@ -226,16 +245,19 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="card-footer d-sm-flex">
-                        <div class="mt-2 mb-2">
+
+
+
                         </div>
-                        <div class="btn-list ms-auto">
-                            <button class="btn btn-danger btn-space">Hủy bỏ</button>
-                            <button class="btn btn-primary btn-space">Đăng thông báo</button>
+                        <div class="card-footer d-sm-flex">
+                            <div class="mt-2 mb-2">
+                            </div>
+                            <div class="btn-list ms-auto">
+                                <button class="btn btn-danger btn-space">Hủy bỏ</button>
+                                <button type="submit" class="btn btn-primary btn-space">Đăng thông báo</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

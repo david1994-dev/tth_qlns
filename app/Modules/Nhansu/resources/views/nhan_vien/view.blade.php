@@ -26,6 +26,13 @@
         }
 
 
+        .widget-user .widget-user-image {
+            left: 7%;
+            margin-left: -45px !important;
+            position: absolute;
+            top: -4px !important;
+        }
+
         .card {
             position: relative;
             display: flex;
@@ -72,7 +79,7 @@
         }
 
         .input-tao-tai-khoan .form-control {
-            height : 40px !important;
+            height: 40px !important;
         }
     </style>
 @stop
@@ -122,15 +129,91 @@
                             <form method="POST" action="{{ route('nhansu.nhan-vien.update', $model->id) }}">
                                 <input type="hidden" name="_method" value="PUT">
                                 @csrf
+                                <div class="main-proifle">
+                                    <div class="row">
+                                        <div class="col-xl-7">
+                                            <div class="box-widget widget-user">
+                                                <div class="widget-user-image d-sm-flex">
+                                                    <span class="avatar"
+                                                        style="background-image: url(https://laravelui.spruko.com/dayone/assets/images/users/16.jpg)">
+                                                        <span class="avatar-status bg-green"></span>
+                                                    </span>
+                                                    <div class="ms-sm-4 mt-4">
+                                                        <h4 class="pro-user-username mb-3 font-weight-semibold">{{ $model->ho_ten ?? old('ho_ten') }}<i
+                                                                class="ri-checkbox-circle-line text-success ms-1 fs-14"></i>
+                                                        </h4>
+                                                        <div class="d-flex mb-2">
+                                                            <span><i class="bi bi-envelope"></i></span>
+                                                            <div class="h6 mb-0 ms-3 mt-1">{{ $model->email ?? old('email') }}</div>
+                                                        </div>
+                                                        <div class="d-flex">
+                                                            <span><i class="bi bi-telephone"></i></span>
+                                                            <div class="h6 mb-0 ms-3 mt-1">{{ $model->chiTietNhanVien->dien_thoai_ca_nhan ?? old('dien_thoai_ca_nhan') }}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-5 col-lg-7">
+                                            <div >
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-xl-4">
+                                                            <label class="form-label mb-0 ">Chi Nhánh:</label>
+                                                        </div>
+                                                        <div class="col-xl-8">
+                                                            <input type="text" class="form-control"  value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-xl-4">
+                                                            <label class="form-label mb-0 ">Phòng Ban:</label>
+                                                        </div>
+                                                        <div class="col-xl-8 ">
+                                                            <div class="option exit-option">
+                                                                <input type="text" class="form-control"  value="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-xl-4">
+                                                            <label class="form-label mb-0 ">Phòng Ban Thêm:</label>
+                                                        </div>
+                                                        <div class="col-xl-8">
+                                                            <div class="option exit-option">
+                                                                <input type="text" class="form-control"  value="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-xl-4">
+                                                            <label class="form-label mb-0 ">Vị Trí Công Việc:</label>
+                                                        </div>
+                                                        <div class="col-xl-8">
+                                                            <div class="option exit-option">
+                                                                <input type="text" class="form-control" value="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="ho_ten">Họ và tên<span style="color: red">*</span>:</label>
+                                        <label for="que_quan">Quê quán:</label>
                                         <div class="input-group">
-                                            <input type="text" id="name" class="form-control" name="ho_ten"
-                                                value="{{ $model->ho_ten ?? old('ho_ten') }}"
-                                                placeholder="Nhập họ và tên..." required>
+                                            <input type="text" id="que_quan" class="form-control" name="que_quan"
+                                                value="{{ $model->chiTietNhanVien->que_quan ?? old('que_quan') }}"
+                                                placeholder="Nhập quê quán...">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="bi bi-person-circle"></i></span>
+                                                <span class="input-group-text"><i class="bi bi-house"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -153,53 +236,7 @@
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="col-md-6">
-                                        <label for="email">Email:</label>
-                                        <div class="input-group mb-3">
-                                            <input type="email" id="email" class="form-control" name="email"
-                                                value="{{ $model->email ?? old('email') }}" placeholder="Nhập email...">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="dien_thoai" class="h6">Điện thoại<span
-                                                style="color: red">*</span>:</label>
-                                        <div class="input-group">
-                                            <input type="text" id="dien_thoai" class="form-control"
-                                                name="dien_thoai_ca_nhan"
-                                                value="{{ $model->chiTietNhanVien->dien_thoai_ca_nhan ?? old('dien_thoai_ca_nhan') }}"
-                                                placeholder="Nhập sô diện thoại..." required>
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="bi bi-telephone"></i></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-3 select22">
-                                        <label for="loai_ho_so">Loại hồ sơ<span style="color: red">*</span>: </label>
-                                        {{-- <select class="select2 form-control" name="loai_nhan_vien_id"
-                                                           style="width: 100%" id="loai_nhan_vien_id">
-                                                       @foreach ($loaiNhanVien as $id => $ten)
-                                                           <option value="{{ $id }}"
-                                                                   @if ($model->loai_nhan_vien == $id) selected @endif>{{ $ten }}</option>
-                                                       @endforeach
-                                                   </select> --}}
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="que_quan">Quê quán:</label>
-                                        <div class="input-group">
-                                            <input type="text" id="que_quan" class="form-control" name="que_quan"
-                                                value="{{ $model->chiTietNhanVien->que_quan ?? old('que_quan') }}"
-                                                placeholder="Nhập quê quán...">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="bi bi-house"></i></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-3 select22">
+                                    <div class="form-group col-md-4 select22">
                                         <label for="dan_toc">Dân tộc: </label>
                                         <select class="select2 form-control" name="dan_toc" style="width: 100%"
                                             id="dan_toc">
@@ -210,7 +247,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-4">
                                         <label for="ton_giao" class="h6">Tôn giáo:</label>
                                         <div class="input-group">
                                             <input type="text" id="ton_giao" class="form-control" name="ton_giao"
@@ -221,6 +258,16 @@
                                                         class="bi bi-person-badge-fill"></i></span>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="form-group col-md-4 select22">
+                                        <label for="loai_ho_so">Loại hồ sơ<span style="color: red">*</span>: </label>
+                                        {{-- <select class="select2 form-control" name="loai_nhan_vien_id"
+                                                           style="width: 100%" id="loai_nhan_vien_id">
+                                                       @foreach ($loaiNhanVien as $id => $ten)
+                                                           <option value="{{ $id }}"
+                                                                   @if ($model->loai_nhan_vien == $id) selected @endif>{{ $ten }}</option>
+                                                       @endforeach
+                                                   </select> --}}
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -495,7 +542,8 @@
                     </div>
 
                 </div>
-                <div class="tab-pane text-left fade " id="tao-tai-khoan" role="tabpanel" aria-labelledby="tao-tai-khoan-tab">
+                <div class="tab-pane text-left fade " id="tao-tai-khoan" role="tabpanel"
+                    aria-labelledby="tao-tai-khoan-tab">
                     <div class="card">
                         <div class="card-header border-0 tieu_de"> TẠO TÀI KHOẢN</div>
                         <div class="card-body">
@@ -504,8 +552,9 @@
                                     <label for="tenDangNhap" class="col-sm-2 col-form-label">Tên đăng nhập <span
                                             style="color: red">*</span>:</label>
                                     <div class="input-group col-sm-8">
-                                        <input type="text" id="tenDangNhap" class="form-control input-tao-tai-khoan" name="email"
-                                               value="{{ $model->email }}" placeholder="Nhập tên đăng nhập..." required>
+                                        <input type="text" id="tenDangNhap" class="form-control input-tao-tai-khoan"
+                                            name="email" value="{{ $model->email }}"
+                                            placeholder="Nhập tên đăng nhập..." required>
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="bi bi-person-circle"></i></span>
                                         </div>
@@ -516,7 +565,7 @@
                                             style="color: red">*</span>:</label>
                                     <div class="input-group col-sm-8">
                                         <input type="text" id="ten" class="form-control" name="name"
-                                               value="{{ old('name') }}" placeholder="Nhập tên..." required>
+                                            value="{{ old('name') }}" placeholder="Nhập tên..." required>
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="bi bi-person-lines-fill"></i></span>
                                         </div>
@@ -527,7 +576,7 @@
                                             style="color: red">*</span>:</label>
                                     <div class="input-group col-sm-8">
                                         <input type="text" id="matKhau" class="form-control" name="password"
-                                               value="{{ old('password') }}" placeholder="Nhập mật khẩu..." required>
+                                            value="{{ old('password') }}" placeholder="Nhập mật khẩu..." required>
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="bi bi-upc"></i></span>
                                         </div>
@@ -537,8 +586,8 @@
                                     <label for="nhapLaiMatKhau" class="col-sm-2 col-form-label">Nhập lại mật khẩu:</label>
                                     <div class="input-group col-sm-8">
                                         <input type="text" id="nhapLaiMatKhau" class="form-control"
-                                               name="password_confirmation" value="{{ old('password_confirmation') }}"
-                                               placeholder="Nhập lại mật khẩu..." required>
+                                            name="password_confirmation" value="{{ old('password_confirmation') }}"
+                                            placeholder="Nhập lại mật khẩu..." required>
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="bi bi-upc-scan"></i></span>
                                         </div>
@@ -547,7 +596,8 @@
                                 <div class="form-group input-tao-tai-khoan row roles ">
                                     <label for="roles" class="col-sm-2 col-form-label">Roles:</label>
                                     <div class="input-group col-sm-8 option-roles exit-option">
-                                        <select class="select2 w-95 " multiple="multiple" data-placeholder="Chọn roles...">
+                                        <select class="select2 w-95 " multiple="multiple"
+                                            data-placeholder="Chọn roles...">
                                             <option value="Nhân viên khoa phòng">Nhân viên khoa phòng</option>
                                             <option value="Chuyên viên trưởng">Chuyên viên trưởng</option>
                                             <option value="Trưởng phòng">Trưởng phòng</option>
@@ -566,7 +616,7 @@
                                     </div>
                                     <div class="col-md-3 ">
                                         <button type="button" class="btn btn-primary mb-2 jsCreateAccount"
-                                                data-nhan-vien-id="{{ $model->id }}">Lưu <i
+                                            data-nhan-vien-id="{{ $model->id }}">Lưu <i
                                                 class="bi bi-download"></i></button>
                                     </div>
                                 </div>
