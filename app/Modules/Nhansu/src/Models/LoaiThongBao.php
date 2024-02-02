@@ -18,4 +18,9 @@ class LoaiThongBao extends Base
     protected $casts = [
         'deleted_at' => 'datetime:Y-m-d H:i:s'
     ];
+
+    public function thongBao()
+    {
+        return $this->hasMany(ThongBao::class, 'loai_thong_bao', 'id');
+    }
 }
