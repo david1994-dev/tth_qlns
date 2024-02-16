@@ -3,6 +3,7 @@
 namespace App\Modules\Nhansu\src\Models;
 
 use App\Models\Base;
+use App\Models\User;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class NhanVien extends Base
@@ -57,5 +58,19 @@ class NhanVien extends Base
     public function loaiNhanVien()
     {
         return $this->hasOne(LoaiNhanVien::class, 'id', 'loai_nhan_vien_id');
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+    protected static function boot() {
+        parent::boot();
+
+        static::deleted(function ($nv) {
+            $nv->chiTietNhanVien()->delete();
+            $nv->user()->delete();
+        });
     }
 }

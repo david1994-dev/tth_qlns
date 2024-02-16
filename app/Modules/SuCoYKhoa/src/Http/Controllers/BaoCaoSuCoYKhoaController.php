@@ -75,7 +75,7 @@ class BaoCaoSuCoYKhoaController extends Controller
         $images = [];
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $file) {
-                $image = $this->fileService->uploadImage('sucoykhoa', $file);
+                $image = $this->fileService->uploadFile('sucoykhoa', $file);
                 if (!empty($image)) {
                     $images[] = $image;
                 }

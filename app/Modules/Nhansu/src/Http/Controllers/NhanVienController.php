@@ -230,17 +230,7 @@ class NhanVienController extends Controller
         $model = $this->nhanVienRepository->findById($id);
         if (!$model) abort(404);
 
-        DB::beginTransaction();
-        try {
-            $this->nhanVienRepository->delete($model);
-            $this->chiTietNhanVienRepository->deleteByFilter(['nhan_vien_id' => $model->id]);
-            $this->userRepository->deleteByFilter(['id' => $model->user_id]);
-
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollBack();
-            throw $e;
-        }
+        $this->nhanVienRepository->delete($model);
 
         session()->flash('success', 'Xóa nhân viên thành công!');
 

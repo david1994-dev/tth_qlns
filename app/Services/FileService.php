@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Storage;
 
 class FileService
 {
-    public function uploadImage($configKey, $file): string
+    public function uploadFile($configKey, $file, $type='image'): string
     {
-        $acceptableFileList = config('file.acceptable.image');
+        $acceptableFileList = config('file.acceptable.'.$type);
         $mediaType          = $file->getClientMimeType();
         if (!array_key_exists($mediaType, $acceptableFileList)) {
             return false;

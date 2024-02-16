@@ -95,7 +95,7 @@ class UngVienController extends Controller
 
         //upload image
         if ($request->hasFile('image')) {
-            $image = $this->fileService->uploadImage('ung_vien' ,$request->file('image'));
+            $image = $this->fileService->uploadFile('ung_vien' ,$request->file('image'));
             if (!empty($image)) {
                 $input['image'] = $image;
             }

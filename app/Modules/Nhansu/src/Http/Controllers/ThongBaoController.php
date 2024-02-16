@@ -8,15 +8,20 @@ use App\Modules\Nhansu\src\Models\ThongBao;
 use App\Modules\Nhansu\src\Models\ThongBaoUser;
 use App\Modules\Nhansu\src\Repositories\Interface\ThongBaoRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\ThongBaoUserRepositoryInterface;
+use App\Services\FileService;
 use Illuminate\Http\Request;
 
 class ThongBaoController extends Controller
 {
     private ThongBaoRepositoryInterface $thongBaoRepository;
+    private FileService $fileService;
 
-    public function __construct(ThongBaoRepositoryInterface $thongBaoRepository)
-    {
+    public function __construct(
+        ThongBaoRepositoryInterface $thongBaoRepository,
+        FileService $fileService
+    ) {
         $this->thongBaoRepository = $thongBaoRepository;
+        $this->fileService = $fileService;
     }
     /**
      * Display a listing of the resource.
@@ -69,17 +74,17 @@ class ThongBaoController extends Controller
         $user = auth()->user();
         $input = $request->only(['title', 'content']);
         $input['creator_id'] = $user->id;
-        $images = [];
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $file) {
-                $image = $this->fileService->uploadImage('sucoykhoa', $file);
+        $files = [];
+        if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $file) {
+                $image = $this->fileService->uploadFile('thongbao', $file, 'file');
                 if (!empty($image)) {
-                    $images[] = $image;
+                    $files[] = $file;
                 }
             }
         }
 
-        $input['images'] = $images;
+        $input['files'] = $files;
 
         $receiveIds = $request->get('receive_ids', []);
         $isSuccess = $this->thongBaoRepository->taoThongBao($input, $receiveIds);

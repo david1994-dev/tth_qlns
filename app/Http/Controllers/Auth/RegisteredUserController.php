@@ -104,7 +104,7 @@ class RegisteredUserController extends Controller
         //create employee
 //        $this->employeeRepository->create([]);
 
-//        $image = $this->fileService->uploadImage('avatars', $request->file('avatar'));
+//        $image = $this->fileService->uploadFile('avatars', $request->file('avatar'));
 
 //        event(new Registered($user));
 
