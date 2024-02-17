@@ -67,7 +67,7 @@ class NhomNhanSuController extends Controller
     public function store(Request $request)
     {
         $user = auth()->user();
-        $input = $request->only(['ten', 'user_ids']);
+        $input = $request->only(['ma','ten', 'user_ids']);
         $input['slug'] = Str::slug($input['ten']);
         $input['nguoi_cap_nhat_id'] = $user->id;
 
@@ -113,7 +113,7 @@ class NhomNhanSuController extends Controller
         $user = auth()->user();
         $model = $this->nhomNhanSuRepository->findById($id);
         if (empty($model)) abort(404);
-        $input = $request->only(['ten', 'user_ids']);
+        $input = $request->only(['ma','ten', 'user_ids']);
         $input['slug'] = Str::slug($input['ten']);
         $input['nguoi_cap_nhat_id'] = $user->id;
 

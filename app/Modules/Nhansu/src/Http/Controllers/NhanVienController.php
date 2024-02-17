@@ -335,7 +335,7 @@ class NhanVienController extends Controller
         foreach ($models as $model) {
             $items[] = [
                 'id' => $model->user_id,
-                'text' => $model->ho_ten
+                'text' => $model->ho_ten .'( - '.$model->ma.' - '.$model->phongBan->ten.')'
             ];
         }
 

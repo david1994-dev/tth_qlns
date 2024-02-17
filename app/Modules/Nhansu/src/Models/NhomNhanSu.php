@@ -12,8 +12,11 @@ class NhomNhanSu extends Base
 
     protected $table = 'nhansu_nhom';
     protected $fillable = [
+        'ma',
         'ten',
+        'slug',
         'user_ids',
+        'nguoi_cap_nhat_id'
     ];
 
     protected $casts = [
