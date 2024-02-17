@@ -318,4 +318,27 @@ class NhanVienController extends Controller
 
         return response()->json(['status' => 'success', 'message' => 'Tạo account thành công!']);
     }
+
+    public function searchAjax(PaginationRequest $request)
+    {
+        $paginate['limit']      = $request->limit(50);
+        $paginate['offset']     = $request->offset();
+        $paginate['order']      = $request->order();
+        $paginate['direction']  = $request->direction();
+
+        $search = $request->get('search');
+        $filter['query'] = $search;
+
+        $count = $this->nhanVienRepository->countByFilter($filter);
+        $models = $this->nhanVienRepository->getByFilter($filter, $paginate['order'], $paginate['direction'], $paginate['offset'], $paginate['limit']);
+        $items = [];
+        foreach ($models as $model) {
+            $items[] = [
+                'id' => $model->user_id,
+                'text' => $model->ho_ten
+            ];
+        }
+
+        return response()->json(['items' => $items, 'count' => $count]);
+    }
 }

@@ -8,6 +8,7 @@ use App\Modules\Nhansu\src\Http\Controllers\SoDoToChucController;
 use App\Modules\Nhansu\src\Http\Controllers\LoaiNhanVienController;
 use App\Modules\Nhansu\src\Http\Controllers\ThongBaoController;
 use App\Modules\Nhansu\src\Http\Controllers\LoaiThongBaoController;
+use App\Modules\Nhansu\src\Http\Controllers\NhomNhanSuController;
 
 
 Route::prefix('nhansu')->middleware(['web', 'setDefaultValue'])->name('nhansu.')->group(function () {
@@ -23,15 +24,15 @@ Route::prefix('nhansu')->middleware(['web', 'setDefaultValue'])->name('nhansu.')
         Route::get('khoa-phong-ban/sodotochuc/{id}', [PhongBanController::class, 'sodotochuc'])->name('khoaphongban.sodotochuc');
         Route::resource('so-do-to-chuc', SoDoToChucController::class);
         Route::resource('nhan-vien', NhanVienController::class);
+        Route::resource('nhom-nhan-su', NhomNhanSuController::class);
         Route::get('chuyen-ung-vien/{id}', [NhanVienController::class, 'chuyenUngVien'])->name('nhan-vien.chuyenUngVien');
         Route::resource('loai-nhan-vien', LoaiNhanVienController::class);
         Route::post('tao-user', [NhanVienController::class, 'taoAccount'])->name('nhan-vien.taoAccount');
+
+        Route::get('nhan-vien-search', [NhanVienController::class, 'searchAjax'])->name('nhan-vien.searchAjax');
     });
 
     Route::get('khao-sat-ung-vien', [UngVienController::class, 'index']);
     Route::get('khao-sat-ung-vien/{type}/{chiNhanhSlug}', [UngVienController::class, 'viewKhaoSat'])->name('viewKhaoSat');
     Route::post('khao-sat-ung-vien', [UngVienController::class, 'store'])->name('taoUngVien');
-    Route::get("dang-thong-bao", function(){
-        return view("Nhansu::thong_bao.dang_thong_bao");
-     });
 });

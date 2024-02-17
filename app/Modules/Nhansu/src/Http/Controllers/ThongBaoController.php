@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PaginationRequest;
 use App\Modules\Nhansu\src\Models\ThongBao;
 use App\Modules\Nhansu\src\Models\ThongBaoUser;
+use App\Modules\Nhansu\src\Repositories\Interface\ChiNhanhRepositoryInterface;
+use App\Modules\Nhansu\src\Repositories\Interface\PhongBanRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\ThongBaoRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\ThongBaoUserRepositoryInterface;
 use App\Services\FileService;
@@ -15,14 +17,21 @@ class ThongBaoController extends Controller
 {
     private ThongBaoRepositoryInterface $thongBaoRepository;
     private FileService $fileService;
+    private ChiNhanhRepositoryInterface $chiNhanhRepository;
+    private PhongBanRepositoryInterface $phongBanRepository;
 
     public function __construct(
         ThongBaoRepositoryInterface $thongBaoRepository,
-        FileService $fileService
+        FileService $fileService,
+        ChiNhanhRepositoryInterface $chiNhanhRepository,
+        PhongBanRepositoryInterface $phongBanRepository
     ) {
         $this->thongBaoRepository = $thongBaoRepository;
         $this->fileService = $fileService;
+        $this->chiNhanhRepository = $chiNhanhRepository;
+        $this->phongBanRepository = $phongBanRepository;
     }
+
     /**
      * Display a listing of the resource.
      */
@@ -63,7 +72,10 @@ class ThongBaoController extends Controller
      */
     public function create()
     {
-        //
+        $chiNhanh = $this->chiNhanhRepository->all();
+        $phongBan = $this->phongBanRepository->all();
+
+        return view('Nhansu::thong_bao.create');
     }
 
     /**
