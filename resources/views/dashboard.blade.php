@@ -244,7 +244,7 @@
                             <div class="table-responsive">
                                 <table class="table table-inbox table-hover text-nowrap mb-0">
                                     <tbody>
-                                        <tr class="">
+                                        <tr class="" >
                                             <td class="inbox-small-cells">
                                                 <label class="custom-control custom-checkbox mb-0">
                                                     <input type="checkbox" class="custom-control-input"
@@ -256,7 +256,7 @@
                                             <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
                                             <td class="view-message dont-show font-weight-semibold">Phòng hành chính quản
                                                 trị</td>
-                                            <td class="view-message">Kế hoạch phân công khu vực vệ sinh khối văn phòng Tổng
+                                            <td class="view-message" href ="facebook.com">Kế hoạch phân công khu vực vệ sinh khối văn phòng Tổng
                                                 Công Ty tháng 01 năm 2024</td>
                                             <td class="view-message text-end font-weight-semibold">29-01-2024</td>
                                         </tr>
