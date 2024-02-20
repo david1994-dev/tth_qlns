@@ -162,7 +162,7 @@
                                                             <label class="form-label mb-0 ">Chi Nhánh:</label>
                                                         </div>
                                                         <div class="col-xl-8">
-                                                            <input type="text" class="form-control"  value="">
+                                                            <input type="text" class="form-control"  value="{{ @$model->chiNhanh->ten }}">
                                                         </div>
                                                     </div>
                                                 </div>
