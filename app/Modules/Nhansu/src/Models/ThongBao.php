@@ -55,7 +55,7 @@ class ThongBao extends Base
 
     public function loaiThongBao()
     {
-        return $this->hasOne(LoaiThongBao::class, 'loai_thong_bao', 'id');
+        return $this->hasOne(LoaiThongBao::class, 'id', 'loai_thong_bao');
     }
 
 
