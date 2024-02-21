@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('loai_thong_bao', function (Blueprint $table) {
             $table->id();
             $table->string('ten');
+            $table->string('icon')->nullable();
             $table->unsignedBigInteger('nguoi_tao_id');
             $table->timestamps();
 

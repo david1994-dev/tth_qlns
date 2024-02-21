@@ -39,6 +39,7 @@
                     <tr class="table table-striped">
                         <th>Tên</th>
                         <th>Ngày Tạo</th>
+                        <th>Icon</th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -47,6 +48,7 @@
                         <tr>
                             <td>{{ $model->ten }}</td>
                             <td>{{ $model->created_at }}</td>
+                            <td><i class="{{$model->icon}}"></i></td>
                             <td class="text-center">
                                 <a class="btn btn-danger btn-sm delete-button"
                                     data-delete-url="{{ route('nhansu.loai-thong-bao.destroy', $model->id) }}">

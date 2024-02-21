@@ -2,9 +2,12 @@
 
 namespace App\Modules\Nhansu\src\Repositories\Eloquent;
 
+use App\Modules\Nhansu\src\Models\LoaiThongBao;
 use App\Modules\Nhansu\src\Models\ThongBao;
+use App\Modules\Nhansu\src\Models\ThongBaoUser;
 use App\Modules\Nhansu\src\Repositories\Interface\ThongBaoRepositoryInterface;
 use App\Repositories\Eloquent\BaseRepository;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class ThongBaoRepository extends BaseRepository implements ThongBaoRepositoryInterface
@@ -17,11 +20,7 @@ class ThongBaoRepository extends BaseRepository implements ThongBaoRepositoryInt
 
     public function countByType($user, $filter)
     {
-        $query = $this->buildQuery($user, $filter);
-
-        return $query->select('loai_thong_bao', DB::raw('count(*) as total'))
-            ->groupBy('loai_thong_bao')
-            ->pluck('total', 'loai_thong_bao')->toArray();
+        return LoaiThongBao::query()->orderBy('id')->get();
     }
 
     public function taoThongBao($input, $receiveIds)
@@ -40,22 +39,45 @@ class ThongBaoRepository extends BaseRepository implements ThongBaoRepositoryInt
         return $this->insert($inputs);
     }
 
-    private function buildQuery($user, $filter, $order=null, $direction=null, $offset=null, $limit=null)
+    private function buildQuery($user, $filter = [])
     {
-        //todo filter
         $nhanVien = $user->nhanVien;
+        $nhomNhanSu = $user->nhomNhanSu;
         $query = $this->getBlankModel()
             ->where('id', '>', $user->last_notification_id)
             ->where('xuat_ban', true)
-            ->where(function ($qr) use ($nhanVien) {
+            ->where(function ($qr) use ($nhanVien, $nhomNhanSu) {
                 $qr->where('gui_tat_ca', true)
-                    ->orWhere(function ($q) use ($nhanVien) {
+                    ->orWhere(function ($q) use ($nhanVien, $nhomNhanSu) {
                         $q->whereJsonContains('chi_nhanh_ids', $nhanVien->chi_nhanh_id)
                             ->orWhereJsonContains('phong_ban_ids', $nhanVien->phong_ban_id)
-//                            ->orWhereJsonContains('phong_ban_ids', $nhanVien->phong_ban_id)
+                            ->orWhereJsonContains('nhom_nguoi_nhan_ids', $nhomNhanSu)
                             ->orWhereJsonContains('nguoi_nhan_ids', $nhanVien->user_id);
                     });
             });
+
+        if (!empty($filter['category'])) {
+            $query = $query->where('loai_thong_bao', $filter['category']);
+        }
+
+        if (!empty($filter['created_at_from'])) {
+            $query = $query->where('created_at', '>=', Carbon::parse($filter['created_at_from']));
+        }
+
+        if (!empty($filter['created_at_to'])) {
+            $query = $query->where('created_at', '<=', Carbon::parse($filter['created_at_to']));
+        }
+
+        if (!empty($filter['query'])) {
+            $query = $query->where('tieu_de', 'LIKE', '%'.$filter['query'].'%');
+        }
+
+        return $query;
+    }
+
+    public function getNotifications($user, $filter, $order, $direction, $offset, $limit)
+    {
+        $query = $this->buildQuery($user, $filter);
 
         if ($order && $direction) {
             $query = $query->orderBy($order, $direction);
@@ -65,12 +87,7 @@ class ThongBaoRepository extends BaseRepository implements ThongBaoRepositoryInt
             $query = $query->skip($offset)->take($limit);
         }
 
-        return $query;
-    }
-
-    public function getNotifications($user, $filter, $order, $direction, $offset, $limit)
-    {
-        return $this->buildQuery($user, $filter, $order, $direction, $offset, $limit)->get();
+        return $query->get();
     }
 
     public function countNotifications($user, $filter)

@@ -62,7 +62,7 @@ class LoaiThongBaoController extends Controller
     public function store(Request $request)
     {
         $user = auth()->user();
-        $input = $request->only(['ten']);
+        $input = $request->only(['ten', 'icon']);
         $input['nguoi_tao_id'] = $user->id;
 
         $phongBan = $this->loaiThongBaoRepository->create($input);
@@ -108,7 +108,7 @@ class LoaiThongBaoController extends Controller
         $model = $this->loaiThongBaoRepository->findById($id);
         if (empty($model)) abort(404);
 
-        $input = $request->only(['ten']);
+        $input = $request->only(['ten', 'icon']);
         $input['nguoi_tao_id'] = $user->id;
 
         $isSuccess = $this->loaiThongBaoRepository->update($model, $input);

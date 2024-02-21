@@ -12,7 +12,8 @@ class LoaiThongBao extends Base
     protected $table = 'loai_thong_bao';
     protected $fillable = [
         'nguoi_tao_id',
-        'ten'
+        'ten',
+        'icon'
     ];
 
     protected $casts = [

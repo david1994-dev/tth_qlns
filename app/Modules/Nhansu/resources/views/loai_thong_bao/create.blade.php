@@ -21,6 +21,10 @@
                             <label>Tên</label>
                             <input type="text" name="ten" class="form-control" required>
                         </div>
+                        <div class="form-group">
+                            <label>Tên</label>
+                            <input type="text" name="icon" class="form-control" required>
+                        </div>
 
                     </div>
 
