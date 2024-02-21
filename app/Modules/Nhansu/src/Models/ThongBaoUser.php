@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ThongBaoUser extends Base
 {
-    use SoftDeletes;
-
     const STATUS_CHUA_DOC = 1;
     const STATUS_DA_DOC = 2;
 

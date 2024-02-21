@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('ma')->unique()->index();
             $table->string('ten');
             $table->string('slug');
-            $table->text('user_ids');
+            $table->text('user_ids')->index();
             $table->unsignedBigInteger('nguoi_cap_nhat_id');
             $table->timestamps();
             $table->softDeletes();

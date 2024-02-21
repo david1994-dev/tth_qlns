@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Modules\Nhansu\src\Models\NhanVien;
+use App\Modules\Nhansu\src\Models\NhomNhanSu;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -92,5 +93,10 @@ class User extends Authenticatable
     public function thongBao()
     {
         return $this->belongsToMany(User::class, 'thong_bao_users', 'user_id', 'thong_bao_id');
+    }
+
+    public function getNhomNhanSuAttribute()
+    {
+        return NhomNhanSu::query()->whereJsonContains('user_ids', $this->id)->pluck('id')->toArray();
     }
 }
