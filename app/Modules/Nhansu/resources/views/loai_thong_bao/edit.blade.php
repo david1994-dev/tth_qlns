@@ -18,6 +18,10 @@
                             <label>Tên</label>
                             <input value="{{$model->ten}}" type="text" name="ten" class="form-control" required>
                         </div>
+                        <div class="form-group">
+                            <label>Tên</label>
+                            <input value="{{$model->icon}}" type="text" name="icon" class="form-control" required>
+                        </div>
 
                     </div>
 

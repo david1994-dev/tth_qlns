@@ -50,9 +50,13 @@ class ThongBaoController extends Controller
             $filter['query'] = $keyword;
         }
 
+        $filter['category'] = $request->get('category', '');
+        $filter['created_at_from'] = $request->get('created_at_from');
+        $filter['created_at_to'] = $request->get('created_at_to');
+
         $count = $this->thongBaoRepository->countNotifications($user, $filter);
         $models = $this->thongBaoRepository->getNotifications($user, $filter, $paginate['order'], $paginate['direction'], $paginate['offset'], $paginate['limit']);
-        $models = $this->thongBaoRepository->load($models, ['userRead', 'loaiThongBao']);
+        $models = $this->thongBaoRepository->load($models, ['loaiThongBao', 'nguoiGui.nhanVien']);
         $thongBaoByType = $this->thongBaoRepository->countByType($user, $filter);
 
         return view(
