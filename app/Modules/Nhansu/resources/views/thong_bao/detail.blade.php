@@ -17,9 +17,11 @@
     </script>
 
     <script>
-        function phanHoi() {
-            document.getElementById("demo").innerHTML = "Hello World";
-        }
+        $(document).ready(function() {
+            $('.radio').click(function() {
+                document.getElementById('price').innerHTML = $(this).val();
+            });
+        });
     </script>
 @stop
 @section('content')
@@ -353,7 +355,8 @@
                                     <div class="row">
                                         <div class="col-4"><input type="radio" name="phan_hoi_cho"
                                                 value="Toàn bộ">Toàn bộ </div>
-                                        <div class="col-8"><input type="radio" name="phan_hoi_cho" value="Cá nhân" onclick="phanHoi()">Cá
+                                        <div class="col-8"><input type="radio" name="phan_hoi_cho" value="Cá nhân"
+                                                onclick="phanHoi()">Cá
                                             nhân </div>
                                     </div>
                                 </div>

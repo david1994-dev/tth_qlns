@@ -245,14 +245,6 @@
                                 <table class="table table-inbox table-hover text-nowrap mb-0">
                                     <tbody>
                                     <tr class="" >
-                                        <td class="inbox-small-cells">
-                                            <label class="custom-control custom-checkbox mb-0">
-                                                <input type="checkbox" class="custom-control-input"
-                                                       name="example-checkbox2" value="option2">
-                                                <span class="custom-control-label"></span>
-                                            </label>
-                                        </td>
-                                        <td class="inbox-small-cells"><i class="fa fa-star text-warning"></i></td>
                                         <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
                                         <td class="view-message dont-show font-weight-semibold">Phòng hành chính quản
                                             trị</td>
@@ -261,14 +253,6 @@
                                         <td class="view-message text-end font-weight-semibold">29-01-2024</td>
                                     </tr>
                                     <tr class="">
-                                        <td class="inbox-small-cells">
-                                            <label class="custom-control custom-checkbox mb-0">
-                                                <input type="checkbox" class="custom-control-input"
-                                                       name="example-checkbox2" value="option2">
-                                                <span class="custom-control-label"></span>
-                                            </label>
-                                        </td>
-                                        <td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>
                                         <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
                                         <td class="view-message dont-show font-weight-semibold">Văn thư tổng công ty
                                         </td>
@@ -277,28 +261,12 @@
                                         <td class="view-message text-end font-weight-semibold">27-01-2024</td>
                                     </tr>
                                     <tr class="unread">
-                                        <td class="inbox-small-cells">
-                                            <label class="custom-control custom-checkbox mb-0">
-                                                <input type="checkbox" class="custom-control-input"
-                                                       name="example-checkbox2" value="option2">
-                                                <span class="custom-control-label"></span>
-                                            </label>
-                                        </td>
-                                        <td class="inbox-small-cells"><i class="fa fa-star"></i></td>
                                         <td class="inbox-small-cells"><i class="fa fa-bookmark text-danger"></i></td>
                                         <td class="view-message  dont-show">Phòng tuyển dụng</td>
                                         <td class="view-message">Thư chào nhân viên mới</td>
                                         <td class="view-message  text-end">26-01-2024</td>
                                     </tr>
                                     <tr class="">
-                                        <td class="inbox-small-cells">
-                                            <label class="custom-control custom-checkbox mb-0">
-                                                <input type="checkbox" class="custom-control-input"
-                                                       name="example-checkbox2" value="option2">
-                                                <span class="custom-control-label"></span>
-                                            </label>
-                                        </td>
-                                        <td class="inbox-small-cells"><i class="fa fa-star text-warning"></i></td>
                                         <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
                                         <td class="view-message dont-show font-weight-semibold">Phòng hành chính quản
                                             trị</td>
@@ -307,14 +275,6 @@
                                         <td class="view-message text-end font-weight-semibold">29-01-2024</td>
                                     </tr>
                                     <tr class="">
-                                        <td class="inbox-small-cells">
-                                            <label class="custom-control custom-checkbox mb-0">
-                                                <input type="checkbox" class="custom-control-input"
-                                                       name="example-checkbox2" value="option2">
-                                                <span class="custom-control-label"></span>
-                                            </label>
-                                        </td>
-                                        <td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>
                                         <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
                                         <td class="view-message dont-show font-weight-semibold">Văn thư tổng công ty
                                         </td>
@@ -323,28 +283,12 @@
                                         <td class="view-message text-end font-weight-semibold">27-01-2024</td>
                                     </tr>
                                     <tr class="unread">
-                                        <td class="inbox-small-cells">
-                                            <label class="custom-control custom-checkbox mb-0">
-                                                <input type="checkbox" class="custom-control-input"
-                                                       name="example-checkbox2" value="option2">
-                                                <span class="custom-control-label"></span>
-                                            </label>
-                                        </td>
-                                        <td class="inbox-small-cells"><i class="fa fa-star"></i></td>
                                         <td class="inbox-small-cells"><i class="fa fa-bookmark text-danger"></i></td>
                                         <td class="view-message  dont-show">Phòng tuyển dụng</td>
                                         <td class="view-message">Thư chào nhân viên mới</td>
                                         <td class="view-message  text-end">26-01-2024</td>
                                     </tr>
                                     <tr class="">
-                                        <td class="inbox-small-cells">
-                                            <label class="custom-control custom-checkbox mb-0">
-                                                <input type="checkbox" class="custom-control-input"
-                                                       name="example-checkbox2" value="option2">
-                                                <span class="custom-control-label"></span>
-                                            </label>
-                                        </td>
-                                        <td class="inbox-small-cells"><i class="fa fa-star text-warning"></i></td>
                                         <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
                                         <td class="view-message dont-show font-weight-semibold">Phòng hành chính quản
                                             trị</td>
@@ -353,14 +297,6 @@
                                         <td class="view-message text-end font-weight-semibold">29-01-2024</td>
                                     </tr>
                                     <tr class="">
-                                        <td class="inbox-small-cells">
-                                            <label class="custom-control custom-checkbox mb-0">
-                                                <input type="checkbox" class="custom-control-input"
-                                                       name="example-checkbox2" value="option2">
-                                                <span class="custom-control-label"></span>
-                                            </label>
-                                        </td>
-                                        <td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>
                                         <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
                                         <td class="view-message dont-show font-weight-semibold">Văn thư tổng công ty
                                         </td>
@@ -369,28 +305,12 @@
                                         <td class="view-message text-end font-weight-semibold">27-01-2024</td>
                                     </tr>
                                     <tr class="">
-                                        <td class="inbox-small-cells">
-                                            <label class="custom-control custom-checkbox mb-0">
-                                                <input type="checkbox" class="custom-control-input"
-                                                       name="example-checkbox2" value="option2">
-                                                <span class="custom-control-label"></span>
-                                            </label>
-                                        </td>
-                                        <td class="inbox-small-cells"><i class="fa fa-star"></i></td>
                                         <td class="inbox-small-cells"><i class="fa fa-bookmark text-danger"></i></td>
                                         <td class="view-message  dont-show">Phòng tuyển dụng</td>
                                         <td class="view-message">Thư chào nhân viên mới</td>
                                         <td class="view-message  text-end">26-01-2024</td>
                                     </tr>
                                     <tr class="">
-                                        <td class="inbox-small-cells">
-                                            <label class="custom-control custom-checkbox mb-0">
-                                                <input type="checkbox" class="custom-control-input"
-                                                       name="example-checkbox2" value="option2">
-                                                <span class="custom-control-label"></span>
-                                            </label>
-                                        </td>
-                                        <td class="inbox-small-cells"><i class="fa fa-star text-warning"></i></td>
                                         <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
                                         <td class="view-message dont-show font-weight-semibold">Phòng hành chính quản
                                             trị</td>
@@ -399,14 +319,6 @@
                                         <td class="view-message text-end font-weight-semibold">29-01-2024</td>
                                     </tr>
                                     <tr class="">
-                                        <td class="inbox-small-cells">
-                                            <label class="custom-control custom-checkbox mb-0">
-                                                <input type="checkbox" class="custom-control-input"
-                                                       name="example-checkbox2" value="option2">
-                                                <span class="custom-control-label"></span>
-                                            </label>
-                                        </td>
-                                        <td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>
                                         <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
                                         <td class="view-message dont-show font-weight-semibold">Văn thư tổng công ty
                                         </td>
@@ -415,28 +327,12 @@
                                         <td class="view-message text-end font-weight-semibold">27-01-2024</td>
                                     </tr>
                                     <tr class="">
-                                        <td class="inbox-small-cells">
-                                            <label class="custom-control custom-checkbox mb-0">
-                                                <input type="checkbox" class="custom-control-input"
-                                                       name="example-checkbox2" value="option2">
-                                                <span class="custom-control-label"></span>
-                                            </label>
-                                        </td>
-                                        <td class="inbox-small-cells"><i class="fa fa-star"></i></td>
                                         <td class="inbox-small-cells"><i class="fa fa-bookmark text-danger"></i></td>
                                         <td class="view-message  dont-show">Phòng tuyển dụng</td>
                                         <td class="view-message">Thư chào nhân viên mới</td>
                                         <td class="view-message  text-end">26-01-2024</td>
                                     </tr>
                                     <tr class="">
-                                        <td class="inbox-small-cells">
-                                            <label class="custom-control custom-checkbox mb-0">
-                                                <input type="checkbox" class="custom-control-input"
-                                                       name="example-checkbox2" value="option2">
-                                                <span class="custom-control-label"></span>
-                                            </label>
-                                        </td>
-                                        <td class="inbox-small-cells"><i class="fa fa-star text-warning"></i></td>
                                         <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
                                         <td class="view-message dont-show font-weight-semibold">Phòng hành chính quản
                                             trị</td>
@@ -445,14 +341,6 @@
                                         <td class="view-message text-end font-weight-semibold">29-01-2024</td>
                                     </tr>
                                     <tr class="">
-                                        <td class="inbox-small-cells">
-                                            <label class="custom-control custom-checkbox mb-0">
-                                                <input type="checkbox" class="custom-control-input"
-                                                       name="example-checkbox2" value="option2">
-                                                <span class="custom-control-label"></span>
-                                            </label>
-                                        </td>
-                                        <td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>
                                         <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
                                         <td class="view-message dont-show font-weight-semibold">Văn thư tổng công ty
                                         </td>
@@ -461,28 +349,12 @@
                                         <td class="view-message text-end font-weight-semibold">27-01-2024</td>
                                     </tr>
                                     <tr class="">
-                                        <td class="inbox-small-cells">
-                                            <label class="custom-control custom-checkbox mb-0">
-                                                <input type="checkbox" class="custom-control-input"
-                                                       name="example-checkbox2" value="option2">
-                                                <span class="custom-control-label"></span>
-                                            </label>
-                                        </td>
-                                        <td class="inbox-small-cells"><i class="fa fa-star"></i></td>
                                         <td class="inbox-small-cells"><i class="fa fa-bookmark text-danger"></i></td>
                                         <td class="view-message  dont-show">Phòng tuyển dụng</td>
                                         <td class="view-message">Thư chào nhân viên mới</td>
                                         <td class="view-message  text-end">26-01-2024</td>
                                     </tr>
                                     <tr class="">
-                                        <td class="inbox-small-cells">
-                                            <label class="custom-control custom-checkbox mb-0">
-                                                <input type="checkbox" class="custom-control-input"
-                                                       name="example-checkbox2" value="option2">
-                                                <span class="custom-control-label"></span>
-                                            </label>
-                                        </td>
-                                        <td class="inbox-small-cells"><i class="fa fa-star text-warning"></i></td>
                                         <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
                                         <td class="view-message dont-show font-weight-semibold">Phòng hành chính quản
                                             trị</td>
@@ -491,14 +363,6 @@
                                         <td class="view-message text-end font-weight-semibold">29-01-2024</td>
                                     </tr>
                                     <tr class="">
-                                        <td class="inbox-small-cells">
-                                            <label class="custom-control custom-checkbox mb-0">
-                                                <input type="checkbox" class="custom-control-input"
-                                                       name="example-checkbox2" value="option2">
-                                                <span class="custom-control-label"></span>
-                                            </label>
-                                        </td>
-                                        <td class="inbox-small-cells"><i class="fa fa-star inbox-started"></i></td>
                                         <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
                                         <td class="view-message dont-show font-weight-semibold">Văn thư tổng công ty
                                         </td>
@@ -507,14 +371,6 @@
                                         <td class="view-message text-end font-weight-semibold">27-01-2024</td>
                                     </tr>
                                     <tr class="">
-                                        <td class="inbox-small-cells">
-                                            <label class="custom-control custom-checkbox mb-0">
-                                                <input type="checkbox" class="custom-control-input"
-                                                       name="example-checkbox2" value="option2">
-                                                <span class="custom-control-label"></span>
-                                            </label>
-                                        </td>
-                                        <td class="inbox-small-cells"><i class="fa fa-star"></i></td>
                                         <td class="inbox-small-cells"><i class="fa fa-bookmark text-danger"></i></td>
                                         <td class="view-message  dont-show">Phòng tuyển dụng</td>
                                         <td class="view-message">Thư chào nhân viên mới</td>

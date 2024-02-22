@@ -21,6 +21,8 @@
         <!-- END PAGE HEADER -->
 
         <!-- ROW -->
+
+
         <div class="row">
             <div class="col-md-12 col-lg-4 col-xl-3">
                 <div class="card">
@@ -234,7 +236,7 @@
                                         <li><span>1-50 of 234</span></li>
     
                                         <li>
-                                            <a class="np-btn" href="javascript:void(0);"><i
+                                            <a class="np-btn"><i
                                                     class="fa fa-angle-right pagination-right"></i></a>
                                         </li>
                                     </ul>
@@ -244,22 +246,7 @@
                             <div class="table-responsive">
                                 <table class="table table-inbox table-hover text-nowrap mb-0">
                                     <tbody>
-                                        <tr class="" >
-                                            <td class="inbox-small-cells">
-                                                <label class="custom-control custom-checkbox mb-0">
-                                                    <input type="checkbox" class="custom-control-input"
-                                                        name="example-checkbox2" value="option2">
-                                                    <span class="custom-control-label"></span>
-                                                </label>
-                                            </td>
-                                            <td class="inbox-small-cells"><i class="fa fa-star text-warning"></i></td>
-                                            <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
-                                            <td class="view-message dont-show font-weight-semibold">Phòng hành chính quản
-                                                trị</td>
-                                            <td class="view-message" href ="facebook.com">Kế hoạch phân công khu vực vệ sinh khối văn phòng Tổng
-                                                Công Ty tháng 01 năm 2024</td>
-                                            <td class="view-message text-end font-weight-semibold">29-01-2024</td>
-                                        </tr>
+                                        
                                         <tr class="">
                                             <td class="inbox-small-cells">
                                                 <label class="custom-control custom-checkbox mb-0">
