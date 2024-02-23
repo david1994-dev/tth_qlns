@@ -4,6 +4,7 @@ namespace App\Modules\Nhansu\src\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PaginationRequest;
+use App\Modules\Nhansu\Helpers\ThongBaoHelper;
 use App\Modules\Nhansu\src\Models\ThongBao;
 use App\Modules\Nhansu\src\Models\ThongBaoUser;
 use App\Modules\Nhansu\src\Repositories\Interface\ChiNhanhRepositoryInterface;
@@ -22,18 +23,22 @@ class ThongBaoController extends Controller
     private PhongBanRepositoryInterface $phongBanRepository;
     private LoaiThongBaoRepositoryInterface $loaiThongBaoRepository;
 
+    private ThongBaoUserRepositoryInterface $thongBaoUserRepository;
+
     public function __construct(
         ThongBaoRepositoryInterface $thongBaoRepository,
         FileService $fileService,
         ChiNhanhRepositoryInterface $chiNhanhRepository,
         PhongBanRepositoryInterface $phongBanRepository,
-        LoaiThongBaoRepositoryInterface $loaiThongBaoRepository
+        LoaiThongBaoRepositoryInterface $loaiThongBaoRepository,
+        ThongBaoUserRepositoryInterface $thongBaoUserRepository
     ) {
         $this->thongBaoRepository = $thongBaoRepository;
         $this->fileService = $fileService;
         $this->chiNhanhRepository = $chiNhanhRepository;
         $this->phongBanRepository = $phongBanRepository;
         $this->loaiThongBaoRepository = $loaiThongBaoRepository;
+        $this->thongBaoUserRepository = $thongBaoUserRepository;
     }
 
     /**
@@ -127,7 +132,23 @@ class ThongBaoController extends Controller
      */
     public function show(string $id)
     {
+        $user = auth()->user();
+        $model = $this->thongBaoRepository->findById($id);
+        if (!$model) abort(404);
 
+        if (!ThongBaoHelper::userCanReadNotification($user, $model)) {
+            abort(403);
+        }
+
+        $this->thongBaoUserRepository->firstOrCreate([
+            'user_id' => $user->id,
+            'thong_bao_id' => $model->id,
+            'status' => ThongBaoUser::STATUS_DA_DOC
+        ]);
+
+        return view('Nhansu::thong_bao.detail', [
+            'model' => $model
+        ]);
     }
 
     /**
