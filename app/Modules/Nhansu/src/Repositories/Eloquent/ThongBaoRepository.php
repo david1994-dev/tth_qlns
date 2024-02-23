@@ -18,9 +18,65 @@ class ThongBaoRepository extends BaseRepository implements ThongBaoRepositoryInt
         return new ThongBao();
     }
 
-    public function countByType($user, $filter)
+    public function countUnReadByType($user, $filter)
     {
-        return LoaiThongBao::query()->orderBy('id')->get();
+
+        $nhanVien = $user->nhanVien;
+        $nhomNhanSu = $user->nhomNhanSu;
+        $status = ThongBaoUser::STATUS_DA_DOC;
+        $query = $this->getBlankModel()
+            ->where('thong_bao.id', '>', $user->last_notification_id)
+            ->where('thong_bao.xuat_ban', true)
+            ->where(function ($q) use ($nhanVien, $nhomNhanSu) {
+                $q->where('thong_bao.gui_tat_ca', true)
+                    ->orWhere(function ($q) use ($nhanVien, $nhomNhanSu) {
+                        $q->whereJsonContains('thong_bao.chi_nhanh_ids', $nhanVien->chi_nhanh_id)
+                            ->orWhereJsonContains('thong_bao.phong_ban_ids', $nhanVien->phong_ban_id)
+                            ->orWhereJsonContains('thong_bao.nhom_nguoi_nhan_ids', $nhomNhanSu)
+                            ->orWhereJsonContains('thong_bao.nguoi_nhan_ids', $nhanVien->user_id);
+                    });
+            })
+//            ->leftJoin('thong_bao_users','thong_bao.id','=','thong_bao_users.thong_bao_id')
+//            ->where('thong_bao_users.status', $status)
+//            ->where(function ($q) use ($status, $nhanVien) {
+//                $q->where('thong_bao_users.user_id', $nhanVien->user_id)
+//                    ->orWhere('thong_bao_users.user_id', null);
+//            });
+//            ->whereNotIn(function ($q) use ($user, $status) {
+//                $q->select('thong_bao_users.thong_bao_id')
+//                    ->from('thong_bao_users')
+//                    ->whereRaw('thong_bao_users.user_id = '.$user->id)
+//                    ->whereRaw('thong_bao_users.status = '.$status)
+//                    ->whereRaw('thong_bao.id = thong_bao_users.thong_bao_id');
+//            });
+            ->whereNotExists(function ($qr) use ($user, $status) {
+                $qr->select(DB::raw(1))
+                    ->from('thong_bao_users')
+                    ->whereRaw('thong_bao_users.user_id = '.$user->id)
+                    ->whereRaw('thong_bao_users.status = '.$status)
+                    ->whereRaw('thong_bao.id = thong_bao_users.thong_bao_id');
+            });
+
+        if (!empty($filter['category'])) {
+            $query = $query->where('thong_bao.loai_thong_bao', $filter['category']);
+        }
+
+        if (!empty($filter['created_at_from'])) {
+            $query = $query->where('thong_bao.created_at', '>=', Carbon::parse($filter['created_at_from']));
+        }
+
+        if (!empty($filter['created_at_to'])) {
+            $query = $query->where('thong_bao.created_at', '<=', Carbon::parse($filter['created_at_to']));
+        }
+
+        if (!empty($filter['query'])) {
+            $query = $query->where('thong_bao.tieu_de', 'LIKE', '%'.$filter['query'].'%');
+        }
+
+        return $query->select('thong_bao.loai_thong_bao', DB::raw('count(*) as total'))
+            ->groupBy('thong_bao.loai_thong_bao')
+            ->pluck('total', 'loai_thong_bao')
+            ->toArray();
     }
 
     public function taoThongBao($input, $receiveIds)
