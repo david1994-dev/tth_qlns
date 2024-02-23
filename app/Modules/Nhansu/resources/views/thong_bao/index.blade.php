@@ -79,7 +79,7 @@
                                         <li><span>1-50 of 234</span></li>
 
                                         <li>
-                                            <a class="np-btn" href="javascript:void(0);"><i
+                                            <a class="np-btn" ><i
                                                     class="fa fa-angle-right pagination-right"></i></a>
                                         </li>
                                     </ul>
@@ -103,8 +103,8 @@
                                         <td class="view-message dont-show font-weight-semibold">
                                             {{$model->sendFrom}}
                                         </td>
-                                        <td class="view-message" href ="facebook.com">{{$model->tieu_de}}</td>
-                                        <td class="view-message text-end font-weight-semibold">{{$model->created_at->format('d-m-Y h:i:s')}}</td>
+                                        <td class="view-message" style="max-width: 500px ; overflow:hidden">{{$model->tieu_de}}</td>
+                                        <td class="view-message text-end ">{{$model->created_at->format('d-m-Y h:i:s')}}</td>
                                     </tr>
                                     @endforeach
                                     </tbody>
