@@ -32,7 +32,7 @@ class ThongBaoRepository extends BaseRepository implements ThongBaoRepositoryInt
                     ->orWhere(function ($q) use ($nhanVien, $nhomNhanSu) {
                         $q->whereJsonContains('thong_bao.chi_nhanh_ids', $nhanVien->chi_nhanh_id)
                             ->orWhereJsonContains('thong_bao.phong_ban_ids', $nhanVien->phong_ban_id)
-                            ->orWhereJsonContains('thong_bao.nhom_nguoi_nhan_ids', $nhomNhanSu)
+                            ->orWhereJsonContains('thong_bao.nhom_nguoi_nhan_ids', $nhomNhanSu) //todo dang sai vi 1 nhan su co the trong nhieu nhom
                             ->orWhereJsonContains('thong_bao.nguoi_nhan_ids', $nhanVien->user_id);
                     });
             })

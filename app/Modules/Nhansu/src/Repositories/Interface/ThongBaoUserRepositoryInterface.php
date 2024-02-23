@@ -6,5 +6,5 @@ use App\Repositories\Interface\BaseRepositoryInterface;
 
 interface ThongBaoUserRepositoryInterface extends BaseRepositoryInterface
 {
-
+    public function firstOrCreate($params);
 }

@@ -13,4 +13,9 @@ class ThongBaoUserRepository extends BaseRepository implements ThongBaoUserRepos
     {
         return new ThongBaoUser();
     }
+
+    public function firstOrCreate($params)
+    {
+        return ThongBaoUser::query()->firstOrCreate($params);
+    }
 }

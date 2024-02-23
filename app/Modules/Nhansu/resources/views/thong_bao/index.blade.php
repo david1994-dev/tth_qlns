@@ -90,7 +90,7 @@
                                 <table class="table table-inbox table-hover text-nowrap mb-0">
                                     <tbody>
                                     @foreach($models as $model)
-                                    <tr class="@if(!$model->isRead) unread @endif" >
+                                    <tr class="@if(!$model->isRead) unread @endif jsViewDetail" data-url="{{route('nhansu.thong-bao.show', $model->id)}}">
 {{--                                        <td class="inbox-small-cells">--}}
 {{--                                            <label class="custom-control custom-checkbox mb-0">--}}
 {{--                                                <input type="checkbox" class="custom-control-input"--}}
@@ -114,22 +114,27 @@
                         </div>
                     </div>
                 </div>
-                <ul class="pagination ">
-                    <li class="page-item page-prev disabled">
-                        <a class="page-link" href="javascript:void(0);" tabindex="-1">Prev</a>
-                    </li>
-                    <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);">4</a></li>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);">5</a></li>
-                    <li class="page-item page-next">
-                        <a class="page-link" href="javascript:void(0);">Next</a>
-                    </li>
-                </ul>
+                <div class="box-footer">
+                    {!! \PaginationHelper::render(
+                        $paginate['order'],
+                        $paginate['direction'],
+                        $paginate['offset'],
+                        $paginate['limit'],
+                        $count,
+                        $paginate['baseUrl'],
+                        [],
+                    ) !!}
+                </div>
             </div>
         </div>
         <!-- END ROW -->
 
     </div>
+@stop
+@section('scripts')
+    <script>
+        $('.jsViewDetail').on('click', function () {
+            window.location = $(this).data('url');
+        })
+    </script>
 @stop
