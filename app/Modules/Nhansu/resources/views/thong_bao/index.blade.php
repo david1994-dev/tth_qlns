@@ -29,29 +29,29 @@
                             <a href="https://laravelui.spruko.com/dayone/email-compose"
                                class="btn btn-primary btn-lg btn-block">Compose</a>
                         </div>
-                        @foreach($thongBaoByType as $thongBaoGroup)
+                        @foreach($loaiThongBao as $ltb)
                             <a href="javascript:void(0);" class="list-group-item d-flex align-items-center active">
-                                <span class="icons"><i class="{{$thongBaoGroup->icon}}"></i></span>{{$thongBaoGroup->ten}}<span
-                                    class="ms-auto badge badge-success">0</span>
+                                <span class="icons"><i class="{{$ltb->icon}}"></i></span>{{$ltb->ten}}<span
+                                    class="ms-auto badge badge-success">{{\Illuminate\Support\Arr::get($thongBaoUnreadByType, $ltb->id, 0)}}</span>
                             </a>
                         @endforeach
                     </div>
-                    <div class="card-body border-top">
-                        <div class="list-group list-group-transparent mb-0 mail-inbox">
-                            <a href="javascript:void(0);"
-                               class="list-group-item list-group-item-action d-flex align-items-center px-0 py-2">
-                                <span class="w-3 h-3 brround bg-primary me-2"></span> Mới
-                            </a>
-                            <a href="javascript:void(0);"
-                               class="list-group-item list-group-item-action d-flex align-items-center px-0 py-2">
-                                <span class="w-3 h-3 brround bg-success me-2"></span> Chưa xem
-                            </a>
-                            <a href="javascript:void(0);"
-                               class="list-group-item list-group-item-action d-flex align-items-center px-0 py-2">
-                                <span class="w-3 h-3 brround bg-danger me-2"></span> Khẩn
-                            </a>
-                        </div>
-                    </div>
+{{--                    <div class="card-body border-top">--}}
+{{--                        <div class="list-group list-group-transparent mb-0 mail-inbox">--}}
+{{--                            <a href="javascript:void(0);"--}}
+{{--                               class="list-group-item list-group-item-action d-flex align-items-center px-0 py-2">--}}
+{{--                                <span class="w-3 h-3 brround bg-primary me-2"></span> Mới--}}
+{{--                            </a>--}}
+{{--                            <a href="javascript:void(0);"--}}
+{{--                               class="list-group-item list-group-item-action d-flex align-items-center px-0 py-2">--}}
+{{--                                <span class="w-3 h-3 brround bg-success me-2"></span> Chưa xem--}}
+{{--                            </a>--}}
+{{--                            <a href="javascript:void(0);"--}}
+{{--                               class="list-group-item list-group-item-action d-flex align-items-center px-0 py-2">--}}
+{{--                                <span class="w-3 h-3 brround bg-danger me-2"></span> Khẩn--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </div>
             </div>
             <div class="col-md-12 col-lg-8 col-xl-9">
@@ -89,139 +89,24 @@
                             <div class="table-responsive">
                                 <table class="table table-inbox table-hover text-nowrap mb-0">
                                     <tbody>
-                                    <tr class="" >
-                                        <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
-                                        <td class="view-message dont-show font-weight-semibold">Phòng hành chính quản
-                                            trị</td>
-                                        <td class="view-message" href ="facebook.com">Kế hoạch phân công khu vực vệ sinh khối văn phòng Tổng
-                                            Công Ty tháng 01 năm 2024</td>
-                                        <td class="view-message text-end font-weight-semibold">29-01-2024</td>
-                                    </tr>
-                                    <tr class="">
-                                        <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
-                                        <td class="view-message dont-show font-weight-semibold">Văn thư tổng công ty
+                                    @foreach($models as $model)
+                                    <tr class="@if(!$model->isRead) unread @endif" >
+{{--                                        <td class="inbox-small-cells">--}}
+{{--                                            <label class="custom-control custom-checkbox mb-0">--}}
+{{--                                                <input type="checkbox" class="custom-control-input"--}}
+{{--                                                       name="example-checkbox2" value="option2">--}}
+{{--                                                <span class="custom-control-label"></span>--}}
+{{--                                            </label>--}}
+{{--                                        </td>--}}
+{{--                                        <td class="inbox-small-cells"><i class="fa fa-star text-warning"></i></td>--}}
+{{--                                        <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>--}}
+                                        <td class="view-message dont-show font-weight-semibold">
+                                            {{$model->sendFrom}}
                                         </td>
-                                        <td class="view-message">Số 32/QĐ-TTH Về việc Ban hành Quy trình thanh toán
-                                        </td>
-                                        <td class="view-message text-end font-weight-semibold">27-01-2024</td>
+                                        <td class="view-message" href ="facebook.com">{{$model->tieu_de}}</td>
+                                        <td class="view-message text-end font-weight-semibold">{{$model->created_at->format('d-m-Y h:i:s')}}</td>
                                     </tr>
-                                    <tr class="unread">
-                                        <td class="inbox-small-cells"><i class="fa fa-bookmark text-danger"></i></td>
-                                        <td class="view-message  dont-show">Phòng tuyển dụng</td>
-                                        <td class="view-message">Thư chào nhân viên mới</td>
-                                        <td class="view-message  text-end">26-01-2024</td>
-                                    </tr>
-                                    <tr class="">
-                                        <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
-                                        <td class="view-message dont-show font-weight-semibold">Phòng hành chính quản
-                                            trị</td>
-                                        <td class="view-message">Kế hoạch phân công khu vực vệ sinh khối văn phòng Tổng
-                                            Công Ty tháng 01 năm 2024</td>
-                                        <td class="view-message text-end font-weight-semibold">29-01-2024</td>
-                                    </tr>
-                                    <tr class="">
-                                        <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
-                                        <td class="view-message dont-show font-weight-semibold">Văn thư tổng công ty
-                                        </td>
-                                        <td class="view-message">Số 32/QĐ-TTH Về việc Ban hành Quy trình thanh toán
-                                        </td>
-                                        <td class="view-message text-end font-weight-semibold">27-01-2024</td>
-                                    </tr>
-                                    <tr class="unread">
-                                        <td class="inbox-small-cells"><i class="fa fa-bookmark text-danger"></i></td>
-                                        <td class="view-message  dont-show">Phòng tuyển dụng</td>
-                                        <td class="view-message">Thư chào nhân viên mới</td>
-                                        <td class="view-message  text-end">26-01-2024</td>
-                                    </tr>
-                                    <tr class="">
-                                        <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
-                                        <td class="view-message dont-show font-weight-semibold">Phòng hành chính quản
-                                            trị</td>
-                                        <td class="view-message">Kế hoạch phân công khu vực vệ sinh khối văn phòng Tổng
-                                            Công Ty tháng 01 năm 2024</td>
-                                        <td class="view-message text-end font-weight-semibold">29-01-2024</td>
-                                    </tr>
-                                    <tr class="">
-                                        <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
-                                        <td class="view-message dont-show font-weight-semibold">Văn thư tổng công ty
-                                        </td>
-                                        <td class="view-message">Số 32/QĐ-TTH Về việc Ban hành Quy trình thanh toán
-                                        </td>
-                                        <td class="view-message text-end font-weight-semibold">27-01-2024</td>
-                                    </tr>
-                                    <tr class="">
-                                        <td class="inbox-small-cells"><i class="fa fa-bookmark text-danger"></i></td>
-                                        <td class="view-message  dont-show">Phòng tuyển dụng</td>
-                                        <td class="view-message">Thư chào nhân viên mới</td>
-                                        <td class="view-message  text-end">26-01-2024</td>
-                                    </tr>
-                                    <tr class="">
-                                        <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
-                                        <td class="view-message dont-show font-weight-semibold">Phòng hành chính quản
-                                            trị</td>
-                                        <td class="view-message">Kế hoạch phân công khu vực vệ sinh khối văn phòng Tổng
-                                            Công Ty tháng 01 năm 2024</td>
-                                        <td class="view-message text-end font-weight-semibold">29-01-2024</td>
-                                    </tr>
-                                    <tr class="">
-                                        <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
-                                        <td class="view-message dont-show font-weight-semibold">Văn thư tổng công ty
-                                        </td>
-                                        <td class="view-message">Số 32/QĐ-TTH Về việc Ban hành Quy trình thanh toán
-                                        </td>
-                                        <td class="view-message text-end font-weight-semibold">27-01-2024</td>
-                                    </tr>
-                                    <tr class="">
-                                        <td class="inbox-small-cells"><i class="fa fa-bookmark text-danger"></i></td>
-                                        <td class="view-message  dont-show">Phòng tuyển dụng</td>
-                                        <td class="view-message">Thư chào nhân viên mới</td>
-                                        <td class="view-message  text-end">26-01-2024</td>
-                                    </tr>
-                                    <tr class="">
-                                        <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
-                                        <td class="view-message dont-show font-weight-semibold">Phòng hành chính quản
-                                            trị</td>
-                                        <td class="view-message">Kế hoạch phân công khu vực vệ sinh khối văn phòng Tổng
-                                            Công Ty tháng 01 năm 2024</td>
-                                        <td class="view-message text-end font-weight-semibold">29-01-2024</td>
-                                    </tr>
-                                    <tr class="">
-                                        <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
-                                        <td class="view-message dont-show font-weight-semibold">Văn thư tổng công ty
-                                        </td>
-                                        <td class="view-message">Số 32/QĐ-TTH Về việc Ban hành Quy trình thanh toán
-                                        </td>
-                                        <td class="view-message text-end font-weight-semibold">27-01-2024</td>
-                                    </tr>
-                                    <tr class="">
-                                        <td class="inbox-small-cells"><i class="fa fa-bookmark text-danger"></i></td>
-                                        <td class="view-message  dont-show">Phòng tuyển dụng</td>
-                                        <td class="view-message">Thư chào nhân viên mới</td>
-                                        <td class="view-message  text-end">26-01-2024</td>
-                                    </tr>
-                                    <tr class="">
-                                        <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
-                                        <td class="view-message dont-show font-weight-semibold">Phòng hành chính quản
-                                            trị</td>
-                                        <td class="view-message">Kế hoạch phân công khu vực vệ sinh khối văn phòng Tổng
-                                            Công Ty tháng 01 năm 2024</td>
-                                        <td class="view-message text-end font-weight-semibold">29-01-2024</td>
-                                    </tr>
-                                    <tr class="">
-                                        <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>
-                                        <td class="view-message dont-show font-weight-semibold">Văn thư tổng công ty
-                                        </td>
-                                        <td class="view-message">Số 32/QĐ-TTH Về việc Ban hành Quy trình thanh toán
-                                        </td>
-                                        <td class="view-message text-end font-weight-semibold">27-01-2024</td>
-                                    </tr>
-                                    <tr class="">
-                                        <td class="inbox-small-cells"><i class="fa fa-bookmark text-danger"></i></td>
-                                        <td class="view-message  dont-show">Phòng tuyển dụng</td>
-                                        <td class="view-message">Thư chào nhân viên mới</td>
-                                        <td class="view-message  text-end">26-01-2024</td>
-                                    </tr>
-
+                                    @endforeach
                                     </tbody>
                                 </table>
 

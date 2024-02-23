@@ -7,6 +7,7 @@ use App\Http\Requests\PaginationRequest;
 use App\Modules\Nhansu\src\Models\ThongBao;
 use App\Modules\Nhansu\src\Models\ThongBaoUser;
 use App\Modules\Nhansu\src\Repositories\Interface\ChiNhanhRepositoryInterface;
+use App\Modules\Nhansu\src\Repositories\Interface\LoaiThongBaoRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\PhongBanRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\ThongBaoRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\ThongBaoUserRepositoryInterface;
@@ -19,17 +20,20 @@ class ThongBaoController extends Controller
     private FileService $fileService;
     private ChiNhanhRepositoryInterface $chiNhanhRepository;
     private PhongBanRepositoryInterface $phongBanRepository;
+    private LoaiThongBaoRepositoryInterface $loaiThongBaoRepository;
 
     public function __construct(
         ThongBaoRepositoryInterface $thongBaoRepository,
         FileService $fileService,
         ChiNhanhRepositoryInterface $chiNhanhRepository,
-        PhongBanRepositoryInterface $phongBanRepository
+        PhongBanRepositoryInterface $phongBanRepository,
+        LoaiThongBaoRepositoryInterface $loaiThongBaoRepository
     ) {
         $this->thongBaoRepository = $thongBaoRepository;
         $this->fileService = $fileService;
         $this->chiNhanhRepository = $chiNhanhRepository;
         $this->phongBanRepository = $phongBanRepository;
+        $this->loaiThongBaoRepository = $loaiThongBaoRepository;
     }
 
     /**
@@ -57,7 +61,8 @@ class ThongBaoController extends Controller
         $count = $this->thongBaoRepository->countNotifications($user, $filter);
         $models = $this->thongBaoRepository->getNotifications($user, $filter, $paginate['order'], $paginate['direction'], $paginate['offset'], $paginate['limit']);
         $models = $this->thongBaoRepository->load($models, ['loaiThongBao', 'nguoiGui.nhanVien']);
-        $thongBaoByType = $this->thongBaoRepository->countByType($user, $filter);
+        $thongBaoUnreadByType = $this->thongBaoRepository->countUnReadByType($user, $filter);
+        $loaiThongBao = $this->loaiThongBaoRepository->all();
 
         return view(
             'Nhansu::thong_bao.index',
@@ -66,7 +71,8 @@ class ThongBaoController extends Controller
                 'count'         => $count,
                 'paginate'      => $paginate,
                 'keyword'       => $keyword,
-                'thongBaoByType' => $thongBaoByType
+                'thongBaoUnreadByType' => $thongBaoUnreadByType,
+                'loaiThongBao' => $loaiThongBao
             ]
         );
     }

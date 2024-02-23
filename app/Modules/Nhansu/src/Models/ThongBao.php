@@ -74,4 +74,21 @@ class ThongBao extends Base
     {
         return $this->hasOne(User::class, 'id', 'nguoi_gui_id');
     }
+
+    public function getSendFromAttribute()
+    {
+        $user = $this->nguoiGui;
+        if (!$user) return 'Không xác định';
+
+        $nhanVien = $user->nhanVien;
+        if (!$nhanVien) return 'Không xác định';
+
+        $sendFrom = $nhanVien->ho_ten;
+        $phongBan = $nhanVien->phongBan;
+        if ($phongBan) {
+            $sendFrom = $sendFrom . ' - '. $phongBan->ten;
+        }
+
+        return $sendFrom;
+    }
 }
