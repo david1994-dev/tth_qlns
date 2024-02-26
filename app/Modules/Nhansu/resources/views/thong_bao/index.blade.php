@@ -59,20 +59,48 @@
                     <div class="card-body p-6">
                         <div class="inbox-body">
                             <div class="mail-option">
-                                <div class="mt-0">
-                                    <form class="form-inline">
-                                        <div class="search-element ">
-                                            <input type="search" class="form-control header-search"
-                                                   placeholder="Search…" aria-label="Search" tabindex="1">
-                                            <button class="btn btn-primary-color">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                     fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                                                </svg>
-                                            </button>
+                                <div class="card-body">                                   
+                                    <div class="form-row">
+                                        <div class="form-group col-md-3 mb-0">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="country" placeholder="Loại thông báo">
+                                            </div>
                                         </div>
-                                    </form>
+                                        <div class="form-group col-md-3 mb-0">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="region" placeholder="Tiêu đề">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-3 mb-0">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                        <span class="feather feather-clock">Ngày gửi</span>
+                                                    </div>
+                                                </div>
+                                                <input class="form-control" id="datepicker-date" type="date" placeholder="Date Range" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-3 mb-0">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                        <span class="feather feather-clock">Tới ngày</span>
+                                                    </div>
+                                                </div>
+                                                <input class="form-control" id="datepicker-date" type="date" placeholder="Date Range" type="text">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-6 mb-0">
+                                            <div class="form-footer mt-2">
+                                                <a type="submit" class="btn btn-primary">Tìm kiếm</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                 </div>
                                 <div >
                                     <ul class="unstyled inbox-pagination ">
@@ -91,20 +119,13 @@
                                     <tbody>
                                     @foreach($models as $model)
                                     <tr class="@if(!$model->isRead) unread @endif jsViewDetail" data-url="{{route('nhansu.thong-bao.show', $model->id)}}">
-{{--                                        <td class="inbox-small-cells">--}}
-{{--                                            <label class="custom-control custom-checkbox mb-0">--}}
-{{--                                                <input type="checkbox" class="custom-control-input"--}}
-{{--                                                       name="example-checkbox2" value="option2">--}}
-{{--                                                <span class="custom-control-label"></span>--}}
-{{--                                            </label>--}}
-{{--                                        </td>--}}
-{{--                                        <td class="inbox-small-cells"><i class="fa fa-star text-warning"></i></td>--}}
-{{--                                        <td class="inbox-small-cells"><i class="fa fa-bookmark"></i></td>--}}
-                                        <td class="view-message dont-show font-weight-semibold">
+                                       <td class="inbox-small-cells"><i class="fa fa-bookmark text-danger"></i></td>
+                                       <td class="view-message">Thông báo: </td>
+                                        <td class="view-message dont-show font-weight-semibold" style="font-size: 13px">
                                             {{$model->sendFrom}}
                                         </td>
                                         <td class="view-message" style="max-width: 500px ; overflow:hidden">{{$model->tieu_de}}</td>
-                                        <td class="view-message text-end ">{{$model->created_at->format('d-m-Y h:i:s')}}</td>
+                                        <td class="view-message text-end " style="font-size: 12px">{{$model->created_at->format('d-m-Y h:i:s')}}</td>
                                     </tr>
                                     @endforeach
                                     </tbody>

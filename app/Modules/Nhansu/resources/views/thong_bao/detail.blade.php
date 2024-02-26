@@ -370,6 +370,14 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group mb-0">
+                                <div class="row">
+                                    <label class="col-sm-2 form-label">Đính kèm: </label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="file" multiple>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-footer d-sm-flex">
                             <div class="mt-2 mb-2">
