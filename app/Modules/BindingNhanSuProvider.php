@@ -10,6 +10,7 @@ use App\Modules\Nhansu\src\Repositories\Eloquent\NhanVienRepository;
 use App\Modules\Nhansu\src\Repositories\Eloquent\NhomNhanSuRepository;
 use App\Modules\Nhansu\src\Repositories\Eloquent\PhongBanRepository;
 use App\Modules\Nhansu\src\Repositories\Eloquent\SoDoToChucRepository;
+use App\Modules\Nhansu\src\Repositories\Eloquent\ThongBaoPhanHoiRepository;
 use App\Modules\Nhansu\src\Repositories\Eloquent\ThongBaoRepository;
 use App\Modules\Nhansu\src\Repositories\Eloquent\ThongBaoUserRepository;
 use App\Modules\Nhansu\src\Repositories\Eloquent\UngVienRepository;
@@ -21,6 +22,7 @@ use App\Modules\Nhansu\src\Repositories\Interface\NhanVienRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\NhomNhanSuRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\PhongBanRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\SoDoToChucRepositoryInterface;
+use App\Modules\Nhansu\src\Repositories\Interface\ThongBaoPhanHoiRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\ThongBaoRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\ThongBaoUserRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\UngVienRepositoryInterface;
@@ -88,6 +90,10 @@ class BindingNhanSuProvider extends ServiceProvider
         $this->app->singleton(
             NhomNhanSuRepositoryInterface::class,
             NhomNhanSuRepository::class
+        );
+        $this->app->singleton(
+            ThongBaoPhanHoiRepositoryInterface::class,
+            ThongBaoPhanHoiRepository::class
         );
     }
 }

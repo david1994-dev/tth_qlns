@@ -10,6 +10,7 @@ use App\Modules\Nhansu\src\Models\ThongBaoUser;
 use App\Modules\Nhansu\src\Repositories\Interface\ChiNhanhRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\LoaiThongBaoRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\PhongBanRepositoryInterface;
+use App\Modules\Nhansu\src\Repositories\Interface\ThongBaoPhanHoiRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\ThongBaoRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\ThongBaoUserRepositoryInterface;
 use App\Services\FileService;
@@ -24,6 +25,7 @@ class ThongBaoController extends Controller
     private LoaiThongBaoRepositoryInterface $loaiThongBaoRepository;
 
     private ThongBaoUserRepositoryInterface $thongBaoUserRepository;
+    private ThongBaoPhanHoiRepositoryInterface $thongBaoPhanHoiRepository;
 
     public function __construct(
         ThongBaoRepositoryInterface $thongBaoRepository,
@@ -31,7 +33,8 @@ class ThongBaoController extends Controller
         ChiNhanhRepositoryInterface $chiNhanhRepository,
         PhongBanRepositoryInterface $phongBanRepository,
         LoaiThongBaoRepositoryInterface $loaiThongBaoRepository,
-        ThongBaoUserRepositoryInterface $thongBaoUserRepository
+        ThongBaoUserRepositoryInterface $thongBaoUserRepository,
+        ThongBaoPhanHoiRepositoryInterface $thongBaoPhanHoiRepository
     ) {
         $this->thongBaoRepository = $thongBaoRepository;
         $this->fileService = $fileService;
@@ -39,6 +42,7 @@ class ThongBaoController extends Controller
         $this->phongBanRepository = $phongBanRepository;
         $this->loaiThongBaoRepository = $loaiThongBaoRepository;
         $this->thongBaoUserRepository = $thongBaoUserRepository;
+        $this->thongBaoPhanHoiRepository = $thongBaoPhanHoiRepository;
     }
 
     /**
@@ -151,6 +155,33 @@ class ThongBaoController extends Controller
         ]);
     }
 
+    public function reply(Request $request, $id)
+    {
+        $model = $this->thongBaoRepository->findById($id);
+        if (!$model) abort(404);
+
+        $input = $request->only(['nguoi_nhan_ids', 'noi_dung', 'gui_tat_ca']);
+        $input['thong_bao_id'] = $id;
+        $input['nguoi_gui_id'] = auth()->user()->id;
+        $files = [];
+        if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $file) {
+                $image = $this->fileService->uploadFile('thongbaophanhoi', $file, 'file');
+                if (!empty($image)) {
+                    $files[] = $file;
+                }
+            }
+        }
+
+        $input['dinh_kem'] = $files;
+        $this->thongBaoPhanHoiRepository->create($input);
+
+        session()->flash('success', 'Bạn đã phản hồi thông báo thành công');
+
+        return redirect()->route('nhansu.thong-bao.show', $id);
+
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -173,5 +204,13 @@ class ThongBaoController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function uploadImage(Request $request)
+    {
+        //todo validate image
+        $image = $this->fileService->uploadFile('thong_bao' ,$request->file('file'));
+
+        return response()->json(['location' => asset('storage/' . $image)]);
     }
 }
