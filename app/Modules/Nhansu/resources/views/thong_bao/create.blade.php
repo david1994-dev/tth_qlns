@@ -29,10 +29,10 @@
 
         .placeholder2 .select2-container .select2-search--inline .select2-search__field {
             font-size: 75%;
-         }
+        }
 
         .label-left label:not(.form-check-label):not(.custom-file-label) {
-         font-size: 11px !important;
+            font-size: 11px !important;
         }
 
         .font-placeholder .select2-container .select2-selection--single .select2-selection__rendered {
@@ -40,6 +40,7 @@
             padding-right: 0px;
             font-size: 75%;
         }
+
     </style>
 @stop
 @section('scripts')
@@ -150,7 +151,7 @@
                                 </div>
                                 <div class="col-xl-7 select22 placeholder2 font-placeholder">
                                     <select class="js-example-basic-single form-control select2 tat-ca-chi-nhanh "
-                                        name="" >
+                                        name="">
                                     </select>
                                 </div>
                             </div>
@@ -200,7 +201,7 @@
                                             <option>Phòng số hóa</option>
                                         </select>
                                     </div>
-                                    <p class="mt-2 label-left">(*) có thể tìm bằng mã nhân viên</p>
+                                    <p class="mt-2 label-left" style="font-size: small">(*) có thể tìm bằng mã nhân viên</p>
                                 </div>
                             </div>
                         </div>
@@ -237,7 +238,7 @@
                                 </div>
                                 <div class="col-xl-7">
                                     <input type="text" class="form-control" placeholder="Nhập người theo dõi..."
-                                        value="">
+                                        value="" ::placeholder{ color: }>
                                 </div>
                             </div>
                         </div>
@@ -281,9 +282,14 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
+                            <div class="form-group mb-0">
+                                <div class="row">
+                                    <label class="col-sm-2 form-label">Đính kèm: </label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="file" multiple>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-footer d-sm-flex">
                             <div class="mt-2 mb-2">
