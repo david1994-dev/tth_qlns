@@ -507,4 +507,10 @@ class BaseRepository implements BaseRepositoryInterface
 
         return $collections->load($relationShip);
     }
+
+    public function select($columns = [], string $order = 'id', string $direction = 'desc')
+    {
+        return $this->getBlankModel()->query()->orderBy($order, $direction)->select($columns)->get();
+    }
 }
+

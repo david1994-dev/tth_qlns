@@ -81,26 +81,6 @@
             ],
             images_upload_url: '{!! route('nhansu.thong-bao.uploadImage') !!}',
             file_picker_types: 'image',
-            file_picker_callback: function(cb, value, meta) {
-                var input = document.createElement('input');
-                input.setAttribute('type', 'file');
-                input.setAttribute('accept', 'image/*');
-                input.onchange = function () {
-                    var file = this.files[0];
-
-                    var reader = new FileReader();
-                    reader.readAsDataURL(file);
-                    reader.onload = function () {
-                        var id = 'blobid' + (new Date()).getTime();
-                        var blobCache = tinymce.activeEditor.editorUpload.blobCache;
-                        var base64 = reader.result.split(',')[1];
-                        var blobInfo = blobCache.create(id, file, base64);
-                        blobCache.add(blobInfo);
-                        cb(blobInfo.blobUri(), {title: file.name});
-                    };
-                };
-                input.click();
-            }
         });
     </script>
 @stop
@@ -137,7 +117,7 @@
                                 </div>
                                 <div class="col-xl-7 pe-0">
                                     <label class="custom-switch">
-                                        <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input">
+                                        <input type="checkbox" name="gui_tat_ca" class="custom-switch-input" value="1">
                                         <span class="custom-switch-indicator"></span>
                                         <span class="custom-switch-description"></span>
                                     </label>
@@ -151,7 +131,10 @@
                                 </div>
                                 <div class="col-xl-7 select22 placeholder2 font-placeholder">
                                     <select class="js-example-basic-single form-control select2 tat-ca-chi-nhanh "
-                                        name="">
+                                        name="chi_nhanh_ids[]" multiple>
+                                        @foreach($chiNhanh as $cn)
+                                            <option value="{{$cn->id}}">{{$cn->ten}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

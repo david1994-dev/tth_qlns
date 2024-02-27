@@ -9,6 +9,7 @@ use App\Modules\Nhansu\src\Models\ThongBao;
 use App\Modules\Nhansu\src\Models\ThongBaoUser;
 use App\Modules\Nhansu\src\Repositories\Interface\ChiNhanhRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\LoaiThongBaoRepositoryInterface;
+use App\Modules\Nhansu\src\Repositories\Interface\NhomNhanSuRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\PhongBanRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\ThongBaoPhanHoiRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\ThongBaoRepositoryInterface;
@@ -26,6 +27,7 @@ class ThongBaoController extends Controller
 
     private ThongBaoUserRepositoryInterface $thongBaoUserRepository;
     private ThongBaoPhanHoiRepositoryInterface $thongBaoPhanHoiRepository;
+    private NhomNhanSuRepositoryInterface $nhomNhanSuRepository;
 
     public function __construct(
         ThongBaoRepositoryInterface $thongBaoRepository,
@@ -34,7 +36,8 @@ class ThongBaoController extends Controller
         PhongBanRepositoryInterface $phongBanRepository,
         LoaiThongBaoRepositoryInterface $loaiThongBaoRepository,
         ThongBaoUserRepositoryInterface $thongBaoUserRepository,
-        ThongBaoPhanHoiRepositoryInterface $thongBaoPhanHoiRepository
+        ThongBaoPhanHoiRepositoryInterface $thongBaoPhanHoiRepository,
+        NhomNhanSuRepositoryInterface $nhomNhanSuRepository,
     ) {
         $this->thongBaoRepository = $thongBaoRepository;
         $this->fileService = $fileService;
@@ -43,6 +46,7 @@ class ThongBaoController extends Controller
         $this->loaiThongBaoRepository = $loaiThongBaoRepository;
         $this->thongBaoUserRepository = $thongBaoUserRepository;
         $this->thongBaoPhanHoiRepository = $thongBaoPhanHoiRepository;
+        $this->nhomNhanSuRepository = $nhomNhanSuRepository;
     }
 
     /**
@@ -91,10 +95,15 @@ class ThongBaoController extends Controller
      */
     public function create()
     {
-        $chiNhanh = $this->chiNhanhRepository->all();
-        $phongBan = $this->phongBanRepository->all();
+        $chiNhanh = $this->chiNhanhRepository->select(['ten', 'id']);
+        $phongBan = $this->phongBanRepository->select(['ten', 'id']);
+        $nhomNguoiDung = $this->nhomNhanSuRepository->select(['ten', 'id']);
 
-        return view('Nhansu::thong_bao.create');
+        return view('Nhansu::thong_bao.create', [
+            'chiNhanh' => $chiNhanh,
+            'phongBan' => $phongBan,
+            'nhomNguoiDung' => $nhomNguoiDung,
+        ]);
     }
 
     /**
