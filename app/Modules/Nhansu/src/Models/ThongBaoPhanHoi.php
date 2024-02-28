@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ThongBaoPhanHoi extends Base
 {
-    protected $table = 'thong_bao';
+    protected $table = 'thong_bao_phan_hoi';
     use SoftDeletes;
 
     protected $fillable = [
