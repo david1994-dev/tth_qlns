@@ -1,4 +1,12 @@
 @extends('adminlte.Layout.app')
+@section('styles')
+    <style>
+        .tox-tinymce-aux {
+            position: relative;
+            z-index: 10000 !important;
+        }
+    </style>
+@stop
 @section('scripts')
     <script src="https://cdn.tiny.cloud/1/s5czkzl43fj1mskq5fews6aaqgi3szoefx33i9biqutkvdxn/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
@@ -17,11 +25,23 @@
     </script>
 
     <script>
-        $(document).ready(function() {
-            $('.radio').click(function() {
-                document.getElementById('price').innerHTML = $(this).val();
-            });
-        });
+        // function show1() {
+        //     document.getElementById('div1').style.display = 'none';
+        // }
+
+        // function show2() {
+        //     document.getElementById('div1').style.display = 'block';
+        // }
+
+        let radioButton = $('input[name="tab"]');
+        radioButton.on('click', function() {
+            let value = $('input[name="tab"]:checked').val();
+            if (value === 'igottwo') {
+                $('#div1').removeClass('d-none')
+            } else {
+                $('#div1').addClass('d-none')
+            }
+        })
     </script>
 @stop
 @section('content')
@@ -279,50 +299,14 @@
                                 <div class="col-xxl-4 col-xl-12 col-md-12 my-2">
                                     <div class="list-group-item  align-items-center">
                                         <div class="d-xl-flex">
-                                            <img src="https://laravelui.spruko.com/dayone/assets/images/files/attachments/2.png"
+                                            <img src="https://play-lh.googleusercontent.com/g2_mp6KE9sOiqfV2P3YEzqp6Zzuwfyu1rhVPbXzMmb42s2jCR9rt6nbo-m5j1Y0Ekw-Y=w240-h480-rw"
                                                 alt="img" class="avatar bg-transparent avatar-xl me-2">
-                                            <a href="javascript:void(0);"
-                                                class="font-weight-semibold fs-14 mt-5">document.pdf<span
+                                            <a href="{{ asset('cv_nguyenthiminhhoa_tester.pdf') }}"
+                                                class="font-weight-semibold fs-14 mt-5">file test<span
                                                     class="text-muted ms-2">(23 KB)</span></a>
                                             <div class="ms-auto d-flex mt-4 text-end">
-                                                <a href="javascript:void(0);" class="action-btns1"><i
-                                                        class="feather feather-download-cloud text-primary"></i></a>
-                                                <a href="javascript:void(0);" class="action-btns1  me-0"><i
-                                                        class="feather feather-trash-2 text-danger"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-4 col-xl-12 col-md-12 my-2">
-                                    <div class="list-group-item  align-items-center">
-                                        <div class="d-xl-flex">
-                                            <img src="https://laravelui.spruko.com/dayone/assets/images/files/attachments/4.png"
-                                                alt="img" class="avatar bg-transparent avatar-xl me-2">
-                                            <a href="javascript:void(0);"
-                                                class="font-weight-semibold fs-14 mt-5">Project<span
-                                                    class="text-muted ms-2">(58.6MB)</span></a>
-                                            <div class="ms-auto d-flex mt-4 text-end">
-                                                <a href="javascript:void(0);" class="action-btns1"><i
-                                                        class="feather feather-download-cloud text-primary"></i></a>
-                                                <a href="javascript:void(0);" class="action-btns1 me-0"><i
-                                                        class="feather feather-trash-2 text-danger"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-4 col-xl-12 col-md-12 my-2">
-                                    <div class="list-group-item  align-items-center">
-                                        <div class="d-xl-flex">
-                                            <img src="https://laravelui.spruko.com/dayone/assets/images/files/attachments/3.png"
-                                                alt="img" class="avatar bg-transparent avatar-xl me-2">
-                                            <a href="javascript:void(0);"
-                                                class="font-weight-semibold fs-14 mt-5">files.doc<span
-                                                    class="text-muted ms-2">(2.67 KB)</span></a>
-                                            <div class="ms-auto d-flex mt-4 text-end">
-                                                <a href="javascript:void(0);" class="action-btns1"><i
-                                                        class="feather feather-download-cloud text-primary"></i></a>
-                                                <a href="javascript:void(0);" class="action-btns1 me-0"><i
-                                                        class="feather feather-trash-2 text-danger"></i></a>
+                                                <a href="{{ asset('cv_nguyenthiminhhoa_tester.pdf') }}"
+                                                    class="action-btns1"><i class="bi bi-arrow-bar-down"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -353,15 +337,17 @@
                                 <label class="col-sm-2 form-label">Phản hồi cho <span style="color: red">*</span>:</label>
                                 <div class="col-sm-10">
                                     <div class="row">
-                                        <div class="col-4"><input type="radio" name="phan_hoi_cho"
-                                                value="Toàn bộ">Toàn bộ </div>
-                                        <div class="col-8"><input type="radio" name="phan_hoi_cho" value="Cá nhân"
-                                                onclick="phanHoi()">Cá
-                                            nhân </div>
+                                        <div class="col-4"><input type="radio" name="tab" value="igotnone" checked/>
+                                            None </div>
+                                        <div class="col-8"><input type="radio" name="tab" value="igottwo" />
+                                            Two</div>
                                     </div>
                                 </div>
+                                <div id="div1" class="d-none">
+                                    <p>show</p>
+                                </div>
                             </div>
-                            <p id="demo"></p>
+
                             <div class="form-group">
                                 <div class="row ">
                                     <label class="col-sm-2 form-label">Nội dung <span style="color: red">*</span>:</label>

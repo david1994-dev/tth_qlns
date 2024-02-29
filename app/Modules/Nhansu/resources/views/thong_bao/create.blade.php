@@ -40,7 +40,6 @@
             padding-right: 0px;
             font-size: 75%;
         }
-
     </style>
 @stop
 @section('scripts')
@@ -66,6 +65,12 @@
                 placeholder: "Chọn loại thông báo... "
             })
         });
+    </script>
+    <script>
+        $files = $('#fileInput').files;
+        for (var i = 0, l = files.length; i < l; i++) {
+            console.log(files[i].name);
+        }
     </script>
     <script src="https://cdn.tiny.cloud/1/s5czkzl43fj1mskq5fews6aaqgi3szoefx33i9biqutkvdxn/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
@@ -107,7 +112,7 @@
 
         <!-- ROW -->
         <div class="row">
-            <div class="col-lg-3 col-xl-3 col-md-12 col-sm-12">
+            <div class="col-lg-4 col-xl-4 col-md-12 col-sm-12">
                 <div class="card">
                     <div class="card-body">
                         <div class="form-group">
@@ -126,29 +131,31 @@
                         </div>
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-xl-5 label-left">
+                                <div class="col-xl-12 label-left">
                                     <label class="form-label mb-0 ">Gửi Tất Cả Nhân Viên Trong Chi Nhánh:</label>
                                 </div>
-                                <div class="col-xl-7 select22 placeholder2 font-placeholder">
-                                    <select class="js-example-basic-single form-control select2 tat-ca-chi-nhanh "
-                                        name="chi_nhanh_ids[]" multiple>
-                                        @foreach($chiNhanh as $cn)
-                                            <option value="{{$cn->id}}">{{$cn->ten}}</option>
-                                        @endforeach
-                                    </select>
+                                <div class="col-xl-12 select22 placeholder2 font-placeholder">
+                                    <div class="option exit-option">
+                                        <select class="js-example-basic-single form-control select2 tat-ca-chi-nhanh"
+                                            name="chi_nhanh_ids[]" multiple>
+                                            @foreach ($chiNhanh as $cn)
+                                                <option value="{{ $cn->id }}">{{ $cn->ten }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-xl-5 label-left ">
+                                <div class="col-xl-12 label-left ">
                                     <label class="form-label mb-0 ">Người Nhận Khoa/Phòng:</label>
                                 </div>
-                                <div class="col-xl-7 placeholder2">
+                                <div class="col-xl-12 placeholder2">
                                     <div class="option exit-option">
                                         <select class="js-example-basic-single form-control select2 nguoi-nhan-khoa-phong"
                                             name="" multiple>
-                                            <option>Phòng cơ chế chính sách</option>
+                                            <option>Phòng cơ chế chính sách aaaaaaaaaaaaaaaaaaaaaaaaa</option>
                                             <option>Phòng số hóa</option>
                                         </select>
                                     </div>
@@ -157,10 +164,10 @@
                         </div>
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-xl-5 label-left">
+                                <div class="col-xl-12 label-left">
                                     <label class="form-label mb-0 ">Nhóm Người Dùng:</label>
                                 </div>
-                                <div class="col-xl-7">
+                                <div class="col-xl-12">
                                     <div class="option exit-option placeholder2">
                                         <select class="js-example-basic-single form-control select2 nhom-nguoi-dung"
                                             name="" multiple>
@@ -173,10 +180,10 @@
                         </div>
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-xl-5 label-left">
+                                <div class="col-xl-12 label-left">
                                     <label class="form-label mb-0 ">Người Nhận Cá Nhân:</label>
                                 </div>
-                                <div class="col-xl-7 placeholder2">
+                                <div class="col-xl-12 placeholder2">
                                     <div class="option exit-option">
                                         <select class="js-example-basic-single form-control select2 nguoi-nhan-ca-nhan"
                                             name="" multiple>
@@ -190,10 +197,10 @@
                         </div>
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-xl-5 label-left">
+                                <div class="col-xl-12 label-left">
                                     <label class="form-label mb-0 ">Mức Độ:</label>
                                 </div>
-                                <div class="col-xl-7 placeholder2">
+                                <div class="col-xl-12 placeholder2">
                                     <select class="js-example-basic-single form-control select2 muc-do" name="">
                                         <option>Bình thường</option>
                                         <option>Khẩn</option>
@@ -204,10 +211,10 @@
                         </div>
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-xl-5 label-left">
+                                <div class="col-xl-12 label-left">
                                     <label class="form-label mb-0 ">Loại Thông Báo<span style="color: red">*</span>:</label>
                                 </div>
-                                <div class="col-xl-7 font-placeholder">
+                                <div class="col-xl-12 font-placeholder">
                                     <select class="js-example-basic-single select2 loai-thong-bao form-control "
                                         name="">
                                     </select>
@@ -216,12 +223,11 @@
                         </div>
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-xl-5 label-left">
+                                <div class="col-xl-12 label-left">
                                     <label class="form-label mb-0 ">Người Theo Dõi:</label>
                                 </div>
-                                <div class="col-xl-7">
-                                    <input type="text" class="form-control" placeholder="Nhập người theo dõi..."
-                                        value="" ::placeholder{ color: }>
+                                <div class="col-xl-12">
+                                    <input type="text" class="form-control" value="" ::placeholder{ color: }>
                                 </div>
                             </div>
                         </div>
@@ -242,7 +248,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-9 col-xl-9 col-md-12 col-sm-12">
+            <div class="col-lg-8 col-xl-8 col-md-12 col-sm-12">
                 <div class="card">
                     <div class="card-header border-bottom-0">
                         <h3 class="card-title">NỘI DUNG THÔNG BÁO</h3>
@@ -269,7 +275,8 @@
                                 <div class="row">
                                     <label class="col-sm-2 form-label">Đính kèm: </label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" multiple>
+                                        <input class="form-control" type="file" name="fileInput[]" multiple />
+                                        <p></p>
                                     </div>
                                 </div>
                             </div>
