@@ -36,22 +36,6 @@
                             </a>
                         @endforeach
                     </div>
-{{--                    <div class="card-body border-top">--}}
-{{--                        <div class="list-group list-group-transparent mb-0 mail-inbox">--}}
-{{--                            <a href="javascript:void(0);"--}}
-{{--                               class="list-group-item list-group-item-action d-flex align-items-center px-0 py-2">--}}
-{{--                                <span class="w-3 h-3 brround bg-primary me-2"></span> Mới--}}
-{{--                            </a>--}}
-{{--                            <a href="javascript:void(0);"--}}
-{{--                               class="list-group-item list-group-item-action d-flex align-items-center px-0 py-2">--}}
-{{--                                <span class="w-3 h-3 brround bg-success me-2"></span> Chưa xem--}}
-{{--                            </a>--}}
-{{--                            <a href="javascript:void(0);"--}}
-{{--                               class="list-group-item list-group-item-action d-flex align-items-center px-0 py-2">--}}
-{{--                                <span class="w-3 h-3 brround bg-danger me-2"></span> Khẩn--}}
-{{--                            </a>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
                 </div>
             </div>
             <div class="col-md-12 col-lg-8 col-xl-9">
@@ -59,7 +43,7 @@
                     <div class="card-body p-6">
                         <div class="inbox-body">
                             <div class="mail-option">
-                                <div class="card-body">                                   
+                                <form>                                   
                                     <div class="form-row">
                                         <div class="form-group col-md-3 mb-0">
                                             <div class="form-group">
@@ -95,13 +79,13 @@
                                         </div>
 
                                         <div class="form-group col-md-6 mb-0">
-                                            <div class="form-footer mt-2">
+                                            <div>
                                                 <a type="submit" class="btn btn-primary">Tìm kiếm</a>
                                             </div>
                                         </div>
                                     </div>
                                     
-                                </div>
+                                </form>
                                 <div >
                                     <ul class="unstyled inbox-pagination ">
                                         <li><span>1-50 of 234</span></li>
