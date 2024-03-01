@@ -8,7 +8,7 @@
         .placeholder1 .select2-container--default .select2-selection--single .select2-selection__rendered {
             line-height: 0px !important;
         }
-        
+
         .select22 .select2-container .select2-selection--single {
             height: calc(2.25rem + 1px) !important;
         }

@@ -27,6 +27,7 @@
                                 </div>
                             </div>
                             <a type="submit" class="btn btn-primary ">Submit</a>
+                        </div>
                     </form>
                 </div>
             </div>
