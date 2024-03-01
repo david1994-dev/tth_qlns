@@ -111,149 +111,154 @@
         <!-- END PAGE HEADER -->
 
         <!-- ROW -->
-        <div class="row">
-            <div class="col-lg-4 col-xl-4 col-md-12 col-sm-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-xl-5">
-                                    <label class="form-label">Gửi Tất Cả Các Chi Nhánh:</label>
-                                </div>
-                                <div class="col-xl-7 pe-0">
-                                    <label class="custom-switch">
-                                        <input type="checkbox" name="gui_tat_ca" class="custom-switch-input" value="1">
-                                        <span class="custom-switch-indicator"></span>
-                                        <span class="custom-switch-description"></span>
-                                    </label>
+        <form>
+            <div class="row">
+                <div class="col-lg-4 col-xl-4 col-md-12 col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-xl-5">
+                                        <label class="form-label">Gửi Tất Cả Các Chi Nhánh:</label>
+                                    </div>
+                                    <div class="col-xl-7 pe-0">
+                                        <label class="custom-switch">
+                                            <input type="checkbox" name="gui_tat_ca" class="custom-switch-input"
+                                                value="1">
+                                            <span class="custom-switch-indicator"></span>
+                                            <span class="custom-switch-description"></span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-xl-12 label-left">
-                                    <label class="form-label mb-0 ">Gửi Tất Cả Nhân Viên Trong Chi Nhánh:</label>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-xl-12 label-left">
+                                        <label class="form-label mb-0 ">Gửi Tất Cả Nhân Viên Trong Chi Nhánh:</label>
+                                    </div>
+                                    <div class="col-xl-12 select22 placeholder2 font-placeholder">
+                                        <div class="option exit-option">
+                                            <select class="js-example-basic-single form-control select2 tat-ca-chi-nhanh"
+                                                name="chi_nhanh_ids[]" multiple>
+                                                @foreach ($chiNhanh as $cn)
+                                                    <option value="{{ $cn->id }}">{{ $cn->ten }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-xl-12 select22 placeholder2 font-placeholder">
-                                    <div class="option exit-option">
-                                        <select class="js-example-basic-single form-control select2 tat-ca-chi-nhanh"
-                                            name="chi_nhanh_ids[]" multiple>
-                                            @foreach ($chiNhanh as $cn)
-                                                <option value="{{ $cn->id }}">{{ $cn->ten }}</option>
-                                            @endforeach
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-xl-12 label-left ">
+                                        <label class="form-label mb-0 ">Người Nhận Khoa/Phòng:</label>
+                                    </div>
+                                    <div class="col-xl-12 placeholder2">
+                                        <div class="option exit-option">
+                                            <select
+                                                class="js-example-basic-single form-control select2 nguoi-nhan-khoa-phong"
+                                                name="" multiple>
+                                                <option>Phòng cơ chế chính sách aaaaaaaaaaaaaaaaaaaaaaaaa</option>
+                                                <option>Phòng số hóa</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-xl-12 label-left">
+                                        <label class="form-label mb-0 ">Nhóm Người Dùng:</label>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="option exit-option placeholder2">
+                                            <select class="js-example-basic-single form-control select2 nhom-nguoi-dung"
+                                                name="" multiple>
+                                                <option>Phòng cơ chế chính sách</option>
+                                                <option>Phòng số hóa</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-xl-12 label-left">
+                                        <label class="form-label mb-0 ">Người Nhận Cá Nhân:</label>
+                                    </div>
+                                    <div class="col-xl-12 placeholder2">
+                                        <div class="option exit-option">
+                                            <select class="js-example-basic-single form-control select2 nguoi-nhan-ca-nhan"
+                                                name="" multiple>
+                                                <option>Phòng cơ chế chính sách</option>
+                                                <option>Phòng số hóa</option>
+                                            </select>
+                                        </div>
+                                        <p class="mt-2 label-left" style="font-size: small">(*) có thể tìm bằng mã nhân viên
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-xl-12 label-left">
+                                        <label class="form-label mb-0 ">Mức Độ:</label>
+                                    </div>
+                                    <div class="col-xl-12 placeholder2">
+                                        <select class="js-example-basic-single form-control select2 muc-do" name="">
+                                            <option>Bình thường</option>
+                                            <option>Khẩn</option>
+                                            <option>Mật</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-xl-12 label-left ">
-                                    <label class="form-label mb-0 ">Người Nhận Khoa/Phòng:</label>
-                                </div>
-                                <div class="col-xl-12 placeholder2">
-                                    <div class="option exit-option">
-                                        <select class="js-example-basic-single form-control select2 nguoi-nhan-khoa-phong"
-                                            name="" multiple>
-                                            <option>Phòng cơ chế chính sách aaaaaaaaaaaaaaaaaaaaaaaaa</option>
-                                            <option>Phòng số hóa</option>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-xl-12 label-left">
+                                        <label class="form-label mb-0 ">Loại Thông Báo<span
+                                                style="color: red">*</span>:</label>
+                                    </div>
+                                    <div class="col-xl-12 font-placeholder">
+                                        <select class="js-example-basic-single select2 loai-thong-bao form-control "
+                                            name="">
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-xl-12 label-left">
-                                    <label class="form-label mb-0 ">Nhóm Người Dùng:</label>
-                                </div>
-                                <div class="col-xl-12">
-                                    <div class="option exit-option placeholder2">
-                                        <select class="js-example-basic-single form-control select2 nhom-nguoi-dung"
-                                            name="" multiple>
-                                            <option>Phòng cơ chế chính sách</option>
-                                            <option>Phòng số hóa</option>
-                                        </select>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-xl-12 label-left">
+                                        <label class="form-label mb-0 ">Người Theo Dõi:</label>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <input type="text" class="form-control" value="" ::placeholder{ color: }>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-xl-12 label-left">
-                                    <label class="form-label mb-0 ">Người Nhận Cá Nhân:</label>
-                                </div>
-                                <div class="col-xl-12 placeholder2">
-                                    <div class="option exit-option">
-                                        <select class="js-example-basic-single form-control select2 nguoi-nhan-ca-nhan"
-                                            name="" multiple>
-                                            <option>Phòng cơ chế chính sách</option>
-                                            <option>Phòng số hóa</option>
-                                        </select>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-xl-5 label-left">
+                                        <label class="form-label">Ban Hành:</label>
                                     </div>
-                                    <p class="mt-2 label-left" style="font-size: small">(*) có thể tìm bằng mã nhân viên</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-xl-12 label-left">
-                                    <label class="form-label mb-0 ">Mức Độ:</label>
-                                </div>
-                                <div class="col-xl-12 placeholder2">
-                                    <select class="js-example-basic-single form-control select2 muc-do" name="">
-                                        <option>Bình thường</option>
-                                        <option>Khẩn</option>
-                                        <option>Mật</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-xl-12 label-left">
-                                    <label class="form-label mb-0 ">Loại Thông Báo<span style="color: red">*</span>:</label>
-                                </div>
-                                <div class="col-xl-12 font-placeholder">
-                                    <select class="js-example-basic-single select2 loai-thong-bao form-control "
-                                        name="">
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-xl-12 label-left">
-                                    <label class="form-label mb-0 ">Người Theo Dõi:</label>
-                                </div>
-                                <div class="col-xl-12">
-                                    <input type="text" class="form-control" value="" ::placeholder{ color: }>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-xl-5 label-left">
-                                    <label class="form-label">Ban Hành:</label>
-                                </div>
-                                <div class="col-xl-7 pe-0">
-                                    <label class="custom-switch">
-                                        <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input">
-                                        <span class="custom-switch-indicator"></span>
-                                        <span class="custom-switch-description"></span>
-                                    </label>
+                                    <div class="col-xl-7 pe-0">
+                                        <label class="custom-switch">
+                                            <input type="checkbox" name="custom-switch-checkbox"
+                                                class="custom-switch-input">
+                                            <span class="custom-switch-indicator"></span>
+                                            <span class="custom-switch-description"></span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-8 col-xl-8 col-md-12 col-sm-12">
-                <div class="card">
-                    <div class="card-header border-bottom-0">
-                        <h3 class="card-title">NỘI DUNG THÔNG BÁO</h3>
-                    </div>
-                    <form>
+                <div class="col-lg-8 col-xl-8 col-md-12 col-sm-12">
+                    <div class="card">
+                        <div class="card-header border-bottom-0">
+                            <h3 class="card-title">NỘI DUNG THÔNG BÁO</h3>
+                        </div>
                         <div class="card-body">
                             <div class="form-group">
                                 <div class="row align-items-center">
@@ -276,7 +281,6 @@
                                     <label class="col-sm-2 form-label">Đính kèm: </label>
                                     <div class="col-sm-10">
                                         <input class="form-control" type="file" name="fileInput[]" multiple />
-                                        <p></p>
                                     </div>
                                 </div>
                             </div>
@@ -289,10 +293,10 @@
                                 <button type="submit" class="btn btn-primary btn-space">Đăng thông báo</button>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
         <!-- END ROW -->
 
     </div>
