@@ -8,7 +8,7 @@
         .placeholder1 .select2-container--default .select2-selection--single .select2-selection__rendered {
             line-height: 0px !important;
         }
-        
+
         .select22 .select2-container .select2-selection--single {
             height: calc(2.25rem + 1px) !important;
         }
@@ -48,27 +48,31 @@
             &.files {
                 background: #eee;
                 padding: 1rem;
-                margin:1rem 0;
-                border-radius:10px;
-                ul{
-                    list-style:none;
-                    padding:0;
-                    max-height:150px;
-                    overflow:auto;
-                    li{
-                        padding:0.5rem 0;
-                        padding-right:2rem;
-                        position:relative;
-                        i{
-                            cursor:pointer;
-                            position:absolute;
-                            top:50%;
-                            right:0;
-                            transform:translatey(-50%);
+                margin: 1rem 0;
+                border-radius: 10px;
+
+                ul {
+                    list-style: none;
+                    padding: 0;
+                    max-height: 150px;
+                    overflow: auto;
+
+                    li {
+                        padding: 0.5rem 0;
+                        padding-right: 2rem;
+                        position: relative;
+
+                        i {
+                            cursor: pointer;
+                            position: absolute;
+                            top: 50%;
+                            right: 0;
+                            transform: translatey(-50%);
                         }
                     }
                 }
             }
+
             &.container {
                 width: 100%;
                 padding: 0 2rem;
@@ -79,7 +83,6 @@
             color: #999;
             padding-left: 0.5rem;
         }
-
     </style>
 @stop
 @section('scripts')
@@ -132,7 +135,10 @@
 
         // state management
         function updateState(newState) {
-            state = { ...state, ...newState };
+            state = {
+                ...state,
+                ...newState
+            };
             console.log(state);
         }
 
@@ -140,7 +146,10 @@
         $("#upload").change(function(e) {
             let files = $("#upload")[0].files;
             let filesArr = Array.from(files);
-            updateState({ files: files, filesArr: filesArr });
+            updateState({
+                files: files,
+                filesArr: filesArr
+            });
 
             renderFileList();
         });
@@ -151,7 +160,9 @@
                 .attr("key");
             let curArr = state.filesArr;
             curArr.splice(key, 1);
-            updateState({ filesArr: curArr });
+            updateState({
+                filesArr: curArr
+            });
             renderFileList();
         });
 
@@ -199,150 +210,155 @@
         <!-- END PAGE HEADER -->
 
         <!-- ROW -->
-        <div class="row">
-            <div class="col-lg-4 col-xl-4 col-md-12 col-sm-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-xl-5">
-                                    <label class="form-label">Gửi Tất Cả Các Chi Nhánh:</label>
-                                </div>
-                                <div class="col-xl-7 pe-0">
-                                    <label class="custom-switch">
-                                        <input type="checkbox" name="gui_tat_ca" class="custom-switch-input" value="1">
-                                        <span class="custom-switch-indicator"></span>
-                                        <span class="custom-switch-description"></span>
-                                    </label>
+        <form>
+            <div class="row">
+                <div class="col-lg-4 col-xl-4 col-md-12 col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-xl-5">
+                                        <label class="form-label">Gửi Tất Cả Các Chi Nhánh:</label>
+                                    </div>
+                                    <div class="col-xl-7 pe-0">
+                                        <label class="custom-switch">
+                                            <input type="checkbox" name="gui_tat_ca" class="custom-switch-input"
+                                                value="1">
+                                            <span class="custom-switch-indicator"></span>
+                                            <span class="custom-switch-description"></span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-xl-12 label-left">
-                                    <label class="form-label mb-0 ">Gửi Tất Cả Nhân Viên Trong Chi Nhánh:</label>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-xl-12 label-left">
+                                        <label class="form-label mb-0 ">Gửi Tất Cả Nhân Viên Trong Chi Nhánh:</label>
+                                    </div>
+                                    <div class="col-xl-12 select22 placeholder2 font-placeholder">
+                                        <div class="option exit-option">
+                                            <select class="js-example-basic-single form-control select2 tat-ca-chi-nhanh"
+                                                name="chi_nhanh_ids[]" multiple>
+                                                @foreach ($chiNhanh as $cn)
+                                                    <option value="{{ $cn->id }}">{{ $cn->ten }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-xl-12 select22 placeholder2 font-placeholder">
-                                    <div class="option exit-option">
-                                        <select class="js-example-basic-single form-control select2 tat-ca-chi-nhanh"
-                                            name="chi_nhanh_ids[]" multiple>
-                                            @foreach ($chiNhanh as $cn)
-                                                <option value="{{ $cn->id }}">{{ $cn->ten }}</option>
-                                            @endforeach
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-xl-12 label-left ">
+                                        <label class="form-label mb-0 ">Người Nhận Khoa/Phòng:</label>
+                                    </div>
+                                    <div class="col-xl-12 placeholder2">
+                                        <div class="option exit-option">
+                                            <select
+                                                class="js-example-basic-single form-control select2 nguoi-nhan-khoa-phong"
+                                                name="phong_ban_ids[]" multiple>
+                                                @foreach ($phongBan as $pb)
+                                                    <option value="{{ $pb->id }}">{{ $pb->ten }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-xl-12 label-left">
+                                        <label class="form-label mb-0 ">Nhóm Người Dùng:</label>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="option exit-option placeholder2">
+                                            <select class="js-example-basic-single form-control select2 nhom-nguoi-dung"
+                                                name="" multiple>
+                                                <option>Phòng cơ chế chính sách</option>
+                                                <option>Phòng số hóa</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-xl-12 label-left">
+                                        <label class="form-label mb-0 ">Người Nhận Cá Nhân:</label>
+                                    </div>
+                                    <div class="col-xl-12 placeholder2">
+                                        <div class="option exit-option">
+                                            <select class="js-example-basic-single form-control select2 nguoi-nhan-ca-nhan"
+                                                name="" multiple>
+                                                <option>Phòng cơ chế chính sách</option>
+                                                <option>Phòng số hóa</option>
+                                            </select>
+                                        </div>
+                                        <p class="mt-2 label-left" style="font-size: small">(*) có thể tìm bằng mã nhân viên
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-xl-12 label-left">
+                                        <label class="form-label mb-0 ">Mức Độ:</label>
+                                    </div>
+                                    <div class="col-xl-12 placeholder2">
+                                        <select class="js-example-basic-single form-control select2 muc-do" name="">
+                                            <option>Bình thường</option>
+                                            <option>Khẩn</option>
+                                            <option>Mật</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-xl-12 label-left ">
-                                    <label class="form-label mb-0 ">Người Nhận Khoa/Phòng:</label>
-                                </div>
-                                <div class="col-xl-12 placeholder2">
-                                    <div class="option exit-option">
-                                        <select class="js-example-basic-single form-control select2 nguoi-nhan-khoa-phong"
-                                            name="phong_ban_ids[]" multiple>
-                                            @foreach($phongBan as $pb)
-                                            <option value="{{$pb->id}}">{{$pb->ten}}</option>
-                                            @endforeach
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-xl-12 label-left">
+                                        <label class="form-label mb-0 ">Loại Thông Báo<span
+                                                style="color: red">*</span>:</label>
+                                    </div>
+                                    <div class="col-xl-12 font-placeholder">
+                                        <select class="js-example-basic-single select2 loai-thong-bao form-control "
+                                            name="">
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-xl-12 label-left">
-                                    <label class="form-label mb-0 ">Nhóm Người Dùng:</label>
-                                </div>
-                                <div class="col-xl-12">
-                                    <div class="option exit-option placeholder2">
-                                        <select class="js-example-basic-single form-control select2 nhom-nguoi-dung"
-                                            name="" multiple>
-                                            <option>Phòng cơ chế chính sách</option>
-                                            <option>Phòng số hóa</option>
-                                        </select>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-xl-12 label-left">
+                                        <label class="form-label mb-0 ">Người Theo Dõi:</label>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <input type="text" class="form-control" value="" ::placeholder{ color: }>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-xl-12 label-left">
-                                    <label class="form-label mb-0 ">Người Nhận Cá Nhân:</label>
-                                </div>
-                                <div class="col-xl-12 placeholder2">
-                                    <div class="option exit-option">
-                                        <select class="js-example-basic-single form-control select2 nguoi-nhan-ca-nhan"
-                                            name="" multiple>
-                                            <option>Phòng cơ chế chính sách</option>
-                                            <option>Phòng số hóa</option>
-                                        </select>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-xl-5 label-left">
+                                        <label class="form-label">Ban Hành:</label>
                                     </div>
-                                    <p class="mt-2 label-left" style="font-size: small">(*) có thể tìm bằng mã nhân viên</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-xl-12 label-left">
-                                    <label class="form-label mb-0 ">Mức Độ:</label>
-                                </div>
-                                <div class="col-xl-12 placeholder2">
-                                    <select class="js-example-basic-single form-control select2 muc-do" name="">
-                                        <option>Bình thường</option>
-                                        <option>Khẩn</option>
-                                        <option>Mật</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-xl-12 label-left">
-                                    <label class="form-label mb-0 ">Loại Thông Báo<span style="color: red">*</span>:</label>
-                                </div>
-                                <div class="col-xl-12 font-placeholder">
-                                    <select class="js-example-basic-single select2 loai-thong-bao form-control "
-                                        name="">
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-xl-12 label-left">
-                                    <label class="form-label mb-0 ">Người Theo Dõi:</label>
-                                </div>
-                                <div class="col-xl-12">
-                                    <input type="text" class="form-control" value="" ::placeholder{ color: }>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-xl-5 label-left">
-                                    <label class="form-label">Ban Hành:</label>
-                                </div>
-                                <div class="col-xl-7 pe-0">
-                                    <label class="custom-switch">
-                                        <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input">
-                                        <span class="custom-switch-indicator"></span>
-                                        <span class="custom-switch-description"></span>
-                                    </label>
+                                    <div class="col-xl-7 pe-0">
+                                        <label class="custom-switch">
+                                            <input type="checkbox" name="custom-switch-checkbox"
+                                                class="custom-switch-input">
+                                            <span class="custom-switch-indicator"></span>
+                                            <span class="custom-switch-description"></span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-8 col-xl-8 col-md-12 col-sm-12">
-                <div class="card">
-                    <div class="card-header border-bottom-0">
-                        <h3 class="card-title">NỘI DUNG THÔNG BÁO</h3>
-                    </div>
-                    <form>
+                <div class="col-lg-8 col-xl-8 col-md-12 col-sm-12">
+                    <div class="card">
+                        <div class="card-header border-bottom-0">
+                            <h3 class="card-title">NỘI DUNG THÔNG BÁO</h3>
+                        </div>
                         <div class="card-body">
                             <div class="form-group">
                                 <div class="row align-items-center">
@@ -364,18 +380,19 @@
                                 <div class="row">
                                     <label class="col-sm-2 form-label">Đính kèm: </label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" id="upload" type="file" name="fileInput[]" multiple />
+                                        <input class="form-control" id="upload" type="file" name="fileInput[]"
+                                            multiple />
                                         <div class="files d-none">
                                             <ul></ul>
                                         </div>
                                     </div>
                                 </div>
-{{--                                <div class="row">--}}
-{{--                                    <label class="col-sm-2 form-label">Đính kèm: </label>--}}
-{{--                                    <div class="col-sm-10">--}}
-{{--                                        <input class="form-control" type="file" multiple>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+                                {{--                                <div class="row"> --}}
+                                {{--                                    <label class="col-sm-2 form-label">Đính kèm: </label> --}}
+                                {{--                                    <div class="col-sm-10"> --}}
+                                {{--                                        <input class="form-control" type="file" multiple> --}}
+                                {{--                                    </div> --}}
+                                {{--                                </div> --}}
                             </div>
                         </div>
                         <div class="card-footer d-sm-flex">
@@ -386,10 +403,10 @@
                                 <button type="submit" class="btn btn-primary btn-space">Đăng thông báo</button>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
         <!-- END ROW -->
 
     </div>
