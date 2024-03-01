@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="{{asset('adminlte\plugins\select2\css\select2.min.css')}}">
 
 <link rel="stylesheet" href="{{asset('adminlte\dist\css\laravelui\style.css')}}">
-<link href="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone.css" rel="stylesheet" type="text/css" />
+
 <style>
     @media print {
       body {
