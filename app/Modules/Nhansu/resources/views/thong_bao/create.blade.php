@@ -9,7 +9,6 @@
             line-height: 0px !important;
         }
 
-
         .select22 .select2-container .select2-selection--single {
             height: calc(2.25rem + 1px) !important;
         }
@@ -39,6 +38,50 @@
             padding-left: 0px;
             padding-right: 0px;
             font-size: 75%;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        div {
+            &.files {
+                background: #eee;
+                padding: 1rem;
+                margin: 1rem 0;
+                border-radius: 10px;
+
+                ul {
+                    list-style: none;
+                    padding: 0;
+                    max-height: 150px;
+                    overflow: auto;
+
+                    li {
+                        padding: 0.5rem 0;
+                        padding-right: 2rem;
+                        position: relative;
+
+                        i {
+                            cursor: pointer;
+                            position: absolute;
+                            top: 50%;
+                            right: 0;
+                            transform: translatey(-50%);
+                        }
+                    }
+                }
+            }
+
+            &.container {
+                width: 100%;
+                padding: 0 2rem;
+            }
+        }
+
+        span.file-size {
+            color: #999;
+            padding-left: 0.5rem;
         }
     </style>
 @stop
@@ -87,6 +130,62 @@
             images_upload_url: '{!! route('nhansu.thong-bao.uploadImage') !!}',
             file_picker_types: 'image',
         });
+
+        let state = {};
+
+        // state management
+        function updateState(newState) {
+            state = {
+                ...state,
+                ...newState
+            };
+            console.log(state);
+        }
+
+        // event handlers
+        $("#upload").change(function(e) {
+            let files = $("#upload")[0].files;
+            let filesArr = Array.from(files);
+            updateState({
+                files: files,
+                filesArr: filesArr
+            });
+
+            renderFileList();
+        });
+
+        $(".files").on("click", "li > i", function(e) {
+            let key = $(this)
+                .parent()
+                .attr("key");
+            let curArr = state.filesArr;
+            curArr.splice(key, 1);
+            updateState({
+                filesArr: curArr
+            });
+            renderFileList();
+        });
+
+        // render functions
+        function renderFileList() {
+            $('.files').removeClass('d-none')
+            let fileMap = state.filesArr.map((file, index) => {
+                let suffix = "bytes";
+                let size = file.size;
+                if (size >= 1024 && size < 1024000) {
+                    suffix = "KB";
+                    size = Math.round(size / 1024 * 100) / 100;
+                } else if (size >= 1024000) {
+                    suffix = "MB";
+                    size = Math.round(size / 1024000 * 100) / 100;
+                }
+
+                return `<li key="${index}">${
+                    file.name
+                } <span class="file-size">${size} ${suffix}</span><i class="bi bi-trash"></i></li>`;
+            });
+            $(".files > ul").html(fileMap);
+        }
     </script>
 @stop
 @section('content')
@@ -157,9 +256,10 @@
                                         <div class="option exit-option">
                                             <select
                                                 class="js-example-basic-single form-control select2 nguoi-nhan-khoa-phong"
-                                                name="" multiple>
-                                                <option>Phòng cơ chế chính sách aaaaaaaaaaaaaaaaaaaaaaaaa</option>
-                                                <option>Phòng số hóa</option>
+                                                name="phong_ban_ids[]" multiple>
+                                                @foreach ($phongBan as $pb)
+                                                    <option value="{{ $pb->id }}">{{ $pb->ten }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -280,9 +380,19 @@
                                 <div class="row">
                                     <label class="col-sm-2 form-label">Đính kèm: </label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="fileInput[]" multiple />
+                                        <input class="form-control" id="upload" type="file" name="fileInput[]"
+                                            multiple />
+                                        <div class="files d-none">
+                                            <ul></ul>
+                                        </div>
                                     </div>
                                 </div>
+                                {{--                                <div class="row"> --}}
+                                {{--                                    <label class="col-sm-2 form-label">Đính kèm: </label> --}}
+                                {{--                                    <div class="col-sm-10"> --}}
+                                {{--                                        <input class="form-control" type="file" multiple> --}}
+                                {{--                                    </div> --}}
+                                {{--                                </div> --}}
                             </div>
                         </div>
                         <div class="card-footer d-sm-flex">

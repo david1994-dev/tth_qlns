@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="{{asset('adminlte\plugins\select2\css\select2.min.css')}}">
 
 <link rel="stylesheet" href="{{asset('adminlte\dist\css\laravelui\style.css')}}">
-<link rel="stylesheet" href="{{asset('adminlte\dist\css\dropzone.css')}}">
 
 <style>
     @media print {
