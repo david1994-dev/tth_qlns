@@ -26,11 +26,11 @@
                 <div class="card">
                     <div class="list-group list-group-transparent mb-0 mail-inbox pb-3">
                         <div class="m-4 text-center">
-                            <a href="https://laravelui.spruko.com/dayone/email-compose"
-                               class="btn btn-primary btn-lg btn-block">Compose</a>
+                            <a href="{{route('nhansu.thong-bao.create')}}"
+                               class="btn btn-primary btn-lg btn-block">Tạo thông báo</a>
                         </div>
                         @foreach($loaiThongBao as $ltb)
-                            <a href="javascript:void(0);" class="list-group-item d-flex align-items-center active">
+                            <a href="{{route('nhansu.thong-bao.index').'?category='.$ltb->id}}" class="list-group-item d-flex align-items-center ">
                                 <span class="icons"><i class="{{$ltb->icon}}"></i></span>{{$ltb->ten}}<span
                                     class="ms-auto badge badge-success">{{\Illuminate\Support\Arr::get($thongBaoUnreadByType, $ltb->id, 0)}}</span>
                             </a>
@@ -43,7 +43,7 @@
                     <div class="card-body p-6">
                         <div class="inbox-body">
                             <div class="mail-option">
-                                <form>                                   
+                                <form>
                                     <div class="form-row">
                                         <div class="form-group col-md-3 mb-0">
                                             <div class="form-group">
@@ -84,7 +84,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                 </form>
                                 <div >
                                     <ul class="unstyled inbox-pagination ">

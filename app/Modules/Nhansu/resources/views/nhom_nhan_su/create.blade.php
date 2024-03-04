@@ -77,6 +77,20 @@
     </div>
 @stop
 @section('scripts')
+    <script src="https://cdn.tiny.cloud/1/s5czkzl43fj1mskq5fews6aaqgi3szoefx33i9biqutkvdxn/tinymce/6/tinymce.min.js"
+        referrerpolicy="origin"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tinymce/tinymce-jquery@1/dist/tinymce-jquery.min.js"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea#tiny', // change this value according to your HTML
+            plugins: [
+                'a11ychecker', 'advlist', 'advcode', 'advtable', 'autolink', 'checklist', 'export',
+                'lists', 'link', 'image', 'charmap', 'preview', 'anchor', 'searchreplace', 'visualblocks',
+                'powerpaste', 'fullscreen', 'formatpainter', 'insertdatetime', 'media', 'table', 'help',
+                'wordcount'
+            ],
+        });
+    </script>
     <script>
         $(document).ready(function() {
             $('.jsSelectNV').select2({
@@ -107,18 +121,5 @@
             })
         });
     </script>
-    <script src="https://cdn.tiny.cloud/1/s5czkzl43fj1mskq5fews6aaqgi3szoefx33i9biqutkvdxn/tinymce/6/tinymce.min.js"
-        referrerpolicy="origin"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tinymce/tinymce-jquery@1/dist/tinymce-jquery.min.js"></script>
-    <script>
-        tinymce.init({
-            selector: 'textarea#tiny', // change this value according to your HTML
-            plugins: [
-                'a11ychecker', 'advlist', 'advcode', 'advtable', 'autolink', 'checklist', 'export',
-                'lists', 'link', 'image', 'charmap', 'preview', 'anchor', 'searchreplace', 'visualblocks',
-                'powerpaste', 'fullscreen', 'formatpainter', 'insertdatetime', 'media', 'table', 'help',
-                'wordcount'
-            ],
-        });
-    </script>
+
 @stop

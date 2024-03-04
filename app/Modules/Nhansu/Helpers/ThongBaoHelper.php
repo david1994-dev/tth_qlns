@@ -2,7 +2,9 @@
 
 namespace App\Modules\Nhansu\Helpers;
 
+use App\Modules\Nhansu\src\Models\ThongBao;
 use App\Modules\Nhansu\src\Models\ThongBaoUser;
+use Illuminate\Support\Facades\DB;
 
 class ThongBaoHelper
 {
@@ -40,5 +42,38 @@ class ThongBaoHelper
         }
 
         return false;
+    }
+
+    public static function groupThongBaoChuaDoc($user)
+    {
+        $nhanVien = $user->nhanVien;
+        $nhomNhanSu = $user->nhomNhanSu;
+        $status = ThongBaoUser::STATUS_DA_DOC;
+        $query = ThongBao::query()
+            ->where('thong_bao.id', '>', $user->last_notification_id)
+            ->where('thong_bao.xuat_ban', true)
+            ->where(function ($q) use ($nhanVien, $nhomNhanSu) {
+                $q->where('thong_bao.gui_tat_ca', true)
+                    ->orWhere(function ($q) use ($nhanVien, $nhomNhanSu) {
+                        $q->whereJsonContains('thong_bao.chi_nhanh_ids', $nhanVien->chi_nhanh_id)
+                            ->orWhereJsonContains('thong_bao.phong_ban_ids', $nhanVien->phong_ban_id)
+                            ->orWhereJsonContains('thong_bao.nhom_nguoi_nhan_ids', $nhomNhanSu) //todo dang sai vi 1 nhan su co the trong nhieu nhom
+                            ->orWhereJsonContains('thong_bao.nguoi_nhan_ids', $nhanVien->user_id);
+                    });
+            })
+
+            ->whereNotExists(function ($qr) use ($user, $status) {
+                $qr->select(DB::raw(1))
+                    ->from('thong_bao_users')
+                    ->whereRaw('thong_bao_users.user_id = '.$user->id)
+                    ->whereRaw('thong_bao_users.status = '.$status)
+                    ->whereRaw('thong_bao.id = thong_bao_users.thong_bao_id');
+            });
+
+
+        return $query->select('thong_bao.loai_thong_bao', DB::raw('count(*) as total'))
+            ->groupBy('thong_bao.loai_thong_bao')
+            ->pluck('total', 'loai_thong_bao')
+            ->toArray();
     }
 }

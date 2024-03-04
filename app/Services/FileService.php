@@ -17,7 +17,8 @@ class FileService
 
         $ext    = Arr::get($acceptableFileList, $mediaType);
         $seed     = $configKey.time().rand();
-        $fileName = $this->generateFileName($seed, null, $ext);
+        $postFix = $file->getClientOriginalName();
+        $fileName = $this->generateFileName($seed, $postFix, $ext);
 
         return Storage::putFileAs($configKey, $file, $fileName);
     }
@@ -31,13 +32,13 @@ class FileService
      */
     private function generateFileName(string $seed, ?string $postFix, ?string $ext): string
     {
-        $filename = md5($seed);
+        $filename = $seed;
         if (!empty($postFix)) {
-            $filename .= '_'.$postFix;
+            $filename .= '/'.$postFix;
         }
-        if (!empty($ext)) {
-            $filename .= '.'.$ext;
-        }
+//        if (!empty($ext)) {
+//            $filename .= '.'.$ext;
+//        }
 
         return $filename;
     }
@@ -45,5 +46,14 @@ class FileService
     public function delete(string $fileName): bool
     {
         return Storage::delete($fileName);
+    }
+
+    public function isImage($fileType)
+    {
+        if (!array_key_exists($fileType, config('file.acceptable.image'))) {
+            return false;
+        }
+
+        return true;
     }
 }

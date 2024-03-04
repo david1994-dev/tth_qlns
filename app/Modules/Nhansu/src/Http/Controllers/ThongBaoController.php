@@ -16,7 +16,7 @@ use App\Modules\Nhansu\src\Repositories\Interface\ThongBaoRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\ThongBaoUserRepositoryInterface;
 use App\Services\FileService;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
 class ThongBaoController extends Controller
 {
     private ThongBaoRepositoryInterface $thongBaoRepository;
@@ -98,11 +98,13 @@ class ThongBaoController extends Controller
         $chiNhanh = $this->chiNhanhRepository->select(['ten', 'id']);
         $phongBan = $this->phongBanRepository->select(['ten', 'id']);
         $nhomNguoiDung = $this->nhomNhanSuRepository->select(['ten', 'id']);
+        $loaiThongBao = $this->loaiThongBaoRepository->all();
 
         return view('Nhansu::thong_bao.create', [
             'chiNhanh' => $chiNhanh,
             'phongBan' => $phongBan,
             'nhomNguoiDung' => $nhomNguoiDung,
+            'loaiThongBao' => $loaiThongBao
         ]);
     }
 
@@ -112,22 +114,30 @@ class ThongBaoController extends Controller
     public function store(Request $request)
     {
         $user = auth()->user();
-        $input = $request->only(['title', 'content']);
+        $input = $request->only([
+            'tieu_de', 'noi_dung', 'gui_tat_ca', 'chi_nhanh_ids',
+            'nhom_nguoi_nhan_ids', 'phong_ban_ids', 'nguoi_nhan_ids', 'muc_do', 'loai_thong_bao', 'xuat_ban'
+        ]);
         $input['creator_id'] = $user->id;
         $files = [];
-        if ($request->hasFile('files')) {
-            foreach ($request->file('files') as $file) {
-                $image = $this->fileService->uploadFile('thongbao', $file, 'file');
-                if (!empty($image)) {
-                    $files[] = $file;
+        if ($request->hasFile('fileInput')) {
+            foreach ($request->file('fileInput') as $file) {
+                $fileExt = $file->getClientMimeType();
+                if ($this->fileService->isImage($fileExt)) {
+                    $fileUploaded = $this->fileService->uploadFile('thongbao', $file);
+                } else {
+                    $fileUploaded = $this->fileService->uploadFile('thongbao', $file, 'file');
+                }
+                if (!empty($fileUploaded)) {
+                    $files[] = $fileUploaded;
                 }
             }
         }
 
-        $input['files'] = $files;
-
-        $receiveIds = $request->get('receive_ids', []);
-        $isSuccess = $this->thongBaoRepository->taoThongBao($input, $receiveIds);
+        $input['dinh_kem'] = $files;
+        $input['nguoi_gui_id'] = $user->id;
+        $input['slug'] = Str::slug($input['tieu_de']);
+        $isSuccess = $this->thongBaoRepository->create($input);
 
         if (!$isSuccess) {
             return redirect()
@@ -145,6 +155,7 @@ class ThongBaoController extends Controller
      */
     public function show(string $id)
     {
+        $filter = [];
         $user = auth()->user();
         $model = $this->thongBaoRepository->findById($id);
         if (!$model) abort(404);
@@ -158,6 +169,8 @@ class ThongBaoController extends Controller
             'thong_bao_id' => $model->id,
             'status' => ThongBaoUser::STATUS_DA_DOC
         ]);
+
+        $thongBaoUnreadByType = $this->thongBaoRepository->countUnReadByType($user, $filter);
 
         return view('Nhansu::thong_bao.detail', [
             'model' => $model
