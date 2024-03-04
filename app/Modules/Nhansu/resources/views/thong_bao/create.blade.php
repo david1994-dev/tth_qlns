@@ -98,9 +98,9 @@
             $('.nhom-nguoi-dung.select2').select2({
                 placeholder: "Chọn nhóm người dùng... "
             })
-            $('.nguoi-nhan-ca-nhan.select2').select2({
-                placeholder: "Chọn người nhận cá nhân... "
-            })
+            // $('.nguoi-nhan-ca-nhan.select2').select2({
+            //     placeholder: "Chọn người nhận cá nhân... "
+            // })
             $('.muc-do.select2').select2({
                 placeholder: "Chọn mức độ... "
             })
@@ -108,12 +108,6 @@
                 placeholder: "Chọn loại thông báo... "
             })
         });
-    </script>
-    <script>
-        $files = $('#fileInput').files;
-        for (var i = 0, l = files.length; i < l; i++) {
-            console.log(files[i].name);
-        }
     </script>
     <script src="https://cdn.tiny.cloud/1/s5czkzl43fj1mskq5fews6aaqgi3szoefx33i9biqutkvdxn/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
@@ -187,6 +181,37 @@
             $(".files > ul").html(fileMap);
         }
     </script>
+
+    <script>
+        $(document).ready(function() {
+            $('.jsSelectNV').select2({
+                ajax: {
+                    url: '{!! route('nhansu.nhan-vien.searchAjax') !!}',
+                    dataType: 'json',
+                    delay: 300,
+                    data: function(params) {
+                        return query = {
+                            search: params.term,
+                            page: params.page
+                        }
+                    },
+                    processResults: function(data, params) {
+                        params.page = params.page || 1;
+
+                        return {
+                            results: data.items,
+                            pagination: {
+                                more: (params.page * 50) < data.count
+                            }
+                        };
+                    },
+                    cache: true
+                },
+                placeholder: 'Nhập mã hoặc họ tên nhân viên...',
+                minimumInputLength: 1,
+            })
+        });
+    </script>
 @stop
 @section('content')
     <div class="side-app main-container">
@@ -210,7 +235,8 @@
         <!-- END PAGE HEADER -->
 
         <!-- ROW -->
-        <form>
+        <form action="{{route('nhansu.thong-bao.store')}}" method="POST" enctype="multipart/form-data">
+            @csrf
             <div class="row">
                 <div class="col-lg-4 col-xl-4 col-md-12 col-sm-12">
                     <div class="card">
@@ -273,9 +299,10 @@
                                     <div class="col-xl-12">
                                         <div class="option exit-option placeholder2">
                                             <select class="js-example-basic-single form-control select2 nhom-nguoi-dung"
-                                                name="" multiple>
-                                                <option>Phòng cơ chế chính sách</option>
-                                                <option>Phòng số hóa</option>
+                                                name="nhom_nguoi_nhan_ids[]" multiple>
+                                                @foreach($nhomNguoiDung as $nnd)
+                                                    <option value="{{ $nnd->id }}">{{ $nnd->ten }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -288,10 +315,9 @@
                                     </div>
                                     <div class="col-xl-12 placeholder2">
                                         <div class="option exit-option">
-                                            <select class="js-example-basic-single form-control select2 nguoi-nhan-ca-nhan"
-                                                name="" multiple>
-                                                <option>Phòng cơ chế chính sách</option>
-                                                <option>Phòng số hóa</option>
+                                            <select class="js-example-basic-single form-control select2 nguoi-nhan-ca-nhan jsSelectNV"
+                                                name="nguoi_nhan_ids[]" multiple>
+
                                             </select>
                                         </div>
                                         <p class="mt-2 label-left" style="font-size: small">(*) có thể tìm bằng mã nhân viên
@@ -305,10 +331,10 @@
                                         <label class="form-label mb-0 ">Mức Độ:</label>
                                     </div>
                                     <div class="col-xl-12 placeholder2">
-                                        <select class="js-example-basic-single form-control select2 muc-do" name="">
-                                            <option>Bình thường</option>
-                                            <option>Khẩn</option>
-                                            <option>Mật</option>
+                                        <select class="js-example-basic-single form-control select2 muc-do" name="muc_do">
+                                            @foreach(\App\Modules\Nhansu\src\Models\ThongBao::MUC_DO as $mucDo)
+                                                <option value="{{$mucDo['id']}}">{{$mucDo['name']}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -321,7 +347,10 @@
                                     </div>
                                     <div class="col-xl-12 font-placeholder">
                                         <select class="js-example-basic-single select2 loai-thong-bao form-control "
-                                            name="">
+                                            name="loai_thong_bao">
+                                            @foreach($loaiThongBao as $ltb)
+                                                <option value="{{$ltb->id}}">{{$ltb->ten}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -343,7 +372,7 @@
                                     </div>
                                     <div class="col-xl-7 pe-0">
                                         <label class="custom-switch">
-                                            <input type="checkbox" name="custom-switch-checkbox"
+                                            <input type="checkbox" name="xuat_ban" value="1"
                                                 class="custom-switch-input">
                                             <span class="custom-switch-indicator"></span>
                                             <span class="custom-switch-description"></span>
@@ -364,7 +393,7 @@
                                 <div class="row align-items-center">
                                     <label class="col-sm-2 form-label">Tiêu đề <span style="color: red">*</span>:</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" placeholder="Nhập tiêu đề...">
+                                        <input type="text" name="tieu_de" value="{{old('tieu_de') ?? ''}}" required class="form-control" placeholder="Nhập tiêu đề...">
                                     </div>
                                 </div>
                             </div>
@@ -372,7 +401,7 @@
                                 <div class="row ">
                                     <label class="col-sm-2 form-label">Nội dung <span style="color: red">*</span>:</label>
                                     <div class="col-sm-10">
-                                        <textarea id="tiny"></textarea>
+                                        <textarea name="noi_dung" id="tiny"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -387,12 +416,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{--                                <div class="row"> --}}
-                                {{--                                    <label class="col-sm-2 form-label">Đính kèm: </label> --}}
-                                {{--                                    <div class="col-sm-10"> --}}
-                                {{--                                        <input class="form-control" type="file" multiple> --}}
-                                {{--                                    </div> --}}
-                                {{--                                </div> --}}
                             </div>
                         </div>
                         <div class="card-footer d-sm-flex">
@@ -408,6 +431,5 @@
             </div>
         </form>
         <!-- END ROW -->
-
     </div>
 @stop

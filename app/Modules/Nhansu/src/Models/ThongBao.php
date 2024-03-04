@@ -16,9 +16,21 @@ class ThongBao extends Base
     const MUC_DO_KHAN = 2;
     const MUC_DO_MAT = 3;
     const MUC_DO = [
-        self::MUC_DO_BINH_THUONG => 'Bình Thường',
-        self::MUC_DO_KHAN => 'Khẩn',
-        self::MUC_DO_MAT => 'Mật'
+        self::MUC_DO_BINH_THUONG => [
+            'id' => self::MUC_DO_BINH_THUONG,
+            'name' => 'Bình Thường',
+            'color' => '0xff8f8f8f'
+        ],
+        self::MUC_DO_KHAN => [
+            'id' => self::MUC_DO_KHAN,
+            'name' => 'Khẩn',
+            'color' => '0xFFC2002F'
+        ],
+        self::MUC_DO_MAT => [
+            'id' => self::MUC_DO_MAT,
+            'name' => 'Mật',
+            'color' => '0xFF9575CD'
+        ],
     ];
 
     protected $table = 'thong_bao';
@@ -34,7 +46,8 @@ class ThongBao extends Base
         'noi_dung',
         'dinh_kem',
         'xuat_ban',
-        'nguoi_gui_id'
+        'nguoi_gui_id',
+        'gui_tat_ca'
     ];
 
     protected $casts = [

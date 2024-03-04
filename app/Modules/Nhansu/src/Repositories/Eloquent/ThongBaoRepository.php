@@ -57,42 +57,26 @@ class ThongBaoRepository extends BaseRepository implements ThongBaoRepositoryInt
                     ->whereRaw('thong_bao.id = thong_bao_users.thong_bao_id');
             });
 
-        if (!empty($filter['category'])) {
-            $query = $query->where('thong_bao.loai_thong_bao', $filter['category']);
-        }
-
-        if (!empty($filter['created_at_from'])) {
-            $query = $query->where('thong_bao.created_at', '>=', Carbon::parse($filter['created_at_from']));
-        }
-
-        if (!empty($filter['created_at_to'])) {
-            $query = $query->where('thong_bao.created_at', '<=', Carbon::parse($filter['created_at_to']));
-        }
-
-        if (!empty($filter['query'])) {
-            $query = $query->where('thong_bao.tieu_de', 'LIKE', '%'.$filter['query'].'%');
-        }
+//        if (!empty($filter['category'])) {
+//            $query = $query->where('thong_bao.loai_thong_bao', $filter['category']);
+//        }
+//
+//        if (!empty($filter['created_at_from'])) {
+//            $query = $query->where('thong_bao.created_at', '>=', Carbon::parse($filter['created_at_from']));
+//        }
+//
+//        if (!empty($filter['created_at_to'])) {
+//            $query = $query->where('thong_bao.created_at', '<=', Carbon::parse($filter['created_at_to']));
+//        }
+//
+//        if (!empty($filter['query'])) {
+//            $query = $query->where('thong_bao.tieu_de', 'LIKE', '%'.$filter['query'].'%');
+//        }
 
         return $query->select('thong_bao.loai_thong_bao', DB::raw('count(*) as total'))
             ->groupBy('thong_bao.loai_thong_bao')
             ->pluck('total', 'loai_thong_bao')
             ->toArray();
-    }
-
-    public function taoThongBao($input, $receiveIds)
-    {
-        if (!count($receiveIds)) {
-            $input['receive_id'] = 0;
-            return $this->create($input);
-        }
-
-        $inputs = [];
-        foreach ($receiveIds as $receiveId) {
-            $input['receive_id'] = $receiveId;
-            $inputs[] = $input;
-        }
-
-        return $this->insert($inputs);
     }
 
     private function buildQuery($user, $filter = [])

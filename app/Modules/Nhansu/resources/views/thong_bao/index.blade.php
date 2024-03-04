@@ -26,13 +26,13 @@
                 <div class="card">
                     <div class="list-group list-group-transparent mb-0 mail-inbox pb-3">
                         <div class="m-4 text-center">
-                            <a href="https://laravelui.spruko.com/dayone/email-compose"
-                                class="btn btn-primary btn-lg btn-block">Compose</a>
+                            <a href="{{route('nhansu.thong-bao.create')}}"
+                               class="btn btn-primary btn-lg btn-block">Tạo thông báo</a>
                         </div>
-                        @foreach ($loaiThongBao as $ltb)
-                            <a href="javascript:void(0);" class="list-group-item d-flex align-items-center active">
-                                <span class="icons"><i class="{{ $ltb->icon }}"></i></span>{{ $ltb->ten }}<span
-                                    class="ms-auto badge badge-success">{{ \Illuminate\Support\Arr::get($thongBaoUnreadByType, $ltb->id, 0) }}</span>
+                        @foreach($loaiThongBao as $ltb)
+                            <a href="{{route('nhansu.thong-bao.index').'?category='.$ltb->id}}" class="list-group-item d-flex align-items-center ">
+                                <span class="icons"><i class="{{$ltb->icon}}"></i></span>{{$ltb->ten}}<span
+                                    class="ms-auto badge badge-success">{{\Illuminate\Support\Arr::get($thongBaoUnreadByType, $ltb->id, 0)}}</span>
                             </a>
                         @endforeach
                     </div>
@@ -50,6 +50,9 @@
                                     padding-left: 70px;
                                 ">
                                         <div class="form-group col-md-2 mb-0">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-3 mb-0">
                                             <div class="form-group">
                                                 <div class="col-xl-12 placeholder2">
                                                     <select class="js-example-basic-single form-control select2 " name="">
@@ -98,6 +101,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                 </form>
                             </div>
                             <div class="table-responsive">
