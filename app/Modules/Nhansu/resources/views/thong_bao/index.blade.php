@@ -50,9 +50,6 @@
                                     padding-left: 70px;
                                 ">
                                         <div class="form-group col-md-2 mb-0">
-                                <form>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-3 mb-0">
                                             <div class="form-group">
                                                 <div class="col-xl-12 placeholder2">
                                                     <select class="js-example-basic-single form-control select2 " name="">
@@ -101,7 +98,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </form>
                             </div>
                             <div class="table-responsive">
