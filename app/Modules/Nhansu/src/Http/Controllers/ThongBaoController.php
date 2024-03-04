@@ -171,9 +171,12 @@ class ThongBaoController extends Controller
         ]);
 
         $thongBaoUnreadByType = $this->thongBaoRepository->countUnReadByType($user, $filter);
+        $loaiThongBao = $this->loaiThongBaoRepository->all();
 
         return view('Nhansu::thong_bao.detail', [
-            'model' => $model
+            'model' => $model,
+            'loaiThongBao' => $loaiThongBao,
+            'thongBaoUnreadByType' => $thongBaoUnreadByType,
         ]);
     }
 
