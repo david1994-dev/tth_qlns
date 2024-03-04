@@ -5,9 +5,65 @@
             position: relative;
             z-index: 10000 !important;
         }
+
+        .main-footer {
+            margin: 0px !important;
+        }
+
+        .select22 .select2-container .select2-selection--single {
+            height: calc(2.25rem + 1px) !important;
+        }
+
+        .option .select2-container--default .select2-selection--multiple .select2-selection__choice {
+            background-color: #007bff !important;
+            font-size: 12px;
+        }
+
+        .exit-option .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+            color: red !important;
+        }
+
+        .select22 .select2-container .select2-selection--single {
+            height: calc(2.25rem + 1px) !important;
+        }
+
+        .req_place::-webkit-select-placeholder {
+            color: #c40303 !important;
+        }
     </style>
 @stop
 @section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.jsSelectNV').select2({
+                ajax: {
+                    url: '{!! route('nhansu.nhan-vien.searchAjax') !!}',
+                    dataType: 'json',
+                    delay: 300,
+                    data: function(params) {
+                        return query = {
+                            search: params.term,
+                            page: params.page
+                        }
+                    },
+                    processResults: function(data, params) {
+                        params.page = params.page || 1;
+
+                        return {
+                            results: data.items,
+                            pagination: {
+                                more: (params.page * 50) < data.count
+                            }
+                        };
+                    },
+                    cache: true
+                },
+                placeholder: 'Nhập mã hoặc họ tên nhân viên...',
+                minimumInputLength: 1,
+            })
+        });
+    </script>
+
     <script src="https://cdn.tiny.cloud/1/s5czkzl43fj1mskq5fews6aaqgi3szoefx33i9biqutkvdxn/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tinymce/tinymce-jquery@1/dist/tinymce-jquery.min.js"></script>
@@ -302,8 +358,9 @@
                                             <img src="https://play-lh.googleusercontent.com/g2_mp6KE9sOiqfV2P3YEzqp6Zzuwfyu1rhVPbXzMmb42s2jCR9rt6nbo-m5j1Y0Ekw-Y=w240-h480-rw"
                                                 alt="img" class="avatar bg-transparent avatar-xl me-2">
                                             <a href="{{ asset('cv_nguyenthiminhhoa_tester.pdf') }}"
-                                                class="font-weight-semibold fs-14 mt-5">file test<span
-                                                    class="text-muted ms-2">(23 KB)</span></a>
+                                                class="font-weight-semibold fs-14 "> Quyết định Số 57 Về việc điều động và
+                                                bổ nhiệm Ông Thái Văn Trung giữ chức vụ Trưởng ban QLDA BV YHCT Nguyên
+                                                Phúc.pdf<span class="text-muted ms-2">(23 KB)</span></a>
                                             <div class="ms-auto d-flex mt-4 text-end">
                                                 <a href="{{ asset('cv_nguyenthiminhhoa_tester.pdf') }}"
                                                     class="action-btns1"><i class="bi bi-arrow-bar-down"></i></a>
@@ -337,17 +394,26 @@
                                 <label class="col-sm-2 form-label">Phản hồi cho <span style="color: red">*</span>:</label>
                                 <div class="col-sm-10">
                                     <div class="row">
-                                        <div class="col-4"><input type="radio" name="tab" value="igotnone" checked/>
-                                            None </div>
+                                        <div class="col-4"><input type="radio" name="tab" value="igotnone"
+                                                checked />
+                                            Phản hồi cho toàn bộ </div>
                                         <div class="col-8"><input type="radio" name="tab" value="igottwo" />
-                                            Two</div>
+                                            Phản hồi cho cá nhân</div>
                                     </div>
                                 </div>
-                                <div id="div1" class="d-none">
-                                    <p>show</p>
+
+                            </div>
+                            <div id="div1" class="d-none form-group">
+                                <div class="row">
+                                    <label class="col-sm-2 form-label">Người nhận: </label>
+                                    <div class="col-sm-10">
+                                        <div class="option exit-option req_place">
+                                            <select class="jsSelectNV form-control select2 " name="user_ids[]"
+                                                multiple></select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <div class="row ">
                                     <label class="col-sm-2 form-label">Nội dung <span style="color: red">*</span>:</label>
@@ -356,7 +422,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group mb-0">
+                            <div class="form-group ">
                                 <div class="row">
                                     <label class="col-sm-2 form-label">Đính kèm: </label>
                                     <div class="col-sm-10">
