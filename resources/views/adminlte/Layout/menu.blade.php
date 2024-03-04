@@ -38,11 +38,40 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-             with font-awesome or any other icon font library -->
                 <li class="nav-item menu-open">
-                    <a href="#" class="nav-link active">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <a href="#" class="nav-link active ">
+                        <i class="bi bi-bell-fill"></i>
+                        <p>
+                            Thông báo
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+
+                        <li class="nav-item">
+                            <a href="{{ route('nhansu.thong-bao.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Thông báo nội bộ</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('nhansu.loai-thong-bao.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Loại thông báo</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('nhansu.nhom-nhan-su.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Nhóm nhân sự</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item ">
+                    <a href="#" class="nav-link">
+                        <i class="bi bi-file-earmark-person-fill"></i>
                         <p>
                             Tuyển dụng
                             <i class="right fas fa-angle-left"></i>
@@ -65,7 +94,7 @@
                 </li>
                 <li class="nav-item ">
                     <a href="#" class="nav-link ">
-                        <i class="nav-icon fa fa-cogs"></i>
+                        <i class="bi bi-gear-fill"></i>
                         <p>
                             Cấu hình danh mục
                             <i class="right fas fa-angle-left"></i>
