@@ -21,7 +21,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         $account = $this->getBlankModel()->query()->create($input);
         if (!$account) return false;
 
-        $account->last_notification_id = DB::table('thong_bao')->max('id');
+        $account->last_notification_id = DB::table('thong_bao')->max('id') ?? 0;
         $account->save();
 
         return $account;
