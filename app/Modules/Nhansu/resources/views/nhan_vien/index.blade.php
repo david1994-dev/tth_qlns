@@ -6,7 +6,7 @@
                 <div class="col-6">
                     <form class="input-group mt-3 mb-3 " role="search" action="{{ route('nhansu.nhan-vien.index') }}">
                         <input type="text" class="form-control"
-                            placeholder="Nhập mã ứng viên, email, số điện thoại, họ tên..." name="keyword"
+                            placeholder="Nhập mã nhân viên, email, số điện thoại, họ tên..." name="keyword"
                             aria-label="Recipient's username" aria-describedby="basic-addon2" value="{{ $keyword ?? '' }}">
                         <div class="input-group-append">
                             <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search"></i></button>
