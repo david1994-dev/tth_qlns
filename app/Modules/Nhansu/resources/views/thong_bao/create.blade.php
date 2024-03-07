@@ -123,6 +123,8 @@
             ],
             images_upload_url: '{!! route('nhansu.thong-bao.uploadImage') !!}',
             file_picker_types: 'image',
+            relative_urls: false,
+            remove_script_host: false
         });
 
         let state = {};

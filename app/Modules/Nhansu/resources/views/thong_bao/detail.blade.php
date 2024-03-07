@@ -61,6 +61,20 @@
                 placeholder: 'Nhập mã hoặc họ tên nhân viên...',
                 minimumInputLength: 1,
             })
+
+            tinymce.init({
+                selector: 'textarea#tiny2', // change this value according to your HTML
+                plugins: [
+                    'a11ychecker', 'advlist', 'advcode', 'advtable', 'autolink', 'checklist', 'export',
+                    'lists', 'link', 'image', 'charmap', 'preview', 'anchor', 'searchreplace', 'visualblocks',
+                    'powerpaste', 'fullscreen', 'formatpainter', 'insertdatetime', 'media', 'table', 'help',
+                    'wordcount'
+                ],
+                images_upload_url: '{!! route('nhansu.thong-bao.uploadImage') !!}',
+                file_picker_types: 'image',
+                relative_urls: false,
+                remove_script_host: false
+            });
         });
     </script>
 
@@ -263,7 +277,7 @@
                                 <div class="row ">
                                     <label class="col-sm-2 form-label">Nội dung <span style="color: red">*</span>:</label>
                                     <div class="col-sm-10">
-                                        <textarea id="tiny"></textarea>
+                                        <textarea name="noi_dung" id="tiny2"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -284,6 +298,7 @@
                                 <button type="submit" class="btn btn-primary btn-space">Gửi phản hồi</button>
                             </div>
                         </div>
+                    </div>
                 </form>
             </div>
         </div>
