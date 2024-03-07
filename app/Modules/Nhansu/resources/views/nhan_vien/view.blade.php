@@ -314,7 +314,7 @@
                                         <div class="input-group">
                                             <input type="text" id="dien_thoai_cong_viec" class="form-control"
                                                 value="{{ $model->dien_thoai_cong_viec ?? old('dien_thoai_cong_viec') }}"
-                                                name="dien_thoai_cong_viec" placeholder="Nhập số điện hoại công việc...">
+                                                name="dien_thoai_cong_viec" placeholder="Nhập số điện thoại công việc...">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="bi bi-telephone-plus"></i></span>
                                             </div>

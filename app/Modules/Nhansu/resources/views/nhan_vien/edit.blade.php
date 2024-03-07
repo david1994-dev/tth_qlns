@@ -66,9 +66,9 @@
                             <div class="form-group col-md-3">
                                 <label for="dien_thoai" class="h6">Điện thoại<span style="color: red">*</span>:</label>
                                 <div class="input-group">
-                                    <input type="text" id="dien_thoai" class="form-control" name="dien_thoai_ca_nhan"
+                                    <input type="number" id="dien_thoai" class="form-control" name="dien_thoai_ca_nhan"
                                         value="{{ $model->chiTietNhanVien->dien_thoai_ca_nhan ?? old('dien_thoai_ca_nhan') }}"
-                                        placeholder="Nhập sô diện thoại..." required>
+                                        placeholder="Nhập số điện thoại..." required>
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-telephone"></i></span>
                                     </div>
@@ -80,7 +80,7 @@
                                     id="loai_nhan_vien_id">
                                     @foreach ($loaiNhanVien as $id => $ten)
                                         <option value="{{ $id }}"
-                                            @if ($model->loai_nhan_vien == $id) selected @endif>{{ $ten }}</option>
+                                            @if ($model->loai_nhan_vien_id == $id) selected @endif>{{ $ten }}</option>
                                     @endforeach
                                 </select>
 
@@ -162,7 +162,7 @@
                                 <div class="input-group">
                                     <input type="text" id="dien_thoai_cong_viec" class="form-control"
                                         value="{{ $model->dien_thoai_cong_viec ?? old('dien_thoai_cong_viec') }}"
-                                        name="dien_thoai_cong_viec" placeholder="Nhập số điện hoại công việc...">
+                                        name="dien_thoai_cong_viec" placeholder="Nhập số điện thoại công việc...">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-telephone-plus"></i></span>
                                     </div>
