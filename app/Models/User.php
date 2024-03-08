@@ -98,6 +98,6 @@ class User extends Authenticatable
 
     public function getNhomNhanSuAttribute()
     {
-        return NhomNhanSu::query()->whereJsonContains('user_ids', (string)$this->id)->pluck('id')->toArray();
+        return NhomNhanSu::query()->whereJsonContains('user_ids', $this->id)->pluck('id')->toArray();
     }
 }
