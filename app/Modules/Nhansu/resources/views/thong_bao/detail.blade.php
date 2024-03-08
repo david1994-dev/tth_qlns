@@ -66,8 +66,10 @@
                 selector: 'textarea#tiny2', // change this value according to your HTML
                 plugins: [
                     'a11ychecker', 'advlist', 'advcode', 'advtable', 'autolink', 'checklist', 'export',
-                    'lists', 'link', 'image', 'charmap', 'preview', 'anchor', 'searchreplace', 'visualblocks',
-                    'powerpaste', 'fullscreen', 'formatpainter', 'insertdatetime', 'media', 'table', 'help',
+                    'lists', 'link', 'image', 'charmap', 'preview', 'anchor', 'searchreplace',
+                    'visualblocks',
+                    'powerpaste', 'fullscreen', 'formatpainter', 'insertdatetime', 'media', 'table',
+                    'help',
                     'wordcount'
                 ],
                 images_upload_url: '{!! route('nhansu.thong-bao.uploadImage') !!}',
@@ -144,10 +146,11 @@
                             <a href="https://laravelui.spruko.com/dayone/email-compose"
                                 class="btn btn-primary btn-lg btn-block">Compose</a>
                         </div>
-                        @foreach($loaiThongBao as $ltb)
-                            <a href="{{route('nhansu.thong-bao.index').'?category='.$ltb->id}}" class="list-group-item d-flex align-items-center ">
-                                <span class="icons"><i class="{{$ltb->icon}}"></i></span>{{$ltb->ten}}<span
-                                    class="ms-auto badge badge-success">{{\Illuminate\Support\Arr::get($thongBaoUnreadByType, $ltb->id, 0)}}</span>
+                        @foreach ($loaiThongBao as $ltb)
+                            <a href="{{ route('nhansu.thong-bao.index') . '?category=' . $ltb->id }}"
+                                class="list-group-item d-flex align-items-center ">
+                                <span class="icons"><i class="{{ $ltb->icon }}"></i></span>{{ $ltb->ten }}<span
+                                    class="ms-auto badge badge-success">{{ \Illuminate\Support\Arr::get($thongBaoUnreadByType, $ltb->id, 0) }}</span>
                             </a>
                         @endforeach
                     </div>
@@ -172,7 +175,7 @@
             <div class="col-md-12 col-lg-8 col-xl-9">
                 <div class="card">
                     <div class="card-header border-bottom-0">
-                        <h4 class="card-title">{{$model->tieu_de}}</h4>
+                        <h4 class="card-title">{{ $model->tieu_de }}</h4>
                     </div>
                     <div class="card-body">
                         <div class="email-media">
@@ -188,9 +191,9 @@
                                                 class="fa fa-reply"></i></a>
                                     </div>
                                     <div class="media-title text-dark font-weight-semibold mt-1">Người gửi: <span
-                                            class=" font-weight-semibold">{{$model->sendFrom}}</span></div>
-                                    <small class="mb-0">Người nhận: {{$model->sendTo}}</small>
-                                    <small class="me-2 d-md-none">{{$model->created_at->format('Y-m-d h:i:s')}}</small>
+                                            class=" font-weight-semibold">{{ $model->sendFrom }}</span></div>
+                                    <small class="mb-0">Người nhận: {{ $model->sendTo }}</small>
+                                    <small class="me-2 d-md-none">{{ $model->created_at->format('Y-m-d h:i:s') }}</small>
                                 </div>
                             </div>
                         </div>
@@ -199,40 +202,41 @@
                             <p>{!! $model->noi_dung !!}</p>
                             <p class="mb-0">Trân trọng!</p>
                             <hr>
-                            @if(!empty($model->dinh_kem))
+                            @if (!empty($model->dinh_kem))
                                 @php $pdfFile = \App\Modules\Nhansu\Helpers\ThongBaoHelper::getPDFFile($model) @endphp
-                                @if($pdfFile)
-                                    <iframe src="{{$pdfFile}}" style="width:100%; height:1000px;"></iframe>
+                                @if ($pdfFile)
+                                    <iframe src="{{ $pdfFile }}" style="width:100%; height:1000px;"></iframe>
                                 @endif
-                            <div class="email-attch">
-                                <p class="font-weight-semibold">{{count($model->dinh_kem) }} Attachments <a href="javascript:void(0);">View</a></p>
-                            </div>
-                            <div class="row attachments-doc">
-                                <div class="col-xxl-4 col-xl-12 col-md-12 my-2">
-                                    <div class="list-group-item  align-items-center">
-                                        <div class="d-xl-flex">
-                                            @foreach($model->dinh_kem as $file)
-                                            <div class="dinhkem__item">
-                                                <img src="https://play-lh.googleusercontent.com/g2_mp6KE9sOiqfV2P3YEzqp6Zzuwfyu1rhVPbXzMmb42s2jCR9rt6nbo-m5j1Y0Ekw-Y=w240-h480-rw"
-                                                     alt="img" class="avatar bg-transparent avatar-xl me-2">
-                                                <a href="{{asset('storage/' . $file)}}"
-                                                   class="font-weight-semibold fs-14 ">{{basename(asset('storage/' . $file))}}<span class="text-muted ms-2">(23 KB)</span></a>
-                                                <div class="ms-auto d-flex mt-4 text-end">
-                                                    <a href="{{asset('storage/' . $file)}}"
-                                                       class="action-btns1"><i class="bi bi-arrow-bar-down"></i></a>
+                                <div class="email-attch">
+                                    <p class="font-weight-semibold">{{ count($model->dinh_kem) }} Tệp đính kèm</p>
+                                </div>
+                                <div class="row attachments-doc">
+                                    @foreach ($model->dinh_kem as $file)
+                                        <div class="col-xxl-4 col-xl-12 col-md-12 my-2">
+                                            <div class="list-group-item  align-items-center">
+                                                <div class="d-xl-flex">
+                                                    <div class="dinhkem__item row">
+                                                        <div class="col-4">
+                                                            <img src="https://play-lh.googleusercontent.com/g2_mp6KE9sOiqfV2P3YEzqp6Zzuwfyu1rhVPbXzMmb42s2jCR9rt6nbo-m5j1Y0Ekw-Y=w240-h480-rw"
+                                                                alt="img" class="avatar bg-transparent avatar-xl me-2">
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <a href="{{ asset('storage/' . $file) }}"
+                                                                class="font-weight-semibold fs-14 ">{{ basename(asset('storage/' . $file)) }}<span
+                                                                    class="text-muted ms-2">(23 KB)</span></a>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            @endforeach
                                         </div>
-                                    </div>
+                                    @endforeach
                                 </div>
-                            </div>
                             @endif
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a class="modal-effect btn btn-primary mt-1 mb-1" data-toggle="modal"
-                            data-target="#phanHoi"><i class="fa fa-reply"></i> Phản hồi</a>
+                        <a class="modal-effect btn btn-primary mt-1 mb-1" data-toggle="modal" data-target="#phanHoi"><i
+                                class="fa fa-reply"></i> Phản hồi</a>
                     </div>
                 </div>
             </div>
@@ -246,8 +250,8 @@
                 <div class="card-header border-bottom-0">
                     <h3 class="card-title">PHẢN HỒI THÔNG BÁO</h3>
                 </div>
-                <form method="POST" action="{{route('nhansu.thong-bao.phan-hoi')}}" enctype="multipart/form-data">
-                    <input type="hidden" name="thong_bao_id" value="{{$model->id}}">
+                <form method="POST" action="{{ route('nhansu.thong-bao.phan-hoi') }}" enctype="multipart/form-data">
+                    <input type="hidden" name="thong_bao_id" value="{{ $model->id }}">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
@@ -258,7 +262,8 @@
                                         <div class="col-4"><input type="radio" name="nguoi_nhan" value="gui_toan_bo"
                                                 checked />
                                             Phản hồi cho toàn bộ </div>
-                                        <div class="col-8"><input type="radio" name="nguoi_nhan" value="gui_ca_nhan" />
+                                        <div class="col-8"><input type="radio" name="nguoi_nhan"
+                                                value="gui_ca_nhan" />
                                             Phản hồi cho cá nhân</div>
                                     </div>
                                 </div>
