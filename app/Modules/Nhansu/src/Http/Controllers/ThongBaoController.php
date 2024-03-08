@@ -9,6 +9,7 @@ use App\Modules\Nhansu\src\Models\ThongBao;
 use App\Modules\Nhansu\src\Models\ThongBaoUser;
 use App\Modules\Nhansu\src\Repositories\Interface\ChiNhanhRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\LoaiThongBaoRepositoryInterface;
+use App\Modules\Nhansu\src\Repositories\Interface\NhanVienRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\NhomNhanSuRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\PhongBanRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\ThongBaoPhanHoiRepositoryInterface;
@@ -29,6 +30,8 @@ class ThongBaoController extends Controller
     private ThongBaoPhanHoiRepositoryInterface $thongBaoPhanHoiRepository;
     private NhomNhanSuRepositoryInterface $nhomNhanSuRepository;
 
+    private NhanVienRepositoryInterface $nhanVienRepository;
+
     public function __construct(
         ThongBaoRepositoryInterface $thongBaoRepository,
         FileService $fileService,
@@ -38,6 +41,7 @@ class ThongBaoController extends Controller
         ThongBaoUserRepositoryInterface $thongBaoUserRepository,
         ThongBaoPhanHoiRepositoryInterface $thongBaoPhanHoiRepository,
         NhomNhanSuRepositoryInterface $nhomNhanSuRepository,
+        NhanVienRepositoryInterface $nhanVienRepository
     ) {
         $this->thongBaoRepository = $thongBaoRepository;
         $this->fileService = $fileService;
@@ -47,6 +51,7 @@ class ThongBaoController extends Controller
         $this->thongBaoUserRepository = $thongBaoUserRepository;
         $this->thongBaoPhanHoiRepository = $thongBaoPhanHoiRepository;
         $this->nhomNhanSuRepository = $nhomNhanSuRepository;
+        $this->nhanVienRepository = $nhanVienRepository;
     }
 
     /**
@@ -97,6 +102,8 @@ class ThongBaoController extends Controller
     {
         $chiNhanh = $this->chiNhanhRepository->select(['ten', 'id']);
         $phongBan = $this->phongBanRepository->select(['ten', 'id']);
+        $nhanVien = $this->nhanVienRepository->select(['id', 'ho_ten', 'chi_nhanh_id', 'phong_ban_id', 'user_id']);
+        $this->nhanVienRepository->load($nhanVien, ['phongBan', 'chiNhanh']);
         $nhomNguoiDung = $this->nhomNhanSuRepository->select(['ten', 'id']);
         $loaiThongBao = $this->loaiThongBaoRepository->all();
 
@@ -104,7 +111,8 @@ class ThongBaoController extends Controller
             'chiNhanh' => $chiNhanh,
             'phongBan' => $phongBan,
             'nhomNguoiDung' => $nhomNguoiDung,
-            'loaiThongBao' => $loaiThongBao
+            'loaiThongBao' => $loaiThongBao,
+            'nhanVien' => $nhanVien
         ]);
     }
 
@@ -180,20 +188,34 @@ class ThongBaoController extends Controller
         ]);
     }
 
-    public function reply(Request $request, $id)
+    public function reply(Request $request)
     {
+        $id = $request->get('thong_bao_id', 0);
         $model = $this->thongBaoRepository->findById($id);
         if (!$model) abort(404);
 
-        $input = $request->only(['nguoi_nhan_ids', 'noi_dung', 'gui_tat_ca']);
+        $input = $request->only(['noi_dung']);
         $input['thong_bao_id'] = $id;
         $input['nguoi_gui_id'] = auth()->user()->id;
+
+        $receiver = $request->get('nguoi_nhan', 'gui_toan_bo');
+        if ($receiver === 'gui_toan_bo') {
+            $input['gui_tat_ca'] = true;
+        } else {
+            $input['nguoi_nhan_ids'] = $request->get('nguoi_nhan_ids', []);
+        }
+
         $files = [];
-        if ($request->hasFile('files')) {
-            foreach ($request->file('files') as $file) {
-                $image = $this->fileService->uploadFile('thongbaophanhoi', $file, 'file');
-                if (!empty($image)) {
-                    $files[] = $file;
+        if ($request->hasFile('fileInput')) {
+            foreach ($request->file('fileInput') as $file) {
+                $fileExt = $file->getClientMimeType();
+                if ($this->fileService->isImage($fileExt)) {
+                    $fileUploaded = $this->fileService->uploadFile('thongbao', $file);
+                } else {
+                    $fileUploaded = $this->fileService->uploadFile('thongbao', $file, 'file');
+                }
+                if (!empty($fileUploaded)) {
+                    $files[] = $fileUploaded;
                 }
             }
         }

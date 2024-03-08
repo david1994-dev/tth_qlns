@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Modules\Nhansu\src\Models\NhanVien;
 use App\Modules\Nhansu\src\Models\NhomNhanSu;
+use App\Modules\Nhansu\src\Models\ThongBao;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -97,6 +98,6 @@ class User extends Authenticatable
 
     public function getNhomNhanSuAttribute()
     {
-        return NhomNhanSu::query()->whereJsonContains('user_ids', $this->id)->pluck('id')->toArray();
+        return NhomNhanSu::query()->whereJsonContains('user_ids', (string)$this->id)->pluck('id')->toArray();
     }
 }

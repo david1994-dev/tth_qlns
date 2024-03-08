@@ -23,6 +23,12 @@ class ThongBaoHelper
             return true;
         }
 
+        $nhomNhanSu = $user->nhomNhanSu ?? [];
+        $nhomNhanSuNhan = $notification->nhom_nguoi_nhan_ids ?? [];
+        if (count(array_intersect($nhomNhanSu, $nhomNhanSuNhan))) {
+            return true;
+        }
+
         $nhanVien = $user->nhanVien;
 
         $phongBan = $notification->phong_ban_ids ?? [];
@@ -32,12 +38,6 @@ class ThongBaoHelper
 
         $chiNhanh = $notification->chi_nhanh_ids ?? [];
         if (in_array($nhanVien->chi_nhanh_id, $chiNhanh)) {
-            return true;
-        }
-
-        $nhomNhanSu = $user->nhomNhanSu ?? [];
-        $nhomNhanSuNhan = $notification->nhom_nguoi_nhan_ids ?? [];
-        if (count(array_intersect($nhomNhanSu, $nhomNhanSuNhan))) {
             return true;
         }
 
@@ -75,5 +75,19 @@ class ThongBaoHelper
             ->groupBy('thong_bao.loai_thong_bao')
             ->pluck('total', 'loai_thong_bao')
             ->toArray();
+    }
+
+    public static function getPDFFile($thongBao)
+    {
+        if (empty($thongBao->dinh_kem)) return null;
+
+        foreach ($thongBao->dinh_kem as $file) {
+            $extension = pathinfo(asset('storage/' . $file), PATHINFO_EXTENSION);
+            if ($extension == 'pdf') {
+                return asset('storage/' . $file);
+            }
+        }
+
+        return null;
     }
 }

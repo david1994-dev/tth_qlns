@@ -21,6 +21,7 @@ Route::prefix('nhansu')->middleware(['web', 'setDefaultValue'])->name('nhansu.')
         Route::resource('khoa-phong-ban', PhongBanController::class);
         Route::resource('thong-bao', ThongBaoController::class);
         Route::post('thong-bao/upload-image', [ThongBaoController::class, 'uploadImage'])->name('thong-bao.uploadImage');
+        Route::post('thong-bao/phan-hoi', [ThongBaoController::class, 'reply'])->name('thong-bao.phan-hoi');
         Route::resource('loai-thong-bao', LoaiThongBaoController::class);
         Route::get('khoa-phong-ban/sodotochuc/{id}', [PhongBanController::class, 'sodotochuc'])->name('khoaphongban.sodotochuc');
         Route::resource('so-do-to-chuc', SoDoToChucController::class);

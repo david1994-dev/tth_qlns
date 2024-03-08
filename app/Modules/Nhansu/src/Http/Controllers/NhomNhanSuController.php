@@ -58,7 +58,12 @@ class NhomNhanSuController extends Controller
      */
     public function create()
     {
-        return view('Nhansu::nhom_nhan_su.create');
+        $nhanVien = $this->nhanVienRepository->select(['id', 'ho_ten', 'chi_nhanh_id', 'phong_ban_id', 'user_id']);
+        $this->nhanVienRepository->load($nhanVien, ['phongBan', 'chiNhanh']);
+
+        return view('Nhansu::nhom_nhan_su.create', [
+            'nhanVien' => $nhanVien
+        ]);
     }
 
     /**

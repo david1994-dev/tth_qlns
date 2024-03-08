@@ -89,24 +89,24 @@
     <script>
         $(document).ready(function() {
             $('.select2').select2()
-            $('.tat-ca-chi-nhanh.select2').select2({
-                placeholder: "Chọn chi nhánh... "
-            })
-            $('.nguoi-nhan-khoa-phong.select2').select2({
-                placeholder: "Chọn khoa phòng... "
-            })
-            $('.nhom-nguoi-dung.select2').select2({
-                placeholder: "Chọn nhóm người dùng... "
-            })
-            // $('.nguoi-nhan-ca-nhan.select2').select2({
-            //     placeholder: "Chọn người nhận cá nhân... "
+            // $('.tat-ca-chi-nhanh.select2').select2({
+            //     placeholder: "Chọn chi nhánh... "
             // })
-            $('.muc-do.select2').select2({
-                placeholder: "Chọn mức độ... "
-            })
-            $('.loai-thong-bao.select2').select2({
-                placeholder: "Chọn loại thông báo... "
-            })
+            // $('.nguoi-nhan-khoa-phong.select2').select2({
+            //     placeholder: "Chọn khoa phòng... "
+            // })
+            // $('.nhom-nguoi-dung').select2({
+            //     placeholder: "Chọn nhóm người dùng... "
+            // })
+            // // $('.nguoi-nhan-ca-nhan.select2').select2({
+            // //     placeholder: "Chọn người nhận cá nhân... "
+            // // })
+            // $('.muc-do.select2').select2({
+            //     placeholder: "Chọn mức độ... "
+            // })
+            // $('.loai-thong-bao.select2').select2({
+            //     placeholder: "Chọn loại thông báo... "
+            // })
         });
     </script>
     <script src="https://cdn.tiny.cloud/1/s5czkzl43fj1mskq5fews6aaqgi3szoefx33i9biqutkvdxn/tinymce/6/tinymce.min.js"
@@ -184,36 +184,36 @@
         }
     </script>
 
-    <script>
-        $(document).ready(function() {
-            $('.jsSelectNV').select2({
-                ajax: {
-                    url: '{!! route('nhansu.nhan-vien.searchAjax') !!}',
-                    dataType: 'json',
-                    delay: 300,
-                    data: function(params) {
-                        return query = {
-                            search: params.term,
-                            page: params.page
-                        }
-                    },
-                    processResults: function(data, params) {
-                        params.page = params.page || 1;
+{{--    <script>--}}
+{{--        $(document).ready(function() {--}}
+{{--            $('.jsSelectNV').select2({--}}
+{{--                ajax: {--}}
+{{--                    url: '{!! route('nhansu.nhan-vien.searchAjax') !!}',--}}
+{{--                    dataType: 'json',--}}
+{{--                    delay: 300,--}}
+{{--                    data: function(params) {--}}
+{{--                        return query = {--}}
+{{--                            search: params.term,--}}
+{{--                            page: params.page--}}
+{{--                        }--}}
+{{--                    },--}}
+{{--                    processResults: function(data, params) {--}}
+{{--                        params.page = params.page || 1;--}}
 
-                        return {
-                            results: data.items,
-                            pagination: {
-                                more: (params.page * 50) < data.count
-                            }
-                        };
-                    },
-                    cache: true
-                },
-                placeholder: 'Nhập mã hoặc họ tên nhân viên...',
-                minimumInputLength: 1,
-            })
-        });
-    </script>
+{{--                        return {--}}
+{{--                            results: data.items,--}}
+{{--                            pagination: {--}}
+{{--                                more: (params.page * 50) < data.count--}}
+{{--                            }--}}
+{{--                        };--}}
+{{--                    },--}}
+{{--                    cache: true--}}
+{{--                },--}}
+{{--                placeholder: 'Nhập mã hoặc họ tên nhân viên...',--}}
+{{--                minimumInputLength: 1,--}}
+{{--            })--}}
+{{--        });--}}
+{{--    </script>--}}
 @stop
 @section('content')
     <div class="side-app main-container">
@@ -263,9 +263,9 @@
                                     <div class="col-xl-12 label-left">
                                         <label class="form-label mb-0 ">Gửi Tất Cả Nhân Viên Trong Chi Nhánh:</label>
                                     </div>
-                                    <div class="col-xl-12 select22 placeholder2 font-placeholder">
+                                    <div class="col-xl-12 placeholder2 font-placeholder">
                                         <div class="option exit-option">
-                                            <select class="js-example-basic-single form-control select2 tat-ca-chi-nhanh"
+                                            <select data-placeholder="Chọn chi nhánh" class="form-control select2"
                                                 name="chi_nhanh_ids[]" multiple>
                                                 @foreach ($chiNhanh as $cn)
                                                     <option value="{{ $cn->id }}">{{ $cn->ten }}</option>
@@ -282,8 +282,8 @@
                                     </div>
                                     <div class="col-xl-12 placeholder2">
                                         <div class="option exit-option">
-                                            <select
-                                                class="js-example-basic-single form-control select2 nguoi-nhan-khoa-phong"
+                                            <select data-placeholder="Chọn phòng ban"
+                                                class="select2"
                                                 name="phong_ban_ids[]" multiple>
                                                 @foreach ($phongBan as $pb)
                                                     <option value="{{ $pb->id }}">{{ $pb->ten }}</option>
@@ -300,7 +300,8 @@
                                     </div>
                                     <div class="col-xl-12">
                                         <div class="option exit-option placeholder2">
-                                            <select class="js-example-basic-single form-control select2 nhom-nguoi-dung"
+                                            <select data-placeholder="Chọn nhóm người dùng"
+                                                class="form-control select2"
                                                 name="nhom_nguoi_nhan_ids[]" multiple>
                                                 @foreach($nhomNguoiDung as $nnd)
                                                     <option value="{{ $nnd->id }}">{{ $nnd->ten }}</option>
@@ -317,9 +318,13 @@
                                     </div>
                                     <div class="col-xl-12 placeholder2">
                                         <div class="option exit-option">
-                                            <select class="js-example-basic-single form-control select2 nguoi-nhan-ca-nhan jsSelectNV"
+                                            <select
+                                                data-placeholder="Chọn người nhận cá nhân"
+                                                class="form-control select2"
                                                 name="nguoi_nhan_ids[]" multiple>
-
+                                                @foreach($nhanVien as $nv)
+                                                    <option value="{{$nv->user_id}}">{{$nv->ho_ten.' - '.$nv->phongBan->ten.' - '.$nv->chiNhanh->ten}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <p class="mt-2 label-left" style="font-size: small">(*) có thể tìm bằng mã nhân viên

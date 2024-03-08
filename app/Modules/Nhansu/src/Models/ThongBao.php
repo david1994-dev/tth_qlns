@@ -104,4 +104,51 @@ class ThongBao extends Base
 
         return $sendFrom;
     }
+
+    public function getSendToAttribute()
+    {
+        $sendTo = [];
+        if ($this->gui_tat_ca) return 'Toàn bộ công ty';
+
+        $chiNhanhIds = $this->chi_nhanh_ids;
+        if ($chiNhanhIds) {
+            $chiNhanhs = ChiNhanh::query()->whereIn('id', $chiNhanhIds)->pluck('ten')->toArray();
+            $sendTo = array_merge($sendTo, $chiNhanhs);
+        }
+
+        $phongBanIds = $this->phong_ban_ids;
+        if ($phongBanIds) {
+            $phongBans = PhongBan::query()->whereIn('id', $phongBanIds)->pluck('ten')->toArray();
+            $sendTo = array_merge($sendTo, $phongBans);
+        }
+
+        $nhomNguoiNhans = $this->nhom_nguoi_nhan_ids;
+        if ($nhomNguoiNhans) {
+            foreach ($nhomNguoiNhans as $nhomNguoiNhan) {
+                $nNguoiNhan = NhanVien::query()->whereIn('user_id', $nhomNguoiNhan->user_ids)->pluck('ho_ten')->toArray();
+                $sendTo = array_merge($sendTo, $nNguoiNhan);
+            }
+        }
+
+        $nguoiNhanIdss = $this->nguoi_nhan_ids;
+        if ($nguoiNhanIdss) {
+            $tenNguoiNhan = NhanVien::query()->whereIn('user_id', $nguoiNhanIdss)->pluck('ho_ten')->toArray();
+            $sendTo = array_merge($sendTo, $tenNguoiNhan);
+        }
+
+        $sendTo = array_unique($sendTo);
+
+        return implode(',', $sendTo);
+    }
+
+    public function getDanhSachNguoiXemAttribute()
+    {
+        $nguoiXemIds = ThongBaoUser::query()
+            ->where('thong_bao_id', $this->id)
+            ->where('status', ThongBaoUser::STATUS_DA_DOC)
+            ->pluck('user_id')
+            ->toArray();
+
+        return NhanVien::query()->whereIn('user_id', $nguoiXemIds)->pluck('ho_ten')->toArray();
+    }
 }

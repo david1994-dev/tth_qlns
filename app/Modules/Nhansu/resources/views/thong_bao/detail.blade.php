@@ -103,10 +103,10 @@
         //     document.getElementById('div1').style.display = 'block';
         // }
 
-        let radioButton = $('input[name="tab"]');
+        let radioButton = $('input[name="nguoi_nhan"]');
         radioButton.on('click', function() {
-            let value = $('input[name="tab"]:checked').val();
-            if (value === 'igottwo') {
+            let value = $('input[name="nguoi_nhan"]:checked').val();
+            if (value === 'gui_ca_nhan') {
                 $('#div1').removeClass('d-none')
             } else {
                 $('#div1').addClass('d-none')
@@ -172,8 +172,7 @@
             <div class="col-md-12 col-lg-8 col-xl-9">
                 <div class="card">
                     <div class="card-header border-bottom-0">
-                        <h4 class="card-title">Kế hoạch số 17 KH - TTH về Tổ chức chương trình Gala Dinner chào mừng ngày
-                            Thầy thuốc Việt Nam 27/02 - Gặp mặt đầu xuân Khu vực Nghệ An</h4>
+                        <h4 class="card-title">{{$model->tieu_de}}</h4>
                     </div>
                     <div class="card-body">
                         <div class="email-media">
@@ -189,50 +188,51 @@
                                                 class="fa fa-reply"></i></a>
                                     </div>
                                     <div class="media-title text-dark font-weight-semibold mt-1">Người gửi: <span
-                                            class=" font-weight-semibold">Văn thư Tổng Công ty - Nhân viên Văn thư TCT -
-                                            Phòng Hành chính Quản trị</span></div>
-                                    <small class="mb-0">Người nhận: Văn Phòng Tổng Công ty, NA1-Phòng Hành chính nhân sự,
-                                        TCT - Ban Tổng Giám đốc, WM.Phòng Hành chính nhân sự, WM.Ban giám đốc, NA2-Ban Giám
-                                        đốc, NA2-Phòng Hành chính nhân sự, NA1-Ban Giám Đốc, TĐT - Phòng Kế toán hành
-                                        chính tổng hợp, TĐT - Ban Giám đốc</small>
-                                    <small class="me-2 d-md-none">Dec 13 , 2021 12:45 pm</small>
+                                            class=" font-weight-semibold">{{$model->sendFrom}}</span></div>
+                                    <small class="mb-0">Người nhận: {{$model->sendTo}}</small>
+                                    <small class="me-2 d-md-none">{{$model->created_at->format('Y-m-d h:i:s')}}</small>
                                 </div>
                             </div>
                         </div>
                         <div class="eamil-body mt-5">
                             <h6>Kính gửi: Anh/ Chị:</h6>
-                            <p>Kế hoạch số 17 về Tổ chức chương trình Gala Dinner chào mừng ngày Thầy thuốc Việt Nam 27/02 -
-                                Gặp mặt đầu xuân Khu vực Nghệ An</p>
+                            <p>{!! $model->noi_dung !!}</p>
                             <p class="mb-0">Trân trọng!</p>
                             <hr>
-                            <iframe src="{{ asset('cv_nguyenthiminhhoa_tester.pdf') }}" style="width:100%; height:1000px;"
-                                frameborder="0"></iframe>
+                            @if(!empty($model->dinh_kem))
+                                @php $pdfFile = \App\Modules\Nhansu\Helpers\ThongBaoHelper::getPDFFile($model) @endphp
+                                @if($pdfFile)
+                                    <iframe src="{{$pdfFile}}" style="width:100%; height:1000px;"></iframe>
+                                @endif
                             <div class="email-attch">
-                                <p class="font-weight-semibold">3 Attachments<a href="javascript:void(0);">View</a></p>
+                                <p class="font-weight-semibold">{{count($model->dinh_kem) }} Attachments <a href="javascript:void(0);">View</a></p>
                             </div>
                             <div class="row attachments-doc">
                                 <div class="col-xxl-4 col-xl-12 col-md-12 my-2">
                                     <div class="list-group-item  align-items-center">
                                         <div class="d-xl-flex">
-                                            <img src="https://play-lh.googleusercontent.com/g2_mp6KE9sOiqfV2P3YEzqp6Zzuwfyu1rhVPbXzMmb42s2jCR9rt6nbo-m5j1Y0Ekw-Y=w240-h480-rw"
-                                                alt="img" class="avatar bg-transparent avatar-xl me-2">
-                                            <a href="{{ asset('cv_nguyenthiminhhoa_tester.pdf') }}"
-                                                class="font-weight-semibold fs-14 "> Quyết định Số 57 Về việc điều động và
-                                                bổ nhiệm Ông Thái Văn Trung giữ chức vụ Trưởng ban QLDA BV YHCT Nguyên
-                                                Phúc.pdf<span class="text-muted ms-2">(23 KB)</span></a>
-                                            <div class="ms-auto d-flex mt-4 text-end">
-                                                <a href="{{ asset('cv_nguyenthiminhhoa_tester.pdf') }}"
-                                                    class="action-btns1"><i class="bi bi-arrow-bar-down"></i></a>
+                                            @foreach($model->dinh_kem as $file)
+                                            <div class="dinhkem__item">
+                                                <img src="https://play-lh.googleusercontent.com/g2_mp6KE9sOiqfV2P3YEzqp6Zzuwfyu1rhVPbXzMmb42s2jCR9rt6nbo-m5j1Y0Ekw-Y=w240-h480-rw"
+                                                     alt="img" class="avatar bg-transparent avatar-xl me-2">
+                                                <a href="{{asset('storage/' . $file)}}"
+                                                   class="font-weight-semibold fs-14 ">{{basename(asset('storage/' . $file))}}<span class="text-muted ms-2">(23 KB)</span></a>
+                                                <div class="ms-auto d-flex mt-4 text-end">
+                                                    <a href="{{asset('storage/' . $file)}}"
+                                                       class="action-btns1"><i class="bi bi-arrow-bar-down"></i></a>
+                                                </div>
                                             </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </div>
                     <div class="card-footer">
                         <a class="modal-effect btn btn-primary mt-1 mb-1" data-toggle="modal"
-                            data-target="#exampleModalCenter"><i class="fa fa-reply"></i> Phản hồi</a>
+                            data-target="#phanHoi"><i class="fa fa-reply"></i> Phản hồi</a>
                     </div>
                 </div>
             </div>
@@ -240,27 +240,28 @@
         <!-- END ROW -->
     </div>
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-        aria-hidden="true" id="exampleModalCenter">
+        aria-hidden="true" id="phanHoi">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="card-header border-bottom-0">
                     <h3 class="card-title">PHẢN HỒI THÔNG BÁO</h3>
                 </div>
-                <form>
+                <form method="POST" action="{{route('nhansu.thong-bao.phan-hoi')}}" enctype="multipart/form-data">
+                    <input type="hidden" name="thong_bao_id" value="{{$model->id}}">
+                    @csrf
                     <div class="card-body">
                         <div class="form-group">
                             <div class="row align-items-center">
                                 <label class="col-sm-2 form-label">Phản hồi cho <span style="color: red">*</span>:</label>
                                 <div class="col-sm-10">
                                     <div class="row">
-                                        <div class="col-4"><input type="radio" name="tab" value="igotnone"
+                                        <div class="col-4"><input type="radio" name="nguoi_nhan" value="gui_toan_bo"
                                                 checked />
                                             Phản hồi cho toàn bộ </div>
-                                        <div class="col-8"><input type="radio" name="tab" value="igottwo" />
+                                        <div class="col-8"><input type="radio" name="nguoi_nhan" value="gui_ca_nhan" />
                                             Phản hồi cho cá nhân</div>
                                     </div>
                                 </div>
-
                             </div>
                             <div id="div1" class="d-none form-group">
                                 <div class="row">
@@ -285,7 +286,7 @@
                                 <div class="row">
                                     <label class="col-sm-2 form-label">Đính kèm: </label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" multiple>
+                                        <input class="form-control" type="file" name="fileInput[]" multiple>
                                     </div>
                                 </div>
                             </div>
