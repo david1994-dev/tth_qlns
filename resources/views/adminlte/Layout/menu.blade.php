@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-secondary-light  elevation-4">
     <!-- Brand Logo -->
     <div class="mt-3 ml-3">
-        <a href="{{ asset('adminlte/index3.html') }}">
+        <a href="{{ route('nhansu.thong-bao.index') }}">
             <img src="{{ asset('adminlte/dist/img/logo1.png') }}">
         </a>
     </div>
@@ -42,7 +42,7 @@
                     <a href="#" class="nav-link active ">
                         <i class="bi bi-bell-fill"></i>
                         <p>
-                            Thông báo
+                            Thông báo <span class="ms-auto badge badge-success">14</span>
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>

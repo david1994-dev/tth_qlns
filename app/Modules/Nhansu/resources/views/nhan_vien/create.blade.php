@@ -94,7 +94,7 @@
                                 <label for="dien_thoai" class="h6">Điện thoại<span style="color: red">*</span>:</label>
                                 <div class="input-group">
                                     <input type="text" id="dien_thoai" class="form-control" name="dien_thoai_ca_nhan"
-                                        value="{{ old('dien_thoai_ca_nhan') }}" placeholder="Nhập sô diện thoại..."
+                                        value="{{ old('dien_thoai_ca_nhan') }}" placeholder="Nhập sô điện thoại..."
                                         required>
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-telephone"></i></span>
@@ -183,7 +183,7 @@
                                 <div class="input-group">
                                     <input type="text" id="dien_thoai_cong_viec" class="form-control"
                                         value="{{ old('dien_thoai_cong_viec') }}" name="dien_thoai_cong_viec"
-                                        placeholder="Nhập số điện hoại công việc...">
+                                        placeholder="Nhập số điện thoại công việc...">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-telephone-plus"></i></span>
                                     </div>
