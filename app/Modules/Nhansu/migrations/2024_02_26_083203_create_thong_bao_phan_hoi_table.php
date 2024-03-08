@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('thong_bao_id')->index();
             $table->boolean('gui_tat_ca')->default(false);
-            $table->text('nguoi_nhan_ids')->nullable();
+            $table->json('nguoi_nhan_ids')->nullable();
             $table->text('noi_dung')->nullable();
-            $table->text('dinh_kem')->nullable();
+            $table->json('dinh_kem')->nullable();
             $table->unsignedBigInteger('nguoi_gui_id')->default(0);
             $table->timestamps();
 

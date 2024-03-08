@@ -30,10 +30,10 @@ class ThongBaoRepository extends BaseRepository implements ThongBaoRepositoryInt
             ->where(function ($q) use ($nhanVien, $nhomNhanSu) {
                 $q->where('thong_bao.gui_tat_ca', true)
                     ->orWhere(function ($q) use ($nhanVien, $nhomNhanSu) {
-                        $q->whereJsonContains('thong_bao.chi_nhanh_ids', $nhanVien->chi_nhanh_id)
-                            ->orWhereJsonContains('thong_bao.phong_ban_ids', $nhanVien->phong_ban_id)
+                        $q->whereJsonContains('thong_bao.chi_nhanh_ids', (string)$nhanVien->chi_nhanh_id)
+                            ->orWhereJsonContains('thong_bao.phong_ban_ids', (string)$nhanVien->phong_ban_id)
                             ->orWhereJsonContains('thong_bao.nhom_nguoi_nhan_ids', $nhomNhanSu) //todo dang sai vi 1 nhan su co the trong nhieu nhom
-                            ->orWhereJsonContains('thong_bao.nguoi_nhan_ids', $nhanVien->user_id);
+                            ->orWhereJsonContains('thong_bao.nguoi_nhan_ids', (string)$nhanVien->user_id);
                     });
             })
 //            ->leftJoin('thong_bao_users','thong_bao.id','=','thong_bao_users.thong_bao_id')
@@ -89,10 +89,10 @@ class ThongBaoRepository extends BaseRepository implements ThongBaoRepositoryInt
             ->where(function ($qr) use ($nhanVien, $nhomNhanSu) {
                 $qr->where('gui_tat_ca', true)
                     ->orWhere(function ($q) use ($nhanVien, $nhomNhanSu) {
-                        $q->whereJsonContains('chi_nhanh_ids', $nhanVien->chi_nhanh_id)
-                            ->orWhereJsonContains('phong_ban_ids', $nhanVien->phong_ban_id)
+                        $q->whereJsonContains('chi_nhanh_ids', (string)$nhanVien->chi_nhanh_id)
+                            ->orWhereJsonContains('phong_ban_ids', (string)$nhanVien->phong_ban_id)
                             ->orWhereJsonContains('nhom_nguoi_nhan_ids', $nhomNhanSu)
-                            ->orWhereJsonContains('nguoi_nhan_ids', $nhanVien->user_id);
+                            ->orWhereJsonContains('nguoi_nhan_ids', (string)$nhanVien->user_id);
                     });
             });
 

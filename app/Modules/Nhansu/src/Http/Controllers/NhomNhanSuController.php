@@ -4,6 +4,7 @@ namespace App\Modules\Nhansu\src\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PaginationRequest;
+use App\Modules\Nhansu\src\Models\NhomNhanSu;
 use App\Modules\Nhansu\src\Repositories\Interface\NhanVienRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\NhomNhanSuRepositoryInterface;
 use Illuminate\Http\Request;
@@ -75,7 +76,6 @@ class NhomNhanSuController extends Controller
         $input = $request->only(['ma','ten', 'user_ids']);
         $input['slug'] = Str::slug($input['ten']);
         $input['nguoi_cap_nhat_id'] = $user->id;
-
         $chiNhanh = $this->nhomNhanSuRepository->create($input);
 
         if (!$chiNhanh) {

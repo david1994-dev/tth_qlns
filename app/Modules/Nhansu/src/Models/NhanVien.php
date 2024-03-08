@@ -35,7 +35,6 @@ class NhanVien extends Base
     ];
 
     protected $casts = [
-        'chi_tiet' => 'array',
         'deleted_at' => 'datetime:Y-m-d H:i:s',
         'ngay_sinh' => 'date'
     ];

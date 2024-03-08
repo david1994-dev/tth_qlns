@@ -16,15 +16,15 @@ return new class extends Migration
             $table->string('slug');
             $table->string('tieu_de');
             $table->boolean('gui_tat_ca')->index()->default(false);
-            $table->text('chi_nhanh_ids')->index()->nullable();
-            $table->text('phong_ban_ids')->index()->nullable();
-            $table->text('nhom_nguoi_nhan_ids')->index()->nullable();
-            $table->text('nguoi_nhan_ids')->index()->nullable();
+            $table->json('chi_nhanh_ids')->nullable();
+            $table->json('phong_ban_ids')->nullable();
+            $table->json('nhom_nguoi_nhan_ids')->nullable();
+            $table->json('nguoi_nhan_ids')->nullable();
 
             $table->unsignedBigInteger('loai_thong_bao')->index()->default(0);
             $table->tinyInteger('muc_do')->default(\App\Modules\Nhansu\src\Models\ThongBao::MUC_DO_BINH_THUONG);
             $table->text('noi_dung')->nullable();
-            $table->text('dinh_kem')->nullable();
+            $table->json('dinh_kem')->nullable();
             $table->boolean('xuat_ban')->default(false);
             $table->unsignedBigInteger('nguoi_gui_id')->default(0);
 
