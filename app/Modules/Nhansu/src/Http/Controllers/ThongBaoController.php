@@ -198,11 +198,14 @@ class ThongBaoController extends Controller
 
         $thongBaoUnreadByType = $this->thongBaoRepository->countUnReadByType($user, $filter);
         $loaiThongBao = $this->loaiThongBaoRepository->all();
+        $nhanVien = $this->nhanVienRepository->select(['id', 'ho_ten', 'chi_nhanh_id', 'phong_ban_id', 'user_id']);
+        $this->nhanVienRepository->load($nhanVien, ['phongBan', 'chiNhanh']);
 
         return view('Nhansu::thong_bao.detail', [
             'model' => $model,
             'loaiThongBao' => $loaiThongBao,
             'thongBaoUnreadByType' => $thongBaoUnreadByType,
+            'nhanVien' => $nhanVien
         ]);
     }
 
