@@ -24,6 +24,7 @@ return new class extends Migration
             $table->date('ngay_sinh')->nullable();
             $table->unsignedBigInteger('chi_nhanh_id')->index()->nullable();
             $table->unsignedBigInteger('phong_ban_id')->index()->nullable();
+            $table->unsignedBigInteger('vi_tri_cong_viec_id')->index()->nullable();
             $table->timestamps();
 
             $table->softDeletes();
