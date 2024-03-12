@@ -35,32 +35,7 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
-            $('.jsSelectNV').select2({
-                ajax: {
-                    url: '{!! route('nhansu.nhan-vien.searchAjax') !!}',
-                    dataType: 'json',
-                    delay: 300,
-                    data: function(params) {
-                        return query = {
-                            search: params.term,
-                            page: params.page
-                        }
-                    },
-                    processResults: function(data, params) {
-                        params.page = params.page || 1;
-
-                        return {
-                            results: data.items,
-                            pagination: {
-                                more: (params.page * 50) < data.count
-                            }
-                        };
-                    },
-                    cache: true
-                },
-                placeholder: 'Nhập mã hoặc họ tên nhân viên...',
-                minimumInputLength: 1,
-            })
+            $('.select2').select2()
 
             tinymce.init({
                 selector: 'textarea#tiny2', // change this value according to your HTML
@@ -299,8 +274,12 @@
                                     <label class="col-sm-2 form-label">Người nhận: </label>
                                     <div class="col-sm-10">
                                         <div class="option exit-option req_place">
-                                            <select class="jsSelectNV form-control select2 " name="user_ids[]"
-                                                multiple></select>
+                                            <select
+                                                data-placeholder="Chọn người nhận cá nhân"  class="form-control select2 " name="user_ids[]" multiple>
+                                                @foreach($nhanVien as $nv)
+                                                    <option value="{{$nv->user_id}}">{{$nv->ho_ten.' - '.$nv->phongBan->ten.' - '.$nv->chiNhanh->ten}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

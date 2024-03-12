@@ -9,6 +9,7 @@ use App\Modules\Nhansu\src\Http\Controllers\LoaiNhanVienController;
 use App\Modules\Nhansu\src\Http\Controllers\ThongBaoController;
 use App\Modules\Nhansu\src\Http\Controllers\LoaiThongBaoController;
 use App\Modules\Nhansu\src\Http\Controllers\NhomNhanSuController;
+use App\Modules\Nhansu\src\Http\Controllers\ViTriCongViecController;
 
 
 Route::prefix('nhansu')->middleware(['web', 'setDefaultValue'])->name('nhansu.')->group(function () {
@@ -27,6 +28,7 @@ Route::prefix('nhansu')->middleware(['web', 'setDefaultValue'])->name('nhansu.')
         Route::resource('so-do-to-chuc', SoDoToChucController::class);
         Route::resource('nhan-vien', NhanVienController::class);
         Route::resource('nhom-nhan-su', NhomNhanSuController::class);
+        Route::resource('vi-tri-cong-viec', ViTriCongViecController::class);
         Route::get('chuyen-ung-vien/{id}', [NhanVienController::class, 'chuyenUngVien'])->name('nhan-vien.chuyenUngVien');
         Route::resource('loai-nhan-vien', LoaiNhanVienController::class);
         Route::post('tao-user', [NhanVienController::class, 'taoAccount'])->name('nhan-vien.taoAccount');

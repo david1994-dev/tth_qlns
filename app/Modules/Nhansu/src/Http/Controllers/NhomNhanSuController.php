@@ -76,8 +76,11 @@ class NhomNhanSuController extends Controller
         $input = $request->only(['ma','ten', 'user_ids']);
         $input['slug'] = Str::slug($input['ten']);
         $input['nguoi_cap_nhat_id'] = $user->id;
-        $chiNhanh = $this->nhomNhanSuRepository->create($input);
+        if (!empty($input['user_ids'])) {
+            $input['user_ids'] = array_map('intval', $input['user_ids']);
+        }
 
+        $chiNhanh = $this->nhomNhanSuRepository->create($input);
         if (!$chiNhanh) {
             return redirect()
                 ->back()

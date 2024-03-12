@@ -126,7 +126,25 @@ class ThongBaoController extends Controller
             'tieu_de', 'noi_dung', 'gui_tat_ca', 'chi_nhanh_ids',
             'nhom_nguoi_nhan_ids', 'phong_ban_ids', 'nguoi_nhan_ids', 'muc_do', 'loai_thong_bao', 'xuat_ban'
         ]);
+
         $input['creator_id'] = $user->id;
+
+        if (!empty($input['chi_nhanh_ids'])) {
+            $input['chi_nhanh_ids'] = array_map('intval', $input['chi_nhanh_ids']);
+        }
+
+        if (!empty($input['nhom_nguoi_nhan_ids'])) {
+            $input['nhom_nguoi_nhan_ids'] = array_map('intval', $input['nhom_nguoi_nhan_ids']);
+        }
+
+        if (!empty($input['phong_ban_ids'])) {
+            $input['phong_ban_ids'] = array_map('intval', $input['phong_ban_ids']);
+        }
+
+        if (!empty($input['nguoi_nhan_ids'])) {
+            $input['nguoi_nhan_ids'] = array_map('intval', $input['nguoi_nhan_ids']);
+        }
+
         $files = [];
         if ($request->hasFile('fileInput')) {
             foreach ($request->file('fileInput') as $file) {
@@ -180,11 +198,14 @@ class ThongBaoController extends Controller
 
         $thongBaoUnreadByType = $this->thongBaoRepository->countUnReadByType($user, $filter);
         $loaiThongBao = $this->loaiThongBaoRepository->all();
+        $nhanVien = $this->nhanVienRepository->select(['id', 'ho_ten', 'chi_nhanh_id', 'phong_ban_id', 'user_id']);
+        $this->nhanVienRepository->load($nhanVien, ['phongBan', 'chiNhanh']);
 
         return view('Nhansu::thong_bao.detail', [
             'model' => $model,
             'loaiThongBao' => $loaiThongBao,
             'thongBaoUnreadByType' => $thongBaoUnreadByType,
+            'nhanVien' => $nhanVien
         ]);
     }
 
@@ -203,6 +224,9 @@ class ThongBaoController extends Controller
             $input['gui_tat_ca'] = true;
         } else {
             $input['nguoi_nhan_ids'] = $request->get('nguoi_nhan_ids', []);
+            if (!empty($input['nguoi_nhan_ids'])) {
+                $input['nguoi_nhan_ids'] = array_map('intval', $input['nguoi_nhan_ids']);
+            }
         }
 
         $files = [];
