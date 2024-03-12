@@ -45,10 +45,7 @@
                             <div class="mail-option">
                                 <form style="border: 2px solid;border-radius: 10px;border-color: #e9ebfa;">
                                     <div class="form-row"
-                                        style="
-                                    padding-top: 18px;
-                                    padding-left: 70px;
-                                ">
+                                        style="padding-top: 18px; padding-left: 70px;">
                                         <div class="form-group col-md-2 mb-0">
                                             <div class="form-group">
                                                 <div class="col-xl-12 placeholder2">
