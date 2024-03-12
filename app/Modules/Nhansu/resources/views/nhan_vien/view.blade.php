@@ -143,6 +143,10 @@
                                                                 class="ri-checkbox-circle-line text-success ms-1 fs-14"></i>
                                                         </h4>
                                                         <div class="d-flex mb-2">
+                                                            <span><i class="bi bi-person-badge-fill"></i></span>
+                                                            <div class="h6 mb-0 ms-3 mt-1">{{ $model->viTriCongViec->ten}}</div>
+                                                        </div>
+                                                        <div class="d-flex mb-2">
                                                             <span><i class="bi bi-envelope"></i></span>
                                                             <div class="h6 mb-0 ms-3 mt-1">{{ $model->email ?? old('email') }}</div>
                                                         </div>
