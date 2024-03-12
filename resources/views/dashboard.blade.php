@@ -32,8 +32,8 @@
                                 class="btn btn-primary btn-lg btn-block">Compose</a>
                         </div>
                         <a href="javascript:void(0);" class="list-group-item d-flex align-items-center active">
-                            <span class="icons"><i class="bi bi-bell-fill"></i></span> Thông báo <span
-                                class="ms-auto badge badge-success">14</span>
+                            <span class="icons"><i class="bi bi-bell-fill"></i></span> Thông báo 
+                            <span class="ms-auto badge badge-success">14</span>
                         </a>
                         <a href="javascript:void(0);" class="list-group-item d-flex align-items-center">
                             <span class="icons"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"

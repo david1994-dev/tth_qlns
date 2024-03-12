@@ -283,7 +283,7 @@
                                     <div class="col-xl-12 placeholder2">
                                         <div class="option exit-option">
                                             <select data-placeholder="Chọn phòng ban"
-                                                class="select2"
+                                                class="select2 form-control"
                                                 name="phong_ban_ids[]" multiple>
                                                 @foreach ($phongBan as $pb)
                                                     <option value="{{ $pb->id }}">{{ $pb->ten }}</option>

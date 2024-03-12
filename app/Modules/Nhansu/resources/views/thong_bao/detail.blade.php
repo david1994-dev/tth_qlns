@@ -210,6 +210,32 @@
                         </div>
                     </div>
                     <div class="card-footer">
+                        <div>
+                            <div class="media-title text-dark font-weight-semibold mt-1">Người phản hồi: Trần Hậu Minh Tiến
+                            </div>
+                            <small class="mb-0">Thời gian: 04/10/2001 </small>
+                            <div class="media-title text-dark font-weight-semibold mt-1">Nội dung:</div>
+                            <p>Bị cáo đã nhận ra lỗi sai của mình, mong hội đồng xét xử giảm nhẹ tội để bị cáo nhận được sự
+                                khoan hồng của pháp luật</p>
+                            <div class="col-xxl-4 col-xl-12 col-md-12 my-2">
+                                <div class="list-group-item  align-items-center">
+                                    <div class="d-xl-flex">
+                                        <div class="dinhkem__item row">
+                                            <div class="col-4">
+                                                <img src="https://play-lh.googleusercontent.com/g2_mp6KE9sOiqfV2P3YEzqp6Zzuwfyu1rhVPbXzMmb42s2jCR9rt6nbo-m5j1Y0Ekw-Y=w240-h480-rw"
+                                                    alt="img" class="avatar bg-transparent avatar-xl me-2">
+                                            </div>
+                                            <div class="col-8">
+                                                <a href=""
+                                                    class="font-weight-semibold fs-14 ">phan-hoi.doc<span
+                                                        class="text-muted ms-2">(23 KB)</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>-----------------------------------------------------------------------------------------------------------</p>
+                        </div>
                         <a class="modal-effect btn btn-primary mt-1 mb-1" data-toggle="modal" data-target="#phanHoi"><i
                                 class="fa fa-reply"></i> Phản hồi</a>
                     </div>
