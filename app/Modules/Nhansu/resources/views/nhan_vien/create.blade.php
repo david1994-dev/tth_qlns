@@ -113,9 +113,6 @@
                                 <label for="loai_ho_so">Loại hồ sơ<span style="color: red">*</span>: </label>
                                 <select class="select2 form-control" name="loai_nhan_vien_id" id="loai_ho_so"
                                     style="width: 100%" required>
-                                    @foreach ($loaiNhanVien as $id => $ten)
-                                        <option value="{{ $id }}">{{ $ten }}</option>
-                                    style="width: 100%">
                                     @foreach ($loaiNhanVien as $lnv)
                                         <option value="{{ $lnv->id }}">{{ $lnv->ten }}</option>
                                     @endforeach
