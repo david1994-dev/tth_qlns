@@ -25,7 +25,7 @@
                         <input type="hidden" name="_method" value="PUT">
                         @csrf
                         <div class="form-row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-3">
                                 <label for="ho_ten">Họ và tên<span style="color: red">*</span>:</label>
                                 <div class="input-group">
                                     <input type="text" id="name" class="form-control" name="ho_ten"
@@ -36,6 +36,16 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="form-group col-md-3">
+                                <label for="vi_tri_cong_viec">Vị Trí Công Việc<span style="color: red">*</span>:</label>
+                                <select name="vi_tri_cong_viec_id" id="vi_tri_cong_viec" class="form-control">
+                                    @foreach ($viTriCongViec as $vt)
+                                        <option @if($vt->id == $model->vi_tri_cong_viec_id) selected @endif value="{{ $vt->id }}">{{ $vt->ten }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
                             <div class="form-group col-md-3">
                                 <label for="gioi_tinh">Giới tính<span style="color: red">*</span>: </label>
                                 <select class="js-example-basic-single form-control" name="gioi_tinh" style="width: 100%"
@@ -78,9 +88,9 @@
                                 <label for="loai_ho_so">Loại hồ sơ<span style="color: red">*</span>: </label>
                                 <select class="select2 form-control" name="loai_nhan_vien_id" style="width: 100%"
                                     id="loai_nhan_vien_id">
-                                    @foreach ($loaiNhanVien as $id => $ten)
-                                        <option value="{{ $id }}"
-                                            @if ($model->loai_nhan_vien_id == $id) selected @endif>{{ $ten }}</option>
+                                    @foreach ($loaiNhanVien as $lnv)
+                                        <option value="{{ $lnv->id }}"
+                                            @if ($model->loai_nhan_vien_id == $lnv->id) selected @endif>{{ $lnv->ten }}</option>
                                     @endforeach
                                 </select>
 
@@ -389,5 +399,5 @@
 
             </div>
         </form>
-    </div>  
+    </div>
 @stop

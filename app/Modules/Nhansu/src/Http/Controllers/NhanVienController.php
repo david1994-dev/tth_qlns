@@ -10,6 +10,7 @@ use App\Modules\Nhansu\src\Repositories\Interface\ChiTietNhanVienRepositoryInter
 use App\Modules\Nhansu\src\Repositories\Interface\LoaiNhanVienRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\NhanVienRepositoryInterface;
 use App\Modules\Nhansu\src\Repositories\Interface\UngVienRepositoryInterface;
+use App\Modules\Nhansu\src\Repositories\Interface\ViTriCongViecRepositoryInterface;
 use App\Repositories\Interface\UserRepositoryInterface;
 use App\Repositories\Interface\UserRoleRepositoryInterface;
 use Illuminate\Http\Request;
@@ -26,6 +27,7 @@ class NhanVienController extends Controller
     private ChiTietNhanVienRepositoryInterface $chiTietNhanVienRepository;
     private LoaiNhanVienRepositoryInterface $loaiNhanVienRepository;
     private UngVienRepositoryInterface $ungVienRepository;
+    private ViTriCongViecRepositoryInterface $viTriCongViecRepository;
 
 
     public function __construct(
@@ -35,6 +37,7 @@ class NhanVienController extends Controller
         ChiTietNhanVienRepositoryInterface $chiTietNhanVienRepository,
         LoaiNhanVienRepositoryInterface $loaiNhanVienRepository,
         UngVienRepositoryInterface $ungVienRepository,
+        ViTriCongViecRepositoryInterface $viTriCongViecRepository
     ) {
         $this->userRepository = $userRepository;
         $this->userRoleRepository = $userRoleRepository;
@@ -42,6 +45,7 @@ class NhanVienController extends Controller
         $this->chiTietNhanVienRepository = $chiTietNhanVienRepository;
         $this->loaiNhanVienRepository = $loaiNhanVienRepository;
         $this->ungVienRepository = $ungVienRepository;
+        $this->viTriCongViecRepository = $viTriCongViecRepository;
     }
 
     public function index(PaginationRequest $request)
@@ -88,12 +92,13 @@ class NhanVienController extends Controller
      * Show the form for creating a new resource.
      */
     public function create(){
-        $loaiNhanVien = $this->loaiNhanVienRepository->all();
-
+        $loaiNhanVien = $this->loaiNhanVienRepository->select(['id', 'ten']);
+        $viTriCongViec = $this->viTriCongViecRepository->select(['id', 'ten']);
         return view (
             'Nhansu::nhan_vien.create',
             [
-                'loaiNhanVien' => $this->loaiNhanVienRepository->pluck($loaiNhanVien, 'ten', 'id')
+                'loaiNhanVien' => $loaiNhanVien,
+                'viTriCongViec' => $viTriCongViec
             ]
         );
     }
@@ -111,6 +116,7 @@ class NhanVienController extends Controller
             'gioi_tinh',
             'loai_nhan_vien_id',
             'ngay_sinh',
+            'vi_tri_cong_viec_id'
         ]);
 
         $inputChiTiet = $request->only([
@@ -151,7 +157,7 @@ class NhanVienController extends Controller
     public function show(string $id)
     {
         $model = $this->nhanVienRepository->findById($id);
-        $model = $this->nhanVienRepository->load($model, ['chiTietNhanVien', 'loaiNhanVien']);
+        $model = $this->nhanVienRepository->load($model, ['chiTietNhanVien', 'loaiNhanVien', 'viTriCongViec']);
         if (!$model) abort(404);
 
         return view('Nhansu::nhan_vien.view', [
@@ -168,11 +174,13 @@ class NhanVienController extends Controller
         $model = $this->nhanVienRepository->load($model, 'chiTietNhanVien');
         if (!$model) abort(404);
 
-        $loaiNhanVien = $this->loaiNhanVienRepository->all();
+        $loaiNhanVien = $this->loaiNhanVienRepository->select(['id', 'ten']);
+        $viTriCongViec = $this->viTriCongViecRepository->select(['id', 'ten']);
 
         return view('Nhansu::nhan_vien.edit', [
             'model' => $model,
-            'loaiNhanVien' => $this->loaiNhanVienRepository->pluck($loaiNhanVien, 'ten', 'id')
+            'loaiNhanVien' => $loaiNhanVien,
+            'viTriCongViec' => $viTriCongViec
         ]);
     }
 
@@ -194,6 +202,7 @@ class NhanVienController extends Controller
             'gioi_tinh',
             'loai_nhan_vien_id',
             'ngay_sinh',
+            'vi_tri_cong_viec_id'
         ]);
 
         $inputChiTiet = $request->only([

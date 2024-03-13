@@ -32,6 +32,7 @@ class NhanVien extends Base
         'ngay_sinh',
         'chi_nhanh_id',
         'phong_ban_id',
+        'vi_tri_cong_viec_id'
     ];
 
     protected $casts = [
@@ -57,6 +58,11 @@ class NhanVien extends Base
     public function loaiNhanVien()
     {
         return $this->hasOne(LoaiNhanVien::class, 'id', 'loai_nhan_vien_id');
+    }
+
+    public function viTriCongViec()
+    {
+        return $this->hasOne(ViTriCongViec::class, 'id', 'vi_tri_cong_viec_id');
     }
 
     public function user()

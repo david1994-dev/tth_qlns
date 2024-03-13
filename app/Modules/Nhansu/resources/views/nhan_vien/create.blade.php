@@ -55,7 +55,7 @@
                         aria-labelledby="thong-tin-chung-tab">
                         @csrf
                         <div class="form-row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-3">
                                 <label for="ho_ten">Họ và tên<span style="color: red">*</span>:</label>
                                 <div class="input-group">
                                     <input type="text" id="name" class="form-control" name="ho_ten"
@@ -64,6 +64,14 @@
                                         <span class="input-group-text"><i class="bi bi-person-circle"></i></span>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="vi_tri_cong_viec">Vị Trí Công Việc<span style="color: red">*</span>:</label>
+                                <select name="vi_tri_cong_viec_id" id="vi_tri_cong_viec" class="form-control">
+                                    @foreach ($viTriCongViec as $vt)
+                                        <option value="{{ $vt->id }}">{{ $vt->ten }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="gioi_tinh">Giới tính<span style="color: red">*</span>: </label>
@@ -107,6 +115,9 @@
                                     style="width: 100%" required>
                                     @foreach ($loaiNhanVien as $id => $ten)
                                         <option value="{{ $id }}">{{ $ten }}</option>
+                                    style="width: 100%">
+                                    @foreach ($loaiNhanVien as $lnv)
+                                        <option value="{{ $lnv->id }}">{{ $lnv->ten }}</option>
                                     @endforeach
                                 </select>
                             </div>

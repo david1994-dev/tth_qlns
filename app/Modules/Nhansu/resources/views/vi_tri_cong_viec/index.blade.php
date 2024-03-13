@@ -53,7 +53,7 @@
 {{--                                    <i class="bi bi-trash"></i>--}}
 {{--                                </button>--}}
 {{--                            </a>--}}
-                            <a target="_blank" href="{{route('nhansu.loai-nhan-vien.edit', $model->id)}}">
+                            <a target="_blank" href="{{route('nhansu.vi-tri-cong-viec.edit', $model->id)}}">
                                 <button class="btn btn-primary">
                                     <i class="bi bi-pencil-square"></i>
                                 </button>
