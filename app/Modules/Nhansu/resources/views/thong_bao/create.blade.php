@@ -19,7 +19,7 @@
         }
 
         .exit-option .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
-            color: red !important;
+            color:#f7284a !important;
         }
 
         .select22 .select2-container .select2-selection--single {
@@ -89,24 +89,6 @@
     <script>
         $(document).ready(function() {
             $('.select2').select2()
-            // $('.tat-ca-chi-nhanh.select2').select2({
-            //     placeholder: "Chọn chi nhánh... "
-            // })
-            // $('.nguoi-nhan-khoa-phong.select2').select2({
-            //     placeholder: "Chọn khoa phòng... "
-            // })
-            // $('.nhom-nguoi-dung').select2({
-            //     placeholder: "Chọn nhóm người dùng... "
-            // })
-            // // $('.nguoi-nhan-ca-nhan.select2').select2({
-            // //     placeholder: "Chọn người nhận cá nhân... "
-            // // })
-            // $('.muc-do.select2').select2({
-            //     placeholder: "Chọn mức độ... "
-            // })
-            // $('.loai-thong-bao.select2').select2({
-            //     placeholder: "Chọn loại thông báo... "
-            // })
         });
     </script>
     <script src="https://cdn.tiny.cloud/1/s5czkzl43fj1mskq5fews6aaqgi3szoefx33i9biqutkvdxn/tinymce/6/tinymce.min.js"
