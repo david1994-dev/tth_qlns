@@ -226,8 +226,7 @@ class NhanVienController extends Controller
         }
 
         session()->flash('success', 'Cập nhật nhân viên thành công!');
-        return redirect()
-            ->back();
+        return redirect()->route('nhansu.nhan-vien.index');
     }
 
     /**
