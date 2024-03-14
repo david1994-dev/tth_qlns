@@ -108,7 +108,7 @@ class NhomNhanSuController extends Controller
         $model = $this->nhomNhanSuRepository->findById($id);
         if (empty($model)) abort(404);
 
-        return view('Nhansu::nhom-nhan-su.edit', [
+        return view('Nhansu::nhom_nhan_su.edit', [
             'model' => $model
         ]);
     }
