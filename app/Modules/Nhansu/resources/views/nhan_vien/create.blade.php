@@ -19,28 +19,23 @@
     <script>
         $(document).ready(function() {
             $('.select2').select2()
-
-            // $('.jsCreateAccount').on('click', function() {
-            //     const btn = $(this);
-            //     const form = btn.closest("form");
-            //     let nhanVienId = btn.data('nhan-vien-id')
-            //     let token = $('meta[name="_token"]').attr('content');
-            //     $.post("{{ route('nhansu.nhan-vien.taoAccount') }}", form.serialize() +
-            //         `&nhan_vien_id=${nhanVienId}` + `&_token=${token}`,
-            //         function(response) {
-            //             form.find("button").prop("disabled", true);
-
-            //             if (response.status === "success") {
-            //                 toastr.success(response.message)
-            //             } else {
-            //                 toastr.error(response.message)
-            //             }
-            //         }).done(function() {
-            //         form.find("button").prop("disabled", false);
-            //     });
-            // });
         });
     </script>
+
+    <script>
+        $("#ngay_bat_dau_lam_viec").change(function() {
+            var startDate = $(this).val();
+            $('#ngay_ket_thuc_lam_viec').attr({"min" : startDate});
+            console.log(d)
+            // let value = $(this).datepicker('getDate'); 
+            //   var startDate = document.getElementById("ngay_bat_dau_lam_viec").value;
+        //   var endDate = document.getElementById("ngay_ket_thuc_lam_viec").value;         
+        //   if ((Date.parse(endDate) <= Date.parse(startDate))) {
+        //     alert("Ngày kết thúc làm việc đang trước ngày bắt đầu làm việc");
+        //     document.getElementById("ngay_ket_thuc_lam_viec").value = "";
+        //   }
+        });
+      </script>
 @stop
 
 @section('content')
