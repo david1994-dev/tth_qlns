@@ -57,7 +57,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="ngay_sinh" class="h6">Ngày sinh<span style="color: red">*</span>:</label>
+                                <label for="ngay_sinh" >Ngày sinh<span style="color: red">*</span>:</label>
                                 <input type="date" id="ngay_sinh" class="form-control" name="ngay_sinh"
                                     value="{{ $model->ngay_sinh ? $model->ngay_sinh->format('Y-m-d') : old('ngay_sinh') }}">
                             </div>
@@ -74,7 +74,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="dien_thoai" class="h6">Điện thoại<span style="color: red">*</span>:</label>
+                                <label for="dien_thoai" >Điện thoại<span style="color: red">*</span>:</label>
                                 <div class="input-group">
                                     <input type="number" id="dien_thoai" class="form-control" name="dien_thoai_ca_nhan"
                                         value="{{ $model->chiTietNhanVien->dien_thoai_ca_nhan ?? old('dien_thoai_ca_nhan') }}"
@@ -118,7 +118,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="ton_giao" class="h6">Tôn giáo:</label>
+                                <label for="ton_giao">Tôn giáo:</label>
                                 <div class="input-group">
                                     <input type="text" id="ton_giao" class="form-control" name="ton_giao"
                                         value="{{ $model->chiTietNhanVien->ton_giao ?? old('ton_giao') }}"
@@ -143,7 +143,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="dia_chi_tam_tru" class="h6">Địa chỉ tạm trú:</label>
+                                <label for="dia_chi_tam_tru" >Địa chỉ tạm trú:</label>
                                 <div class="input-group">
                                     <input type="text" id="dia_chi_tam_tru" class="form-control"
                                         value="{{ $model->chiTietNhanVien->dia_chi_tam_tru ?? old('dia_chi_tam_tru') }}"
@@ -168,7 +168,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="dien_thoai_cong_viec" class="h6">Điện thoại công việc:</label>
+                                <label for="dien_thoai_cong_viec" >Điện thoại công việc:</label>
                                 <div class="input-group">
                                     <input type="text" id="dien_thoai_cong_viec" class="form-control"
                                         value="{{ $model->dien_thoai_cong_viec ?? old('dien_thoai_cong_viec') }}"
@@ -189,7 +189,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="email_phu" class="h6">Email phụ:</label>
+                                <label for="email_phu">Email phụ:</label>
                                 <div class="input-group">
                                     <input type="text" id="email_phu" class="form-control" name="email_phu"
                                         value="{{ $model->chiTietNhanVien->email_phu ?? old('email_phu') }}"
@@ -202,20 +202,20 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label for="ngay_bat_dau_lam_viec" class="h6">Ngày bắt đầu làm việc<span
+                                <label for="ngay_bat_dau_lam_viec">Ngày bắt đầu làm việc<span
                                         style="color: red">*</span>:</label>
                                 <input type="date" id="ngay_bat_dau_lam_viec" class="form-control"
                                     value="{{ $model->chiTietNhanVien->ngay_bat_dau_lam_viec ? $model->chiTietNhanVien->ngay_bat_dau_lam_viec->format('Y-m-d') : old('ngay_bat_dau_lam_viec') }}"
                                     name="ngay_bat_dau_lam_viec">
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="ngay_ket_thuc_lam_viec" class="h6">Ngày kết thúc làm việc:</label>
+                                <label for="ngay_ket_thuc_lam_viec">Ngày kết thúc làm việc:</label>
                                 <input type="date" id="ngay_ket_thuc_lam_viec" class="form-control"
                                     value="{{ $model->chiTietNhanVien->ngay_ket_thuc_lam_viec ? $model->chiTietNhanVien->ngay_ket_thuc_lam_viec->format('Y-m-d') : old('ngay_ket_thuc_lam_viec') }}"
                                     name="ngay_ket_thuc_lam_viec">
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="ngay_thuc_te_lam_viec" class="h6">Ngày thực tế làm việc:</label>
+                                <label for="ngay_thuc_te_lam_viec" >Ngày thực tế làm việc:</label>
                                 <input type="date" id="ngay_thuc_te_lam_viec" class="form-control"
                                     value="{{ $model->chiTietNhanVien->ngay_thuc_te_lam_viec ? $model->chiTietNhanVien->ngay_thuc_te_lam_viec->format('Y-m-d') : old('ngay_thuc_te_lam_viec') }}"
                                     name="ngay_thuc_te_lam_viec">
@@ -223,7 +223,7 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-3">
-                                <label for="CMND" class="h6">CMND <span style="color: red">*</span>: </label>
+                                <label for="CMND" >CMND/CCCD <span style="color: red">*</span>: </label>
                                 <div class="input-group">
                                     <input type="text" id="CMND" class="form-control" name="cmnd"
                                         value="{{ $model->chiTietNhanVien->cmnd ?? old('cmnd') }}"
@@ -234,14 +234,14 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="ngay_cap_CMND" class="h6">Ngày cấp<span style="color: red">*</span>:
+                                <label for="ngay_cap_CMND">Ngày cấp<span style="color: red">*</span>:
                                 </label>
                                 <input type="date" id="ngay_cap_CMND" class="form-control"
                                     value="{{ $model->chiTietNhanVien->ngay_cap_cmnd ? $model->chiTietNhanVien->ngay_cap_cmnd->format('Y-m-d') : old('ngay_cap_cmnd') }}"
                                     name="ngay_cap_cmnd">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="noi_cap_CMND" class="h6">Nơi cấp<span style="color: red">*</span>:
+                                <label for="noi_cap_CMND">Nơi cấp<span style="color: red">*</span>:
                                 </label>
                                 <div class="input-group">
                                     <input type="text" id="noi_cap_CMND" class="form-control" name="noi_cap_cmnd"
@@ -266,7 +266,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="so_cchn" class="h6">Số CCHN: </label>
+                                <label for="so_cchn">Số CCHN: </label>
                                 <div class="input-group">
                                     <input type="text" id="so_cchn" class="form-control" name="so_cchn"
                                         value="{{ $model->chiTietNhanVien->so_cchn ?? old('so_cchn') }}"
@@ -277,7 +277,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="bo_sung_HĐ_CM" class="h6">Bổ sung phạm vi HĐ CM: </label>
+                                <label for="bo_sung_HĐ_CM" >Bổ sung phạm vi HĐ CM: </label>
                                 <div class="input-group">
                                     <input type="text" id="bo_sung_HĐ_CM" class="form-control"
                                         name="bo_sung_pham_vi_cm"
@@ -291,12 +291,12 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-3">
-                                <label for="ngay_cap_CCHN" class="h6">Ngày cấp CCHN: </label>
+                                <label for="ngay_cap_CCHN">Ngày cấp CCHN: </label>
                                 <input type="date" id="ngay_cap_CCHN" class="form-control" name="ngay_cap_cchn"
                                     value="{{ $model->chiTietNhanVien->ngay_cap_cchn ? $model->chiTietNhanVien->ngay_cap_cchn->format('Y-m-d') : old('ngay_cap_cchn') }}">
                             </div>
                             <div class="form-group col-md-5">
-                                <label for="dk_hanh_nghe_tai" class="h6">ĐK Hành nghề tại: </label>
+                                <label for="dk_hanh_nghe_tai" >ĐK Hành nghề tại: </label>
                                 <div class="input-group">
                                     <input type="text" id="dk_hanh_nghe_tai" class="form-control"
                                         value="{{ $model->chiTietNhanVien->dang_ki_hanh_nghe_hien_tai ?? old('dang_ki_hanh_nghe_hien_tai') }}"
@@ -307,7 +307,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-2">
-                                <label for="bien_xe_o_to" class="h6">Biển xe ô tô:
+                                <label for="bien_xe_o_to" >Biển xe ô tô:
                                 </label>
                                 <div class="input-group">
                                     <input type="text" id="bien_xe_o_to" class="form-control" name="bien_oto"
@@ -324,7 +324,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-2">
-                                <label for="bien_xe_may" class="h6">Biển xe máy</span>:</label>
+                                <label for="bien_xe_may" >Biển xe máy</span>:</label>
                                 <div class="input-group">
                                     <input type="text" id="bien_xe_may" class="form-control" name="bien_xe_may"
                                         value="{{ $model->chiTietNhanVien->bien_xe_may ?? old('bien_xe_may') }}"
@@ -348,7 +348,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="size_ao" class="h6">Size áo<span style="color: red">*</span>:</label>
+                                <label for="size_ao" >Size áo<span style="color: red">*</span>:</label>
                                 <div class="input-group">
                                     <input type="text" id="size_ao" class="form-control" name="size_ao"
                                         value="{{ $model->chiTietNhanVien->size_ao ?? old('size_ao') }}"
@@ -359,7 +359,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="size_giay_dep" class="h6">Size giày dép<span
+                                <label for="size_giay_dep" >Size giày dép<span
                                         style="color: red">*</span>:</label>
                                 <div class="input-group">
                                     <input type="text" id="size_giay_dep" class="form-control" name="size_giay_dep"
@@ -371,7 +371,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="bang_lai" class="h6">Bằng lái:</label>
+                                <label for="bang_lai">Bằng lái:</label>
                                 <div class="input-group">
                                     <input type="text" id="bang_lai" class="form-control" name="bang_lai"
                                         value="{{ $model->chiTietNhanVien->bang_lai ?? old('bang_lai') }}"

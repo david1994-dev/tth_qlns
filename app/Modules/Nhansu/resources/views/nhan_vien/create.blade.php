@@ -75,15 +75,15 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="gioi_tinh">Giới tính<span style="color: red">*</span>: </label>
-                                <select name="gioi_tinh" id="gioi_tinh" class="form-control">
+                                <select name="gioi_tinh" id="gioi_tinh" class="form-control" required>
                                     @foreach (\App\Modules\Nhansu\src\Models\NhanVien::GIOI_TINH as $id => $gt)
                                         <option value="{{ $id }}">{{ $gt }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="ngay_sinh" class="h6">Ngày sinh<span style="color: red">*</span>:</label>
-                                <input type="date" id="ngay_sinh" class="form-control" name="ngay_sinh">
+                                <label for="ngay_sinh">Ngày sinh<span style="color: red">*</span>:</label>
+                                <input type="date" id="ngay_sinh" class="form-control" name="ngay_sinh" required>
                             </div>
                         </div>
                         <div class="form-row">
@@ -99,9 +99,9 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="dien_thoai" class="h6">Điện thoại<span style="color: red">*</span>:</label>
+                                <label for="dien_thoai" >Điện thoại<span style="color: red">*</span>:</label>
                                 <div class="input-group">
-                                    <input type="text" id="dien_thoai" class="form-control" name="dien_thoai_ca_nhan"
+                                    <input type="number" id="dien_thoai" class="form-control" name="dien_thoai_ca_nhan"
                                         value="{{ old('dien_thoai_ca_nhan') }}" placeholder="Nhập sô điện thoại..."
                                         required>
                                     <div class="input-group-prepend">
@@ -112,7 +112,7 @@
                             <div class="form-group col-md-3 select22">
                                 <label for="loai_ho_so">Loại hồ sơ<span style="color: red">*</span>: </label>
                                 <select class="select2 form-control" name="loai_nhan_vien_id" id="loai_ho_so"
-                                    style="width: 100%">
+                                    style="width: 100%" required>
                                     @foreach ($loaiNhanVien as $lnv)
                                         <option value="{{ $lnv->id }}">{{ $lnv->ten }}</option>
                                     @endforeach
@@ -139,7 +139,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="ton_giao" class="h6">Tôn giáo:</label>
+                                <label for="ton_giao" >Tôn giáo:</label>
                                 <div class="input-group">
                                     <input type="text" id="ton_giao" class="form-control" name="ton_giao"
                                         value="{{ old('ton_giao') }}" placeholder="Nhập tôn giáo...">
@@ -156,14 +156,14 @@
                                 <div class="input-group">
                                     <input type="text" id="dia_chi_thuong_tru" class="form-control"
                                         value="{{ old('dia_chi_thuong_tru') }}" name="dia_chi_thuong_tru"
-                                        placeholder="Nhập địa chỉ thường trú...">
+                                        placeholder="Nhập địa chỉ thường trú..." required>
                                     <div class="input-group-prepend" required>
                                         <span class="input-group-text"><i class="bi bi-house-door-fill"></i></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="dia_chi_tam_tru" class="h6">Địa chỉ tạm trú:</label>
+                                <label for="dia_chi_tam_tru" >Địa chỉ tạm trú:</label>
                                 <div class="input-group">
                                     <input type="text" id="dia_chi_tam_tru" class="form-control"
                                         value="{{ old('dia_chi_tam_tru') }}" name="dia_chi_tam_tru"
@@ -187,9 +187,9 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="dien_thoai_cong_viec" class="h6">Điện thoại công việc:</label>
+                                <label for="dien_thoai_cong_viec" >Điện thoại công việc:</label>
                                 <div class="input-group">
-                                    <input type="text" id="dien_thoai_cong_viec" class="form-control"
+                                    <input type="number" id="dien_thoai_cong_viec" class="form-control"
                                         value="{{ old('dien_thoai_cong_viec') }}" name="dien_thoai_cong_viec"
                                         placeholder="Nhập số điện thoại công việc...">
                                     <div class="input-group-prepend">
@@ -206,7 +206,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="email_phu" class="h6">Email phụ:</label>
+                                <label for="email_phu" >Email phụ:</label>
                                 <div class="input-group">
                                     <input type="text" id="email_phu" class="form-control" name="email_phu"
                                         value="{{ old('email_phu') }}" placeholder="Nhập email phụ...">
@@ -218,25 +218,25 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label for="ngay_bat_dau_lam_viec" class="h6">Ngày bắt đầu làm việc<span
+                                <label for="ngay_bat_dau_lam_viec" >Ngày bắt đầu làm việc<span
                                         style="color: red">*</span>:</label>
                                 <input type="date" id="ngay_bat_dau_lam_viec" class="form-control" value=""
-                                    name="ngay_bat_dau_lam_viec">
+                                    name="ngay_bat_dau_lam_viec" required>
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="ngay_ket_thuc_lam_viec" class="h6">Ngày kết thúc làm việc:</label>
+                                <label for="ngay_ket_thuc_lam_viec">Ngày kết thúc làm việc:</label>
                                 <input type="date" id="ngay_ket_thuc_lam_viec" class="form-control" value=""
                                     name="ngay_ket_thuc_lam_viec">
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="ngay_thuc_te_lam_viec" class="h6">Ngày thực tế làm việc:</label>
+                                <label for="ngay_thuc_te_lam_viec" >Ngày thực tế làm việc:</label>
                                 <input type="date" id="ngay_thuc_te_lam_viec" class="form-control" value=""
                                     name="ngay_thuc_te_lam_viec">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-3">
-                                <label for="CMND" class="h6">CMND <span style="color: red">*</span>: </label>
+                                <label for="CMND" >CMND/CCCD <span style="color: red">*</span>: </label>
                                 <div class="input-group">
                                     <input type="text" id="CMND" class="form-control" name="cmnd"
                                         value="{{ old('cmnd') }}" placeholder="Nhập số CMND..." required>
@@ -246,13 +246,13 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="ngay_cap_CMND" class="h6">Ngày cấp<span style="color: red">*</span>:
+                                <label for="ngay_cap_CMND" >Ngày cấp<span style="color: red">*</span>:
                                 </label>
                                 <input type="date" id="ngay_cap_CMND" class="form-control" value=""
-                                    name="ngay_cap_cmnd">
+                                    name="ngay_cap_cmnd" required>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="noi_cap_CMND" class="h6">Nơi cấp<span style="color: red">*</span>:
+                                <label for="noi_cap_CMND" >Nơi cấp<span style="color: red">*</span>:
                                 </label>
                                 <div class="input-group">
                                     <input type="text" id="noi_cap_CMND" class="form-control" name="noi_cap_cmnd"
@@ -268,14 +268,14 @@
                                 <label for="trinh_do_chuyen_mon">Trình độ chuyên môn<span style="color: red">*</span>:
                                 </label>
                                 <select class="select2 form-control" name="trinh_do_chuyen_mon" id="trinh_do_chuyen_mon"
-                                    style="width: 100%">
+                                    style="width: 100%" required>
                                     @foreach (\App\Modules\Nhansu\src\Models\ChiTietNhanVien::TRINH_DO_CHUYEN_MON as $id => $td)
                                         <option value="{{ $id }}">{{ $td }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="so_cchn" class="h6">Số CCHN: </label>
+                                <label for="so_cchn" >Số CCHN: </label>
                                 <div class="input-group">
                                     <input type="text" id="so_cchn" class="form-control" name="so_cchn"
                                         value="{{ old('so_cchn') }}" placeholder="Nhập số CCHN...">
@@ -285,7 +285,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="bo_sung_HĐ_CM" class="h6">Bổ sung phạm vi HĐ CM: </label>
+                                <label for="bo_sung_HĐ_CM" >Bổ sung phạm vi HĐ CM: </label>
                                 <div class="input-group">
                                     <input type="text" id="bo_sung_HĐ_CM" class="form-control"
                                         name="bo_sung_pham_vi_cm" value="{{ old('bo_sung_pham_vi_cm') }}"
@@ -298,12 +298,12 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-3">
-                                <label for="ngay_cap_CCHN" class="h6">Ngày cấp CCHN: </label>
+                                <label for="ngay_cap_CCHN" >Ngày cấp CCHN: </label>
                                 <input type="date" id="ngay_cap_CCHN" class="form-control" name="ngay_cap_cchn"
                                     value="">
                             </div>
                             <div class="form-group col-md-5">
-                                <label for="dk_hanh_nghe_tai" class="h6">ĐK Hành nghề tại: </label>
+                                <label for="dk_hanh_nghe_tai" >ĐK Hành nghề tại: </label>
                                 <div class="input-group">
                                     <input type="text" id="dk_hanh_nghe_tai" class="form-control"
                                         value="{{ old('dang_ki_hanh_nghe_hien_tai') }}" name="dang_ki_hanh_nghe_hien_tai"
@@ -314,7 +314,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-2">
-                                <label for="bien_xe_o_to" class="h6">Biển xe ô tô:
+                                <label for="bien_xe_o_to" >Biển xe ô tô:
                                 </label>
                                 <div class="input-group">
                                     <input type="text" id="bien_xe_o_to" class="form-control" name="bien_oto"
@@ -330,7 +330,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-2">
-                                <label for="bien_xe_may" class="h6">Biển xe máy</span>:</label>
+                                <label for="bien_xe_may" >Biển xe máy</span>:</label>
                                 <div class="input-group">
                                     <input type="text" id="bien_xe_may" class="form-control" name="bien_xe_may"
                                         value="{{ old('bien_xe_may') }}" placeholder="Nhập biển số xe máy...">
@@ -345,35 +345,35 @@
                                 <label for="size_quan">Size quần<span style="color: red">*</span>:</label>
                                 <div class="input-group">
                                     <input type="text" id="size_quan" class="form-control" name="size_quan"
-                                        value="{{ old('size_quan') }}" placeholder="Nhập size quần...">
+                                        value="{{ old('size_quan') }}" placeholder="Nhập size quần..." required>
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-list-ol"></i></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="size_ao" class="h6">Size áo<span style="color: red">*</span>:</label>
+                                <label for="size_ao" >Size áo<span style="color: red">*</span>:</label>
                                 <div class="input-group">
                                     <input type="text" id="size_ao" class="form-control" name="size_ao"
-                                        value="{{ old('size_ao') }}" placeholder="Nhập size áo...">
+                                        value="{{ old('size_ao') }}" placeholder="Nhập size áo..." required>
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-list-ol"></i></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="size_giay_dep" class="h6">Size giày dép<span
+                                <label for="size_giay_dep">Size giày dép<span
                                         style="color: red">*</span>:</label>
                                 <div class="input-group">
                                     <input type="text" id="size_giay_dep" class="form-control" name="size_giay_dep"
-                                        value="{{ old('size_giay_dep') }}" placeholder="Nhập size giày dép...">
+                                        value="{{ old('size_giay_dep') }}" placeholder="Nhập size giày dép..." required>
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-list-ol"></i></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="bang_lai" class="h6">Bằng lái:</label>
+                                <label for="bang_lai" >Bằng lái:</label>
                                 <div class="input-group">
                                     <input type="text" id="bang_lai" class="form-control" name="bang_lai"
                                         value="{{ old('bang_lai') }}" placeholder="Nhập bằng lái...">

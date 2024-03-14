@@ -148,8 +148,7 @@ class NhanVienController extends Controller
         }
 
         session()->flash('success', 'Bạn đã tạo nhân viên thành công, mã nhân viên là: <b>'.$nhanVien->ma.'</b>');
-        return redirect()
-            ->back();
+        return redirect()->route('nhansu.nhan-vien.index');
     }
 
     /**
@@ -227,8 +226,7 @@ class NhanVienController extends Controller
         }
 
         session()->flash('success', 'Cập nhật nhân viên thành công!');
-        return redirect()
-            ->back();
+        return redirect()->route('nhansu.nhan-vien.index');
     }
 
     /**
