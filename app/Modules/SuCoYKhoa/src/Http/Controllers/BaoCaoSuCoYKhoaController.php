@@ -3,35 +3,63 @@
 namespace App\Modules\SuCoYKhoa\src\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Modules\Nhansu\src\Repositories\Interface\ChiNhanhRepositoryInterface;
+use App\Modules\Nhansu\src\Repositories\Interface\PhongBanRepositoryInterface;
+use App\Modules\SuCoYKhoa\Helpers\PostApiHelper;
 use App\Modules\SuCoYKhoa\src\Http\Request\BaoCaoSuCoRequest;
 use App\Modules\SuCoYKhoa\src\Repositories\Interface\BaoCaoSuCoYKhoaRepositoryInterface;
 use App\Http\Requests\PaginationRequest;
+use App\Services\FileService;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 
 class BaoCaoSuCoYKhoaController extends Controller
 {
     private BaoCaoSuCoYKhoaRepositoryInterface $baoCaoSuCoYKhoaRepository;
+    private ChiNhanhRepositoryInterface $chiNhanhRepository;
+    private FileService $fileService;
 
-    public function __construct(BaoCaoSuCoYKhoaRepositoryInterface $baoCaoSuCoYKhoaRepository)
-    {
+    private PhongBanRepositoryInterface $phongBanRepository;
+
+    public function __construct(
+        BaoCaoSuCoYKhoaRepositoryInterface $baoCaoSuCoYKhoaRepository,
+        ChiNhanhRepositoryInterface $chiNhanhRepository,
+        FileService $fileService,
+        PhongBanRepositoryInterface $phongBanRepository
+    ) {
         $this->baoCaoSuCoYKhoaRepository = $baoCaoSuCoYKhoaRepository;
+        $this->chiNhanhRepository = $chiNhanhRepository;
+        $this->fileService = $fileService;
+        $this->phongBanRepository = $phongBanRepository;
     }
 
-    public function viewBaoCao()
+    public function viewBaoCao($cnSlug)
     {
-        return view('SuCoYKhoa::bao_cao.bao_cao_su_co');
+        $chiNhanh = $this->chiNhanhRepository->findBySlug($cnSlug);
+        if (!$chiNhanh) abort(404);
+
+        $phongBan = $this->phongBanRepository->allByChiNhanhId($chiNhanh->id);
+
+        return view('SuCoYKhoa::bao_cao.bao_cao_su_co', [
+            'chi_nhanh' => $chiNhanh,
+            'phongBan' => $this->phongBanRepository->pluck($phongBan, 'ten', 'id')
+        ]);
     }
+
 
     public function create(BaoCaoSuCoRequest $request)
     {
         $mainField = [
-            'ho_ten_nguoi_benh', 'ngay_bao_cao', 'ngay_su_co', 'khoa_phong_su_co', 'mo_ta', 'de_xuat_giai_phap',
-            'giai_phap_da_thuc_hien', 'ho_ten_nguoi_bao_cao', '_token'
+            'ho_ten_nguoi_benh', 'ngay_bao_cao', 'ngay_su_co', 'khoa_phong_ban_id', 'mo_ta', 'de_xuat_giai_phap',
+            'giai_phap_da_thuc_hien', 'ho_ten_nguoi_bao_cao', '_token', 'muc_do'
         ];
 
         $input = $request->only($mainField);
         $input['chi_tiet'] = $request->except($mainField);
+
+        $cnSlug = $request->get('chi_nhanh_slug', '');
+        $chiNhanh = $this->chiNhanhRepository->findBySlug($cnSlug);
+        if (!$chiNhanh) abort(404);
+
 
         $baoCao = $this->baoCaoSuCoYKhoaRepository->create($input);
         if (empty($baoCao)) {
@@ -41,7 +69,26 @@ class BaoCaoSuCoYKhoaController extends Controller
         }
 
         $baoCao->ma = $this->baoCaoSuCoYKhoaRepository->renderMaBc($baoCao);
+        $baoCao->chi_nhanh_id = $chiNhanh->id;
         $baoCao->save();
+
+        $images = [];
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                $image = $this->fileService->uploadFile('sucoykhoa', $file);
+                if (!empty($image)) {
+                    $images[] = $image;
+                }
+            }
+        }
+
+        $baoCao->images = $images;
+        $baoCao->save();
+
+        $dataPost = $request->all();
+        $dataPost['chi_nhanh_id'] = $baoCao->chi_nhanh_id;
+        $dataPost['images'] = json_encode($images);
+        PostApiHelper::postDataToHDH($dataPost);
 
         session()->flash('success', 'Bạn đã gửi báo cáo thành công! Mã báo cáo là: <b>'.$baoCao->ma.'</b>');
 
@@ -64,8 +111,7 @@ class BaoCaoSuCoYKhoaController extends Controller
 
         $count = $this->baoCaoSuCoYKhoaRepository->countByFilter($filter);
         $models = $this->baoCaoSuCoYKhoaRepository->getByFilter($filter, $paginate['order'], $paginate['direction'], $paginate['offset'], $paginate['limit']);
-       dd($models);
-        
+
         return view(
             'SuCoYKhoa::quan_ly.danh_sach_bao_cao',
             [

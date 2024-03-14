@@ -12,73 +12,44 @@
 @stop
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <h1 class="text-center fw-bold" style="background-color: blue ;color: white">THÔNG TIN NHÂN VIÊN</h1>
+    <div class="card">
+        <div class="card-header border-bottom-0">
+            <h3 class="card-title">CHỈNH SỬA NHÂN VIÊN</h3>
         </div>
-    </div>
+        <form method="POST" action="{{ route('nhansu.nhan-vien.update', $model->id) }}">
+            <div class="card-body">
+                <div class="tab-content" id="vert-tabs-tabContent">
+                    <div class="tab-pane text-left fade active show" id="thong-tin-chung" role="tabpanel"
+                        aria-labelledby="thong-tin-chung-tab">
 
-    <div class="row">
-        <div class="col-5 col-sm-2">
-            <div class="nav flex-column nav-pills h-100" id="vert-tabs-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link active" id="thong-tin-chung-tab" data-toggle="pill" href="#thong-tin-chung"
-                    role="tab" aria-controls="thong-tin-chung" aria-selected="true">THÔNG TIN CHUNG </a>
-
-                <a class="nav-link" id="ho-so-nhan-su-tab" data-toggle="pill" href="#ho-so-nhan-su" role="tab"
-                    aria-controls="ho-so-nhan-su" aria-selected="false">HỒ SƠ NHÂN SỰ</a>
-
-                <a class="nav-link" id="hop-dong-tab" data-toggle="pill" href="#hop-dong" role="tab"
-                    aria-controls="hop-dong" aria-selected="false">HỢP ĐỒNG</a>
-
-                <a class="nav-link" id="luong-tab" data-toggle="pill" href="#luong" role="tab" aria-controls="luong"
-                    aria-selected="false">LƯƠNG</a>
-
-                <a class="nav-link" id="bao-hiem-tab" data-toggle="pill" href="#bao-hiem" role="tab"
-                    aria-controls="bao-hiem" aria-selected="false">BẢO HIỂM</a>
-
-                <a class="nav-link" id="cong-tac-tab" data-toggle="pill" href="#cong-tac" role="tab"
-                    aria-controls="cong-tac" aria-selected="false">CÔNG TÁC</a>
-
-                <a class="nav-link" id="dao-tao-tab" data-toggle="pill" href="#dao-tao" role="tab"
-                    aria-controls="dao-tao" aria-selected="false">ĐÀO TẠO</a>
-
-                <a class="nav-link" id="boi-duong-tab" data-toggle="pill" href="#boi-duong" role="tab"
-                    aria-controls="boi-duong" aria-selected="false">BỒI DƯỠNG</a>
-
-                <a class="nav-link" id="khen-thuong-ky-luat-tab" data-toggle="pill" href="#khen-thuong-ky-luat"
-                    role="tab" aria-controls="khen-thuong-ky-luat" aria-selected="false">KHEN THƯỞNG - KỶ LUẬT</a>
-
-                <a class="nav-link" id="gia-dinh-tab" data-toggle="pill" href="#gia-dinh" role="tab"
-                    aria-controls="gia-dinh" aria-selected="false">GIA ĐÌNH</a>
-
-                <a class="nav-link" id="tai-san-tab" data-toggle="pill" href="#tai-san" role="tab"
-                    aria-controls="tai-san" aria-selected="false">TÀI SẢN</a>
-
-                <a class="nav-link" id="tao-tai-khoan-tab" data-toggle="pill" href="#tao-tai-khoan" role="tab"
-                    aria-controls="tao-tai-khoan" aria-selected="false">TẠO TÀI KHOẢN</a>
-            </div>
-        </div>
-        <div class="col-7 col-sm-10">
-            <div class="tab-content" id="vert-tabs-tabContent">
-                <div class="tab-pane text-left fade active show" id="thong-tin-chung" role="tabpanel"
-                    aria-labelledby="thong-tin-chung-tab">
-                    <form method="POST" action="{{route('nhansu.nhan-vien.update', $model->id)}}">
                         <input type="hidden" name="_method" value="PUT">
                         @csrf
                         <div class="form-row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-3">
                                 <label for="ho_ten">Họ và tên<span style="color: red">*</span>:</label>
                                 <div class="input-group">
                                     <input type="text" id="name" class="form-control" name="ho_ten"
-                                        value="{{ $model->ho_ten ?? old('ho_ten') }}" placeholder="Nhập họ và tên...">
+                                        value="{{ $model->ho_ten ?? old('ho_ten') }}" placeholder="Nhập họ và tên..."
+                                        required>
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-person-circle"></i></span>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="form-group col-md-3">
+                                <label for="vi_tri_cong_viec">Vị Trí Công Việc<span style="color: red">*</span>:</label>
+                                <select name="vi_tri_cong_viec_id" id="vi_tri_cong_viec" class="form-control">
+                                    @foreach ($viTriCongViec as $vt)
+                                        <option @if($vt->id == $model->vi_tri_cong_viec_id) selected @endif value="{{ $vt->id }}">{{ $vt->ten }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
                             <div class="form-group col-md-3">
                                 <label for="gioi_tinh">Giới tính<span style="color: red">*</span>: </label>
-                                <select name="gioi_tinh" id="gioi_tinh" class="form-control">
+                                <select class="js-example-basic-single form-control" name="gioi_tinh" style="width: 100%"
+                                    id="gioi_tinh">
                                     @foreach (\App\Modules\Nhansu\src\Models\NhanVien::GIOI_TINH as $id => $gt)
                                         <option value="{{ $id }}"
                                             @if ($model->gioi_tinh == $id) selected @endif>{{ $gt }}</option>
@@ -86,8 +57,9 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="ngay_sinh" class="h6">Ngày sinh<span style="color: red">*</span>:</label>
-                                <input type="date" id="ngay_sinh" class="form-control" name="ngay_sinh" value="{{$model->ngay_sinh ? $model->ngay_sinh->format('Y-m-d') : old('ngay_sinh')}}">
+                                <label for="ngay_sinh" >Ngày sinh<span style="color: red">*</span>:</label>
+                                <input type="date" id="ngay_sinh" class="form-control" name="ngay_sinh"
+                                    value="{{ $model->ngay_sinh ? $model->ngay_sinh->format('Y-m-d') : old('ngay_sinh') }}">
                             </div>
                         </div>
                         <div class="form-row">
@@ -102,25 +74,26 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="dien_thoai" class="h6">Điện thoại<span
-                                        style="color: red">*</span>:</label>
+                                <label for="dien_thoai" >Điện thoại<span style="color: red">*</span>:</label>
                                 <div class="input-group">
-                                    <input type="text" id="dien_thoai" class="form-control" name="dien_thoai_ca_nhan"
+                                    <input type="number" id="dien_thoai" class="form-control" name="dien_thoai_ca_nhan"
                                         value="{{ $model->chiTietNhanVien->dien_thoai_ca_nhan ?? old('dien_thoai_ca_nhan') }}"
-                                        placeholder="Nhập sô diện thoại...">
+                                        placeholder="Nhập số điện thoại..." required>
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-telephone"></i></span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-3 select22">
                                 <label for="loai_ho_so">Loại hồ sơ<span style="color: red">*</span>: </label>
-                                <select id="loai_ho_so" class="form-control" name="loai_nhan_vien">
-                                    @foreach (\App\Modules\Nhansu\src\Models\NhanVien::LOAI_NHAN_VIEN as $id => $lnv)
-                                        <option value="{{ $id }}"
-                                            @if ($model->loai_nhan_vien == $id) selected @endif>{{ $lnv }}</option>
+                                <select class="select2 form-control" name="loai_nhan_vien_id" style="width: 100%"
+                                    id="loai_nhan_vien_id">
+                                    @foreach ($loaiNhanVien as $lnv)
+                                        <option value="{{ $lnv->id }}"
+                                            @if ($model->loai_nhan_vien_id == $lnv->id) selected @endif>{{ $lnv->ten }}</option>
                                     @endforeach
                                 </select>
+
                             </div>
                         </div>
                         <div class="form-row">
@@ -135,9 +108,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-3 select22">
                                 <label for="dan_toc">Dân tộc: </label>
-                                <select id="dan_toc" class="form-control" name="dan_toc">
+                                <select class="select2 form-control" name="dan_toc" style="width: 100%" id="dan_toc">
                                     @foreach (\App\Modules\Nhansu\src\Models\ChiTietNhanVien::DAN_TOC as $id => $dt)
                                         <option value="{{ $id }}"
                                             @if ($model->chiTietNhanVien->dan_toc == $id) selected @endif>{{ $dt }}</option>
@@ -145,7 +118,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="ton_giao" class="h6">Tôn giáo:</label>
+                                <label for="ton_giao">Tôn giáo:</label>
                                 <div class="input-group">
                                     <input type="text" id="ton_giao" class="form-control" name="ton_giao"
                                         value="{{ $model->chiTietNhanVien->ton_giao ?? old('ton_giao') }}"
@@ -164,13 +137,13 @@
                                     <input type="text" id="dia_chi_thuong_tru" class="form-control"
                                         value="{{ $model->chiTietNhanVien->dia_chi_thuong_tru ?? old('dia_chi_thuong_tru') }}"
                                         name="dia_chi_thuong_tru" placeholder="Nhập địa chỉ thường trú...">
-                                    <div class="input-group-prepend">
+                                    <div class="input-group-prepend" required>
                                         <span class="input-group-text"><i class="bi bi-house-door-fill"></i></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="dia_chi_tam_tru" class="h6">Địa chỉ tạm trú:</label>
+                                <label for="dia_chi_tam_tru" >Địa chỉ tạm trú:</label>
                                 <div class="input-group">
                                     <input type="text" id="dia_chi_tam_tru" class="form-control"
                                         value="{{ $model->chiTietNhanVien->dia_chi_tam_tru ?? old('dia_chi_tam_tru') }}"
@@ -195,19 +168,20 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="dien_thoai_cong_viec" class="h6">Điện thoại công việc:</label>
+                                <label for="dien_thoai_cong_viec" >Điện thoại công việc:</label>
                                 <div class="input-group">
                                     <input type="text" id="dien_thoai_cong_viec" class="form-control"
                                         value="{{ $model->dien_thoai_cong_viec ?? old('dien_thoai_cong_viec') }}"
-                                        name="dien_thoai_cong_viec" placeholder="Nhập số điện hoại công việc...">
+                                        name="dien_thoai_cong_viec" placeholder="Nhập số điện thoại công việc...">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-telephone-plus"></i></span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-3 select22">
                                 <label for="hon_nhan">Tình trạng hôn nhân: </label>
-                                <select id="hon_nhan" class="form-control" name="tinh_trang_hon_nhan">
+                                <select class="select2 form-control" name="tinh_trang_hon_nhan" style="width: 100%"
+                                    id="tinh_trang_hon_nhan">
                                     @foreach (\App\Modules\Nhansu\src\Models\ChiTietNhanVien::TINH_TRANG_HON_NHAN as $id => $tt)
                                         <option value="{{ $id }}"
                                             @if ($model->chiTietNhanVien->tinh_trang_hon_nhan == $id) selected @endif>{{ $tt }}</option>
@@ -215,7 +189,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="email_phu" class="h6">Email phụ:</label>
+                                <label for="email_phu">Email phụ:</label>
                                 <div class="input-group">
                                     <input type="text" id="email_phu" class="form-control" name="email_phu"
                                         value="{{ $model->chiTietNhanVien->email_phu ?? old('email_phu') }}"
@@ -228,49 +202,51 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label for="ngay_bat_dau_lam_viec" class="h6">Ngày bắt đầu làm việc<span
+                                <label for="ngay_bat_dau_lam_viec">Ngày bắt đầu làm việc<span
                                         style="color: red">*</span>:</label>
                                 <input type="date" id="ngay_bat_dau_lam_viec" class="form-control"
-                                       value="{{$model->chiTietNhanVien->ngay_bat_dau_lam_viec ? $model->chiTietNhanVien->ngay_bat_dau_lam_viec->format('Y-m-d') : old('ngay_bat_dau_lam_viec')}}"
+                                    value="{{ $model->chiTietNhanVien->ngay_bat_dau_lam_viec ? $model->chiTietNhanVien->ngay_bat_dau_lam_viec->format('Y-m-d') : old('ngay_bat_dau_lam_viec') }}"
                                     name="ngay_bat_dau_lam_viec">
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="ngay_ket_thuc_lam_viec" class="h6">Ngày kết thúc làm việc:</label>
+                                <label for="ngay_ket_thuc_lam_viec">Ngày kết thúc làm việc:</label>
                                 <input type="date" id="ngay_ket_thuc_lam_viec" class="form-control"
-                                       value="{{$model->chiTietNhanVien->ngay_ket_thuc_lam_viec ? $model->chiTietNhanVien->ngay_ket_thuc_lam_viec->format('Y-m-d') : old('ngay_ket_thuc_lam_viec')}}"
+                                    value="{{ $model->chiTietNhanVien->ngay_ket_thuc_lam_viec ? $model->chiTietNhanVien->ngay_ket_thuc_lam_viec->format('Y-m-d') : old('ngay_ket_thuc_lam_viec') }}"
                                     name="ngay_ket_thuc_lam_viec">
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="ngay_thuc_te_lam_viec" class="h6">Ngày thực tế làm việc:</label>
+                                <label for="ngay_thuc_te_lam_viec" >Ngày thực tế làm việc:</label>
                                 <input type="date" id="ngay_thuc_te_lam_viec" class="form-control"
-                                       value="{{$model->chiTietNhanVien->ngay_thuc_te_lam_viec ? $model->chiTietNhanVien->ngay_thuc_te_lam_viec->format('Y-m-d') : old('ngay_thuc_te_lam_viec')}}"
+                                    value="{{ $model->chiTietNhanVien->ngay_thuc_te_lam_viec ? $model->chiTietNhanVien->ngay_thuc_te_lam_viec->format('Y-m-d') : old('ngay_thuc_te_lam_viec') }}"
                                     name="ngay_thuc_te_lam_viec">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-3">
-                                <label for="CMND" class="h6">CMND <span style="color: red">*</span>: </label>
+                                <label for="CMND" >CMND/CCCD <span style="color: red">*</span>: </label>
                                 <div class="input-group">
                                     <input type="text" id="CMND" class="form-control" name="cmnd"
                                         value="{{ $model->chiTietNhanVien->cmnd ?? old('cmnd') }}"
-                                        placeholder="Nhập số CMND...">
+                                        placeholder="Nhập số CMND..." required>
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-credit-card"></i></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="ngay_cap_CMND" class="h6">Ngày cấp<span style="color: red">*</span>:
+                                <label for="ngay_cap_CMND">Ngày cấp<span style="color: red">*</span>:
                                 </label>
-                                <input type="date" id="ngay_cap_CMND" class="form-control" value="{{$model->chiTietNhanVien->ngay_cap_cmnd ? $model->chiTietNhanVien->ngay_cap_cmnd->format('Y-m-d') : old('ngay_cap_cmnd')}}" name="ngay_cap_cmnd">
+                                <input type="date" id="ngay_cap_CMND" class="form-control"
+                                    value="{{ $model->chiTietNhanVien->ngay_cap_cmnd ? $model->chiTietNhanVien->ngay_cap_cmnd->format('Y-m-d') : old('ngay_cap_cmnd') }}"
+                                    name="ngay_cap_cmnd">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="noi_cap_CMND" class="h6">Nơi cấp<span style="color: red">*</span>:
+                                <label for="noi_cap_CMND">Nơi cấp<span style="color: red">*</span>:
                                 </label>
                                 <div class="input-group">
                                     <input type="text" id="noi_cap_CMND" class="form-control" name="noi_cap_cmnd"
                                         value="{{ $model->chiTietNhanVien->noi_cap_cmnd ?? old('noi_cap_cmnd') }}"
-                                        placeholder="Nhập nơi cấp CMND...">
+                                        placeholder="Nhập nơi cấp CMND..." required>
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
                                     </div>
@@ -278,17 +254,19 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-3 select22 ">
                                 <label for="trinh_do_chuyen_mon">Trình độ chuyên môn<span style="color: red">*</span>:
                                 </label>
-                                <select id="trinh_do_chuyen_mon" class="form-control" name="trinh_do_chuyen_mon">
+                                <select class=" select2 form-control" name="trinh_do_chuyen_mon" style="width: 100%"
+                                    id="trinh_do_chuyen_mon">
                                     @foreach (\App\Modules\Nhansu\src\Models\ChiTietNhanVien::TRINH_DO_CHUYEN_MON as $id => $td)
-                                        <option value="{{ $id }}" @if ($model->chiTietNhanVien->trinh_do_chuyen_mon == $id) selected @endif>{{ $td }}</option>
+                                        <option value="{{ $id }}"
+                                            @if ($model->chiTietNhanVien->trinh_do_chuyen_mon == $id) selected @endif>{{ $td }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="so_cchn" class="h6">Số CCHN: </label>
+                                <label for="so_cchn">Số CCHN: </label>
                                 <div class="input-group">
                                     <input type="text" id="so_cchn" class="form-control" name="so_cchn"
                                         value="{{ $model->chiTietNhanVien->so_cchn ?? old('so_cchn') }}"
@@ -299,7 +277,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="bo_sung_HĐ_CM" class="h6">Bổ sung phạm vi HĐ CM: </label>
+                                <label for="bo_sung_HĐ_CM" >Bổ sung phạm vi HĐ CM: </label>
                                 <div class="input-group">
                                     <input type="text" id="bo_sung_HĐ_CM" class="form-control"
                                         name="bo_sung_pham_vi_cm"
@@ -313,11 +291,12 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-3">
-                                <label for="ngay_cap_CCHN" class="h6">Ngày cấp CCHN: </label>
-                                <input type="date" id="ngay_cap_CCHN" class="form-control" name="ngay_cap_cchn" value="{{$model->chiTietNhanVien->ngay_cap_cchn ? $model->chiTietNhanVien->ngay_cap_cchn->format('Y-m-d') : old('ngay_cap_cchn')}}">
+                                <label for="ngay_cap_CCHN">Ngày cấp CCHN: </label>
+                                <input type="date" id="ngay_cap_CCHN" class="form-control" name="ngay_cap_cchn"
+                                    value="{{ $model->chiTietNhanVien->ngay_cap_cchn ? $model->chiTietNhanVien->ngay_cap_cchn->format('Y-m-d') : old('ngay_cap_cchn') }}">
                             </div>
                             <div class="form-group col-md-5">
-                                <label for="dk_hanh_nghe_tai" class="h6">ĐK Hành nghề tại: </label>
+                                <label for="dk_hanh_nghe_tai" >ĐK Hành nghề tại: </label>
                                 <div class="input-group">
                                     <input type="text" id="dk_hanh_nghe_tai" class="form-control"
                                         value="{{ $model->chiTietNhanVien->dang_ki_hanh_nghe_hien_tai ?? old('dang_ki_hanh_nghe_hien_tai') }}"
@@ -328,7 +307,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-2">
-                                <label for="bien_xe_o_to" class="h6">Biển xe ô tô<span style="color: red">*</span>:
+                                <label for="bien_xe_o_to" >Biển xe ô tô:
                                 </label>
                                 <div class="input-group">
                                     <input type="text" id="bien_xe_o_to" class="form-control" name="bien_oto"
@@ -345,8 +324,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-2">
-                                <label for="bien_xe_may" class="h6">Biển xe máy<span
-                                        style="color: red">*</span>:</label>
+                                <label for="bien_xe_may" >Biển xe máy</span>:</label>
                                 <div class="input-group">
                                     <input type="text" id="bien_xe_may" class="form-control" name="bien_xe_may"
                                         value="{{ $model->chiTietNhanVien->bien_xe_may ?? old('bien_xe_may') }}"
@@ -370,7 +348,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="size_ao" class="h6">Size áo<span style="color: red">*</span>:</label>
+                                <label for="size_ao" >Size áo<span style="color: red">*</span>:</label>
                                 <div class="input-group">
                                     <input type="text" id="size_ao" class="form-control" name="size_ao"
                                         value="{{ $model->chiTietNhanVien->size_ao ?? old('size_ao') }}"
@@ -381,7 +359,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="size_giay_dep" class="h6">Size giày dép<span
+                                <label for="size_giay_dep" >Size giày dép<span
                                         style="color: red">*</span>:</label>
                                 <div class="input-group">
                                     <input type="text" id="size_giay_dep" class="form-control" name="size_giay_dep"
@@ -393,7 +371,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="bang_lai" class="h6">Bằng lái:</label>
+                                <label for="bang_lai">Bằng lái:</label>
                                 <div class="input-group">
                                     <input type="text" id="bang_lai" class="form-control" name="bang_lai"
                                         value="{{ $model->chiTietNhanVien->bang_lai ?? old('bang_lai') }}"
@@ -404,54 +382,22 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="col-md-3"></div>
-                            <div class="col-md-3">
-                                <a href="{{route('nhansu.nhan-vien.edit', $model->id)}}" class="btn btn-info mb-2" style="text-align: center">Làm mới <i class="bi bi-arrow-clockwise"></i></a>
-                            </div>
-                            <div class="col-md-3"></div>
-                            <div class="col-md-3 ">
-                                <button type="submit" class="btn btn-primary mb-2">Lưu <i class="bi bi-download"></i></button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
 
-                <div class="tab-pane fade " id="ho-so-nhan-su" role="tabpanel" aria-labelledby="ho-so-nhan-su-tab">
-                    Hồ sơ nhân sự
-                </div>
-                <div class="tab-pane fade" id="hop-dong" role="tabpanel" aria-labelledby="hop-dong-tab">
-                    Hợp đồng
-                </div>
-                <div class="tab-pane fade" id="luong" role="tabpanel" aria-labelledby="luong-tab">
-                    Lương
-                </div>
-                <div class="tab-pane fade" id="bao-hiem" role="tabpanel" aria-labelledby="bao-hiem-tab">
-                    Bảo hiểm
-                </div>
-                <div class="tab-pane fade" id="cong-tac" role="tabpanel" aria-labelledby="cong-tac-tab">
-                    Công tác
-                </div>
-                <div class="tab-pane fade" id="dao-tao" role="tabpanel" aria-labelledby="dao-tao-tab">
-                    Đào tạo
-                </div>
-                <div class="tab-pane fade" id="boi-duong" role="tabpanel" aria-labelledby="boi-duong-tab">
-                    Bồi dưỡng
-                </div>
-                <div class="tab-pane fade" id="khen-thuong-ky-luat" role="tabpanel"
-                    aria-labelledby="khen-thuong-ky-luat-tab">
-                    Khen thưởng - kỷ luật
-                </div>
-                <div class="tab-pane fade" id="gia-dinh" role="tabpanel" aria-labelledby="gia-dinh-tab">
-                    Gia đình
-                </div>
-                <div class="tab-pane fade" id="tai-san" role="tabpanel" aria-labelledby="tai-san-tab">
-                    Tài sản
-                </div>
-                <div class="tab-pane fade" id="tao-tai-khoan" role="tabpanel" aria-labelledby="tao-tai-khoan-tab">
-                    Tạo tài khoản
+                    </div>
+
                 </div>
             </div>
-        </div>
+            <div class="card-footer d-sm-flex">
+                <div class="mt-2 mb-2">
+                </div>
+                <div class="btn-list ms-auto">
+                    <a href="{{ route('nhansu.nhan-vien.edit', $model->id) }}" class="btn btn-success mb-2"
+                        style="text-align: center">Làm mới <i class="bi bi-arrow-clockwise"></i></a>
+                        <button type="submit" class="btn btn-primary mb-2">Lưu <i class="bi bi-download"></i></button>
+                </div>
+
+
+            </div>
+        </form>
     </div>
 @stop

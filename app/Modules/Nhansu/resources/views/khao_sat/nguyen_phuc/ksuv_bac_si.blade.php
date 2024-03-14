@@ -19,8 +19,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <style>
         @media print {
             body {
-                width: 400mm;
-                height: 297mm;
                 margin: 0;
                 padding: 0;
             }
@@ -99,7 +97,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
             </div>
             <form id="ksBSForm" action="{{ route('nhansu.taoUngVien') }}" method="post"
-                class=" border border-2 border-success rounded" style="margin: auto;" enctype="multipart/form-data">
+                class="rounded" style="margin: auto;" enctype="multipart/form-data">
                 @csrf
                 <div class="container">
                     <div class="row">
@@ -114,10 +112,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                         <div class="col-7 ">
                             <div style="text-align: right;"><i>Ngày</i><input type="number" class="input"
-                                    name="ngay_khao_sat" value="{{ old('ngay_khao_sat') ?? '' }}" style="width: 5%;"
+                                    name="ngay_khao_sat" value="{{ old('ngay_khao_sat') ?? '' }}" style="width: 7%;"
                                     min="1" max="31" placeholder="...."><i>Tháng</i><input type="number"
                                     class="input" value="{{ old('thang_khao_sat') ?? '' }}" name="thang_khao_sat"
-                                    min="1" max="12" style="width: 5%;" placeholder="...."><i>Năm</i><input
+                                    min="1" max="12" style="width: 7%;" placeholder="...."><i>Năm</i><input
                                     type="number" class="input" name="nam_khao_sat"
                                     value="{{ old('nam_khao_sat') ?? '' }}" style=" width: 10%;" placeholder="........">
                             </div>
@@ -213,10 +211,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         placeholder="...................................">
                                 </div>
                             </div>
-                            <p style="display: inline;">Các chứng chỉ đào tạo liên quan:</p> <input class="input"
-                                value="{{ old('chung_chi_lien_quan') ?? '' }}" name="chung_chi_lien_quan"
-                                style="width: 35%;"
-                                placeholder="..........................................................................................................................."><br>
+                            <p style="display: inline;">Các chứng chỉ đào tạo liên quan:</p> 
+                            <textarea name="chung_chi_lien_quan" style=" width: 100%;" cols="30" rows="4">{{ old('chung_chi_lien_quan') ?? '' }}</textarea> <br>
                             <p style="display: inline;">Tình trạng hôn nhân: </p>
                             <input type="radio" name="hon_nhan" value="Độc thân"> Độc thân
                             <input type="radio" name="hon_nhan" value="Đã có gia đình"> Đã có gia đình

@@ -23,8 +23,6 @@
     </style>
 @stop
 
-@section('scripts')
-@stop
 
 @section('title')
 @stop
@@ -112,5 +110,5 @@
             </div>
         </form>
 </div>
-   
+
 @stop

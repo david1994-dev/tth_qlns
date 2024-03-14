@@ -110,8 +110,11 @@ interface BaseRepositoryInterface
     public function pluck($collection, $value, $key = null);
     public function findById($id);
     public function create($input);
+    public function updateOrCreate($input, $update);
+    public function insert($inputs);
     public function update($model, $input);
     public function save($model);
     public function delete($model);
     public function load($collections, $relationShip);
+    public function select($columns = [], string $order = 'id', string $direction = 'desc');
 }

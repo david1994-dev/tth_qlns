@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Helpers\PaginationHelper;
 use App\Helpers\PaginationHelperInterface;
+use App\Repositories\Eloquent\ImageRepository;
+use App\Repositories\Interface\ImageRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -31,6 +33,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(
             PaginationHelperInterface::class,
             PaginationHelper::class
+        );
+
+        $this->app->singleton(
+            ImageRepositoryInterface::class,
+            ImageRepository::class
         );
     }
 

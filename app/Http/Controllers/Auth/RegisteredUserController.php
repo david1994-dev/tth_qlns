@@ -70,7 +70,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', 'confirmed'],
         ]);
 
         $phongBanId = $request->get('phong_ban_id');
@@ -78,17 +78,17 @@ class RegisteredUserController extends Controller
 
         DB::beginTransaction();
         try {
-            $user = User::create([
+            $user = $this->userRepository->createAccount([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);
 
-
             $nhanVien = $this->nhanVienRepository->create([
                 'phong_ban_id' => $phongBan->id,
                 'chi_nhanh_id' => $phongBan->chi_nhanh_id,
-                'user_id' => $user->id
+                'user_id' => $user->id,
+                'email' => $user->email
             ]);
 
             $this->chiTietNhanVienRepository->create([
@@ -104,7 +104,7 @@ class RegisteredUserController extends Controller
         //create employee
 //        $this->employeeRepository->create([]);
 
-//        $image = $this->fileService->uploadImage('avatars', $request->file('avatar'));
+//        $image = $this->fileService->uploadFile('avatars', $request->file('avatar'));
 
 //        event(new Registered($user));
 

@@ -95,7 +95,7 @@ class UngVienController extends Controller
 
         //upload image
         if ($request->hasFile('image')) {
-            $image = $this->fileService->uploadImage('ung_vien' ,$request->file('image'));
+            $image = $this->fileService->uploadFile('ung_vien' ,$request->file('image'));
             if (!empty($image)) {
                 $input['image'] = $image;
             }
@@ -173,7 +173,7 @@ class UngVienController extends Controller
         if ($model->chi_nhanh_id != $nhanVien->chi_nhanh_id) {
             abort(403);
         }
-        
+
         $chiNhanh = $this->chiNhanhRepository->findById($nhanVien->chi_nhanh_id);
         if (!$chiNhanh) {
             return redirect()
@@ -203,5 +203,17 @@ class UngVienController extends Controller
                 'model'    => $model,
             ]
         );
+    }
+
+    public function destroy($id)
+    {
+        $model = $this->ungVienRepository->findById($id);
+        if (!$model) return response()->json(['status' => 'error' ,'message' => 'Ứng viên không tồn tại'], 404);
+
+        $this->ungVienRepository->delete($model);
+
+        session()->flash('success', 'Xóa ứng viên thành công!');
+
+        return response()->json(['status' => 'success' ,'message' => 'Xóa ứng viên thành công']);
     }
 }

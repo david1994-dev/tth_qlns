@@ -19,8 +19,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <style>
         @media print {
             body {
-                width: 400mm;
-                height: 297mm;
                 margin: 0;
                 padding: 0;
             }
@@ -99,7 +97,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
             </div>
             <form id="ksVPForm" action="{{ route('nhansu.taoUngVien') }}" method="post"
-                class=" border border-2 border-success rounded" style="margin: auto;" enctype="multipart/form-data">
+                class=" rounded" style="margin: auto;" enctype="multipart/form-data">
                 @csrf
                 <div class="container">
                     <div class="row">
@@ -144,8 +142,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </div>
                                 <div style="display: inline;" class="col-md-6">
                                     <p style="display: inline;">Ngày sinh</p>
-                                    <input type="date" id="ngay_sinh" name="ngay_sinh" required 
-                                        value="{{ old('ngay_sinh') ?? '' }}" style="width: 50% ;display: inline;  border-radius: 4px;
+                                    <input type="date" id="ngay_sinh" name="ngay_sinh" required
+                                        value="{{ old('ngay_sinh') ?? '' }}"
+                                        style="width: 50% ;display: inline;  border-radius: 4px;
                                         border: 2px solid;
                                         border-color: #bcbcbc;">
                                 </div>
@@ -175,9 +174,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="row">
                                 <div class="col-md-6">
                                     <p style="display: inline;">Chuyên ngành đào tạo:</p> <input class="input"
-                                    value="{{ old('chuyen_nganh_dao_tao') ?? '' }}" style="width: 50%;"
-                                    name="chuyen_nganh_dao_tao"
-                                    placeholder="......................................................................">
+                                        value="{{ old('chuyen_nganh_dao_tao') ?? '' }}" style="width: 50%;"
+                                        name="chuyen_nganh_dao_tao"
+                                        placeholder="......................................................................">
                                 </div>
                                 <div class="col-md-6">
                                     Hệ đào
@@ -201,8 +200,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="row">
                                 <div class="col-md-5">
                                     <p style="display: inline;">Chiều cao:</p> <input name="chieu_cao" class="input"
-                                    value="{{ old('chieu_cao') ?? '' }}" style="width: 50%;" required
-                                    placeholder="......................................................................">
+                                        value="{{ old('chieu_cao') ?? '' }}" style="width: 50%;" required
+                                        placeholder="......................................................................">
                                 </div>
                                 <div class="col-md-7">
                                     Cân nặng:
@@ -219,8 +218,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </div>
                                 <div class="col-md-5">
                                     <p style="display: inline;">
-                                        Số con: </p> <input class="input"
-                                        value="{{ old('so_con') ?? '' }}" name="so_con" style="width: 20%;"
+                                        Số con: </p> <input class="input" value="{{ old('so_con') ?? '' }}"
+                                        name="so_con" style="width: 20%;"
                                         placeholder="......................................................................">
                                 </div>
                             </div>
@@ -430,12 +429,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                     </div>
                 </div>
-            <input type="hidden" name="loai_ung_vien"
-                value="{{ \App\Modules\Nhansu\src\Models\UngVien::LOAI_UNG_VIEN_VAN_PHONG }}">
+                <input type="hidden" name="loai_ung_vien"
+                    value="{{ \App\Modules\Nhansu\src\Models\UngVien::LOAI_UNG_VIEN_VAN_PHONG }}">
 
-            <input type="hidden" name="chi_nhanh_slug"
-                   value="{{ $chiNhanhSlug }}">
-        </form>
+                <input type="hidden" name="chi_nhanh_slug" value="{{ $chiNhanhSlug }}">
+            </form>
         </div>
     </div><!-- /.container-fluid -->
 </body>

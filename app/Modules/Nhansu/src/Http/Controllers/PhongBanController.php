@@ -31,31 +31,31 @@ class PhongBanController extends Controller
      */
     public function index(PaginationRequest $request)
     {
-        $paginate['limit']      = $request->limit();
-        $paginate['offset']     = $request->offset();
-        $paginate['order']      = $request->order();
-        $paginate['direction']  = $request->direction();
-        $paginate['baseUrl']    = route('nhansu.khoa-phong-ban.index');
-        $keyword = $request->get('keyword');
+            $paginate['limit']      = $request->limit();
+            $paginate['offset']     = $request->offset();
+            $paginate['order']      = $request->order();
+            $paginate['direction']  = $request->direction();
+            $paginate['baseUrl']    = route('nhansu.khoa-phong-ban.index');
+            $keyword = $request->get('keyword');
 
-        $filter = [];
-        if (!empty($keyword)) {
-            $filter['query'] = $keyword;
-        }
+            $filter = [];
+            if (!empty($keyword)) {
+                $filter['query'] = $keyword;
+            }
 
-        $count = $this->phongBanRepository->countByFilter($filter);
-        $models = $this->phongBanRepository->getByFilter($filter, $paginate['order'], $paginate['direction'], $paginate['offset'], $paginate['limit']);
-        $models = $this->phongBanRepository->load($models, ['chiNhanh']);
+            $count = $this->phongBanRepository->countByFilter($filter);
+            $models = $this->phongBanRepository->getByFilter($filter, $paginate['order'], $paginate['direction'], $paginate['offset'], $paginate['limit']);
+            $models = $this->phongBanRepository->load($models, ['chiNhanh']);
 
-        return view(
-            'Nhansu::phong_ban.index',
-            [
-                'models'    => $models,
-                'count'         => $count,
-                'paginate'      => $paginate,
-                'keyword'       => $keyword
-            ]
-        );
+            return view(
+                'Nhansu::phong_ban.index',
+                [
+                    'models'    => $models,
+                    'count'         => $count,
+                    'paginate'      => $paginate,
+                    'keyword'       => $keyword
+                ]
+            );
     }
 
     /**
@@ -149,16 +149,14 @@ class PhongBanController extends Controller
         $model = $this->phongBanRepository->findById($id);
         if( empty( $model ) ) {
             session()->flash('error', 'Phòng ban không tồn tại');
-            return redirect()
-                ->back();
+            return redirect()->route('nhansu.khoa-phong-ban.index');
         }
 
         $this->phongBanRepository->delete( $model );
 
         session()->flash('success', 'Bạn đã xóa phòng ban thành công');
 
-        return redirect()
-            ->back();
+        return redirect()->route('nhansu.khoa-phong-ban.index');
     }
 
     public function sodotochuc($id)
