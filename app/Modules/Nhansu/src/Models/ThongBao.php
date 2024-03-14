@@ -124,7 +124,8 @@ class ThongBao extends Base
 
         $nhomNguoiNhans = $this->nhom_nguoi_nhan_ids;
         if ($nhomNguoiNhans) {
-            foreach ($nhomNguoiNhans as $nhomNguoiNhan) {
+            foreach ($nhomNguoiNhans as $nhomNguoiNhanId) {
+                $nhomNguoiNhan = NhomNhanSu::query()->find($nhomNguoiNhanId);
                 $nNguoiNhan = NhanVien::query()->whereIn('user_id', $nhomNguoiNhan->user_ids)->pluck('ho_ten')->toArray();
                 $sendTo = array_merge($sendTo, $nNguoiNhan);
             }
