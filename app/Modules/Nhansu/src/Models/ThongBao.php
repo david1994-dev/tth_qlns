@@ -71,18 +71,6 @@ class ThongBao extends Base
         return $this->hasOne(LoaiThongBao::class, 'id', 'loai_thong_bao');
     }
 
-    public function getIsReadAttribute()
-    {
-        $user = auth()->user();
-        if (!$user) return false;
-
-        return ThongBaoUser::query()
-            ->where('user_id', $user->id)
-            ->where('thong_bao_id', $this->id)
-            ->where('status', ThongBaoUser::STATUS_DA_DOC)
-            ->exists();
-    }
-
     public function nguoiGui()
     {
         return $this->hasOne(User::class, 'id', 'nguoi_gui_id');
