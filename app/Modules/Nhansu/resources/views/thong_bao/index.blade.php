@@ -101,7 +101,7 @@
                                 <table class="table table-inbox table-hover text-nowrap mb-0">
                                     <tbody>
                                         @foreach ($models as $model)
-                                            <tr class="@if (!$model->isRead) unread @endif jsViewDetail"
+                                            <tr class="@if (!$model->is_read) unread @endif jsViewDetail"
                                                 data-url="{{ route('nhansu.thong-bao.show', $model->id) }}">
                                                 <td class="inbox-small-cells"><i class="fa fa-bookmark text-danger"></i>
                                                 </td>
