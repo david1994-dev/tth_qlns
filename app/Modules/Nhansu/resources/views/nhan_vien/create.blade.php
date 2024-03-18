@@ -31,6 +31,10 @@
         .setting-input .col-xl-10 {
             max-width: 65% !important;
         }
+
+        .label-right {
+            padding-left: 70px;
+        }
     </style>
 @stop
 
@@ -78,7 +82,9 @@
                                     <label for="profile-image" class="custom-file-upload text-center">
                                         <i class="bi bi-upload"></i> Tải ảnh
                                     </label>
-                                    <input id="profile-image" name="image" type="file" class="d-none" />
+                                    <input id="profile-image" name="image" type="file"
+                                        class="d-none
+                                    " />
                                 </div>
                                 <div class="col-xl-5">
                                     <div class="form-group">
@@ -132,46 +138,57 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-xl-4">
-                                                    <label class="form-label mb-0 ">Chi Nhánh:</label>
+                                                    <label class="form-label mb-0 label-right">Chi Nhánh:</label>
                                                 </div>
                                                 <div class="col-xl-8">
-                                                    <input type="text" class="form-control"
-                                                        value="{{ @$model->chiNhanh->ten }}">
+                                                    <select class="select2 form-control" name="chi_nhanh" id="chi_nhanh"
+                                                        style="width: 100%">
+                                                        @foreach (\App\Modules\Nhansu\src\Models\ChiTietNhanVien::DAN_TOC as $id => $dt)
+                                                            <option value="{{ $id }}">{{ $dt }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-xl-4">
-                                                    <label class="form-label mb-0 ">Phòng Ban:</label>
+                                                    <label class="form-label mb-0 label-right">Phòng Ban:</label>
                                                 </div>
                                                 <div class="col-xl-8 ">
-                                                    <div class="option exit-option">
-                                                        <input type="text" class="form-control" value="">
-                                                    </div>
+                                                    <select class="select2 form-control" name="phong_ban" id="phong_ban"
+                                                        style="width: 100%">
+                                                        @foreach (\App\Modules\Nhansu\src\Models\ChiTietNhanVien::DAN_TOC as $id => $dt)
+                                                            <option value="{{ $id }}">{{ $dt }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-xl-4">
-                                                    <label class="form-label mb-0 ">Phòng Ban Thêm:</label>
+                                                    <label class="form-label mb-0 label-right">Phòng Ban Thêm:</label>
                                                 </div>
                                                 <div class="col-xl-8">
-                                                    <div class="option exit-option">
-                                                        <input type="text" class="form-control" value="">
-                                                    </div>
+                                                    <select class="select2 form-control" name="phong_ban_them" id="phong_ban_them"
+                                                        style="width: 100%">
+                                                        @foreach (\App\Modules\Nhansu\src\Models\ChiTietNhanVien::DAN_TOC as $id => $dt)
+                                                            <option value="{{ $id }}">{{ $dt }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-xl-4">
-                                                    <label class="form-label mb-0 ">Vị Trí Công Việc:</label>
+                                                    <label class="form-label mb-0 label-right">Vị Trí Công Việc:</label>
                                                 </div>
                                                 <div class="col-xl-8">
-                                                    <select name="vi_tri_cong_viec_id" id="vi_tri_cong_viec"
-                                                        class="form-control">
+                                                    <select class="select2 form-control" name="vi_tri_cong_viec_id" id="vi_tri_cong_viec"
+                                                        style="width: 100%">
                                                         @foreach ($viTriCongViec as $vt)
                                                             <option value="{{ $vt->id }}">{{ $vt->ten }}
                                                             </option>
