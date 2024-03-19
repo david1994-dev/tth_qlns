@@ -19,7 +19,7 @@
         }
 
         .exit-option .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
-            color:#f7284a !important;
+            color: #f7284a !important;
         }
 
         .select22 .select2-container .select2-selection--single {
@@ -38,6 +38,11 @@
             padding-left: 0px;
             padding-right: 0px;
             font-size: 75%;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            padding-left: 0px;
+            font-size: 12px;
         }
 
         * {
@@ -166,36 +171,36 @@
         }
     </script>
 
-{{--    <script>--}}
-{{--        $(document).ready(function() {--}}
-{{--            $('.jsSelectNV').select2({--}}
-{{--                ajax: {--}}
-{{--                    url: '{!! route('nhansu.nhan-vien.searchAjax') !!}',--}}
-{{--                    dataType: 'json',--}}
-{{--                    delay: 300,--}}
-{{--                    data: function(params) {--}}
-{{--                        return query = {--}}
-{{--                            search: params.term,--}}
-{{--                            page: params.page--}}
-{{--                        }--}}
-{{--                    },--}}
-{{--                    processResults: function(data, params) {--}}
-{{--                        params.page = params.page || 1;--}}
+    {{--    <script> --}}
+    {{--        $(document).ready(function() { --}}
+    {{--            $('.jsSelectNV').select2({ --}}
+    {{--                ajax: { --}}
+    {{--                    url: '{!! route('nhansu.nhan-vien.searchAjax') !!}', --}}
+    {{--                    dataType: 'json', --}}
+    {{--                    delay: 300, --}}
+    {{--                    data: function(params) { --}}
+    {{--                        return query = { --}}
+    {{--                            search: params.term, --}}
+    {{--                            page: params.page --}}
+    {{--                        } --}}
+    {{--                    }, --}}
+    {{--                    processResults: function(data, params) { --}}
+    {{--                        params.page = params.page || 1; --}}
 
-{{--                        return {--}}
-{{--                            results: data.items,--}}
-{{--                            pagination: {--}}
-{{--                                more: (params.page * 50) < data.count--}}
-{{--                            }--}}
-{{--                        };--}}
-{{--                    },--}}
-{{--                    cache: true--}}
-{{--                },--}}
-{{--                placeholder: 'Nhập mã hoặc họ tên nhân viên...',--}}
-{{--                minimumInputLength: 1,--}}
-{{--            })--}}
-{{--        });--}}
-{{--    </script>--}}
+    {{--                        return { --}}
+    {{--                            results: data.items, --}}
+    {{--                            pagination: { --}}
+    {{--                                more: (params.page * 50) < data.count --}}
+    {{--                            } --}}
+    {{--                        }; --}}
+    {{--                    }, --}}
+    {{--                    cache: true --}}
+    {{--                }, --}}
+    {{--                placeholder: 'Nhập mã hoặc họ tên nhân viên...', --}}
+    {{--                minimumInputLength: 1, --}}
+    {{--            }) --}}
+    {{--        }); --}}
+    {{--    </script> --}}
 @stop
 @section('content')
     <div class="side-app main-container">
@@ -219,7 +224,7 @@
         <!-- END PAGE HEADER -->
 
         <!-- ROW -->
-        <form action="{{route('nhansu.thong-bao.store')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('nhansu.thong-bao.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-lg-4 col-xl-4 col-md-12 col-sm-12">
@@ -264,8 +269,7 @@
                                     </div>
                                     <div class="col-xl-12 placeholder2">
                                         <div class="option exit-option">
-                                            <select data-placeholder="Chọn phòng ban"
-                                                class="select2 form-control"
+                                            <select data-placeholder="Chọn phòng ban" class="select2 form-control"
                                                 name="phong_ban_ids[]" multiple>
                                                 @foreach ($phongBan as $pb)
                                                     <option value="{{ $pb->id }}">{{ $pb->ten }}</option>
@@ -282,10 +286,9 @@
                                     </div>
                                     <div class="col-xl-12">
                                         <div class="option exit-option placeholder2">
-                                            <select data-placeholder="Chọn nhóm người dùng"
-                                                class="form-control select2"
+                                            <select data-placeholder="Chọn nhóm người dùng" class="form-control select2"
                                                 name="nhom_nguoi_nhan_ids[]" multiple>
-                                                @foreach($nhomNguoiDung as $nnd)
+                                                @foreach ($nhomNguoiDung as $nnd)
                                                     <option value="{{ $nnd->id }}">{{ $nnd->ten }}</option>
                                                 @endforeach
                                             </select>
@@ -300,12 +303,12 @@
                                     </div>
                                     <div class="col-xl-12 placeholder2">
                                         <div class="option exit-option">
-                                            <select
-                                                data-placeholder="Chọn người nhận cá nhân"
-                                                class="form-control select2"
+                                            <select data-placeholder="Chọn người nhận cá nhân" class="form-control select2"
                                                 name="nguoi_nhan_ids[]" multiple>
-                                                @foreach($nhanVien as $nv)
-                                                    <option value="{{$nv->user_id}}">{{$nv->ho_ten.' - '.$nv->phongBan->ten.' - '.$nv->chiNhanh->ten}}</option>
+                                                @foreach ($nhanVien as $nv)
+                                                    <option value="{{ $nv->user_id }}">
+                                                        {{ $nv->ho_ten . ' - ' . $nv->phongBan->ten . ' - ' . $nv->chiNhanh->ten }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -321,8 +324,8 @@
                                     </div>
                                     <div class="col-xl-12 placeholder2">
                                         <select class="js-example-basic-single form-control select2 muc-do" name="muc_do">
-                                            @foreach(\App\Modules\Nhansu\src\Models\ThongBao::MUC_DO as $mucDo)
-                                                <option value="{{$mucDo['id']}}">{{$mucDo['name']}}</option>
+                                            @foreach (\App\Modules\Nhansu\src\Models\ThongBao::MUC_DO as $mucDo)
+                                                <option value="{{ $mucDo['id'] }}">{{ $mucDo['name'] }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -337,8 +340,8 @@
                                     <div class="col-xl-12 font-placeholder">
                                         <select class="js-example-basic-single select2 loai-thong-bao form-control "
                                             name="loai_thong_bao">
-                                            @foreach($loaiThongBao as $ltb)
-                                                <option value="{{$ltb->id}}">{{$ltb->ten}}</option>
+                                            @foreach ($loaiThongBao as $ltb)
+                                                <option value="{{ $ltb->id }}">{{ $ltb->ten }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -350,7 +353,8 @@
                                         <label class="form-label mb-0 ">Người Theo Dõi:</label>
                                     </div>
                                     <div class="col-xl-12">
-                                        <input type="text" class="form-control" value="" ::placeholder{ color: }>
+                                        <input type="text" class="form-control" value="" ::placeholder{ color:
+                                            }>
                                     </div>
                                 </div>
                             </div>
@@ -382,7 +386,8 @@
                                 <div class="row align-items-center">
                                     <label class="col-sm-2 form-label">Tiêu đề <span style="color: red">*</span>:</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="tieu_de" value="{{old('tieu_de') ?? ''}}" required class="form-control" placeholder="Nhập tiêu đề...">
+                                        <input type="text" name="tieu_de" value="{{ old('tieu_de') ?? '' }}" required
+                                            class="form-control" placeholder="Nhập tiêu đề...">
                                     </div>
                                 </div>
                             </div>
