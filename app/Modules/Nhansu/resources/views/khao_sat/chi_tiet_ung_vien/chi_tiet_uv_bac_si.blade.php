@@ -302,7 +302,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             kỹ thuật
                             tuyến <p style="font-weight: 600; display: inline;">Tỉnh</p>)<br> <br>
                             <p style="display: inline;font-weight: 600;">Các kỹ năng đặc biệt khác:</p>
-                            <textarea class="form-control" aria-label="With textarea" style="width: 100%;" name="ky_nang_khac">{{ Arr::get($chiTietUngVien, 'ky_nang_khac', '') }}</textarea>
+                            <textarea class="form-control" aria-label="With textarea" style="width: 100
+                            %;" name="ky_nang_khac">{{ Arr::get($chiTietUngVien, 'ky_nang_khac', '') }}</textarea>
                             <br>
                             <p style="font-weight: 600; display: inline;"> 3.Anh(chị) có nhu cầu để tiếp
                                 tục học
