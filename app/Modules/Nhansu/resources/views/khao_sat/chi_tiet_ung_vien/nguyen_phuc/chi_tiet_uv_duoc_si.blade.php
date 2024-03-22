@@ -78,6 +78,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             margin-left: 220px;
             display: inline;
         }
+
+        .header-content {
+            color: hsl(206.95deg 91.26% 35.88%)
+        }
     </style>
 </head>
 
@@ -110,6 +114,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <form id="ksDSForm" method="post" class=" rounded" style="margin: auto;" enctype="multipart/form-data">
                 @csrf
                 <div class="container">
+                    <div class="row">
+                        <div class="col-3 mt-5">
+                            <img src="https://hrchannels.com/Upload/avatar/20210504/083153908_bfd820d15e06ba58e317.jpg"
+                                alt="" width="200px" height="100px">
+                        </div>
+                        <div class="col-9 mt-2 header-content mt-5" style="font-size: 20px">
+                            <b style="font-size: 100%"><u>BỆNH VIỆN Y HỌC CỔ TRUYỀN NGUYÊN PHÚC</u></b>
+                            <p style="margin-bottom: 0 !important" class="mt-2"><b>Địa chỉ: </b>Xóm Trung Tiến, xã
+                                Hưng Đông, TP Vinh, Nghệ An</p>
+                            <div class="mt-2">
+                                <p style="display: inline "><b>Điện thoại: </b>0964821119</p>
+                                <p style="display: inline;padding-left:5%"><b>Email: </b>tuyendung.na3@tthgroup.vn</p>
+                            </div>
+        
+                            <p class="mt-2"><b>Website: </b>https://benhvienyhct-phcntthhungdong.vn</p>
+                        </div>
+                    </div>
+                    <hr style="border: 2px solid hsl(206.95deg 91.26% 35.88%);">
                     <div class="row">
                         <div class="col-3">
                             @if (!$model->image)
