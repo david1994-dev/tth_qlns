@@ -133,7 +133,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-5 col-lg-7">
+                                <div class="col-xl-5">
                                     <div>
                                         <div class="form-group">
                                             <div class="row">
@@ -502,6 +502,7 @@
                         <button type="submit" class="btn btn-primary mb-2">Lưu <i class="bi bi-download"></i></button>
                     </div>
                 </div>
+            </div>
         </form>
     </div>
 

@@ -5,11 +5,11 @@
             <div class="card card-primary">
                 <div class="card-header">
                     <h3 class="card-title">
-                        Chỉnh Sửa Chi Nhánh
+                        Chỉnh Sửa Nhóm Nhân Sự
                     </h3>
                 </div>
 
-                <form action="{{route('nhansu.chi-nhanh.update', $model->id)}}" method="POST">
+                <form action="{{route('nhansu.nhom-nhan-su.update', $model->id)}}" method="POST">
                     <input type="hidden" name="_method" value="PUT">
                     @csrf
                     <div class="card-body">
