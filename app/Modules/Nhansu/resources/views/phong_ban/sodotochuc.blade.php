@@ -136,7 +136,7 @@
             text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
         }
 
-        ol ol {
+        ol ul{
             margin: 0 0 0 2em;
             /* Add some left margin for inner lists */
         }
