@@ -9,6 +9,8 @@
 <link rel="stylesheet" href="{{asset('adminlte\plugins\select2\css\select2.min.css')}}">
 
 <link rel="stylesheet" href="{{asset('adminlte\dist\css\laravelui\style.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css" />
+
 
 <style>
     @media print {
